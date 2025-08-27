@@ -6,6 +6,10 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { env } from "@/env";
 import * as schema from "./schema";
+import * as townSchema from "./schema-town";
+
+// Combine all schemas
+const combinedSchema = { ...schema, ...townSchema };
 
 // Configure postgres with proper options for production workloads
 const client = env.DATABASE_URL
@@ -14,11 +18,14 @@ const client = env.DATABASE_URL
 			connect_timeout: 30, // Longer timeout for heavy operations
 			idle_timeout: 30, // Longer idle timeout
 			max_lifetime: 60 * 30, // 30 minutes max lifetime
-			...(process.env.NODE_ENV === "development"
+			// Only use SSL for production or if explicitly required
+			...(process.env.NODE_ENV === "production" && !env.DATABASE_URL.includes("localhost")
 				? {
-						ssl: { rejectUnauthorized: false }, // Needed for some Neon connections
+						ssl: { rejectUnauthorized: false }, // Needed for some hosted connections
 					}
-				: {}),
+				: {
+						ssl: false, // Disable SSL for local development
+					}),
 			transform: {
 				undefined: null, // Transform undefined values to null
 				...({} as Record<string, never>), // Empty transform object
@@ -26,7 +33,7 @@ const client = env.DATABASE_URL
 		})
 	: undefined;
 
-export const db = client ? drizzle(client, { schema }) : undefined;
+export const db = client ? drizzle(client, { schema: combinedSchema }) : undefined;
 
 // Export a function to check if the database is initialized and connected - Prefer checking db instead
 export const isDatabaseInitialized = async () => {
@@ -50,7 +57,7 @@ export const isDatabaseInitialized = async () => {
  * @returns Promise<T> - The result of the callback or the default value
  */
 export const safeDbExecute = async <T>(
-	callback: (db: PostgresJsDatabase<typeof schema>) => Promise<T>,
+	callback: (db: PostgresJsDatabase<typeof combinedSchema>) => Promise<T>,
 	defaultValue: T
 ): Promise<T> => {
 	if (!db) {
@@ -68,5 +75,6 @@ export const safeDbExecute = async <T>(
 
 // Export schema for direct usage
 export * from "./schema";
+export * from "./schema-town";
 
-export { schema };
+export { schema, townSchema, combinedSchema };

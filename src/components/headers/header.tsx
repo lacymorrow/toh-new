@@ -7,10 +7,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import type React from "react";
 import { Icon } from "@/components/assets/icon";
-import { Link } from "@/components/primitives/link";
-import { SearchMenu } from "@/components/modules/search/search-menu";
+import { LoginButton } from "@/components/buttons/sign-in-button";
 import { SearchAi } from "@/components/modules/search/search-ai";
+import { SearchMenu } from "@/components/modules/search/search-menu";
 import { UserMenu } from "@/components/modules/user/user-menu";
+import { Link } from "@/components/primitives/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ui/shipkit/theme";
@@ -21,9 +22,8 @@ import { siteConfig } from "@/config/site-config";
 import { useSignInRedirectUrl } from "@/hooks/use-auth-redirect";
 import { cn } from "@/lib/utils";
 import styles from "@/styles/header.module.css";
-import { LoginButton } from "@/components/buttons/sign-in-button";
-import { BuyButton } from "../buttons/lemonsqueezy-buy-button";
 import type { User } from "@/types/user";
+import { BuyButton } from "../buttons/lemonsqueezy-buy-button";
 
 interface HeaderProps {
 	navLinks?: NavLink[];
@@ -95,7 +95,8 @@ export const Header: React.FC<HeaderProps> = ({
 
 	const isLogoOnly = variant === "logo-only";
 	const scrollY = typeof y === "number" ? y : 0;
-	const isOpaque = variant === "floating" && typeof opaqueOnScroll === "number" && scrollY > opaqueOnScroll;
+	const isOpaque =
+		variant === "floating" && typeof opaqueOnScroll === "number" && scrollY > opaqueOnScroll;
 
 	return (
 		<>
@@ -247,8 +248,8 @@ export const Header: React.FC<HeaderProps> = ({
 
 									<UserMenu user={user} />
 
-									{!session && (
-										animatedCTAOnScroll ? (
+									{!session &&
+										(animatedCTAOnScroll ? (
 											<AnimatePresence mode="wait">
 												{scrollY > animatedCTAOnScroll ? (
 													<motion.div
@@ -270,7 +271,9 @@ export const Header: React.FC<HeaderProps> = ({
 																	sideOffset={3}
 																	className="-mt-3 select-none border-none bg-transparent p-0 text-xs text-muted-foreground shadow-none data-[state=delayed-open]:animate-fadeDown"
 																>
-																	<LoginButton className="hover:text-foreground">or Login</LoginButton>
+																	<LoginButton className="hover:text-foreground">
+																		or Login
+																	</LoginButton>
 																</TooltipContent>
 															</Tooltip>
 														</TooltipProvider>
@@ -291,8 +294,7 @@ export const Header: React.FC<HeaderProps> = ({
 											</AnimatePresence>
 										) : (
 											<BuyButton />
-										)
-									)}
+										))}
 								</div>
 							</div>
 						</>

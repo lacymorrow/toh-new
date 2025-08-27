@@ -1,58 +1,24 @@
 import type { Metadata } from "next";
-import React from "react";
+import { EmergencyBanner } from "@/components/town/emergency-banner";
+import { TownFooter } from "@/components/town/town-footer";
+import { TownHeader } from "@/components/town/town-header";
 
-import { AppRouterLayout } from "@/components/layouts/app-router-layout";
-import { Body } from "@/components/primitives/body";
-import { metadata as defaultMetadata } from "@/config/metadata";
-import { initializePaymentProviders } from "@/server/providers";
+export const metadata: Metadata = {
+	title: {
+		template: "%s | Town of Harmony",
+		default: "Town of Harmony - Your Community, Your Home",
+	},
+	description:
+		"Welcome to the Town of Harmony official website. Find local news, events, services, and community information.",
+};
 
-export const metadata: Metadata = defaultMetadata;
-export const fetchCache = "default-cache";
-
-await initializePaymentProviders();
-
-export default async function Layout({
-	children,
-	...slots
-}: {
-	children: React.ReactNode;
-	[key: string]: React.ReactNode;
-}) {
-	// Intercepting routes
-	const resolvedSlots = (
-		await Promise.all(
-			Object.entries(slots).map(async ([key, slot]) => {
-				const resolvedSlot = slot instanceof Promise ? await slot : slot;
-				if (
-					!resolvedSlot ||
-					(typeof resolvedSlot === "object" && Object.keys(resolvedSlot).length === 0)
-				) {
-					return null;
-				}
-				return [key, resolvedSlot] as [string, React.ReactNode];
-			})
-		)
-	).filter((item): item is [string, React.ReactNode] => item !== null);
-
+export default function PublicLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<Body>
-				<AppRouterLayout>
-					<main>{children}</main>
-
-					{/* Dynamically render all available slots */}
-					{resolvedSlots.map(([key, slot]) => (
-						<React.Fragment key={`slot-${key}`}>{slot}</React.Fragment>
-					))}
-
-					{/* TODO: Uncomment this when we have this working */}
-					{/* Lacy Morrow vanity plate */}
-					{/* <BrickMarquee /> */}
-				</AppRouterLayout>
-
-				{/* Add FontSelector only in development */}
-				{/* {process.env.NODE_ENV === "development" && <FontSelector />} */}
-			</Body>
-		</html>
+		<div className="min-h-screen flex flex-col">
+			<EmergencyBanner />
+			<TownHeader />
+			<main className="flex-grow">{children}</main>
+			<TownFooter />
+		</div>
 	);
 }

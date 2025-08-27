@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 import path from "path";
 import { buildTimeFeatureFlags, buildTimeFeatures } from "@/config/features-config";
-import { getDerivedSecrets } from "@/config/secrets";
 import { FILE_UPLOAD_MAX_SIZE } from "@/config/file";
 import { redirects } from "@/config/routes";
+import { getDerivedSecrets } from "@/config/secrets";
 import { withPlugins } from "@/config/with-plugins";
 
 const nextConfig: NextConfig = {
@@ -236,7 +236,7 @@ const nextConfig: NextConfig = {
 		// Use DISABLE_ERROR_LOGGING to disable error logging too
 		removeConsole:
 			process.env.DISABLE_LOGGING === "true" ||
-				(process.env.NODE_ENV === "production" && !process.env.DISABLE_LOGGING)
+			(process.env.NODE_ENV === "production" && !process.env.DISABLE_LOGGING)
 				? process.env.DISABLE_ERROR_LOGGING === "true" ||
 					(process.env.NODE_ENV === "production" && !process.env.DISABLE_ERROR_LOGGING)
 					? true

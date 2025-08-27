@@ -28,18 +28,20 @@ export async function AppRouterLayout({
 		try {
 			const teams = await teamService.getUserTeams(session.user.id);
 			if (teams && teams.length > 0) {
-				userTeams = teams.map(tm => ({
+				userTeams = teams.map((tm) => ({
 					id: tm.team.id,
-					name: tm.team.name
+					name: tm.team.name,
 				}));
 			} else {
 				// Ensure at least one personal team exists
 				const personalTeam = await teamService.ensureOnePersonalTeam(session.user.id);
 				if (personalTeam) {
-					userTeams = [{
-						id: personalTeam.id,
-						name: personalTeam.name
-					}];
+					userTeams = [
+						{
+							id: personalTeam.id,
+							name: personalTeam.name,
+						},
+					];
 				}
 			}
 		} catch (error) {
@@ -50,10 +52,12 @@ export async function AppRouterLayout({
 	const lightEnabled = !!env.NEXT_PUBLIC_FEATURE_LIGHT_MODE_ENABLED;
 	const darkEnabled = !!env.NEXT_PUBLIC_FEATURE_DARK_MODE_ENABLED;
 	const bothEnabled = lightEnabled && darkEnabled;
-	const computedThemes = [lightEnabled && "light", darkEnabled && "dark"].filter(Boolean) as string[];
+	const computedThemes = [lightEnabled && "light", darkEnabled && "dark"].filter(
+		Boolean
+	) as string[];
 	const themes = computedThemes.length ? computedThemes : ["light"]; // Fallback safety
 	const defaultTheme = bothEnabled ? "system" : lightEnabled ? "light" : "dark";
-	const forcedTheme = bothEnabled ? undefined : (lightEnabled ? "light" : "dark");
+	const forcedTheme = bothEnabled ? undefined : lightEnabled ? "light" : "dark";
 
 	return (
 		<ViewTransitions>

@@ -7,10 +7,10 @@ import { AlertCircle, CheckCircle2, Clock, Rocket } from "lucide-react";
 import { DashboardVercelDeploy } from "@/components/modules/deploy/dashboard-vercel-deploy";
 import { Badge } from "@/components/ui/badge";
 import { DataTable } from "@/components/ui/data-table/data-table";
+import { siteConfig } from "@/config/site-config";
 import { cn } from "@/lib/utils";
 import type { Deployment } from "@/server/db/schema";
 import { DeploymentActions } from "./deployment-actions";
-import { siteConfig } from "@/config/site-config";
 
 interface DeploymentsListProps {
 	deployments: Deployment[];
