@@ -20,36 +20,29 @@ const navigation = [
 		href: "/",
 	},
 	{
-		name: "Government",
-		href: "/government",
+		name: "Agenda & Minutes",
+		href: "/meetings",
 		children: [
-			{ name: "Town Council", href: "/government/council" },
-			{ name: "Departments", href: "/government/departments" },
-			{ name: "Elections", href: "/government/elections" },
-			{ name: "Town Meetings", href: "/government/meetings" },
-			{ name: "Ordinances", href: "/government/ordinances" },
+			{ name: "Town Meetings", href: "/meetings" },
+			{ name: "Meeting Archives", href: "/meetings/archives" },
 		],
 	},
 	{
-		name: "Services",
-		href: "/services",
+		name: "Explore",
+		href: "/explore",
 		children: [
-			{ name: "Permits & Applications", href: "/services/permits" },
-			{ name: "Utility Services", href: "/services/utilities" },
-			{ name: "Public Works", href: "/services/public-works" },
-			{ name: "Parks & Recreation", href: "/services/parks" },
-			{ name: "Emergency Services", href: "/emergency" },
+			{ name: "Points of Interest", href: "/points-of-interest" },
+			{ name: "Events", href: "/events" },
+			{ name: "News", href: "/news" },
 		],
 	},
 	{
-		name: "Community",
-		href: "/community",
+		name: "Town",
+		href: "/town",
 		children: [
-			{ name: "News & Announcements", href: "/news" },
-			{ name: "Events Calendar", href: "/events" },
-			{ name: "Business Directory", href: "/business" },
+			{ name: "Our Team", href: "/our-team" },
 			{ name: "History", href: "/history" },
-			{ name: "Education", href: "/education" },
+			{ name: "Resources", href: "/resources" },
 		],
 	},
 	{
@@ -68,11 +61,11 @@ export function TownHeader() {
 				<div className="container mx-auto px-4">
 					<div className="flex items-center justify-between py-2 text-sm">
 						<div className="flex items-center gap-4">
-							<a href="tel:304-555-0100" className="flex items-center gap-1 hover:underline">
+							<a href="tel:704-546-2339" className="flex items-center gap-1 hover:underline">
 								<Phone className="h-3 w-3" />
-								(304) 555-0100
+								(704) 546-2339
 							</a>
-							<span className="hidden md:inline">Mon-Fri 8:00 AM - 5:00 PM</span>
+							<span className="hidden md:inline">3389 Harmony Hwy, Harmony, NC 28634</span>
 						</div>
 						<div className="flex items-center gap-4">
 							<Link href="/events" className="flex items-center gap-1 hover:underline">
@@ -100,7 +93,7 @@ export function TownHeader() {
 						</div>
 						<div>
 							<h1 className="text-xl font-bold text-gray-900">Town of Harmony</h1>
-							<p className="text-xs text-gray-600">West Virginia</p>
+							<p className="text-xs text-gray-600">North Carolina - Established 1927</p>
 						</div>
 					</Link>
 

@@ -7,84 +7,84 @@ import { ChevronRight, BookOpen, Calendar, MapPin, Users } from "lucide-react";
 
 export const metadata: Metadata = {
 	title: "History | Town of Harmony",
-	description: "Discover the rich history of Harmony, West Virginia - from its founding in 1798 to the present day.",
+	description: "Discover the rich history of Harmony, North Carolina - from its founding at the camp meeting grounds in 1927 to the present day.",
 };
 
 const historicalPeriods = [
 	{
-		era: "1798 - 1850",
-		title: "Founding Years",
-		description: "The establishment and early growth of Harmony",
+		era: "Pre-1927",
+		title: "Early Settlement",
+		description: "The camp meeting grounds era before incorporation",
 		highlights: [
-			"Founded by John Harmony in 1798",
-			"First church built in 1802",
-			"Incorporated as a town in 1815",
+			"Camp meeting grounds established",
+			"Early religious gatherings and revivals",
+			"Community begins to form around the grounds",
+		],
+		image: "/images/history/founding.jpg",
+		link: "/history/early-settlement",
+	},
+	{
+		era: "1927 - 1950",
+		title: "Founding & Early Years",
+		description: "Establishment of the Town of Harmony",
+		highlights: [
+			"Town officially established in 1927",
+			"Founded at the camp meeting grounds",
+			"Early community traditions established",
 		],
 		image: "/images/history/founding.jpg",
 		link: "/history/founding-years",
 	},
 	{
-		era: "1850 - 1900",
-		title: "Industrial Growth",
-		description: "The rise of coal mining and railroad expansion",
+		era: "1950 - 1980",
+		title: "Growth & Development",
+		description: "Expansion and modernization of Harmony",
 		highlights: [
-			"Railroad arrives in 1872",
-			"Coal mining begins in 1875",
-			"Population exceeds 5,000 in 1890",
+			"Post-war growth and development",
+			"Infrastructure improvements",
+			"Community organizations flourish",
 		],
-		image: "/images/history/industrial.jpg",
-		link: "/history/industrial-growth",
+		image: "/images/history/growth.jpg",
+		link: "/history/growth-era",
 	},
 	{
-		era: "1900 - 1950",
-		title: "Modern Era",
-		description: "Modernization and community development",
+		era: "1980 - Present",
+		title: "Modern Harmony",
+		description: "Preserving traditions while embracing the future",
 		highlights: [
-			"First hospital opens in 1905",
-			"Electric streetlights installed in 1912",
-			"High school built in 1925",
+			"Historic preservation efforts",
+			"Community festivals and celebrations",
+			"Where Harmony LIVES and SINGS!",
 		],
 		image: "/images/history/modern.jpg",
 		link: "/history/modern-era",
-	},
-	{
-		era: "1950 - Present",
-		title: "Contemporary Harmony",
-		description: "From mining town to diverse community",
-		highlights: [
-			"Interstate highway completed in 1968",
-			"Historic downtown restoration in 1995",
-			"Town bicentennial celebration in 1998",
-		],
-		image: "/images/history/contemporary.jpg",
-		link: "/history/contemporary",
 	},
 ];
 
 const historicalLandmarks = [
 	{
-		name: "Old Town Hall",
-		year: "1825",
-		description: "Original seat of town government, now a museum",
-		address: "100 Main Street",
+		name: "Original Camp Meeting Grounds",
+		year: "Pre-1927",
+		description: "Historic site where the town was founded",
+		address: "Harmony Highway",
 	},
 	{
-		name: "Harmony Methodist Church",
-		year: "1802",
-		description: "First church in Harmony, still holding services",
-		address: "215 Church Street",
+		name: "Town Hall",
+		year: "1927",
+		description: "Center of town government since incorporation",
+		address: "3389 Harmony Hwy",
 	},
 	{
-		name: "Railroad Depot",
-		year: "1872",
-		description: "Historic train station, now visitor center",
-		address: "50 Railroad Avenue",
+		name: "Historic Harmony Church",
+		year: "Early 1900s",
+		description: "One of the founding churches of the community",
+		address: "Church Street",
 	},
 	{
-		name: "Miners Memorial",
-		year: "1985",
-		description: "Monument honoring coal mining heritage",
-		address: "Memorial Park",
+		name: "Community Center",
+		year: "1950s",
+		description: "Hub of community activities and gatherings",
+		address: "Main Street",
 	},
 ];
 
@@ -99,20 +99,20 @@ export default function HistoryPage() {
 							Our History
 						</h1>
 						<p className="text-xl mb-6">
-							Discover the story of Harmony, from a small frontier settlement to a thriving West Virginia community.
+							Discover the story of Harmony, from its founding at the camp meeting grounds in 1927 to a vibrant North Carolina community where traditions are carried into the future.
 						</p>
 						<div className="flex flex-wrap gap-4">
 							<div className="flex items-center gap-2">
 								<Calendar className="h-5 w-5" />
-								<span>Founded 1798</span>
+								<span>Established 1927</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<MapPin className="h-5 w-5" />
-								<span>Barbour County, WV</span>
+								<span>Iredell County, NC</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<Users className="h-5 w-5" />
-								<span>Population: 12,543</span>
+								<span>A Close-Knit Community</span>
 							</div>
 						</div>
 					</div>
@@ -195,7 +195,7 @@ export default function HistoryPage() {
 							</CardHeader>
 							<CardContent>
 								<p className="text-sm text-gray-600 mb-4">
-									Access historical documents, photographs, and records dating back to 1798.
+									Access historical documents, photographs, and records dating back to the founding in 1927.
 								</p>
 								<Button variant="outline" className="w-full" asChild>
 									<Link href="/history/archives">Visit Archives</Link>

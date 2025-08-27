@@ -9,36 +9,47 @@ import { Button } from "@/components/ui/button";
 const slides = [
 	{
 		id: 1,
-		title: "Welcome to Harmony",
-		subtitle: "A Community Where Tradition Meets Progress",
-		description: "Discover what makes our town special - from historic charm to modern amenities.",
+		title: "Welcome to the Town of Harmony",
+		subtitle: "Where Harmony LIVES and SINGS!",
+		description: "Established in 1927, our charming town in Iredell County, North Carolina continues to be a beacon of community spirit and southern hospitality.",
 		image: "/images/hero-1.jpg",
 		cta: {
-			text: "Explore Our Town",
-			href: "/about",
+			text: "Discover Our History",
+			href: "/history",
 		},
 	},
 	{
 		id: 2,
-		title: "Community Events",
-		subtitle: "Join Us for Year-Round Activities",
+		title: "Community Events & Activities",
+		subtitle: "Join Us for Year-Round Celebrations",
 		description:
-			"From summer festivals to winter celebrations, there's always something happening in Harmony.",
+			"From seasonal festivals to community gatherings, experience the vibrant spirit that makes Harmony special.",
 		image: "/images/hero-2.jpg",
 		cta: {
-			text: "View Events Calendar",
+			text: "View Upcoming Events",
 			href: "/events",
 		},
 	},
 	{
 		id: 3,
-		title: "Town Services",
-		subtitle: "We're Here to Serve You",
-		description: "Access permits, pay bills, and find the resources you need - all in one place.",
+		title: "Town Meetings & Services",
+		subtitle: "Your Voice Matters",
+		description: "Stay informed with town meetings, access public records, and connect with your local government.",
 		image: "/images/hero-3.jpg",
 		cta: {
-			text: "Browse Services",
-			href: "/services",
+			text: "Meeting Agendas & Minutes",
+			href: "/meetings",
+		},
+	},
+	{
+		id: 4,
+		title: "Points of Interest",
+		subtitle: "Explore Our Heritage",
+		description: "Discover the landmarks and locations that tell the story of Harmony's rich history and bright future.",
+		image: "/images/hero-4.jpg",
+		cta: {
+			text: "Explore Harmony",
+			href: "/points-of-interest",
 		},
 	},
 ];

@@ -2,26 +2,23 @@ import { Facebook, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
 const footerLinks = {
-	services: [
-		{ name: "Pay Utility Bill", href: "/services/pay-bill" },
-		{ name: "Report a Problem", href: "/services/report" },
-		{ name: "Permits & Licenses", href: "/services/permits" },
-		{ name: "Parks & Recreation", href: "/services/parks" },
-		{ name: "Public Works", href: "/services/public-works" },
+	"Agenda & Minutes": [
+		{ name: "Town Meetings", href: "/meetings" },
+		{ name: "Meeting Archives", href: "/meetings/archives" },
+		{ name: "Public Records", href: "/meetings/records" },
 	],
-	government: [
-		{ name: "Town Council", href: "/government/council" },
-		{ name: "Meeting Agendas", href: "/government/meetings" },
-		{ name: "Town Code", href: "/government/code" },
-		{ name: "Departments", href: "/government/departments" },
-		{ name: "Employment", href: "/government/employment" },
-	],
-	community: [
-		{ name: "News & Updates", href: "/news" },
-		{ name: "Events Calendar", href: "/events" },
-		{ name: "Business Directory", href: "/business" },
-		{ name: "Town History", href: "/history" },
+	Explore: [
+		{ name: "Points of Interest", href: "/points-of-interest" },
+		{ name: "Events", href: "/events" },
+		{ name: "News", href: "/news" },
 		{ name: "Photo Gallery", href: "/gallery" },
+	],
+	Town: [
+		{ name: "Our Team", href: "/our-team" },
+		{ name: "History", href: "/history" },
+		{ name: "Resources", href: "/resources" },
+		{ name: "Contact Us", href: "/contact" },
+		{ name: "Emergency Services", href: "/emergency" },
 	],
 };
 
@@ -38,23 +35,23 @@ export function TownFooter() {
 							</div>
 							<div>
 								<h3 className="text-xl font-bold text-white">Town of Harmony</h3>
-								<p className="text-sm">West Virginia</p>
+								<p className="text-sm">North Carolina</p>
 							</div>
 						</div>
 						<p className="text-sm mb-4">
-							Serving our community with pride since 1832. Your voice, your town, your future.
+							Where Harmony LIVES and SINGS! Serving our community with pride since 1927.
 						</p>
 
 						{/* Contact Info */}
 						<div className="space-y-2">
 							<div className="flex items-center gap-2">
 								<MapPin className="h-4 w-4" />
-								<span className="text-sm">123 Main Street, Harmony, WV 26394</span>
+								<span className="text-sm">3389 Harmony Hwy, Harmony, NC 28634</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<Phone className="h-4 w-4" />
-								<a href="tel:304-555-0100" className="text-sm hover:text-white">
-									(304) 555-0100
+								<a href="tel:704-546-2339" className="text-sm hover:text-white">
+									(704) 546-2339
 								</a>
 							</div>
 							<div className="flex items-center gap-2">
@@ -94,47 +91,21 @@ export function TownFooter() {
 						</div>
 					</div>
 
-					{/* Services Links */}
-					<div>
-						<h4 className="text-white font-semibold mb-3">Services</h4>
-						<ul className="space-y-2">
-							{footerLinks.services.map((link) => (
-								<li key={link.name}>
-									<Link href={link.href} className="text-sm hover:text-white transition-colors">
-										{link.name}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
-
-					{/* Government Links */}
-					<div>
-						<h4 className="text-white font-semibold mb-3">Government</h4>
-						<ul className="space-y-2">
-							{footerLinks.government.map((link) => (
-								<li key={link.name}>
-									<Link href={link.href} className="text-sm hover:text-white transition-colors">
-										{link.name}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
-
-					{/* Community Links */}
-					<div>
-						<h4 className="text-white font-semibold mb-3">Community</h4>
-						<ul className="space-y-2">
-							{footerLinks.community.map((link) => (
-								<li key={link.name}>
-									<Link href={link.href} className="text-sm hover:text-white transition-colors">
-										{link.name}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
+					{/* Footer Links */}
+					{Object.entries(footerLinks).map(([category, links]) => (
+						<div key={category}>
+							<h4 className="text-white font-semibold mb-3">{category}</h4>
+							<ul className="space-y-2">
+								{links.map((link) => (
+									<li key={link.name}>
+										<Link href={link.href} className="text-sm hover:text-white transition-colors">
+											{link.name}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
 				</div>
 
 				{/* Bottom Bar */}
