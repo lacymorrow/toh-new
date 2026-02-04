@@ -1,6 +1,14 @@
 {
-  "name": "ship-kit",
+  "name": "town-of-harmony",
   "version": "0.2.0",
+  "homepage": "https://townofharmony.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lacymorrow/townofharmony.org"
+  },
+  "shipkit": {
+    "bones": "0.2.0"
+  },
   "private": true,
   "type": "module",
   "scripts": {
