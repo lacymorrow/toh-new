@@ -1,0 +1,62 @@
+import type { Payload } from "payload";
+import { seedSettings } from "./settings";
+import { seedNavigation } from "./navigation";
+import { seedHomepage } from "./homepage";
+import { seedTeamMembers } from "./team-members";
+import { seedHistory } from "./history";
+import { seedPointsOfInterest } from "./points-of-interest";
+import { seedEmergencyServices } from "./emergency-services";
+import { seedResources } from "./resources";
+import { seedSampleNews } from "./sample-news";
+import { seedSampleEvents } from "./sample-events";
+import { seedSampleMeetings } from "./sample-meetings";
+import { seedSampleBusinesses } from "./sample-businesses";
+import { seedSampleElections } from "./sample-elections";
+
+export const seedTownData = async (payload: Payload) => {
+	try {
+		console.info("🏘️ Starting Town of Harmony seed process...");
+
+		// 1. Globals first
+		await seedSettings(payload);
+		await seedNavigation(payload);
+		await seedHomepage(payload);
+
+		// 2. Core content
+		await seedTeamMembers(payload);
+		await seedHistory(payload);
+		await seedPointsOfInterest(payload);
+		await seedEmergencyServices(payload);
+		await seedResources(payload);
+
+		// 3. Sample content
+		await seedSampleNews(payload);
+		await seedSampleEvents(payload);
+		await seedSampleMeetings(payload);
+		await seedSampleBusinesses(payload);
+		await seedSampleElections(payload);
+
+		console.info("✨ Town of Harmony seed completed successfully!");
+		return true;
+	} catch (error) {
+		console.error("❌ Error in Town of Harmony seed process:", error);
+		return false;
+	}
+};
+
+// Re-export individual seed functions for selective seeding
+export {
+	seedSettings,
+	seedNavigation,
+	seedHomepage,
+	seedTeamMembers,
+	seedHistory,
+	seedPointsOfInterest,
+	seedEmergencyServices,
+	seedResources,
+	seedSampleNews,
+	seedSampleEvents,
+	seedSampleMeetings,
+	seedSampleBusinesses,
+	seedSampleElections,
+};

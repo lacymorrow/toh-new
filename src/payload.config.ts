@@ -25,8 +25,24 @@ import { RBAC } from "./lib/payload/collections/RBAC";
 import { Testimonials } from "./lib/payload/collections/Testimonials";
 import { Users } from "./lib/payload/collections/Users";
 import { VercelDeployments } from "./lib/payload/collections/VercelDeployments";
+// Import town collections
+import {
+	Announcements,
+	Businesses,
+	Elections,
+	EmergencyServices,
+	Events,
+	HistoryArticles,
+	Meetings,
+	News,
+	PointsOfInterest,
+	Resources,
+	TeamMembers,
+} from "./lib/payload/collections/town";
 // Import globals
 import { Settings } from "./lib/payload/globals/Settings";
+import { Homepage } from "./lib/payload/globals/Homepage";
+import { Navigation } from "./lib/payload/globals/Navigation";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -77,8 +93,29 @@ const config = {
 			},
 		},
 	},
-	collections: [Users, Pages, Media, FAQs, Features, Testimonials, RBAC, VercelDeployments],
-	globals: [Settings],
+	collections: [
+		Users,
+		Pages,
+		Media,
+		FAQs,
+		Features,
+		Testimonials,
+		RBAC,
+		VercelDeployments,
+		// Town collections
+		News,
+		Events,
+		Meetings,
+		TeamMembers,
+		HistoryArticles,
+		PointsOfInterest,
+		Resources,
+		EmergencyServices,
+		Announcements,
+		Businesses,
+		Elections,
+	],
+	globals: [Settings, Navigation, Homepage],
 	editor: lexicalEditor({}),
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),

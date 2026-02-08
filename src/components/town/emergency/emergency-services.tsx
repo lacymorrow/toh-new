@@ -1,203 +1,76 @@
-import {
-	AlertTriangle,
-	Car,
-	Droplets,
-	Flame,
-	Heart,
-	Home,
-	Shield,
-	Thermometer,
-	Wind,
-	Zap,
-} from "lucide-react";
+import { Info } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getEmergencyServices } from "@/lib/payload/town-data";
+import { resolveIcon } from "@/lib/utils/icon-resolver";
 
-interface EmergencyService {
-	title: string;
-	description: string;
-	phone: string;
-	icon: typeof Shield;
-	category: "immediate" | "utility" | "public-safety" | "health";
-	preparedness?: string[];
-}
-
-const emergencyServices: EmergencyService[] = [
-	{
-		title: "Police Emergency",
-		description:
-			"Immediate law enforcement response for crimes in progress, accidents, and public safety threats.",
-		phone: "911",
-		icon: Shield,
-		category: "immediate",
-		preparedness: [
-			"Keep doors and windows locked",
-			"Report suspicious activity immediately",
-			"Have emergency contact list readily available",
-			"Know your exact address and nearest cross streets",
-		],
-	},
-	{
-		title: "Fire Emergency",
-		description: "Fire suppression, rescue operations, and hazardous material incidents.",
-		phone: "911",
-		icon: Flame,
-		category: "immediate",
-		preparedness: [
-			"Install smoke detectors and check batteries monthly",
-			"Create and practice a family fire escape plan",
-			"Keep fire extinguishers in key locations",
-			"Clear vegetation and debris from around your home",
-		],
-	},
-	{
-		title: "Medical Emergency",
-		description:
-			"Emergency medical services, ambulance dispatch, and life-threatening health issues.",
-		phone: "911",
-		icon: Heart,
-		category: "immediate",
-		preparedness: [
-			"Keep a first aid kit stocked and accessible",
-			"Learn basic CPR and first aid",
-			"Maintain list of medications and medical conditions",
-			"Know locations of nearest hospitals",
-		],
-	},
-	{
-		title: "Power Outage",
-		description: "Electrical emergencies, power line damage, and utility restoration services.",
-		phone: "(304) 555-0400",
-		icon: Zap,
-		category: "utility",
-		preparedness: [
-			"Keep flashlights and batteries readily available",
-			"Have a battery-powered or hand-crank radio",
-			"Store non-perishable food and water",
-			"Avoid downed power lines - assume they are energized",
-		],
-	},
-	{
-		title: "Water/Sewer Emergency",
-		description: "Water main breaks, sewer backups, and water quality issues.",
-		phone: "(304) 555-0200",
-		icon: Droplets,
-		category: "utility",
-		preparedness: [
-			"Know location of your water main shutoff",
-			"Store 1 gallon of water per person per day for 3 days",
-			"Keep basic plumbing tools and supplies",
-			"Report water discoloration or unusual taste immediately",
-		],
-	},
-	{
-		title: "Hazardous Materials",
-		description: "Chemical spills, gas leaks, and dangerous substance incidents.",
-		phone: "911",
-		icon: AlertTriangle,
-		category: "immediate",
-		preparedness: [
-			"Evacuate immediately if you smell gas",
-			"Don't use electrical switches near gas odors",
-			"Keep windows and doors closed during chemical incidents",
-			"Have masks or cloth available for breathing protection",
-		],
-	},
-	{
-		title: "Severe Weather",
-		description: "Tornado warnings, severe storms, flooding, and weather-related emergencies.",
-		phone: "(304) 555-0100",
-		icon: Wind,
-		category: "public-safety",
-		preparedness: [
-			"Have a NOAA Weather Radio with battery backup",
-			"Identify safe rooms in your home for severe weather",
-			"Keep emergency supplies in easily accessible location",
-			"Sign up for community alert systems",
-		],
-	},
-	{
-		title: "Extreme Temperature",
-		description: "Heat emergencies, cold weather advisories, and temperature-related health risks.",
-		phone: "(304) 555-0100",
-		icon: Thermometer,
-		category: "health",
-		preparedness: [
-			"Check on elderly neighbors during extreme weather",
-			"Dress appropriately for weather conditions",
-			"Stay hydrated during heat waves",
-			"Never leave children or pets in vehicles",
-		],
-	},
-	{
-		title: "Road Emergency",
-		description: "Traffic accidents, road closures, and transportation emergencies.",
-		phone: "911",
-		icon: Car,
-		category: "public-safety",
-		preparedness: [
-			"Keep emergency kit in your vehicle",
-			"Maintain vehicle in good working condition",
-			"Plan alternate routes for regular travel",
-			"Keep cell phone charged when traveling",
-		],
-	},
-	{
-		title: "Structural Emergency",
-		description: "Building collapses, gas leaks in buildings, and structural damage.",
-		phone: "911",
-		icon: Home,
-		category: "immediate",
-		preparedness: [
-			"Know how to shut off gas, water, and electricity",
-			"Secure heavy furniture and appliances",
-			"Keep tools for emergency repairs accessible",
-			"Evacuate immediately if you suspect structural damage",
-		],
-	},
-];
-
-const categoryColors = {
+const categoryColors: Record<string, string> = {
 	immediate: "border-red-200 bg-red-50",
 	utility: "border-yellow-200 bg-yellow-50",
 	"public-safety": "border-blue-200 bg-blue-50",
 	health: "border-green-200 bg-green-50",
 };
 
-const categoryTitles = {
+const categoryTitles: Record<string, string> = {
 	immediate: "Immediate Emergency Response",
 	utility: "Utility Services",
 	"public-safety": "Public Safety",
 	health: "Health & Wellness",
 };
 
-export const EmergencyServices = () => {
-	const groupedServices = emergencyServices.reduce(
+export const EmergencyServices = async () => {
+	const services = await getEmergencyServices();
+
+	if (services.length === 0) {
+		return (
+			<Card>
+				<CardContent className="py-12 text-center">
+					<div className="flex flex-col items-center gap-4">
+						<Info className="h-12 w-12 text-gray-400" />
+						<div>
+							<h3 className="text-lg font-semibold text-gray-700 mb-2">No Emergency Services</h3>
+							<p className="text-gray-500">Emergency services information is not available.</p>
+						</div>
+					</div>
+				</CardContent>
+			</Card>
+		);
+	}
+
+	// Group services by category
+	const groupedServices = services.reduce(
 		(acc, service) => {
-			if (!acc[service.category]) {
-				acc[service.category] = [];
+			const category = service.category || "immediate";
+			if (!acc[category]) {
+				acc[category] = [];
 			}
-			acc[service.category].push(service);
+			acc[category].push(service);
 			return acc;
 		},
-		{} as Record<string, EmergencyService[]>
+		{} as Record<string, typeof services>
 	);
 
 	return (
 		<div className="space-y-8">
-			{Object.entries(groupedServices).map(([category, services]) => (
+			{Object.entries(groupedServices).map(([category, categoryServices]) => (
 				<div key={category}>
 					<h2 className="text-2xl font-bold text-gray-900 mb-4">
-						{categoryTitles[category as keyof typeof categoryTitles]}
+						{categoryTitles[category] || category}
 					</h2>
 
 					<div className="grid gap-4 md:grid-cols-2">
-						{services.map((service, index) => {
-							const Icon = service.icon;
+						{categoryServices.map((service) => {
+							const Icon = resolveIcon(service.icon as string | null | undefined);
+							const colorClass = categoryColors[category] || "border-gray-200 bg-gray-50";
+
+							// Parse preparedness tips from JSON field
+							const preparedness: string[] = Array.isArray(service.preparedness)
+								? (service.preparedness as string[])
+								: [];
 
 							return (
 								<Card
-									key={index}
-									className={`hover:shadow-lg transition-shadow border-2 ${categoryColors[service.category]}`}
+									key={service.id}
+									className={`hover:shadow-lg transition-shadow border-2 ${colorClass}`}
 								>
 									<CardHeader className="pb-3">
 										<div className="flex items-center gap-3">
@@ -219,13 +92,13 @@ export const EmergencyServices = () => {
 											</a>
 										</div>
 
-										{service.preparedness && (
+										{preparedness.length > 0 && (
 											<div className="pt-3 border-t">
 												<h4 className="font-semibold text-gray-800 mb-2 text-sm">
 													Preparedness Tips:
 												</h4>
 												<ul className="text-xs text-gray-600 space-y-1">
-													{service.preparedness.map((tip, tipIndex) => (
+													{preparedness.map((tip, tipIndex) => (
 														<li key={tipIndex} className="flex items-start gap-2">
 															<span className="text-gray-400 mt-1">•</span>
 															<span>{tip}</span>
@@ -245,7 +118,7 @@ export const EmergencyServices = () => {
 			<Card className="bg-orange-50 border-orange-200 border-2">
 				<CardContent className="p-6">
 					<h3 className="font-bold text-orange-800 mb-3 text-lg">
-						📱 Stay Connected During Emergencies
+						Stay Connected During Emergencies
 					</h3>
 					<div className="space-y-2 text-sm text-orange-700">
 						<p>

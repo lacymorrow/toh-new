@@ -38,11 +38,11 @@ const months = [
 export function EventsFilters() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const currentCategory = searchParams.get("category") || "";
-	const currentMonth = searchParams.get("month") || "";
+	const currentCategory = searchParams?.get("category") || "";
+	const currentMonth = searchParams?.get("month") || "";
 
 	const updateFilters = (key: string, value: string) => {
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 		if (value) {
 			params.set(key, value);
 		} else {

@@ -1,30 +1,23 @@
-import { and, eq, ne } from "drizzle-orm";
 import Link from "next/link";
+import { getBusinesses } from "@/lib/payload/town-data";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { businesses } from "@/server/db/schema-town";
 
 interface RelatedBusinessesProps {
 	currentBusinessId: number;
 	category: string;
 }
 
-async function getRelatedBusinesses(currentId: number, category: string) {
-	if (!db) return [];
-
-	const related = await db
-		.select()
-		.from(businesses)
-		.where(and(eq(businesses.category, category), ne(businesses.id, currentId)))
-		.orderBy(businesses.name)
-		.limit(5);
-
-	return related;
-}
-
 export async function RelatedBusinesses({ currentBusinessId, category }: RelatedBusinessesProps) {
-	const related = await getRelatedBusinesses(currentBusinessId, category);
+	const result = await getBusinesses({
+		category,
+		limit: 6,
+		page: 1,
+	});
+
+	// Filter out the current business from results
+	const related = result.docs.filter((b) => b.id !== currentBusinessId).slice(0, 5);
 
 	if (related.length === 0) {
 		return null;
@@ -37,26 +30,29 @@ export async function RelatedBusinesses({ currentBusinessId, category }: Related
 			</CardHeader>
 			<CardContent>
 				<div className="space-y-4">
-					{related.map((business) => (
-						<div key={business.id} className="pb-4 border-b last:border-0">
-							<Link
-								href={`/business/${business.slug}`}
-								className="block hover:text-blue-600 transition-colors"
-							>
-								<h4 className="font-medium mb-1">{business.name}</h4>
-								{business.description && (
-									<p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-										{business.description}
-									</p>
-								)}
-								{business.isVerified && (
-									<Badge variant="outline" className="text-xs">
-										Verified
-									</Badge>
-								)}
-							</Link>
-						</div>
-					))}
+					{related.map((business) => {
+						const descriptionText = extractTextFromRichText(business.description as any);
+						return (
+							<div key={business.id} className="pb-4 border-b last:border-0">
+								<Link
+									href={`/business/${business.slug}`}
+									className="block hover:text-blue-600 transition-colors"
+								>
+									<h4 className="font-medium mb-1">{business.name}</h4>
+									{descriptionText && (
+										<p className="text-sm text-muted-foreground line-clamp-2 mb-2">
+											{descriptionText}
+										</p>
+									)}
+									{business.isVerified && (
+										<Badge variant="outline" className="text-xs">
+											Verified
+										</Badge>
+									)}
+								</Link>
+							</div>
+						);
+					})}
 				</div>
 			</CardContent>
 		</Card>

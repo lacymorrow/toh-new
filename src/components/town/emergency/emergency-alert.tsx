@@ -101,7 +101,7 @@ export const EmergencyAlert = ({
 							</div>
 						)}
 
-						{alert.contactInfo && (
+						{!!alert.contactInfo && (
 							<div className="mt-3 text-xs text-gray-600">
 								Contact:{" "}
 								{typeof alert.contactInfo === "string"

@@ -1,44 +1,13 @@
-import { and, desc, eq, gte, isNull, lte, or } from "drizzle-orm";
 import { AlertOctagon, AlertTriangle, Calendar, Info, MapPin } from "lucide-react";
 import Link from "next/link";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { emergencyAlerts } from "@/server/db/schema-town";
+import { getAnnouncements } from "@/lib/payload/town-data";
 
 interface EmergencyAlertsListProps {
 	showAll?: boolean;
 	limit?: number;
 	activeOnly?: boolean;
-}
-
-async function getEmergencyAlerts(showAll = false, limit = 10, activeOnly = false) {
-	if (!db) return [];
-
-	const conditions = [];
-
-	if (activeOnly) {
-		const now = new Date();
-		conditions.push(
-			eq(emergencyAlerts.isActive, true),
-			or(isNull(emergencyAlerts.startsAt), lte(emergencyAlerts.startsAt, now)),
-			or(isNull(emergencyAlerts.endsAt), gte(emergencyAlerts.endsAt, now))
-		);
-	}
-
-	const query = db
-		.select()
-		.from(emergencyAlerts)
-		.orderBy(desc(emergencyAlerts.level), desc(emergencyAlerts.createdAt));
-
-	if (conditions.length > 0) {
-		query.where(and(...conditions));
-	}
-
-	if (!showAll) {
-		query.limit(limit);
-	}
-
-	return await query;
 }
 
 const getLevelIcon = (level: string) => {
@@ -88,7 +57,12 @@ export async function EmergencyAlertsList({
 	limit = 10,
 	activeOnly = false,
 }: EmergencyAlertsListProps) {
-	const alerts = await getEmergencyAlerts(showAll, limit, activeOnly);
+	const result = await getAnnouncements({
+		limit: showAll ? 100 : limit,
+		activeOnly,
+	});
+
+	const alerts = result.docs;
 
 	if (alerts.length === 0) {
 		return (
@@ -119,6 +93,14 @@ export async function EmergencyAlertsList({
 					alert.isActive &&
 					(!alert.startsAt || new Date(alert.startsAt) <= new Date()) &&
 					(!alert.endsAt || new Date(alert.endsAt) >= new Date());
+
+				// Extract plain text from rich text message
+				const messageText = extractTextFromRichText(alert.message as any);
+
+				// Parse affectedAreas from JSON field
+				const affectedAreas: string[] = Array.isArray(alert.affectedAreas)
+					? (alert.affectedAreas as string[])
+					: [];
 
 				return (
 					<Card
@@ -158,13 +140,13 @@ export async function EmergencyAlertsList({
 
 						<CardContent className="space-y-3">
 							<p className={`text-sm ${isActive ? colors.text : "text-gray-600"}`}>
-								{alert.message}
+								{messageText}
 							</p>
 
-							{alert.affectedAreas && alert.affectedAreas.length > 0 && (
+							{affectedAreas.length > 0 && (
 								<div className="flex items-center gap-2 text-sm text-gray-600">
 									<MapPin className="h-4 w-4" />
-									<span>Affected areas: {alert.affectedAreas.join(", ")}</span>
+									<span>Affected areas: {affectedAreas.join(", ")}</span>
 								</div>
 							)}
 

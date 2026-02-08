@@ -1,11 +1,21 @@
 import { Calendar, FileText, MapPin, Users } from "lucide-react";
 import Link from "next/link";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Election } from "@/server/db/schema-town";
 
 interface ElectionCardProps {
-	election: Election;
+	election: {
+		id: number;
+		title: string;
+		slug: string;
+		description?: any;
+		electionDate: string;
+		registrationDeadline?: string | null;
+		pollingLocations?: { name: string; address: string; hours?: string | null }[] | null;
+		sampleBallot?: any;
+		resultsUrl?: string | null;
+	};
 	candidateCount?: number;
 }
 
@@ -36,6 +46,9 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 		});
 	};
 
+	// Extract plain text from rich text description for card display
+	const descriptionText = extractTextFromRichText(election.description);
+
 	return (
 		<Card className="hover:shadow-lg transition-shadow h-full flex flex-col">
 			<CardHeader>
@@ -51,8 +64,8 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 					<Badge variant={status.variant}>{status.label}</Badge>
 				</div>
 
-				{election.description && (
-					<p className="text-sm text-gray-600 line-clamp-2 mt-2">{election.description}</p>
+				{descriptionText && (
+					<p className="text-sm text-gray-600 line-clamp-2 mt-2">{descriptionText}</p>
 				)}
 			</CardHeader>
 

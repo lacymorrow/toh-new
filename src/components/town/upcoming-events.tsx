@@ -1,27 +1,11 @@
-import { and, eq, gte } from "drizzle-orm";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { events } from "@/server/db/schema-town";
-
-async function getUpcomingEvents() {
-	if (!db) return [];
-
-	const today = new Date().toISOString().split("T")[0];
-	const upcomingEvents = await db
-		.select()
-		.from(events)
-		.where(and(eq(events.status, "upcoming"), gte(events.eventDate, today)))
-		.orderBy(events.eventDate)
-		.limit(5);
-
-	return upcomingEvents;
-}
+import { getEvents } from "@/lib/payload/town-data";
 
 export async function UpcomingEvents() {
-	const upcomingEvents = await getUpcomingEvents();
+	const { docs: upcomingEvents } = await getEvents({ limit: 5, status: "upcoming" });
 
 	if (upcomingEvents.length === 0) {
 		return (

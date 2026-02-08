@@ -96,7 +96,7 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 												</div>
 											)}
 
-											{meeting.attendees &&
+											{!!meeting.attendees &&
 												Array.isArray(meeting.attendees) &&
 												meeting.attendees.length > 0 && (
 													<div className="flex items-center gap-2">

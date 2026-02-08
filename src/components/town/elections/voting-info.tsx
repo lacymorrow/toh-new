@@ -9,16 +9,23 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Election } from "@/server/db/schema-town";
 
 interface VotingInfoProps {
-	election: Election;
+	election: {
+		electionDate: string;
+		registrationDeadline?: string | null;
+		earlyVotingStart?: string | null;
+		earlyVotingEnd?: string | null;
+		pollingLocations?: { name: string; address: string; hours?: string | null }[] | null;
+		sampleBallot?: { url?: string | null } | number | string | null;
+		resultsUrl?: string | null;
+	};
 }
 
 interface PollingLocation {
 	name: string;
 	address: string;
-	hours?: string;
+	hours?: string | null;
 	accessibility?: string;
 	parking?: string;
 }
@@ -47,13 +54,13 @@ export function VotingInfo({ election }: VotingInfoProps) {
 		});
 	};
 
-	const formatTime = (date: Date) => {
-		return date.toLocaleTimeString("en-US", {
-			hour: "numeric",
-			minute: "2-digit",
-			hour12: true,
-		});
-	};
+	// Resolve sampleBallot URL from upload relation
+	const sampleBallotUrl =
+		typeof election.sampleBallot === "object" && election.sampleBallot !== null && "url" in election.sampleBallot
+			? election.sampleBallot.url
+			: typeof election.sampleBallot === "string"
+				? election.sampleBallot
+				: null;
 
 	return (
 		<div className="space-y-6">
@@ -185,9 +192,9 @@ export function VotingInfo({ election }: VotingInfoProps) {
 					</CardTitle>
 				</CardHeader>
 				<CardContent className="space-y-3">
-					{election.sampleBallot && (
+					{sampleBallotUrl && (
 						<a
-							href={election.sampleBallot}
+							href={sampleBallotUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-md"

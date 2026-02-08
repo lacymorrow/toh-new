@@ -13,386 +13,410 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-	| "Pacific/Midway"
-	| "Pacific/Niue"
-	| "Pacific/Honolulu"
-	| "Pacific/Rarotonga"
-	| "America/Anchorage"
-	| "Pacific/Gambier"
-	| "America/Los_Angeles"
-	| "America/Tijuana"
-	| "America/Denver"
-	| "America/Phoenix"
-	| "America/Chicago"
-	| "America/Guatemala"
-	| "America/New_York"
-	| "America/Bogota"
-	| "America/Caracas"
-	| "America/Santiago"
-	| "America/Buenos_Aires"
-	| "America/Sao_Paulo"
-	| "Atlantic/South_Georgia"
-	| "Atlantic/Azores"
-	| "Atlantic/Cape_Verde"
-	| "Europe/London"
-	| "Europe/Berlin"
-	| "Africa/Lagos"
-	| "Europe/Athens"
-	| "Africa/Cairo"
-	| "Europe/Moscow"
-	| "Asia/Riyadh"
-	| "Asia/Dubai"
-	| "Asia/Baku"
-	| "Asia/Karachi"
-	| "Asia/Tashkent"
-	| "Asia/Calcutta"
-	| "Asia/Dhaka"
-	| "Asia/Almaty"
-	| "Asia/Jakarta"
-	| "Asia/Bangkok"
-	| "Asia/Shanghai"
-	| "Asia/Singapore"
-	| "Asia/Tokyo"
-	| "Asia/Seoul"
-	| "Australia/Brisbane"
-	| "Australia/Sydney"
-	| "Pacific/Guam"
-	| "Pacific/Noumea"
-	| "Pacific/Auckland"
-	| "Pacific/Fiji";
+  | 'Pacific/Midway'
+  | 'Pacific/Niue'
+  | 'Pacific/Honolulu'
+  | 'Pacific/Rarotonga'
+  | 'America/Anchorage'
+  | 'Pacific/Gambier'
+  | 'America/Los_Angeles'
+  | 'America/Tijuana'
+  | 'America/Denver'
+  | 'America/Phoenix'
+  | 'America/Chicago'
+  | 'America/Guatemala'
+  | 'America/New_York'
+  | 'America/Bogota'
+  | 'America/Caracas'
+  | 'America/Santiago'
+  | 'America/Buenos_Aires'
+  | 'America/Sao_Paulo'
+  | 'Atlantic/South_Georgia'
+  | 'Atlantic/Azores'
+  | 'Atlantic/Cape_Verde'
+  | 'Europe/London'
+  | 'Europe/Berlin'
+  | 'Africa/Lagos'
+  | 'Europe/Athens'
+  | 'Africa/Cairo'
+  | 'Europe/Moscow'
+  | 'Asia/Riyadh'
+  | 'Asia/Dubai'
+  | 'Asia/Baku'
+  | 'Asia/Karachi'
+  | 'Asia/Tashkent'
+  | 'Asia/Calcutta'
+  | 'Asia/Dhaka'
+  | 'Asia/Almaty'
+  | 'Asia/Jakarta'
+  | 'Asia/Bangkok'
+  | 'Asia/Shanghai'
+  | 'Asia/Singapore'
+  | 'Asia/Tokyo'
+  | 'Asia/Seoul'
+  | 'Australia/Brisbane'
+  | 'Australia/Sydney'
+  | 'Pacific/Guam'
+  | 'Pacific/Noumea'
+  | 'Pacific/Auckland'
+  | 'Pacific/Fiji';
 
 export interface Config {
-	auth: {
-		users: UserAuthOperations;
-	};
-	blocks: {};
-	collections: {
-		users: User;
-		pages: Page;
-		media: Media;
-		faqs: Faq;
-		features: Feature;
-		testimonials: Testimonial;
-		rbac: Rbac;
-		"vercel-deployments": VercelDeployment;
-		"payload-locked-documents": PayloadLockedDocument;
-		"payload-preferences": PayloadPreference;
-		"payload-migrations": PayloadMigration;
-	};
-	collectionsJoins: {};
-	collectionsSelect: {
-		users: UsersSelect<false> | UsersSelect<true>;
-		pages: PagesSelect<false> | PagesSelect<true>;
-		media: MediaSelect<false> | MediaSelect<true>;
-		faqs: FaqsSelect<false> | FaqsSelect<true>;
-		features: FeaturesSelect<false> | FeaturesSelect<true>;
-		testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
-		rbac: RbacSelect<false> | RbacSelect<true>;
-		"vercel-deployments": VercelDeploymentsSelect<false> | VercelDeploymentsSelect<true>;
-		"payload-locked-documents":
-			| PayloadLockedDocumentsSelect<false>
-			| PayloadLockedDocumentsSelect<true>;
-		"payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-		"payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
-	};
-	db: {
-		defaultIDType: number;
-	};
-	globals: {
-		settings: Setting;
-	};
-	globalsSelect: {
-		settings: SettingsSelect<false> | SettingsSelect<true>;
-	};
-	locale: null;
-	user: User & {
-		collection: "users";
-	};
-	jobs: {
-		tasks: unknown;
-		workflows: unknown;
-	};
+  auth: {
+    users: UserAuthOperations;
+  };
+  blocks: {};
+  collections: {
+    users: User;
+    pages: Page;
+    media: Media;
+    faqs: Faq;
+    features: Feature;
+    testimonials: Testimonial;
+    rbac: Rbac;
+    'vercel-deployments': VercelDeployment;
+    news: News;
+    events: Event;
+    meetings: Meeting;
+    'team-members': TeamMember;
+    'history-articles': HistoryArticle;
+    'points-of-interest': PointsOfInterest;
+    resources: Resource;
+    'emergency-services': EmergencyService;
+    announcements: Announcement;
+    businesses: Business;
+    elections: Election;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
+  collectionsSelect: {
+    users: UsersSelect<false> | UsersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    features: FeaturesSelect<false> | FeaturesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    rbac: RbacSelect<false> | RbacSelect<true>;
+    'vercel-deployments': VercelDeploymentsSelect<false> | VercelDeploymentsSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    meetings: MeetingsSelect<false> | MeetingsSelect<true>;
+    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
+    'history-articles': HistoryArticlesSelect<false> | HistoryArticlesSelect<true>;
+    'points-of-interest': PointsOfInterestSelect<false> | PointsOfInterestSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    'emergency-services': EmergencyServicesSelect<false> | EmergencyServicesSelect<true>;
+    announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
+    businesses: BusinessesSelect<false> | BusinessesSelect<true>;
+    elections: ElectionsSelect<false> | ElectionsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
+  db: {
+    defaultIDType: number;
+  };
+  globals: {
+    settings: Setting;
+    navigation: Navigation;
+    homepage: Homepage;
+  };
+  globalsSelect: {
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+  };
+  locale: null;
+  user: User & {
+    collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
+  };
 }
 export interface UserAuthOperations {
-	forgotPassword: {
-		email: string;
-		password: string;
-	};
-	login: {
-		email: string;
-		password: string;
-	};
-	registerFirstUser: {
-		email: string;
-		password: string;
-	};
-	unlock: {
-		email: string;
-		password: string;
-	};
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-	id: number;
-	updatedAt: string;
-	createdAt: string;
-	email: string;
-	resetPasswordToken?: string | null;
-	resetPasswordExpiration?: string | null;
-	salt?: string | null;
-	hash?: string | null;
-	loginAttempts?: number | null;
-	lockUntil?: string | null;
-	sessions?:
-		| {
-				id: string;
-				createdAt?: string | null;
-				expiresAt: string;
-		  }[]
-		| null;
-	password?: string | null;
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
-	id: number;
-	/**
-	 * The title of the page
-	 */
-	title: string;
-	/**
-	 * The URL-friendly slug for the page (e.g., 'about-us')
-	 */
-	slug: string;
-	meta?: {
-		/**
-		 * Override the default meta title
-		 */
-		title?: string | null;
-		/**
-		 * Brief description for search engines
-		 */
-		description?: string | null;
-		/**
-		 * Social sharing image
-		 */
-		image?: (number | null) | Media;
-	};
-	layout: (
-		| {
-				/**
-				 * The main heading for this section
-				 */
-				heading: string;
-				/**
-				 * Optional subheading text
-				 */
-				subheading?: string | null;
-				/**
-				 * Background or featured image
-				 */
-				image?: (number | null) | Media;
-				/**
-				 * Text for the call-to-action button
-				 */
-				ctaText?: string | null;
-				/**
-				 * URL or path for the call-to-action button
-				 */
-				ctaLink?: string | null;
-				/**
-				 * Choose the layout style for this hero section
-				 */
-				style?: ("default" | "centered" | "split") | null;
-				id?: string | null;
-				blockName?: string | null;
-				blockType: "hero";
-		  }
-		| {
-				/**
-				 * The main content for this section
-				 */
-				content: {
-					root: {
-						type: string;
-						children: {
-							type: string;
-							version: number;
-							[k: string]: unknown;
-						}[];
-						direction: ("ltr" | "rtl") | null;
-						format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
-						indent: number;
-						version: number;
-					};
-					[k: string]: unknown;
-				};
-				/**
-				 * Choose the width of the content container
-				 */
-				width?: ("default" | "wide" | "narrow") | null;
-				/**
-				 * Choose a background style for this section
-				 */
-				background?: ("none" | "gray" | "accent") | null;
-				id?: string | null;
-				blockName?: string | null;
-				blockType: "content";
-		  }
-		| {
-				/**
-				 * Optional section heading
-				 */
-				heading?: string | null;
-				/**
-				 * Select features to display in this section
-				 */
-				features: (number | Feature)[];
-				/**
-				 * Choose how to display the features
-				 */
-				layout?: ("grid" | "list" | "carousel") | null;
-				/**
-				 * Number of columns in grid layout
-				 */
-				columns?: ("2" | "3" | "4") | null;
-				id?: string | null;
-				blockName?: string | null;
-				blockType: "features";
-		  }
-		| {
-				/**
-				 * Optional section heading
-				 */
-				heading?: string | null;
-				/**
-				 * Select testimonials to display in this section
-				 */
-				testimonials: (number | Testimonial)[];
-				/**
-				 * Choose how to display the testimonials
-				 */
-				layout?: ("grid" | "slider" | "single") | null;
-				/**
-				 * Choose a background style for this section
-				 */
-				background?: ("none" | "light" | "dark") | null;
-				id?: string | null;
-				blockName?: string | null;
-				blockType: "testimonials";
-		  }
-	)[];
-	/**
-	 * Date when this page was published
-	 */
-	publishedAt?: string | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  /**
+   * The title of the page
+   */
+  title: string;
+  /**
+   * The URL-friendly slug for the page (e.g., 'about-us')
+   */
+  slug: string;
+  meta?: {
+    /**
+     * Override the default meta title
+     */
+    title?: string | null;
+    /**
+     * Brief description for search engines
+     */
+    description?: string | null;
+    /**
+     * Social sharing image
+     */
+    image?: (number | null) | Media;
+  };
+  layout: (
+    | {
+        /**
+         * The main heading for this section
+         */
+        heading: string;
+        /**
+         * Optional subheading text
+         */
+        subheading?: string | null;
+        /**
+         * Background or featured image
+         */
+        image?: (number | null) | Media;
+        /**
+         * Text for the call-to-action button
+         */
+        ctaText?: string | null;
+        /**
+         * URL or path for the call-to-action button
+         */
+        ctaLink?: string | null;
+        /**
+         * Choose the layout style for this hero section
+         */
+        style?: ('default' | 'centered' | 'split') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'hero';
+      }
+    | {
+        /**
+         * The main content for this section
+         */
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        /**
+         * Choose the width of the content container
+         */
+        width?: ('default' | 'wide' | 'narrow') | null;
+        /**
+         * Choose a background style for this section
+         */
+        background?: ('none' | 'gray' | 'accent') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'content';
+      }
+    | {
+        /**
+         * Optional section heading
+         */
+        heading?: string | null;
+        /**
+         * Select features to display in this section
+         */
+        features: (number | Feature)[];
+        /**
+         * Choose how to display the features
+         */
+        layout?: ('grid' | 'list' | 'carousel') | null;
+        /**
+         * Number of columns in grid layout
+         */
+        columns?: ('2' | '3' | '4') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'features';
+      }
+    | {
+        /**
+         * Optional section heading
+         */
+        heading?: string | null;
+        /**
+         * Select testimonials to display in this section
+         */
+        testimonials: (number | Testimonial)[];
+        /**
+         * Choose how to display the testimonials
+         */
+        layout?: ('grid' | 'slider' | 'single') | null;
+        /**
+         * Choose a background style for this section
+         */
+        background?: ('none' | 'light' | 'dark') | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'testimonials';
+      }
+  )[];
+  /**
+   * Date when this page was published
+   */
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-	id: number;
-	alt: string;
-	updatedAt: string;
-	createdAt: string;
-	url?: string | null;
-	thumbnailURL?: string | null;
-	filename?: string | null;
-	mimeType?: string | null;
-	filesize?: number | null;
-	width?: number | null;
-	height?: number | null;
-	focalX?: number | null;
-	focalY?: number | null;
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "features".
  */
 export interface Feature {
-	id: number;
-	name: string;
-	description: string;
-	category: "core" | "dx" | "backend" | "advanced" | "security" | "devops" | "support";
-	plans: ("bones" | "brains")[];
-	badge?: ("new" | "popular" | "pro") | null;
-	/**
-	 * Lucide icon name
-	 */
-	icon?: string | null;
-	/**
-	 * Order within category
-	 */
-	order?: number | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  name: string;
+  description: string;
+  category: 'core' | 'dx' | 'backend' | 'advanced' | 'security' | 'devops' | 'support';
+  plans: ('bones' | 'brains')[];
+  badge?: ('new' | 'popular' | 'pro') | null;
+  /**
+   * Lucide icon name
+   */
+  icon?: string | null;
+  /**
+   * Order within category
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials".
  */
 export interface Testimonial {
-	id: number;
-	name?: string | null;
-	role?: string | null;
-	company?: string | null;
-	testimonial: string;
-	username?: string | null;
-	verified?: boolean | null;
-	featured?: boolean | null;
-	image?: (number | null) | Media;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  name?: string | null;
+  role?: string | null;
+  company?: string | null;
+  testimonial: string;
+  username?: string | null;
+  verified?: boolean | null;
+  featured?: boolean | null;
+  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
-	id: number;
-	question: string;
-	answer: {
-		root: {
-			type: string;
-			children: {
-				type: string;
-				version: number;
-				[k: string]: unknown;
-			}[];
-			direction: ("ltr" | "rtl") | null;
-			format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
-			indent: number;
-			version: number;
-		};
-		[k: string]: unknown;
-	};
-	category?: ("general" | "technical" | "pricing" | "support") | null;
-	order?: number | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  category?: ('general' | 'technical' | 'pricing' | 'support') | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rbac".
  */
 export interface Rbac {
-	id: number;
-	name: string;
-	description: string;
-	type: "role" | "permission";
-	resource?: ("team" | "project" | "user" | "api_key" | "billing" | "settings") | null;
-	action?: ("create" | "read" | "update" | "delete" | "manage") | null;
-	permissions?: (number | Rbac)[] | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  name: string;
+  description: string;
+  type: 'role' | 'permission';
+  resource?: ('team' | 'project' | 'user' | 'api_key' | 'billing' | 'settings') | null;
+  action?: ('create' | 'read' | 'update' | 'delete' | 'manage') | null;
+  permissions?: (number | Rbac)[] | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Stores details of Vercel deployments initiated via Shipkit.
@@ -401,355 +425,1634 @@ export interface Rbac {
  * via the `definition` "vercel-deployments".
  */
 export interface VercelDeployment {
-	id: number;
-	teamId?: string | null;
-	projectId: string;
-	deploymentId: string;
-	deploymentDashboardUrl?: string | null;
-	deploymentUrl?: string | null;
-	productionDeployHookUrl?: string | null;
-	projectDashboardUrl?: string | null;
-	projectName: string;
-	repositoryUrl?: string | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  teamId?: string | null;
+  projectId: string;
+  deploymentId: string;
+  deploymentDashboardUrl?: string | null;
+  deploymentUrl?: string | null;
+  productionDeployHookUrl?: string | null;
+  projectDashboardUrl?: string | null;
+  projectName: string;
+  repositoryUrl?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Town news articles and announcements
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: number;
+  title: string;
+  /**
+   * URL-friendly identifier (e.g. 'spring-cleanup-2025')
+   */
+  slug: string;
+  /**
+   * Short summary displayed in news listings
+   */
+  excerpt?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  featuredImage?: (number | null) | Media;
+  author?: (number | null) | User;
+  status?: ('draft' | 'published' | 'archived') | null;
+  /**
+   * When this article was or will be published
+   */
+  publishedAt?: string | null;
+  categories?:
+    | ('town-news' | 'community' | 'government' | 'public-safety' | 'infrastructure' | 'events' | 'business')[]
+    | null;
+  /**
+   * Tags as a JSON array of strings, e.g. ["parks", "summer"]
+   */
+  tags?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Number of times this article has been viewed
+   */
+  viewCount?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * Community events and calendar items
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  /**
+   * URL-friendly identifier
+   */
+  slug: string;
+  /**
+   * Short description for event listings
+   */
+  description?: string | null;
+  /**
+   * Detailed event information
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  featuredImage?: (number | null) | Media;
+  eventDate: string;
+  /**
+   * e.g. '6:00 PM'
+   */
+  eventTime?: string | null;
+  endDate?: string | null;
+  /**
+   * e.g. '9:00 PM'
+   */
+  endTime?: string | null;
+  location?: string | null;
+  locationAddress?: string | null;
+  organizer?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  /**
+   * External registration link
+   */
+  registrationUrl?: string | null;
+  maxAttendees?: number | null;
+  currentAttendees?: number | null;
+  status?: ('upcoming' | 'ongoing' | 'completed' | 'cancelled') | null;
+  isRecurring?: boolean | null;
+  categories?: ('community' | 'government' | 'recreation' | 'education' | 'holiday' | 'festival' | 'meeting')[] | null;
+  /**
+   * Tags as a JSON array of strings
+   */
+  tags?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Town council and committee meetings with agendas and minutes
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetings".
+ */
+export interface Meeting {
+  id: number;
+  title: string;
+  slug: string;
+  type: 'Council' | 'Planning' | 'Zoning' | 'Public Hearing' | 'Special';
+  meetingDate: string;
+  /**
+   * e.g. '7:00 PM'
+   */
+  meetingTime?: string | null;
+  location?: string | null;
+  /**
+   * Meeting agenda content
+   */
+  agenda?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Upload agenda PDF
+   */
+  agendaDocument?: (number | null) | Media;
+  /**
+   * Meeting minutes content
+   */
+  minutes?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Upload minutes PDF
+   */
+  minutesDocument?: (number | null) | Media;
+  /**
+   * YouTube or other video link
+   */
+  videoUrl?: string | null;
+  /**
+   * Audio recording link
+   */
+  audioUrl?: string | null;
+  /**
+   * Additional meeting documents
+   */
+  documents?:
+    | {
+        document: number | Media;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * List of attendees as a JSON array of strings
+   */
+  attendees?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Whether this meeting is open to the public
+   */
+  isPublic?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Town officials, board members, and department heads
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members".
+ */
+export interface TeamMember {
+  id: number;
+  name: string;
+  /**
+   * Job title or position (e.g. 'Mayor', 'Town Clerk')
+   */
+  title: string;
+  category: 'Executive' | 'Board of Aldermen' | 'Department Heads' | 'Advisory Committees';
+  email?: string | null;
+  phone?: string | null;
+  /**
+   * Short biography
+   */
+  bio?: string | null;
+  photo?: (number | null) | Media;
+  /**
+   * Department name if applicable
+   */
+  department?: string | null;
+  /**
+   * e.g. 'December 2027'
+   */
+  termExpires?: string | null;
+  /**
+   * Lower numbers appear first
+   */
+  sortOrder?: number | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Historical periods and landmarks for the town history page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "history-articles".
+ */
+export interface HistoryArticle {
+  id: number;
+  title: string;
+  slug: string;
+  type: 'period' | 'landmark';
+  /**
+   * Time period label (e.g. '1927-1960')
+   */
+  era?: string | null;
+  /**
+   * Lower numbers appear first
+   */
+  sortOrder?: number | null;
+  /**
+   * Short description for listings
+   */
+  description?: string | null;
+  /**
+   * Full article content
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Key highlights as a JSON array of strings
+   */
+  highlights?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  image?: (number | null) | Media;
+  /**
+   * Year built/established (for landmarks)
+   */
+  year?: string | null;
+  /**
+   * Physical address (for landmarks)
+   */
+  address?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Parks, historic sites, and other points of interest
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "points-of-interest".
+ */
+export interface PointsOfInterest {
+  id: number;
+  name: string;
+  slug: string;
+  category: 'Parks' | 'Historic Sites' | 'Education' | 'Shopping' | 'Government' | 'Memorials';
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  address?: string | null;
+  /**
+   * Operating hours (e.g. 'Dawn to Dusk')
+   */
+  hours?: string | null;
+  phone?: string | null;
+  website?: string | null;
+  image?: (number | null) | Media;
+  /**
+   * Amenities as a JSON array of strings (e.g. ["Playground", "Trails"])
+   */
+  amenities?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Documents, forms, links, and services for residents
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: number;
+  title: string;
+  slug: string;
+  type: 'document' | 'form' | 'link' | 'service';
+  category: 'Building' | 'Business' | 'Utilities' | 'Parks' | 'General' | 'Community' | 'External' | 'Resident';
+  description?: string | null;
+  /**
+   * Upload a document file (PDF, DOC, etc.)
+   */
+  file?: (number | null) | Media;
+  /**
+   * External URL for links and services
+   */
+  externalUrl?: string | null;
+  /**
+   * Lucide icon name (e.g. 'FileText', 'ExternalLink')
+   */
+  icon?: string | null;
+  /**
+   * Contact phone for services
+   */
+  contactPhone?: string | null;
+  contactEmail?: string | null;
+  /**
+   * Lower numbers appear first
+   */
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Emergency contacts, services, and preparedness information
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emergency-services".
+ */
+export interface EmergencyService {
+  id: number;
+  title: string;
+  description: string;
+  /**
+   * Primary phone number for this service
+   */
+  phone: string;
+  category: 'immediate' | 'utility' | 'public-safety' | 'health';
+  /**
+   * Lucide icon name (e.g. 'Phone', 'Shield', 'Flame')
+   */
+  icon?: string | null;
+  /**
+   * Preparedness tips as a JSON array of strings
+   */
+  preparedness?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Lower numbers appear first
+   */
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Emergency alerts, warnings, and town-wide announcements
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements".
+ */
+export interface Announcement {
+  id: number;
+  title: string;
+  message: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  level: 'info' | 'warning' | 'critical';
+  /**
+   * Whether this announcement is currently visible
+   */
+  isActive?: boolean | null;
+  /**
+   * When this announcement becomes visible
+   */
+  startsAt?: string | null;
+  /**
+   * When this announcement expires
+   */
+  endsAt?: string | null;
+  /**
+   * Affected areas as a JSON array of strings
+   */
+  affectedAreas?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Safety instructions or actions to take
+   */
+  instructions?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contactInfo?: {
+    name?: string | null;
+    phone?: string | null;
+    email?: string | null;
+  };
+  /**
+   * Link to more information
+   */
+  externalUrl?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Local business directory
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "businesses".
+ */
+export interface Business {
+  id: number;
+  name: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category: 'restaurant' | 'retail' | 'service' | 'healthcare' | 'education' | 'government' | 'nonprofit' | 'other';
+  logo?: (number | null) | Media;
+  images?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  contactName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  website?: string | null;
+  address?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zipCode?: string | null;
+  /**
+   * Operating hours as JSON
+   */
+  hours?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  socialMedia?: {
+    facebook?: string | null;
+    twitter?: string | null;
+    instagram?: string | null;
+  };
+  /**
+   * Verified by town administration
+   */
+  isVerified?: boolean | null;
+  /**
+   * Show in featured listings
+   */
+  isFeatured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Election information, candidates, and voting resources
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "elections".
+ */
+export interface Election {
+  id: number;
+  title: string;
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  electionDate: string;
+  registrationDeadline?: string | null;
+  earlyVotingStart?: string | null;
+  earlyVotingEnd?: string | null;
+  pollingLocations?:
+    | {
+        name: string;
+        address: string;
+        hours?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Upload sample ballot PDF
+   */
+  sampleBallot?: (number | null) | Media;
+  /**
+   * Link to election results
+   */
+  resultsUrl?: string | null;
+  isActive?: boolean | null;
+  /**
+   * Candidates running in this election
+   */
+  candidates?:
+    | {
+        name: string;
+        /**
+         * Position they are running for
+         */
+        position: string;
+        party?: string | null;
+        photo?: (number | null) | Media;
+        bio?: string | null;
+        website?: string | null;
+        sortOrder?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-	id: number;
-	document?:
-		| ({
-				relationTo: "users";
-				value: number | User;
-		  } | null)
-		| ({
-				relationTo: "pages";
-				value: number | Page;
-		  } | null)
-		| ({
-				relationTo: "media";
-				value: number | Media;
-		  } | null)
-		| ({
-				relationTo: "faqs";
-				value: number | Faq;
-		  } | null)
-		| ({
-				relationTo: "features";
-				value: number | Feature;
-		  } | null)
-		| ({
-				relationTo: "testimonials";
-				value: number | Testimonial;
-		  } | null)
-		| ({
-				relationTo: "rbac";
-				value: number | Rbac;
-		  } | null)
-		| ({
-				relationTo: "vercel-deployments";
-				value: number | VercelDeployment;
-		  } | null);
-	globalSlug?: string | null;
-	user: {
-		relationTo: "users";
-		value: number | User;
-	};
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
+      } | null)
+    | ({
+        relationTo: 'features';
+        value: number | Feature;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'rbac';
+        value: number | Rbac;
+      } | null)
+    | ({
+        relationTo: 'vercel-deployments';
+        value: number | VercelDeployment;
+      } | null)
+    | ({
+        relationTo: 'news';
+        value: number | News;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'meetings';
+        value: number | Meeting;
+      } | null)
+    | ({
+        relationTo: 'team-members';
+        value: number | TeamMember;
+      } | null)
+    | ({
+        relationTo: 'history-articles';
+        value: number | HistoryArticle;
+      } | null)
+    | ({
+        relationTo: 'points-of-interest';
+        value: number | PointsOfInterest;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'emergency-services';
+        value: number | EmergencyService;
+      } | null)
+    | ({
+        relationTo: 'announcements';
+        value: number | Announcement;
+      } | null)
+    | ({
+        relationTo: 'businesses';
+        value: number | Business;
+      } | null)
+    | ({
+        relationTo: 'elections';
+        value: number | Election;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-	id: number;
-	user: {
-		relationTo: "users";
-		value: number | User;
-	};
-	key?: string | null;
-	value?:
-		| {
-				[k: string]: unknown;
-		  }
-		| unknown[]
-		| string
-		| number
-		| boolean
-		| null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  key?: string | null;
+  value?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-	id: number;
-	name?: string | null;
-	batch?: number | null;
-	updatedAt: string;
-	createdAt: string;
+  id: number;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-	updatedAt?: T;
-	createdAt?: T;
-	email?: T;
-	resetPasswordToken?: T;
-	resetPasswordExpiration?: T;
-	salt?: T;
-	hash?: T;
-	loginAttempts?: T;
-	lockUntil?: T;
-	sessions?:
-		| T
-		| {
-				id?: T;
-				createdAt?: T;
-				expiresAt?: T;
-		  };
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages_select".
  */
 export interface PagesSelect<T extends boolean = true> {
-	title?: T;
-	slug?: T;
-	meta?:
-		| T
-		| {
-				title?: T;
-				description?: T;
-				image?: T;
-		  };
-	layout?:
-		| T
-		| {
-				hero?:
-					| T
-					| {
-							heading?: T;
-							subheading?: T;
-							image?: T;
-							ctaText?: T;
-							ctaLink?: T;
-							style?: T;
-							id?: T;
-							blockName?: T;
-					  };
-				content?:
-					| T
-					| {
-							content?: T;
-							width?: T;
-							background?: T;
-							id?: T;
-							blockName?: T;
-					  };
-				features?:
-					| T
-					| {
-							heading?: T;
-							features?: T;
-							layout?: T;
-							columns?: T;
-							id?: T;
-							blockName?: T;
-					  };
-				testimonials?:
-					| T
-					| {
-							heading?: T;
-							testimonials?: T;
-							layout?: T;
-							background?: T;
-							id?: T;
-							blockName?: T;
-					  };
-		  };
-	publishedAt?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  title?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              image?: T;
+              ctaText?: T;
+              ctaLink?: T;
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              width?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              heading?: T;
+              features?: T;
+              layout?: T;
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              heading?: T;
+              testimonials?: T;
+              layout?: T;
+              background?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-	alt?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	url?: T;
-	thumbnailURL?: T;
-	filename?: T;
-	mimeType?: T;
-	filesize?: T;
-	width?: T;
-	height?: T;
-	focalX?: T;
-	focalY?: T;
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs_select".
  */
 export interface FaqsSelect<T extends boolean = true> {
-	question?: T;
-	answer?: T;
-	category?: T;
-	order?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  question?: T;
+  answer?: T;
+  category?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "features_select".
  */
 export interface FeaturesSelect<T extends boolean = true> {
-	name?: T;
-	description?: T;
-	category?: T;
-	plans?: T;
-	badge?: T;
-	icon?: T;
-	order?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  name?: T;
+  description?: T;
+  category?: T;
+  plans?: T;
+  badge?: T;
+  icon?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials_select".
  */
 export interface TestimonialsSelect<T extends boolean = true> {
-	name?: T;
-	role?: T;
-	company?: T;
-	testimonial?: T;
-	username?: T;
-	verified?: T;
-	featured?: T;
-	image?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  name?: T;
+  role?: T;
+  company?: T;
+  testimonial?: T;
+  username?: T;
+  verified?: T;
+  featured?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rbac_select".
  */
 export interface RbacSelect<T extends boolean = true> {
-	name?: T;
-	description?: T;
-	type?: T;
-	resource?: T;
-	action?: T;
-	permissions?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  name?: T;
+  description?: T;
+  type?: T;
+  resource?: T;
+  action?: T;
+  permissions?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vercel-deployments_select".
  */
 export interface VercelDeploymentsSelect<T extends boolean = true> {
-	teamId?: T;
-	projectId?: T;
-	deploymentId?: T;
-	deploymentDashboardUrl?: T;
-	deploymentUrl?: T;
-	productionDeployHookUrl?: T;
-	projectDashboardUrl?: T;
-	projectName?: T;
-	repositoryUrl?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  teamId?: T;
+  projectId?: T;
+  deploymentId?: T;
+  deploymentDashboardUrl?: T;
+  deploymentUrl?: T;
+  productionDeployHookUrl?: T;
+  projectDashboardUrl?: T;
+  projectName?: T;
+  repositoryUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  featuredImage?: T;
+  author?: T;
+  status?: T;
+  publishedAt?: T;
+  categories?: T;
+  tags?: T;
+  viewCount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  content?: T;
+  featuredImage?: T;
+  eventDate?: T;
+  eventTime?: T;
+  endDate?: T;
+  endTime?: T;
+  location?: T;
+  locationAddress?: T;
+  organizer?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  registrationUrl?: T;
+  maxAttendees?: T;
+  currentAttendees?: T;
+  status?: T;
+  isRecurring?: T;
+  categories?: T;
+  tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meetings_select".
+ */
+export interface MeetingsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  type?: T;
+  meetingDate?: T;
+  meetingTime?: T;
+  location?: T;
+  agenda?: T;
+  agendaDocument?: T;
+  minutes?: T;
+  minutesDocument?: T;
+  videoUrl?: T;
+  audioUrl?: T;
+  documents?:
+    | T
+    | {
+        document?: T;
+        label?: T;
+        id?: T;
+      };
+  attendees?: T;
+  isPublic?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members_select".
+ */
+export interface TeamMembersSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  category?: T;
+  email?: T;
+  phone?: T;
+  bio?: T;
+  photo?: T;
+  department?: T;
+  termExpires?: T;
+  sortOrder?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "history-articles_select".
+ */
+export interface HistoryArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  type?: T;
+  era?: T;
+  sortOrder?: T;
+  description?: T;
+  content?: T;
+  highlights?: T;
+  image?: T;
+  year?: T;
+  address?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "points-of-interest_select".
+ */
+export interface PointsOfInterestSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  category?: T;
+  description?: T;
+  address?: T;
+  hours?: T;
+  phone?: T;
+  website?: T;
+  image?: T;
+  amenities?: T;
+  latitude?: T;
+  longitude?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  type?: T;
+  category?: T;
+  description?: T;
+  file?: T;
+  externalUrl?: T;
+  icon?: T;
+  contactPhone?: T;
+  contactEmail?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "emergency-services_select".
+ */
+export interface EmergencyServicesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  phone?: T;
+  category?: T;
+  icon?: T;
+  preparedness?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements_select".
+ */
+export interface AnnouncementsSelect<T extends boolean = true> {
+  title?: T;
+  message?: T;
+  level?: T;
+  isActive?: T;
+  startsAt?: T;
+  endsAt?: T;
+  affectedAreas?: T;
+  instructions?: T;
+  contactInfo?:
+    | T
+    | {
+        name?: T;
+        phone?: T;
+        email?: T;
+      };
+  externalUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "businesses_select".
+ */
+export interface BusinessesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  category?: T;
+  logo?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  contactName?: T;
+  email?: T;
+  phone?: T;
+  website?: T;
+  address?: T;
+  city?: T;
+  state?: T;
+  zipCode?: T;
+  hours?: T;
+  socialMedia?:
+    | T
+    | {
+        facebook?: T;
+        twitter?: T;
+        instagram?: T;
+      };
+  isVerified?: T;
+  isFeatured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "elections_select".
+ */
+export interface ElectionsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  electionDate?: T;
+  registrationDeadline?: T;
+  earlyVotingStart?: T;
+  earlyVotingEnd?: T;
+  pollingLocations?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        hours?: T;
+        id?: T;
+      };
+  sampleBallot?: T;
+  resultsUrl?: T;
+  isActive?: T;
+  candidates?:
+    | T
+    | {
+        name?: T;
+        position?: T;
+        party?: T;
+        photo?: T;
+        bio?: T;
+        website?: T;
+        sortOrder?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-	document?: T;
-	globalSlug?: T;
-	user?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-	user?: T;
-	key?: T;
-	value?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-	name?: T;
-	batch?: T;
-	updatedAt?: T;
-	createdAt?: T;
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings".
  */
 export interface Setting {
-	id: number;
-	/**
-	 * Indicates whether initial data seeding has been completed
-	 */
-	seedCompleted?: boolean | null;
-	/**
-	 * When the initial data seeding was completed
-	 */
-	seedCompletedAt?: string | null;
-	/**
-	 * The title of the site used in various places
-	 */
-	siteTitle?: string | null;
-	/**
-	 * A brief description of the site used for SEO
-	 */
-	siteDescription?: string | null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+  id: number;
+  /**
+   * Indicates whether initial data seeding has been completed
+   */
+  seedCompleted?: boolean | null;
+  /**
+   * When the initial data seeding was completed
+   */
+  seedCompletedAt?: string | null;
+  /**
+   * The title of the site used in various places
+   */
+  siteTitle?: string | null;
+  /**
+   * A brief description of the site used for SEO
+   */
+  siteDescription?: string | null;
+  /**
+   * Town contact information displayed in header and footer
+   */
+  contactInfo?: {
+    phone?: string | null;
+    address?: string | null;
+    email?: string | null;
+    fax?: string | null;
+  };
+  /**
+   * Town hall office hours
+   */
+  officeHours?: {
+    weekday?: string | null;
+    weekend?: string | null;
+  };
+  socialMedia?: {
+    facebook?: string | null;
+    twitter?: string | null;
+    instagram?: string | null;
+    youtube?: string | null;
+  };
+  branding?: {
+    tagline?: string | null;
+    established?: string | null;
+    county?: string | null;
+    state?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  /**
+   * Primary navigation menu items
+   */
+  mainNav?:
+    | {
+        name: string;
+        href: string;
+        children?:
+          | {
+              name: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Links shown in the top bar (above main navigation)
+   */
+  topBarLinks?:
+    | {
+        name: string;
+        href: string;
+        /**
+         * Lucide icon name (e.g. 'Calendar', 'Phone')
+         */
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Quick links grid on the homepage
+   */
+  quickLinks?:
+    | {
+        title: string;
+        description?: string | null;
+        href: string;
+        /**
+         * Lucide icon name
+         */
+        icon?: string | null;
+        /**
+         * Tailwind background color class (e.g. 'bg-blue-500')
+         */
+        color?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Footer link categories
+   */
+  footerLinks?:
+    | {
+        category: string;
+        links?:
+          | {
+              name: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  /**
+   * Hero carousel slides on the homepage
+   */
+  heroSlides?:
+    | {
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        image?: (number | null) | Media;
+        /**
+         * Call-to-action button text
+         */
+        ctaText?: string | null;
+        /**
+         * Call-to-action button link
+         */
+        ctaHref?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Community spotlight featured cards
+   */
+  spotlightCards?:
+    | {
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        /**
+         * Tailwind gradient class (e.g. 'from-blue-500 to-blue-600')
+         */
+        gradient?: string | null;
+        ctaText?: string | null;
+        ctaHref?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Homepage statistics (e.g. Population, Established year)
+   */
+  stats?:
+    | {
+        /**
+         * Display value (e.g. '5,234', '1927', '150+')
+         */
+        value: string;
+        /**
+         * Label text (e.g. 'Population', 'Established')
+         */
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "settings_select".
  */
 export interface SettingsSelect<T extends boolean = true> {
-	seedCompleted?: T;
-	seedCompletedAt?: T;
-	siteTitle?: T;
-	siteDescription?: T;
-	updatedAt?: T;
-	createdAt?: T;
-	globalType?: T;
+  seedCompleted?: T;
+  seedCompletedAt?: T;
+  siteTitle?: T;
+  siteDescription?: T;
+  contactInfo?:
+    | T
+    | {
+        phone?: T;
+        address?: T;
+        email?: T;
+        fax?: T;
+      };
+  officeHours?:
+    | T
+    | {
+        weekday?: T;
+        weekend?: T;
+      };
+  socialMedia?:
+    | T
+    | {
+        facebook?: T;
+        twitter?: T;
+        instagram?: T;
+        youtube?: T;
+      };
+  branding?:
+    | T
+    | {
+        tagline?: T;
+        established?: T;
+        county?: T;
+        state?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  mainNav?:
+    | T
+    | {
+        name?: T;
+        href?: T;
+        children?:
+          | T
+          | {
+              name?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  topBarLinks?:
+    | T
+    | {
+        name?: T;
+        href?: T;
+        icon?: T;
+        id?: T;
+      };
+  quickLinks?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        href?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  footerLinks?:
+    | T
+    | {
+        category?: T;
+        links?:
+          | T
+          | {
+              name?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  heroSlides?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        image?: T;
+        ctaText?: T;
+        ctaHref?: T;
+        id?: T;
+      };
+  spotlightCards?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        gradient?: T;
+        ctaText?: T;
+        ctaHref?: T;
+        id?: T;
+      };
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-	[k: string]: unknown;
+  [k: string]: unknown;
 }
 
-declare module "payload" {
-	export interface GeneratedTypes extends Config {}
+
+declare module 'payload' {
+  export interface GeneratedTypes extends Config {}
 }

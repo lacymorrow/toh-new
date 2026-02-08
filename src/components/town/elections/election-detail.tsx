@@ -1,11 +1,9 @@
-import { asc, eq } from "drizzle-orm";
 import { Calendar, ExternalLink, FileText, Users } from "lucide-react";
 import { notFound } from "next/navigation";
-import { MDXContent } from "@/components/town/mdx-content";
+import { PayloadRichText, extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { candidates, elections } from "@/server/db/schema-town";
+import { getElectionBySlug } from "@/lib/payload/town-data";
 import { CandidateCard } from "./candidate-card";
 import { VotingInfo } from "./voting-info";
 
@@ -13,31 +11,14 @@ interface ElectionDetailProps {
 	slug: string;
 }
 
-async function getElectionWithCandidates(slug: string) {
-	if (!db) return null;
-
-	const election = await db.select().from(elections).where(eq(elections.slug, slug)).limit(1);
-
-	if (!election[0]) return null;
-
-	const electionCandidates = await db
-		.select()
-		.from(candidates)
-		.where(eq(candidates.electionId, election[0].id))
-		.orderBy(asc(candidates.sortOrder), asc(candidates.name));
-
-	return {
-		...election[0],
-		candidates: electionCandidates,
-	};
-}
-
 export async function ElectionDetail({ slug }: ElectionDetailProps) {
-	const election = await getElectionWithCandidates(slug);
+	const election = await getElectionBySlug(slug);
 
 	if (!election) {
 		notFound();
 	}
+
+	const electionCandidates = election.candidates ?? [];
 
 	const electionDate = new Date(election.electionDate);
 	const isUpcoming = electionDate > new Date();
@@ -63,16 +44,25 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 	};
 
 	// Group candidates by position
-	const candidatesByPosition = election.candidates.reduce(
+	const candidatesByPosition = electionCandidates.reduce(
 		(acc, candidate) => {
-			if (!acc[candidate.position]) {
-				acc[candidate.position] = [];
+			const position = candidate.position || "Unknown";
+			if (!acc[position]) {
+				acc[position] = [];
 			}
-			acc[candidate.position].push(candidate);
+			acc[position].push(candidate);
 			return acc;
 		},
-		{} as Record<string, typeof election.candidates>
+		{} as Record<string, typeof electionCandidates>
 	);
+
+	// Resolve sampleBallot URL from upload relation
+	const sampleBallotUrl =
+		typeof election.sampleBallot === "object" && election.sampleBallot?.url
+			? election.sampleBallot.url
+			: typeof election.sampleBallot === "string"
+				? election.sampleBallot
+				: null;
 
 	return (
 		<div className="min-h-screen bg-gray-50">
@@ -95,7 +85,12 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 					</div>
 
 					{election.description && (
-						<p className="text-xl text-blue-100 mt-4 max-w-3xl">{election.description}</p>
+						<div className="text-xl text-blue-100 mt-4 max-w-3xl">
+							<PayloadRichText
+								content={election.description as any}
+								className="prose prose-lg prose-invert max-w-none"
+							/>
+						</div>
 					)}
 				</div>
 			</div>
@@ -132,8 +127,8 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 									<div>
 										<h3 className="font-semibold text-gray-900 mb-2">Candidates</h3>
 										<p className="text-gray-600">
-											{election.candidates.length} candidate
-											{election.candidates.length !== 1 ? "s" : ""}
+											{electionCandidates.length} candidate
+											{electionCandidates.length !== 1 ? "s" : ""}
 										</p>
 									</div>
 
@@ -149,9 +144,9 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 
 								{/* External Links */}
 								<div className="flex flex-wrap gap-3 mt-6 pt-6 border-t">
-									{election.sampleBallot && (
+									{sampleBallotUrl && (
 										<a
-											href={election.sampleBallot}
+											href={sampleBallotUrl}
 											target="_blank"
 											rel="noopener noreferrer"
 											className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-md text-sm"
@@ -193,8 +188,8 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 								</CardHeader>
 								<CardContent>
 									<div className="grid gap-6">
-										{positionCandidates.map((candidate) => (
-											<CandidateCard key={candidate.id} candidate={candidate} />
+										{positionCandidates.map((candidate, index) => (
+											<CandidateCard key={candidate.id ?? index} candidate={candidate} />
 										))}
 									</div>
 								</CardContent>
@@ -202,7 +197,7 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 						))}
 
 						{/* No Candidates Message */}
-						{election.candidates.length === 0 && (
+						{electionCandidates.length === 0 && (
 							<Card>
 								<CardContent className="py-12 text-center">
 									<Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />

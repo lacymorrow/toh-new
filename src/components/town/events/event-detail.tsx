@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { PayloadRichText, extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { formatDate, formatTime } from "@/lib/utils";
 
 interface EventDetailProps {
@@ -19,7 +20,7 @@ interface EventDetailProps {
 		title: string;
 		slug: string;
 		description: string | null;
-		content: string | null;
+		content: any;
 		eventDate: string;
 		eventTime: string | null;
 		endTime: string | null;
@@ -53,6 +54,13 @@ export function EventDetail({ event }: EventDetailProps) {
 		? event.maxAttendees - (event.currentAttendees || 0)
 		: null;
 
+	// Extract plain text description from rich text content if description is not a plain string
+	const descriptionText = typeof event.description === "string"
+		? event.description
+		: event.description
+			? extractTextFromRichText(event.description as any)
+			: null;
+
 	return (
 		<article>
 			<header className="mb-8">
@@ -83,16 +91,14 @@ export function EventDetail({ event }: EventDetailProps) {
 
 			<div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
 				<div className="space-y-6">
-					{event.description && (
+					{descriptionText && (
 						<div className="prose max-w-none">
-							<p className="text-lg text-muted-foreground">{event.description}</p>
+							<p className="text-lg text-muted-foreground">{descriptionText}</p>
 						</div>
 					)}
 
 					{event.content && (
-						<div className="prose max-w-none">
-							<div dangerouslySetInnerHTML={{ __html: event.content }} />
-						</div>
+						<PayloadRichText content={event.content as any} className="prose max-w-none" />
 					)}
 
 					{event.organizer && (

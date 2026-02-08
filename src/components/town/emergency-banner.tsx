@@ -1,38 +1,11 @@
-import { and, desc, eq, gte, isNull, lte, or, sql } from "drizzle-orm";
-import { AlertTriangle, X } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import Link from "next/link";
-import { db } from "@/server/db";
-import { emergencyAlerts } from "@/server/db/schema-town";
-
-async function getActiveAlert() {
-	if (!db) return null;
-
-	const now = new Date();
-	const alerts = await db
-		.select()
-		.from(emergencyAlerts)
-		.where(
-			and(
-				eq(emergencyAlerts.isActive, true),
-				or(isNull(emergencyAlerts.startsAt), lte(emergencyAlerts.startsAt, now)),
-				or(isNull(emergencyAlerts.endsAt), gte(emergencyAlerts.endsAt, now))
-			)
-		)
-		.orderBy(
-			sql`CASE 
-				WHEN ${emergencyAlerts.level} = 'critical' THEN 1 
-				WHEN ${emergencyAlerts.level} = 'warning' THEN 2 
-				ELSE 3 
-			END`,
-			desc(emergencyAlerts.createdAt)
-		)
-		.limit(1);
-
-	return alerts[0] || null;
-}
+import { getActiveAnnouncements } from "@/lib/payload/town-data";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 
 export async function EmergencyBanner() {
-	const alert = await getActiveAlert();
+	const announcements = await getActiveAnnouncements();
+	const alert = announcements[0];
 
 	if (!alert) return null;
 
@@ -42,7 +15,8 @@ export async function EmergencyBanner() {
 		critical: "bg-red-600",
 	};
 
-	const bgColor = levelColors[alert.level] || "bg-blue-600";
+	const bgColor = levelColors[alert.level as keyof typeof levelColors] || "bg-blue-600";
+	const messageText = extractTextFromRichText(alert.message as any);
 
 	return (
 		<div className={`${bgColor} text-white`}>
@@ -52,7 +26,7 @@ export async function EmergencyBanner() {
 						<AlertTriangle className="h-5 w-5 flex-shrink-0" />
 						<div className="flex-1">
 							<strong className="font-semibold mr-2">{alert.title}:</strong>
-							<span>{alert.message}</span>
+							<span>{messageText}</span>
 							{alert.externalUrl && (
 								<a
 									href={alert.externalUrl}

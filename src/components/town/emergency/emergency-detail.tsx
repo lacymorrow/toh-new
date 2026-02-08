@@ -1,4 +1,3 @@
-import { eq } from "drizzle-orm";
 import {
 	AlertOctagon,
 	AlertTriangle,
@@ -8,24 +7,15 @@ import {
 	Info,
 	MapPin,
 	Phone,
-	User,
 } from "lucide-react";
 import { notFound } from "next/navigation";
+import { PayloadRichText } from "@/components/town/payload-rich-text";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { emergencyAlerts } from "@/server/db/schema-town";
+import { getAnnouncementById } from "@/lib/payload/town-data";
 
 interface EmergencyDetailProps {
 	alertId: number;
-}
-
-async function getEmergencyAlert(id: number) {
-	if (!db) return null;
-
-	const alerts = await db.select().from(emergencyAlerts).where(eq(emergencyAlerts.id, id)).limit(1);
-
-	return alerts[0] || null;
 }
 
 const getLevelIcon = (level: string) => {
@@ -74,7 +64,7 @@ const getLevelColors = (level: string) => {
 };
 
 export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
-	const alert = await getEmergencyAlert(alertId);
+	const alert = await getAnnouncementById(alertId);
 
 	if (!alert) {
 		notFound();
@@ -86,6 +76,15 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 		alert.isActive &&
 		(!alert.startsAt || new Date(alert.startsAt) <= new Date()) &&
 		(!alert.endsAt || new Date(alert.endsAt) >= new Date());
+
+	// Parse affectedAreas from JSON field
+	const affectedAreas: string[] = Array.isArray(alert.affectedAreas)
+		? (alert.affectedAreas as string[])
+		: [];
+
+	// contactInfo is a group { name, phone, email } in Payload
+	const contactInfo = alert.contactInfo as { name?: string; phone?: string; email?: string } | null | undefined;
+	const hasContactInfo = contactInfo && (contactInfo.name || contactInfo.phone || contactInfo.email);
 
 	return (
 		<div className="space-y-6">
@@ -118,7 +117,9 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 				</CardHeader>
 
 				<CardContent>
-					<p className={`text-lg ${colors.text} leading-relaxed`}>{alert.message}</p>
+					<div className={`text-lg ${colors.text} leading-relaxed`}>
+						<PayloadRichText content={alert.message as any} className="prose prose-lg max-w-none" />
+					</div>
 				</CardContent>
 			</Card>
 
@@ -132,7 +133,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 							</CardHeader>
 							<CardContent>
 								<div className="prose prose-sm max-w-none">
-									<p className="text-gray-700 leading-relaxed">{alert.instructions}</p>
+									<PayloadRichText content={alert.instructions as any} />
 								</div>
 							</CardContent>
 						</Card>
@@ -214,7 +215,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					</Card>
 
 					{/* Affected Areas */}
-					{alert.affectedAreas && alert.affectedAreas.length > 0 && (
+					{affectedAreas.length > 0 && (
 						<Card>
 							<CardHeader>
 								<CardTitle className="text-lg text-gray-900 flex items-center gap-2">
@@ -224,7 +225,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 							</CardHeader>
 							<CardContent>
 								<ul className="space-y-1">
-									{alert.affectedAreas.map((area, index) => (
+									{affectedAreas.map((area, index) => (
 										<li key={index} className="text-sm text-gray-700 flex items-center gap-2">
 											<span className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
 											{area}
@@ -236,7 +237,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					)}
 
 					{/* Contact Information */}
-					{alert.contactInfo && (
+					{hasContactInfo && (
 						<Card>
 							<CardHeader>
 								<CardTitle className="text-lg text-gray-900 flex items-center gap-2">
@@ -245,13 +246,23 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
-								<div className="text-sm text-gray-700">
-									{typeof alert.contactInfo === "string" ? (
-										<p>{alert.contactInfo}</p>
-									) : (
-										<pre className="whitespace-pre-wrap font-sans">
-											{JSON.stringify(alert.contactInfo, null, 2)}
-										</pre>
+								<div className="text-sm text-gray-700 space-y-1">
+									{contactInfo.name && <p className="font-medium">{contactInfo.name}</p>}
+									{contactInfo.phone && (
+										<p>
+											Phone:{" "}
+											<a href={`tel:${contactInfo.phone}`} className="text-blue-600 hover:underline">
+												{contactInfo.phone}
+											</a>
+										</p>
+									)}
+									{contactInfo.email && (
+										<p>
+											Email:{" "}
+											<a href={`mailto:${contactInfo.email}`} className="text-blue-600 hover:underline">
+												{contactInfo.email}
+											</a>
+										</p>
 									)}
 								</div>
 							</CardContent>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/server/actions/newsletter-actions";
 
 export function NewsletterSignup() {
 	const [email, setEmail] = useState("");
@@ -16,14 +17,21 @@ export function NewsletterSignup() {
 		setIsLoading(true);
 
 		try {
-			// TODO: Implement newsletter signup API
-			await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+			const result = await subscribeToNewsletter(email);
 
-			toast({
-				title: "Success!",
-				description: "You've been subscribed to our newsletter.",
-			});
-			setEmail("");
+			if (result.success) {
+				toast({
+					title: "Success!",
+					description: result.message || "You've been subscribed to our newsletter.",
+				});
+				setEmail("");
+			} else {
+				toast({
+					title: "Error",
+					description: result.error || "Failed to subscribe. Please try again.",
+					variant: "destructive",
+				});
+			}
 		} catch (error) {
 			toast({
 				title: "Error",

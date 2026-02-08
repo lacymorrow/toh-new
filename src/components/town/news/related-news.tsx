@@ -1,36 +1,22 @@
-import { and, eq, ne, sql } from "drizzle-orm";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { news } from "@/server/db/schema-town";
+import { getNews } from "@/lib/payload/town-data";
 
 interface RelatedNewsProps {
 	currentArticleId: number;
 	categories?: string[] | null;
 }
 
-async function getRelatedNews(currentId: number, categories?: string[] | null) {
-	if (!db) return [];
-
-	const conditions = [eq(news.status, "published"), ne(news.id, currentId)];
-
-	if (categories && categories.length > 0) {
-		// Find articles with overlapping categories
-		conditions.push(sql`${news.categories} && ${categories}`);
-	}
-
-	const related = await db
-		.select()
-		.from(news)
-		.where(and(...conditions))
-		.limit(5);
-
-	return related;
-}
-
 export async function RelatedNews({ currentArticleId, categories }: RelatedNewsProps) {
-	const related = await getRelatedNews(currentArticleId, categories);
+	// Fetch recent published news; if a category is available, filter by the first one
+	const result = await getNews({
+		limit: 6,
+		category: categories?.[0] || undefined,
+	});
+
+	// Filter out the current article from results
+	const related = result.docs.filter((article) => article.id !== currentArticleId).slice(0, 5);
 
 	if (related.length === 0) {
 		return null;

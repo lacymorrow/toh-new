@@ -1,6 +1,4 @@
-import { and, eq, gte, sql } from "drizzle-orm";
-import { db } from "@/server/db";
-import { events } from "@/server/db/schema-town";
+import { getEvents } from "@/lib/payload/town-data";
 import { EventCard } from "./event-card";
 import { EventsPagination } from "./events-pagination";
 
@@ -10,49 +8,28 @@ interface EventsListProps {
 	page?: string;
 }
 
-async function getEvents(category?: string, month?: string, page = "1") {
-	if (!db) return { items: [], total: 0 };
+export async function EventsList({ category, month, page = "1" }: EventsListProps) {
+	const pageNum = Number.parseInt(page);
 
-	const pageSize = 10;
-	const offset = (Number.parseInt(page) - 1) * pageSize;
-
-	const conditions = [eq(events.status, "upcoming"), gte(events.eventDate, sql`CURRENT_DATE`)];
-
-	if (category) {
-		conditions.push(sql`${events.categories} @> ARRAY[${category}]`);
-	}
-
+	// Parse month filter into separate month/year values for the Payload query
+	let monthParam: string | undefined;
+	let yearParam: string | undefined;
 	if (month) {
 		const [year, monthNum] = month.split("-");
-		conditions.push(
-			sql`EXTRACT(YEAR FROM ${events.eventDate}) = ${year}::int AND EXTRACT(MONTH FROM ${events.eventDate}) = ${monthNum}::int`
-		);
+		yearParam = year;
+		monthParam = monthNum;
 	}
 
-	const [items, totalResult] = await Promise.all([
-		db
-			.select()
-			.from(events)
-			.where(and(...conditions))
-			.orderBy(events.eventDate, events.eventTime)
-			.limit(pageSize)
-			.offset(offset),
-		db
-			.select({ count: sql`count(*)::int` })
-			.from(events)
-			.where(and(...conditions)),
-	]);
+	const result = await getEvents({
+		category,
+		month: monthParam,
+		year: yearParam,
+		page: pageNum,
+		limit: 10,
+	});
 
-	return {
-		items,
-		total: totalResult[0]?.count || 0,
-	};
-}
-
-export async function EventsList({ category, month, page = "1" }: EventsListProps) {
-	const { items, total } = await getEvents(category, month, page);
-	const pageSize = 10;
-	const totalPages = Math.ceil(total / pageSize);
+	const items = result.docs;
+	const totalPages = result.totalPages;
 
 	if (items.length === 0) {
 		return (
@@ -65,14 +42,14 @@ export async function EventsList({ category, month, page = "1" }: EventsListProp
 	return (
 		<>
 			<div className="space-y-6">
-				{items.map((event) => (
+				{items.map((event: any) => (
 					<EventCard key={event.id} event={event} />
 				))}
 			</div>
 
 			{totalPages > 1 && (
 				<EventsPagination
-					currentPage={Number.parseInt(page)}
+					currentPage={pageNum}
 					totalPages={totalPages}
 					baseUrl="/events"
 					searchParams={{ category, month }}

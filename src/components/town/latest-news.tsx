@@ -1,26 +1,12 @@
-import { desc, eq } from "drizzle-orm";
 import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { news } from "@/server/db/schema-town";
-
-async function getLatestNews() {
-	if (!db) return [];
-
-	const articles = await db
-		.select()
-		.from(news)
-		.where(eq(news.status, "published"))
-		.orderBy(desc(news.publishedAt))
-		.limit(3);
-
-	return articles;
-}
+import { getNews } from "@/lib/payload/town-data";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 
 export async function LatestNews() {
-	const articles = await getLatestNews();
+	const { docs: articles } = await getNews({ limit: 3 });
 
 	if (articles.length === 0) {
 		return (
@@ -61,7 +47,7 @@ export async function LatestNews() {
 					</CardHeader>
 					<CardContent>
 						<p className="text-gray-600 line-clamp-2">
-							{article.excerpt || article.content.substring(0, 150) + "..."}
+							{article.excerpt || extractTextFromRichText(article.content as any).substring(0, 150) + "..."}
 						</p>
 						<Link
 							href={`/news/${article.slug}`}
