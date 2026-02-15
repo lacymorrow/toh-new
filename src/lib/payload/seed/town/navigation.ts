@@ -49,14 +49,6 @@ export const seedNavigation = async (payload: Payload) => {
 						href: "/events",
 						icon: "Calendar",
 					},
-					{
-						name: "Pay Bill",
-						href: "/services/pay-bill",
-					},
-					{
-						name: "Resident Portal",
-						href: "/resident-portal",
-					},
 				],
 				quickLinks: [
 					{
@@ -66,14 +58,7 @@ export const seedNavigation = async (payload: Payload) => {
 						icon: "FileText",
 						color: "bg-blue-500",
 					},
-					{
-						title: "Pay Bills",
-						description: "Pay utility bills and taxes online",
-						href: "/services/pay-bill",
-						icon: "DollarSign",
-						color: "bg-green-500",
-					},
-					{
+						{
 						title: "Events",
 						description: "Community events and activities",
 						href: "/events",

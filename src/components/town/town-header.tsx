@@ -72,12 +72,6 @@ export function TownHeader() {
 								<Calendar className="h-3 w-3" />
 								Events
 							</Link>
-							<Link href="/services/pay-bill" className="hover:underline">
-								Pay Bill
-							</Link>
-							<Link href="/resident-portal" className="hover:underline">
-								Resident Portal
-							</Link>
 						</div>
 					</div>
 				</div>

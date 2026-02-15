@@ -2,7 +2,6 @@ import {
 	AlertCircle,
 	Briefcase,
 	Calendar,
-	DollarSign,
 	FileText,
 	Home,
 	Phone,
@@ -18,13 +17,6 @@ const quickLinks = [
 		description: "Apply for permits and download forms",
 		href: "/services/permits",
 		color: "bg-blue-500",
-	},
-	{
-		icon: DollarSign,
-		title: "Pay Bills",
-		description: "Pay utility bills and taxes online",
-		href: "/services/pay-bill",
-		color: "bg-green-500",
 	},
 	{
 		icon: Calendar,
