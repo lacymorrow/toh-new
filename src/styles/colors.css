@@ -1,10 +1,18 @@
 :root {
-  --salmon: #ff2975;
-  --cyan: #00fff1;
-  --teal: rgb(30, 159, 196);
-  --purple: rgb(139, 92, 246);
-  --pink: rgb(255, 25, 194);
-  --yellow: rgb(253, 216, 53);
-  --orange: rgb(255, 111, 0);
-  --green: rgb(34, 197, 94);
+  /* Civic Pastoral - Town of Harmony */
+  --sage: #5B7553;
+  --sage-dark: #3D5038;
+  --sage-deep: #2C3B26;
+  --sage-light: #7A9470;
+  --wheat: #C9B57E;
+  --wheat-light: #D8C99A;
+  --barn-red: #8B3A3A;
+  --cream: #F9F6F0;
+  --warm-white: #FDFCF9;
+  --stone: #E8E2D6;
+  --text-primary: #2D2A24;
+  --text-secondary: #4A4640;
+  --text-muted: #7A756C;
+  --town-border: #DDD7CC;
+  --footer-bg: #1E2118;
 }

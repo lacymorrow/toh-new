@@ -1,7 +1,5 @@
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { getEvents } from "@/lib/payload/town-data";
 
 export async function UpcomingEvents() {
@@ -9,65 +7,53 @@ export async function UpcomingEvents() {
 
 	if (upcomingEvents.length === 0) {
 		return (
-			<Card>
-				<CardContent className="py-8 text-center text-gray-500">
-					No upcoming events scheduled.
-				</CardContent>
-			</Card>
+			<div className="bg-cream rounded-xl p-8 text-center text-[#7A756C]">
+				No upcoming events scheduled.
+			</div>
 		);
 	}
 
 	return (
-		<div className="space-y-3">
-			{upcomingEvents.map((event) => (
-				<Card key={event.id} className="hover:shadow-md transition-shadow">
-					<CardContent className="p-4">
-						<Link href={`/events/${event.slug}`}>
-							<div className="space-y-2">
-								{/* Date Badge */}
-								<div className="flex items-start gap-3">
-									<div className="bg-blue-100 text-blue-900 rounded-lg p-2 text-center min-w-[60px]">
-										<div className="text-xs font-semibold">
-											{new Date(event.eventDate)
-												.toLocaleDateString("en-US", { month: "short" })
-												.toUpperCase()}
-										</div>
-										<div className="text-xl font-bold">{new Date(event.eventDate).getDate()}</div>
-									</div>
+		<div className="space-y-2.5">
+			{upcomingEvents.map((event) => {
+				const date = new Date(event.eventDate);
+				const dateStr = date.toLocaleDateString("en-US", {
+					month: "short",
+					day: "numeric",
+					year: "numeric",
+				});
 
-									<div className="flex-1">
-										<h3 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors line-clamp-1">
-											{event.title}
-										</h3>
-
-										{event.eventTime && (
-											<div className="flex items-center gap-1 text-sm text-gray-600 mt-1">
-												<Clock className="h-3 w-3" />
-												{event.eventTime}
-											</div>
-										)}
-
-										{event.location && (
-											<div className="flex items-center gap-1 text-sm text-gray-600 mt-1">
-												<MapPin className="h-3 w-3" />
-												<span className="line-clamp-1">{event.location}</span>
-											</div>
-										)}
-									</div>
-								</div>
+				return (
+					<Link
+						key={event.id}
+						href={`/events/${event.slug}`}
+						className="flex items-center gap-4 p-4 bg-cream rounded-[10px] border border-transparent hover:border-[#DDD7CC] transition-colors cursor-pointer group"
+					>
+						<div className="w-2.5 h-2.5 rounded-full bg-wheat flex-shrink-0" />
+						<div className="flex-1">
+							<div className="text-xs text-sage font-semibold">
+								{dateStr}
+								{event.eventTime && <> &middot; {event.eventTime}</>}
 							</div>
-						</Link>
-					</CardContent>
-				</Card>
-			))}
+							<h4 className="font-semibold text-[15px] text-[#2D2A24] group-hover:text-sage-dark transition-colors">
+								{event.title}
+							</h4>
+							{event.location && (
+								<p className="text-[13px] text-[#7A756C]">{event.location}</p>
+							)}
+						</div>
+					</Link>
+				);
+			})}
 
 			<div className="pt-4">
-				<Button asChild variant="outline" className="w-full">
-					<Link href="/events">
-						<Calendar className="h-4 w-4 mr-2" />
-						View Full Calendar
-					</Link>
-				</Button>
+				<Link
+					href="/events"
+					className="flex items-center justify-center gap-2 w-full py-3 rounded-lg border border-[#DDD7CC] text-sage-dark font-semibold text-sm hover:bg-stone transition-colors cursor-pointer"
+				>
+					<Calendar className="h-4 w-4" />
+					View Full Calendar
+				</Link>
 			</div>
 		</div>
 	);

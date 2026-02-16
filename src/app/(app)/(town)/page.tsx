@@ -12,21 +12,25 @@ export default function HomePage() {
 			<HeroSection />
 			<QuickLinks />
 
-			<section className="py-12 bg-gray-50">
+			<section className="py-16 bg-warm-white">
 				<div className="container mx-auto px-4">
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+					<div className="grid grid-cols-1 lg:grid-cols-[5fr_3fr] gap-12">
 						{/* Latest News */}
-						<div className="lg:col-span-2">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Latest News & Announcements</h2>
-							<Suspense fallback={<div>Loading news...</div>}>
+						<div>
+							<h2 className="text-2xl font-serif font-bold text-sage-dark mb-6 pb-3 border-b-2 border-wheat">
+								Latest News
+							</h2>
+							<Suspense fallback={<div className="text-[#7A756C]">Loading news...</div>}>
 								<LatestNews />
 							</Suspense>
 						</div>
 
 						{/* Upcoming Events */}
 						<div>
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Upcoming Events</h2>
-							<Suspense fallback={<div>Loading events...</div>}>
+							<h2 className="text-2xl font-serif font-bold text-sage-dark mb-6 pb-3 border-b-2 border-wheat">
+								Upcoming Events
+							</h2>
+							<Suspense fallback={<div className="text-[#7A756C]">Loading events...</div>}>
 								<UpcomingEvents />
 							</Suspense>
 						</div>

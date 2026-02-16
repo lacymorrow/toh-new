@@ -5,8 +5,8 @@ import { TownHeader } from "@/components/town/town-header";
 export default function TownLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="min-h-screen flex flex-col">
-			<EmergencyBanner />
 			<TownHeader />
+			<EmergencyBanner />
 			<main className="flex-grow">{children}</main>
 			<TownFooter />
 		</div>

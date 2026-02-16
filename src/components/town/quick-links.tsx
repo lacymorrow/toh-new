@@ -5,10 +5,10 @@ import {
 	FileText,
 	Home,
 	Phone,
+	Star,
 	Users,
 } from "lucide-react";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
 
 const quickLinks = [
 	{
@@ -16,75 +16,77 @@ const quickLinks = [
 		title: "Permits & Forms",
 		description: "Apply for permits and download forms",
 		href: "/services/permits",
-		color: "bg-blue-500",
 	},
 	{
 		icon: Calendar,
 		title: "Events",
 		description: "Community events and activities",
 		href: "/events",
-		color: "bg-purple-500",
+	},
+	{
+		icon: Users,
+		title: "Town Council",
+		description: "Meetings and agendas",
+		href: "/government/council",
 	},
 	{
 		icon: AlertCircle,
 		title: "Report an Issue",
 		description: "Report problems or concerns",
 		href: "/services/report",
-		color: "bg-red-500",
-	},
-	{
-		icon: Users,
-		title: "Town Council",
-		description: "Meeting schedules and agendas",
-		href: "/government/council",
-		color: "bg-indigo-500",
 	},
 	{
 		icon: Briefcase,
 		title: "Business Directory",
 		description: "Find local businesses",
 		href: "/business",
-		color: "bg-orange-500",
 	},
 	{
 		icon: Home,
 		title: "Resident Resources",
 		description: "Information for residents",
 		href: "/residents",
-		color: "bg-teal-500",
 	},
 	{
 		icon: Phone,
 		title: "Contact Us",
-		description: "Get in touch with town offices",
+		description: "Reach town offices",
 		href: "/contact",
-		color: "bg-pink-500",
+	},
+	{
+		icon: Star,
+		title: "Points of Interest",
+		description: "Explore local landmarks",
+		href: "/points-of-interest",
 	},
 ];
 
 export function QuickLinks() {
 	return (
-		<section className="py-12 bg-white">
+		<section className="py-16 bg-cream">
 			<div className="container mx-auto px-4">
-				<h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-					Quick Links & Services
-				</h2>
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+				<div className="text-center mb-10">
+					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
+						Town Services
+					</h2>
+					<p className="text-[#7A756C] text-base">Find what you need quickly</p>
+				</div>
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 					{quickLinks.map((link) => {
 						const Icon = link.icon;
 						return (
-							<Link key={link.title} href={link.href}>
-								<Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer h-full">
-									<div className="flex flex-col items-center text-center">
-										<div
-											className={`w-12 h-12 ${link.color} rounded-lg flex items-center justify-center mb-3`}
-										>
-											<Icon className="h-6 w-6 text-white" />
-										</div>
-										<h3 className="font-semibold text-gray-900 mb-1">{link.title}</h3>
-										<p className="text-sm text-gray-600">{link.description}</p>
-									</div>
-								</Card>
+							<Link
+								key={link.title}
+								href={link.href}
+								className="group flex items-start gap-4 bg-warm-white p-6 rounded-xl border border-[#DDD7CC] hover:border-sage-light hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
+							>
+								<div className="w-11 h-11 bg-stone rounded-[10px] flex items-center justify-center text-sage-dark flex-shrink-0 group-hover:bg-sage-dark group-hover:text-wheat transition-colors">
+									<Icon className="h-5 w-5" />
+								</div>
+								<div>
+									<h3 className="font-semibold text-base text-[#2D2A24] mb-1">{link.title}</h3>
+									<p className="text-[13px] text-[#7A756C]">{link.description}</p>
+								</div>
 							</Link>
 						);
 					})}

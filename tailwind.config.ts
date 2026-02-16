@@ -67,6 +67,20 @@ const config = {
 					DEFAULT: "hsl(var(--card))",
 					foreground: "hsl(var(--card-foreground))",
 				},
+				sage: {
+					DEFAULT: "#5B7553",
+					light: "#7A9470",
+					dark: "#3D5038",
+					deep: "#2C3B26",
+				},
+				wheat: {
+					DEFAULT: "#C9B57E",
+					light: "#D8C99A",
+				},
+				"barn-red": "#8B3A3A",
+				cream: "#F9F6F0",
+				"warm-white": "#FDFCF9",
+				stone: "#E8E2D6",
 				chart: {
 					"1": "hsl(var(--chart-1))",
 					"2": "hsl(var(--chart-2))",
