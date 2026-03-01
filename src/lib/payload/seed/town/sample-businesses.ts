@@ -1,7 +1,8 @@
 import type { Payload } from "payload";
 import { createRichText } from "../../seed-utils";
+import type { MediaMap } from "./seed-media";
 
-export const seedSampleBusinesses = async (payload: Payload) => {
+export const seedSampleBusinesses = async (payload: Payload, media?: Partial<MediaMap>) => {
 	try {
 		console.info("🏪 Seeding sample businesses...");
 
@@ -22,6 +23,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"A family-owned general store serving the Harmony community since 1952. We carry groceries, household essentials, local produce, and a little bit of everything you might need.",
 				),
+				logo: media?.["biz-general-store"] ?? null,
 				category: "retail" as const,
 				contactName: "Martha Jenkins",
 				email: "info@harmonygeneralstore.com",
@@ -48,6 +50,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"Home-style Southern cooking at its finest. Our diner has been a gathering place for the Harmony community for over 30 years, serving breakfast, lunch, and dinner with a smile.",
 				),
+				logo: media?.["biz-diner"] ?? null,
 				category: "restaurant" as const,
 				contactName: "Bobby Ray Thompson",
 				email: "eat@southerncomfortdiner.com",
@@ -74,6 +77,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"Providing comprehensive family healthcare to the Harmony community. We offer preventive care, wellness visits, chronic disease management, and same-day appointments for urgent needs.",
 				),
+				logo: media?.["biz-medical"] ?? null,
 				category: "healthcare" as const,
 				contactName: "Dr. Susan Patterson",
 				email: "appointments@harmonyfamilymedicine.com",
@@ -101,6 +105,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"Your local source for hardware, tools, farm supplies, animal feed, and gardening essentials. Friendly, knowledgeable staff to help with any project.",
 				),
+				logo: media?.["biz-hardware"] ?? null,
 				category: "retail" as const,
 				contactName: "Tom Davis",
 				email: "info@harmonyhardware.com",
@@ -127,6 +132,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"Honest, reliable auto repair and maintenance service. ASE-certified mechanics providing quality work at fair prices for over 20 years.",
 				),
+				logo: media?.["biz-auto"] ?? null,
 				category: "service" as const,
 				contactName: "Mike Reynolds",
 				phone: "(704) 546-2370",
@@ -152,6 +158,7 @@ export const seedSampleBusinesses = async (payload: Payload) => {
 				description: createRichText(
 					"A community thrift store operated by volunteers from Harmony Community Church. All proceeds support local charitable programs and community outreach.",
 				),
+				logo: media?.["biz-thrift"] ?? null,
 				category: "nonprofit" as const,
 				contactName: "Linda Cartwright",
 				phone: "(704) 546-2375",

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { getPointsOfInterest } from "@/lib/payload/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 export default async function PointsOfInterestPage() {
 	const pois = await getPointsOfInterest();
@@ -44,6 +45,15 @@ export default async function PointsOfInterestPage() {
 
 							return (
 								<Card key={poi.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+									{getMediaUrl(poi.image) && (
+										<div className="h-48 overflow-hidden">
+											<img
+												src={getMediaUrl(poi.image)!}
+												alt={poi.name}
+												className="w-full h-full object-cover"
+											/>
+										</div>
+									)}
 									<CardHeader className="pb-4">
 										<Badge className="mb-2 w-fit">{poi.category}</Badge>
 										<CardTitle className="text-xl">{poi.name}</CardTitle>

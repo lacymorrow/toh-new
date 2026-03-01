@@ -2,19 +2,13 @@ import { getBusinesses } from "@/lib/payload/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { BusinessCard } from "./business-card";
 import { BusinessPagination } from "./business-pagination";
-import type { Media } from "@/payload-types";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 interface BusinessListProps {
 	category?: string;
 	search?: string;
 	featured?: string;
 	page?: string;
-}
-
-function getMediaUrl(media: number | Media | null | undefined): string | null {
-	if (!media) return null;
-	if (typeof media === "number") return null;
-	return media.url ?? null;
 }
 
 export async function BusinessList({ category, search, featured, page = "1" }: BusinessListProps) {
@@ -62,7 +56,7 @@ export async function BusinessList({ category, search, featured, page = "1" }: B
 							email: business.email ?? null,
 							website: business.website ?? null,
 							hours: business.hours,
-							logo: getMediaUrl(business.logo as number | Media | null),
+							logo: getMediaUrl(business.logo),
 							isVerified: business.isVerified ?? null,
 							isFeatured: business.isFeatured ?? null,
 						}}

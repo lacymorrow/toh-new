@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
+import { getHomepage } from "@/lib/payload/town-data";
 
-export function HeroSection() {
+export async function HeroSection() {
+	const homepage = await getHomepage();
+	const firstSlide = (homepage as any)?.heroSlides?.[0];
+	const heroImageUrl = firstSlide?.image ? getMediaUrl(firstSlide.image) : null;
+
 	return (
 		<section className="bg-gradient-to-r from-sage-deep via-sage-dark to-sage text-white relative overflow-hidden">
 			<div className="container mx-auto">
@@ -11,17 +17,18 @@ export function HeroSection() {
 							Est. 1927 &middot; Iredell County
 						</div>
 						<h2 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4">
-							Welcome to the Town of Harmony
+							{firstSlide?.title ?? "Welcome to the Town of Harmony"}
 						</h2>
 						<p className="text-lg text-white/75 mb-8 max-w-[480px] leading-relaxed">
-							Where Harmony LIVES and SINGS! A proud community rooted in southern tradition, natural beauty, and neighborly spirit.
+							{firstSlide?.description ??
+								"Where Harmony LIVES and SINGS! A proud community rooted in southern tradition, natural beauty, and neighborly spirit."}
 						</p>
 						<div className="flex flex-wrap gap-3">
 							<Link
-								href="/history"
+								href={firstSlide?.ctaHref ?? "/history"}
 								className="inline-flex items-center gap-2 bg-wheat text-sage-deep px-7 py-3.5 rounded-lg text-[15px] font-bold hover:bg-wheat-light transition-colors cursor-pointer"
 							>
-								Discover Harmony
+								{firstSlide?.ctaText ?? "Discover Harmony"}
 							</Link>
 							<Link
 								href="/meetings"
@@ -33,10 +40,21 @@ export function HeroSection() {
 					</div>
 
 					{/* Image area */}
-					<div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-wheat/[0.08] to-wheat/[0.04]">
-						<div className="w-[280px] h-[280px] border-[3px] border-wheat/30 rounded-full flex items-center justify-center">
-							<span className="font-serif text-[80px] text-wheat/35 italic">H</span>
-						</div>
+					<div className="hidden lg:flex items-center justify-center relative overflow-hidden">
+						{heroImageUrl ? (
+							<img
+								src={heroImageUrl}
+								alt={firstSlide?.title ?? "Town of Harmony"}
+								className="absolute inset-0 w-full h-full object-cover"
+							/>
+						) : (
+							<div className="absolute inset-0 bg-gradient-to-br from-wheat/[0.08] to-wheat/[0.04]" />
+						)}
+						{!heroImageUrl && (
+							<div className="w-[280px] h-[280px] border-[3px] border-wheat/30 rounded-full flex items-center justify-center relative z-10">
+								<span className="font-serif text-[80px] text-wheat/35 italic">H</span>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

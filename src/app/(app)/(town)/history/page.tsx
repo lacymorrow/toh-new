@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { ChevronRight, BookOpen, Calendar, MapPin, Users } from "lucide-react";
 import { getHistoryArticles, getSettings } from "@/lib/payload/town-data";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 export const metadata: Metadata = {
 	title: "History | Town of Harmony",
@@ -57,6 +58,13 @@ export default async function HistoryPage() {
 						{periods.map((period: any) => (
 							<Card key={period.id} className="overflow-hidden hover:shadow-lg transition-shadow">
 								<div className="h-48 bg-gray-200 relative">
+									{getMediaUrl(period.image) && (
+										<img
+											src={getMediaUrl(period.image)!}
+											alt={period.title}
+											className="absolute inset-0 w-full h-full object-cover"
+										/>
+									)}
 									<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 									<div className="absolute bottom-4 left-4 text-white">
 										<p className="font-semibold text-lg">{period.era}</p>
@@ -96,7 +104,16 @@ export default async function HistoryPage() {
 					<h2 className="text-3xl font-bold mb-8 text-center">Historical Landmarks</h2>
 					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 						{landmarks.map((landmark: any) => (
-							<Card key={landmark.id}>
+							<Card key={landmark.id} className="overflow-hidden">
+								{getMediaUrl(landmark.image) && (
+									<div className="h-36 relative">
+										<img
+											src={getMediaUrl(landmark.image)!}
+											alt={landmark.title}
+											className="w-full h-full object-cover"
+										/>
+									</div>
+								)}
 								<CardHeader>
 									<div className="flex justify-between items-start mb-2">
 										<MapPin className="h-5 w-5 text-blue-600" />

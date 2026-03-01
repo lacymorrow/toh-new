@@ -1,7 +1,8 @@
 import type { Payload } from "payload";
 import { createRichText } from "../../seed-utils";
+import type { MediaMap } from "./seed-media";
 
-export const seedPointsOfInterest = async (payload: Payload) => {
+export const seedPointsOfInterest = async (payload: Payload, media?: Partial<MediaMap>) => {
 	try {
 		console.info("📍 Seeding points of interest...");
 
@@ -23,6 +24,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"A beautiful community park offering recreational facilities for all ages. Features include a playground, walking trails, picnic shelters, and open green spaces perfect for family gatherings and community events.",
 				),
+				image: media?.["poi-park"] ?? null,
 				address: "100 Park Drive, Harmony, NC 28634",
 				hours: "Dawn to Dusk",
 				phone: "(704) 546-2342",
@@ -35,6 +37,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"The seat of town government and center of civic life in Harmony. Town Hall houses administrative offices and serves as the meeting place for the Board of Aldermen. Residents can access various town services here.",
 				),
+				image: media?.["poi-town-hall"] ?? null,
 				address: "3389 Harmony Hwy, Harmony, NC 28634",
 				hours: "Monday - Friday: 8:00 AM - 5:00 PM",
 				phone: "(704) 546-2339",
@@ -47,6 +50,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"The original camp meeting grounds where the Harmony community first gathered. This historic site predates the town's incorporation and represents the spiritual and communal roots of Harmony. The grounds continue to host community events and celebrations.",
 				),
+				image: media?.["poi-camp-grounds"] ?? null,
 				address: "Harmony Highway, Harmony, NC 28634",
 				hours: "Open during events",
 				phone: "(704) 546-2339",
@@ -59,6 +63,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"A solemn memorial honoring the brave men and women from the Harmony community who served in the United States Armed Forces. The memorial features plaques, flags, and a peaceful garden setting for reflection.",
 				),
+				image: media?.["poi-memorial"] ?? null,
 				address: "Main Street, Harmony, NC 28634",
 				hours: "Open 24 hours",
 				amenities: ["Memorial Plaques", "Flag Display", "Garden", "Benches"],
@@ -70,6 +75,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"A multipurpose facility that serves as the heart of community activities. The center hosts meetings, classes, events, and social gatherings. Available for private rentals and community organization meetings.",
 				),
+				image: media?.["poi-community-center"] ?? null,
 				address: "Main Street, Harmony, NC 28634",
 				hours: "Monday - Saturday: 9:00 AM - 9:00 PM",
 				phone: "(704) 546-2342",
@@ -82,6 +88,7 @@ export const seedPointsOfInterest = async (payload: Payload) => {
 				description: createRichText(
 					"Part of the Iredell-Statesville Schools district, Harmony Elementary serves the children of the Harmony community. The school has been a cornerstone of education in the area for generations.",
 				),
+				image: media?.["poi-school"] ?? null,
 				address: "Harmony Highway, Harmony, NC 28634",
 				hours: "School hours: 7:30 AM - 2:30 PM",
 				phone: "(704) 546-2340",

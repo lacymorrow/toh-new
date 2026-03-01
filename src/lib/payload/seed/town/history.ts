@@ -1,7 +1,8 @@
 import type { Payload } from "payload";
 import { createRichText } from "../../seed-utils";
+import type { MediaMap } from "./seed-media";
 
-export const seedHistory = async (payload: Payload) => {
+export const seedHistory = async (payload: Payload, media?: Partial<MediaMap>) => {
 	try {
 		console.info("📜 Seeding history articles...");
 
@@ -25,6 +26,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"Before the town was officially established, the area that would become Harmony was known for its camp meeting grounds. Religious gatherings and revivals drew people from across the region, and a community began to form around these grounds.",
 				),
+				image: media?.["history-early"] ?? null,
 				highlights: [
 					"Camp meeting grounds established",
 					"Early religious gatherings and revivals",
@@ -41,6 +43,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"The Town of Harmony was officially established in 1927, founded at the historic camp meeting grounds. The early years saw the community come together to build the institutions and traditions that would define the town for generations to come.",
 				),
+				image: media?.["history-founding"] ?? null,
 				highlights: [
 					"Town officially established in 1927",
 					"Founded at the camp meeting grounds",
@@ -57,6 +60,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"The post-war era brought significant growth and development to Harmony. New infrastructure, community organizations, and a strengthened sense of civic pride transformed the town into a thriving community.",
 				),
+				image: media?.["history-growth"] ?? null,
 				highlights: [
 					"Post-war growth and development",
 					"Infrastructure improvements",
@@ -73,6 +77,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"In the modern era, Harmony has focused on historic preservation while welcoming new growth. Community festivals, celebrations, and a dedication to maintaining the town's character have kept the spirit of Harmony alive.",
 				),
+				image: media?.["history-modern"] ?? null,
 				highlights: [
 					"Historic preservation efforts",
 					"Community festivals and celebrations",
@@ -94,6 +99,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"The Original Camp Meeting Grounds are the birthplace of the Harmony community. Before the town was incorporated, these grounds served as a gathering place for religious revivals and camp meetings that drew people from across the region.",
 				),
+				image: media?.["landmark-camp-grounds"] ?? null,
 				sortOrder: 0,
 			},
 			{
@@ -107,6 +113,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"Town Hall has served as the center of government and civic life in Harmony since the town's founding in 1927. It continues to house town offices and serve as the meeting place for the Board of Aldermen.",
 				),
+				image: media?.["landmark-town-hall"] ?? null,
 				sortOrder: 1,
 			},
 			{
@@ -120,6 +127,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"The Historic Harmony Church stands as a testament to the community's deep spiritual roots. Dating back to the early 1900s, the church has been a cornerstone of community life and worship in Harmony.",
 				),
+				image: media?.["landmark-church"] ?? null,
 				sortOrder: 2,
 			},
 			{
@@ -133,6 +141,7 @@ export const seedHistory = async (payload: Payload) => {
 				content: createRichText(
 					"The Community Center was built in the 1950s to provide a dedicated space for community gatherings, events, and civic activities. It continues to serve as a vital hub for the people of Harmony.",
 				),
+				image: media?.["landmark-community-center"] ?? null,
 				sortOrder: 3,
 			},
 		];

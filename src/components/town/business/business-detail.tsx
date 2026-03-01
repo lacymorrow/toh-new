@@ -13,7 +13,8 @@ import { PayloadRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Business, Media } from "@/payload-types";
+import type { Business } from "@/payload-types";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 interface BusinessDetailProps {
 	business: Business;
@@ -41,14 +42,8 @@ const dayLabels: Record<string, string> = {
 	sunday: "Sunday",
 };
 
-function getMediaUrl(media: number | Media | null | undefined): string | null {
-	if (!media) return null;
-	if (typeof media === "number") return null;
-	return media.url ?? null;
-}
-
 export function BusinessDetail({ business }: BusinessDetailProps) {
-	const logoUrl = getMediaUrl(business.logo as number | Media | null);
+	const logoUrl = getMediaUrl(business.logo);
 
 	return (
 		<article>

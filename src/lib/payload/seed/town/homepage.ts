@@ -1,6 +1,7 @@
 import type { Payload } from "payload";
+import type { MediaMap } from "./seed-media";
 
-export const seedHomepage = async (payload: Payload) => {
+export const seedHomepage = async (payload: Payload, media?: Partial<MediaMap>) => {
 	try {
 		console.info("🏠 Seeding homepage...");
 
@@ -13,6 +14,7 @@ export const seedHomepage = async (payload: Payload) => {
 						subtitle: "Where Harmony LIVES and SINGS!",
 						description:
 							"Established in 1927, our charming town in Iredell County, North Carolina continues to be a beacon of community spirit and southern hospitality.",
+						image: media?.["hero-welcome"] ?? null,
 						ctaText: "Discover Our History",
 						ctaHref: "/history",
 					},
@@ -21,6 +23,7 @@ export const seedHomepage = async (payload: Payload) => {
 						subtitle: "Join Us for Year-Round Celebrations",
 						description:
 							"From seasonal festivals to community gatherings, experience the vibrant spirit that makes Harmony special.",
+						image: media?.["hero-events"] ?? null,
 						ctaText: "View Upcoming Events",
 						ctaHref: "/events",
 					},
@@ -29,6 +32,7 @@ export const seedHomepage = async (payload: Payload) => {
 						subtitle: "Your Voice Matters",
 						description:
 							"Stay informed with town meetings, access public records, and connect with your local government.",
+						image: media?.["hero-meetings"] ?? null,
 						ctaText: "Meeting Agendas & Minutes",
 						ctaHref: "/meetings",
 					},
@@ -37,6 +41,7 @@ export const seedHomepage = async (payload: Payload) => {
 						subtitle: "Explore Our Heritage",
 						description:
 							"Discover the landmarks and locations that tell the story of Harmony's rich history and bright future.",
+						image: media?.["hero-explore"] ?? null,
 						ctaText: "Explore Harmony",
 						ctaHref: "/points-of-interest",
 					},

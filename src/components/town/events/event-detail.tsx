@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PayloadRichText, extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { formatDate, formatTime } from "@/lib/utils";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 interface EventDetailProps {
 	event: {
@@ -34,7 +35,7 @@ interface EventDetailProps {
 		cost: string | null;
 		categories: string[] | null;
 		tags: string[] | null;
-		featuredImage: string | null;
+		featuredImage: any;
 		maxAttendees: number | null;
 		currentAttendees: number | null;
 		isRecurring: boolean | null;
@@ -80,9 +81,9 @@ export function EventDetail({ event }: EventDetailProps) {
 					)}
 				</div>
 
-				{event.featuredImage && (
+				{getMediaUrl(event.featuredImage) && (
 					<img
-						src={event.featuredImage}
+						src={getMediaUrl(event.featuredImage)!}
 						alt={event.title}
 						className="w-full h-96 object-cover rounded-lg mb-6"
 					/>

@@ -445,6 +445,10 @@ export const seedAllDirect = async (payload: Payload) => {
 		await seedTestimonialsDirect(payload);
 		await seedDemoPageDirect(payload);
 
+		// Seed town-specific content (media, homepage, news, events, etc.)
+		const { seedTownData } = await import("./seed/town");
+		await seedTownData(payload);
+
 		console.info("✨ All collections seeded successfully!");
 		return true;
 	} catch (error) {

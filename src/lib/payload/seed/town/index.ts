@@ -12,28 +12,32 @@ import { seedSampleEvents } from "./sample-events";
 import { seedSampleMeetings } from "./sample-meetings";
 import { seedSampleBusinesses } from "./sample-businesses";
 import { seedSampleElections } from "./sample-elections";
+import { seedMedia } from "./seed-media";
 
 export const seedTownData = async (payload: Payload) => {
 	try {
 		console.info("🏘️ Starting Town of Harmony seed process...");
 
-		// 1. Globals first
+		// 0. Media first (images for all content)
+		const media = await seedMedia(payload);
+
+		// 1. Globals
 		await seedSettings(payload);
 		await seedNavigation(payload);
-		await seedHomepage(payload);
+		await seedHomepage(payload, media);
 
 		// 2. Core content
-		await seedTeamMembers(payload);
-		await seedHistory(payload);
-		await seedPointsOfInterest(payload);
+		await seedTeamMembers(payload, media);
+		await seedHistory(payload, media);
+		await seedPointsOfInterest(payload, media);
 		await seedEmergencyServices(payload);
 		await seedResources(payload);
 
 		// 3. Sample content
-		await seedSampleNews(payload);
-		await seedSampleEvents(payload);
+		await seedSampleNews(payload, media);
+		await seedSampleEvents(payload, media);
 		await seedSampleMeetings(payload);
-		await seedSampleBusinesses(payload);
+		await seedSampleBusinesses(payload, media);
 		await seedSampleElections(payload);
 
 		console.info("✨ Town of Harmony seed completed successfully!");
@@ -59,4 +63,5 @@ export {
 	seedSampleMeetings,
 	seedSampleBusinesses,
 	seedSampleElections,
+	seedMedia,
 };

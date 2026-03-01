@@ -1,6 +1,6 @@
 import type { Payload } from "payload";
 
-export const seedTeamMembers = async (payload: Payload) => {
+export const seedTeamMembers = async (payload: Payload, _media?: Record<string, number>) => {
 	try {
 		console.info("🏛️ Seeding team members...");
 

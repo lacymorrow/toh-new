@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getNews } from "@/lib/payload/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -44,10 +45,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 
 			<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{articles.map((article) => {
-					const featuredImage =
-						typeof article.featuredImage === "string"
-							? article.featuredImage
-							: (article.featuredImage as any)?.url ?? null;
+					const featuredImage = getMediaUrl(article.featuredImage);
 
 					const excerptText =
 						(article.excerpt as string) ||
