@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { redirect } from "next/navigation";
 import { AuthForm } from "@/app/(app)/(authentication)/_components/auth-form";
 import { Icon } from "@/components/assets/icon";

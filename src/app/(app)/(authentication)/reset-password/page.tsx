@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ResetPasswordForm } from "@/app/(app)/(authentication)/reset-password/_components/reset-password-form";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AuthenticationCard } from "../_components/authentication-card";
