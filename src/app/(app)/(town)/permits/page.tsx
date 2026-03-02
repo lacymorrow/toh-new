@@ -22,7 +22,7 @@ export default function PermitsPage({
 		<div className="container py-8">
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-4">
-					<FileText className="h-8 w-8 text-blue-600" />
+					<FileText className="h-8 w-8 text-sage" />
 					<h1 className="text-4xl font-bold">Permits & Applications</h1>
 				</div>
 				<p className="text-lg text-muted-foreground">
@@ -34,7 +34,7 @@ export default function PermitsPage({
 			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
 				<Card className="hover:shadow-lg transition-shadow">
 					<CardContent className="flex items-center gap-3 p-4">
-						<div className="p-2 rounded-lg bg-blue-50 text-blue-600">
+						<div className="p-2 rounded-lg bg-cream text-sage">
 							<Plus className="h-5 w-5" />
 						</div>
 						<div className="flex-1">
@@ -102,7 +102,7 @@ export default function PermitsPage({
 					<h2 className="text-xl font-semibold mb-4">How It Works</h2>
 					<div className="grid gap-6 md:grid-cols-4">
 						<div className="flex items-start gap-3">
-							<div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-semibold">
+							<div className="flex-shrink-0 w-8 h-8 rounded-full bg-stone text-sage flex items-center justify-center text-sm font-semibold">
 								1
 							</div>
 							<div>

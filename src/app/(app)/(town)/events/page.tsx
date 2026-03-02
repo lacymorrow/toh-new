@@ -19,7 +19,7 @@ export default async function EventsPage({
 		<div className="container py-8">
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-4">
-					<CalendarDays className="h-8 w-8 text-blue-600" />
+					<CalendarDays className="h-8 w-8 text-sage" />
 					<h1 className="text-4xl font-bold">Community Events</h1>
 				</div>
 				<p className="text-lg text-muted-foreground">

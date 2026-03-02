@@ -24,12 +24,12 @@ export default async function ElectionsPage({ searchParams }: ElectionsPageProps
 	const search = params.search || "";
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			{/* Page Header */}
-			<div className="bg-blue-900 text-white py-12">
+			<div className="bg-sage-dark text-white py-12">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold mb-4">Elections & Voting</h1>
-					<p className="text-xl text-blue-100">
+					<p className="text-xl text-cream">
 						Stay informed about elections, candidates, and voting in Harmony
 					</p>
 				</div>

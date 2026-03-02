@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 import { adminConfig } from "@/config/admin-config";
-import { getPayloadClient } from "@/lib/payload/payload";
+// Payload CMS has been removed — stub out the client
+const getPayloadClient = async (): Promise<any> => null;
 import { db } from "@/server/db";
 import { users } from "@/server/db/schema";
 import { rbacService } from "@/server/services/rbac";

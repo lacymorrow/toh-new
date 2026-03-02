@@ -33,11 +33,11 @@ export async function RelatedNews({ currentArticleId, categories }: RelatedNewsP
 						<div key={article.id} className="pb-4 border-b last:border-0">
 							<Link
 								href={`/news/${article.slug}`}
-								className="block hover:text-blue-600 transition-colors"
+								className="block hover:text-sage-dark transition-colors"
 							>
 								<h4 className="font-medium mb-1 line-clamp-2">{article.title}</h4>
 								{article.publishedAt && (
-									<div className="flex items-center gap-1 text-xs text-gray-500">
+									<div className="flex items-center gap-1 text-xs text-[#7A756C]">
 										<Calendar className="h-3 w-3" />
 										{new Date(article.publishedAt).toLocaleDateString("en-US", {
 											month: "short",

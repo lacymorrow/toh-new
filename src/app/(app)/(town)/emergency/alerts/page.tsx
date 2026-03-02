@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function EmergencyAlertsPage() {
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			<div className="container mx-auto px-4 py-8">
 				{/* Header */}
 				<div className="flex items-center gap-4 mb-6">
@@ -60,13 +60,13 @@ export default function EmergencyAlertsPage() {
 				<div className="bg-white rounded-lg border p-4 mb-6">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-4">
-							<h2 className="font-semibold text-gray-900">All Emergency Alerts</h2>
-							<span className="text-sm text-gray-500">
+							<h2 className="font-semibold text-[#2D2A24]">All Emergency Alerts</h2>
+							<span className="text-sm text-[#7A756C]">
 								Showing all alerts (active and inactive)
 							</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<Link href="/emergency" className="text-sm text-blue-600 hover:underline">
+							<Link href="/emergency" className="text-sm text-sage hover:underline">
 								View Active Only
 							</Link>
 						</div>
@@ -90,8 +90,8 @@ export default function EmergencyAlertsPage() {
 				</Suspense>
 
 				{/* Emergency Services Quick Access */}
-				<div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
-					<h2 className="text-xl font-bold text-blue-800 mb-4 flex items-center gap-2">
+				<div className="mt-12 bg-cream border border-sage/20 rounded-lg p-6">
+					<h2 className="text-xl font-bold text-sage-dark mb-4 flex items-center gap-2">
 						<Shield className="h-6 w-6" />
 						Need Help?
 					</h2>
@@ -99,17 +99,17 @@ export default function EmergencyAlertsPage() {
 						<div className="bg-white rounded p-4">
 							<h3 className="font-semibold text-red-800 mb-1">Emergency Services</h3>
 							<p className="text-red-600 text-xl font-bold">911</p>
-							<p className="text-xs text-gray-600">Police, Fire, Medical</p>
+							<p className="text-xs text-[#4A4640]">Police, Fire, Medical</p>
 						</div>
 						<div className="bg-white rounded p-4">
-							<h3 className="font-semibold text-blue-800 mb-1">Town Emergency</h3>
-							<p className="text-blue-600 text-xl font-bold">(304) 555-0100</p>
-							<p className="text-xs text-gray-600">Non-life threatening</p>
+							<h3 className="font-semibold text-sage-dark mb-1">Town Emergency</h3>
+							<p className="text-sage text-xl font-bold">(304) 555-0100</p>
+							<p className="text-xs text-[#4A4640]">Non-life threatening</p>
 						</div>
 						<div className="bg-white rounded p-4">
 							<h3 className="font-semibold text-green-800 mb-1">Poison Control</h3>
 							<p className="text-green-600 text-xl font-bold">1-800-222-1222</p>
-							<p className="text-xs text-gray-600">Poisoning emergencies</p>
+							<p className="text-xs text-[#4A4640]">Poisoning emergencies</p>
 						</div>
 					</div>
 				</div>
@@ -117,17 +117,17 @@ export default function EmergencyAlertsPage() {
 				{/* Footer Links */}
 				<div className="mt-8 text-center space-y-2">
 					<div className="flex justify-center gap-6 text-sm">
-						<Link href="/emergency" className="text-blue-600 hover:underline">
+						<Link href="/emergency" className="text-sage hover:underline">
 							Emergency Services
 						</Link>
-						<Link href="/emergency#contacts" className="text-blue-600 hover:underline">
+						<Link href="/emergency#contacts" className="text-sage hover:underline">
 							Contact Information
 						</Link>
-						<Link href="/emergency#preparedness" className="text-blue-600 hover:underline">
+						<Link href="/emergency#preparedness" className="text-sage hover:underline">
 							Emergency Preparedness
 						</Link>
 					</div>
-					<p className="text-xs text-gray-500">
+					<p className="text-xs text-[#7A756C]">
 						Stay informed by following @HarmonyTownWV on social media or text HARMONY to 67283
 					</p>
 				</div>

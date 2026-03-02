@@ -22,7 +22,7 @@ const statusColors: Record<string, string> = {
 	pending: "bg-yellow-100 text-yellow-800",
 	approved: "bg-green-100 text-green-800",
 	denied: "bg-red-100 text-red-800",
-	expired: "bg-gray-100 text-gray-800",
+	expired: "bg-stone text-[#2D2A24]",
 };
 
 const statusIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -43,7 +43,7 @@ export function PermitCard({ permit }: PermitCardProps) {
 					<div className="flex-1">
 						<Link
 							href={`/permits/${permit.permitNumber}`}
-							className="hover:text-blue-600 transition-colors"
+							className="hover:text-sage-dark transition-colors"
 						>
 							<h3 className="font-semibold text-lg line-clamp-1">{permit.type}</h3>
 						</Link>

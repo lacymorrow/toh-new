@@ -12,9 +12,9 @@ export default async function PointsOfInterestPage() {
 	const categories = ["All", ...new Set(pois.map((poi: any) => poi.category as string))];
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			{/* Hero Section */}
-			<section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+			<section className="bg-gradient-to-r from-sage-dark to-sage text-white py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold mb-4">Points of Interest</h1>
 					<p className="text-xl">Discover what makes Harmony special</p>
@@ -61,27 +61,27 @@ export default async function PointsOfInterestPage() {
 									</CardHeader>
 									<CardContent className="space-y-3">
 										{poi.address && (
-											<div className="flex items-start gap-2 text-sm text-gray-600">
+											<div className="flex items-start gap-2 text-sm text-[#4A4640]">
 												<MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
 												<span>{poi.address}</span>
 											</div>
 										)}
 										{poi.hours && (
-											<div className="flex items-center gap-2 text-sm text-gray-600">
+											<div className="flex items-center gap-2 text-sm text-[#4A4640]">
 												<Clock className="h-4 w-4 flex-shrink-0" />
 												<span>{poi.hours}</span>
 											</div>
 										)}
 										{poi.phone && (
-											<div className="flex items-center gap-2 text-sm text-gray-600">
+											<div className="flex items-center gap-2 text-sm text-[#4A4640]">
 												<Phone className="h-4 w-4 flex-shrink-0" />
 												<span>{poi.phone}</span>
 											</div>
 										)}
 										{poi.website && (
-											<div className="flex items-center gap-2 text-sm text-gray-600">
+											<div className="flex items-center gap-2 text-sm text-[#4A4640]">
 												<ExternalLink className="h-4 w-4 flex-shrink-0" />
-												<a href={poi.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+												<a href={poi.website} target="_blank" rel="noopener noreferrer" className="text-sage hover:underline">
 													Visit Website
 												</a>
 											</div>
@@ -111,26 +111,26 @@ export default async function PointsOfInterestPage() {
 				<div className="container mx-auto px-4">
 					<Card className="p-6">
 						<h2 className="text-2xl font-bold mb-4">Visit Harmony</h2>
-						<p className="text-gray-600 mb-4">
+						<p className="text-[#4A4640] mb-4">
 							Located in beautiful Iredell County, North Carolina, the Town of Harmony offers a perfect blend of small-town charm and modern amenities.
 							Our community takes pride in preserving our rich history while providing excellent facilities and services for residents and visitors alike.
 						</p>
 						<div className="grid md:grid-cols-3 gap-6 mt-6">
 							<div>
 								<h3 className="font-semibold mb-2">Visitor Information</h3>
-								<p className="text-sm text-gray-600">
+								<p className="text-sm text-[#4A4640]">
 									Stop by Town Hall for maps, brochures, and friendly local advice about exploring our community.
 								</p>
 							</div>
 							<div>
 								<h3 className="font-semibold mb-2">Parking</h3>
-								<p className="text-sm text-gray-600">
+								<p className="text-sm text-[#4A4640]">
 									Free parking is available at all town facilities. Downtown street parking is limited to 2 hours during business hours.
 								</p>
 							</div>
 							<div>
 								<h3 className="font-semibold mb-2">Accessibility</h3>
-								<p className="text-sm text-gray-600">
+								<p className="text-sm text-[#4A4640]">
 									All town facilities are ADA accessible. Contact us for specific accommodation needs.
 								</p>
 							</div>

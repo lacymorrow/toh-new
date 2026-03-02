@@ -60,7 +60,7 @@ export default async function EmergencyAlertDetailPage({ params }: PageProps) {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			<div className="container mx-auto px-4 py-8">
 				{/* Navigation */}
 				<div className="flex items-center gap-4 mb-6">
@@ -71,7 +71,7 @@ export default async function EmergencyAlertDetailPage({ params }: PageProps) {
 						</Link>
 					</Button>
 
-					<div className="text-sm text-gray-500">
+					<div className="text-sm text-[#7A756C]">
 						<Link href="/emergency" className="hover:underline">
 							Emergency Info
 						</Link>
@@ -91,8 +91,8 @@ export default async function EmergencyAlertDetailPage({ params }: PageProps) {
 				<div className="mt-12 bg-white border rounded-lg p-6">
 					<div className="flex items-center justify-between">
 						<div>
-							<h3 className="font-semibold text-gray-900 mb-1">Need Additional Help?</h3>
-							<p className="text-sm text-gray-600">
+							<h3 className="font-semibold text-[#2D2A24] mb-1">Need Additional Help?</h3>
+							<p className="text-sm text-[#4A4640]">
 								Contact emergency services or town administration for assistance.
 							</p>
 						</div>
@@ -110,13 +110,13 @@ export default async function EmergencyAlertDetailPage({ params }: PageProps) {
 				{/* Related Links */}
 				<div className="mt-8 text-center">
 					<div className="flex justify-center gap-6 text-sm">
-						<Link href="/emergency/alerts" className="text-blue-600 hover:underline">
+						<Link href="/emergency/alerts" className="text-sage hover:underline">
 							← All Alerts
 						</Link>
-						<Link href="/emergency" className="text-blue-600 hover:underline">
+						<Link href="/emergency" className="text-sage hover:underline">
 							Emergency Services
 						</Link>
-						<Link href="/emergency#contacts" className="text-blue-600 hover:underline">
+						<Link href="/emergency#contacts" className="text-sage hover:underline">
 							Contact Information
 						</Link>
 					</div>

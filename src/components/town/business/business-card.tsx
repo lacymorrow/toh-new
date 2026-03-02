@@ -23,13 +23,13 @@ interface BusinessCardProps {
 
 const categoryColors: Record<string, string> = {
 	restaurant: "bg-orange-100 text-orange-800",
-	retail: "bg-blue-100 text-blue-800",
+	retail: "bg-sage/10 text-sage-dark",
 	service: "bg-purple-100 text-purple-800",
 	healthcare: "bg-red-100 text-red-800",
 	education: "bg-green-100 text-green-800",
 	finance: "bg-yellow-100 text-yellow-800",
 	realestate: "bg-indigo-100 text-indigo-800",
-	other: "bg-gray-100 text-gray-800",
+	other: "bg-stone text-[#2D2A24]",
 };
 
 export function BusinessCard({ business }: BusinessCardProps) {
@@ -43,7 +43,7 @@ export function BusinessCard({ business }: BusinessCardProps) {
 					<div className="flex-1">
 						<Link
 							href={`/business/${business.slug}`}
-							className="hover:text-blue-600 transition-colors"
+							className="hover:text-sage-dark transition-colors"
 						>
 							<h3 className="font-semibold text-lg line-clamp-1">{business.name}</h3>
 						</Link>
@@ -54,7 +54,7 @@ export function BusinessCard({ business }: BusinessCardProps) {
 							>
 								{business.category}
 							</Badge>
-							{business.isVerified && <CheckCircle className="h-4 w-4 text-blue-600" />}
+							{business.isVerified && <CheckCircle className="h-4 w-4 text-sage" />}
 							{business.isFeatured && <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />}
 						</div>
 					</div>
@@ -84,7 +84,7 @@ export function BusinessCard({ business }: BusinessCardProps) {
 					{business.phone && (
 						<div className="flex items-center gap-2">
 							<Phone className="h-4 w-4 text-muted-foreground" />
-							<a href={`tel:${business.phone}`} className="hover:text-blue-600 transition-colors">
+							<a href={`tel:${business.phone}`} className="hover:text-sage-dark transition-colors">
 								{business.phone}
 							</a>
 						</div>
@@ -104,7 +104,7 @@ export function BusinessCard({ business }: BusinessCardProps) {
 								href={business.website}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-blue-600 transition-colors truncate"
+								className="hover:text-sage-dark transition-colors truncate"
 							>
 								Visit website
 							</a>

@@ -36,7 +36,7 @@ export async function RelatedBusinesses({ currentBusinessId, category }: Related
 							<div key={business.id} className="pb-4 border-b last:border-0">
 								<Link
 									href={`/business/${business.slug}`}
-									className="block hover:text-blue-600 transition-colors"
+									className="block hover:text-sage-dark transition-colors"
 								>
 									<h4 className="font-medium mb-1">{business.name}</h4>
 									{descriptionText && (

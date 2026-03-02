@@ -42,7 +42,7 @@ const statusConfig = {
 	},
 	expired: {
 		icon: AlertCircle,
-		color: "bg-gray-100 text-gray-800",
+		color: "bg-stone text-[#2D2A24]",
 		description: "This permit has expired and is no longer valid",
 	},
 };
@@ -276,7 +276,7 @@ export function PermitStatus() {
 												href={doc}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="text-blue-600 hover:underline"
+												className="text-sage hover:underline"
 											>
 												Document {index + 1}
 											</a>

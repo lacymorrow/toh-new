@@ -43,9 +43,9 @@ export default async function ResourcesPage() {
 	}, {});
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			{/* Hero Section */}
-			<section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-16">
+			<section className="bg-gradient-to-b from-sage-dark to-sage text-white py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl md:text-5xl font-bold mb-4">Town Resources</h1>
 					<p className="text-xl max-w-3xl">
@@ -59,20 +59,20 @@ export default async function ResourcesPage() {
 				<div className="container mx-auto px-4">
 					<div className="flex flex-wrap gap-6 justify-center">
 						<div className="flex items-center gap-2">
-							<Phone className="h-5 w-5 text-blue-600" />
+							<Phone className="h-5 w-5 text-sage" />
 							<span className="font-medium">Town Hall:</span>
-							<a href={`tel:${contactPhone.replace(/[^0-9]/g, '')}`} className="text-blue-600 hover:underline">
+							<a href={`tel:${contactPhone.replace(/[^0-9]/g, '')}`} className="text-sage hover:underline">
 								{contactPhone}
 							</a>
 						</div>
 						<div className="flex items-center gap-2">
-							<MapPin className="h-5 w-5 text-blue-600" />
+							<MapPin className="h-5 w-5 text-sage" />
 							<span className="font-medium">Address:</span>
 							<span>{contactAddress}</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<Mail className="h-5 w-5 text-blue-600" />
-							<a href={`mailto:${contactEmail}`} className="text-blue-600 hover:underline">
+							<Mail className="h-5 w-5 text-sage" />
+							<a href={`mailto:${contactEmail}`} className="text-sage hover:underline">
 								{contactEmail}
 							</a>
 						</div>
@@ -92,11 +92,11 @@ export default async function ResourcesPage() {
 								return (
 									<Card key={doc.id} className="hover:shadow-lg transition-shadow">
 										<CardHeader>
-											<Icon className="h-8 w-8 text-blue-600 mb-2" />
+											<Icon className="h-8 w-8 text-sage mb-2" />
 											<CardTitle className="text-lg">{doc.title}</CardTitle>
 										</CardHeader>
 										<CardContent>
-											<p className="text-sm text-gray-600 mb-4">{doc.description}</p>
+											<p className="text-sm text-[#4A4640] mb-4">{doc.description}</p>
 											<Button variant="outline" className="w-full" asChild>
 												<Link href={href}>
 													<Download className="mr-2 h-4 w-4" />
@@ -123,16 +123,16 @@ export default async function ResourcesPage() {
 								return (
 									<Card key={service.id}>
 										<CardHeader>
-											<Icon className="h-8 w-8 text-blue-600 mb-2" />
+											<Icon className="h-8 w-8 text-sage mb-2" />
 											<CardTitle className="text-lg">{service.title}</CardTitle>
 										</CardHeader>
 										<CardContent>
-											<p className="text-sm text-gray-600 mb-3">{service.description}</p>
+											<p className="text-sm text-[#4A4640] mb-3">{service.description}</p>
 											<div className="space-y-1 text-sm">
 												{service.contactPhone && (
 													<div>
 														<span className="font-medium">Phone: </span>
-														<a href={`tel:${service.contactPhone.replace(/[^0-9]/g, '')}`} className="text-blue-600 hover:underline">
+														<a href={`tel:${service.contactPhone.replace(/[^0-9]/g, '')}`} className="text-sage hover:underline">
 															{service.contactPhone}
 														</a>
 													</div>
@@ -140,7 +140,7 @@ export default async function ResourcesPage() {
 												{service.contactEmail && (
 													<div>
 														<span className="font-medium">Email: </span>
-														<a href={`mailto:${service.contactEmail}`} className="text-blue-600 hover:underline text-xs">
+														<a href={`mailto:${service.contactEmail}`} className="text-sage hover:underline text-xs">
 															{service.contactEmail}
 														</a>
 													</div>
@@ -157,7 +157,7 @@ export default async function ResourcesPage() {
 
 			{/* Downloadable Forms */}
 			{Object.keys(formsByCategory).length > 0 && (
-				<section className="py-12 bg-gray-100">
+				<section className="py-12 bg-stone">
 					<div className="container mx-auto px-4">
 						<h2 className="text-3xl font-bold mb-8">Downloadable Forms</h2>
 						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -174,7 +174,7 @@ export default async function ResourcesPage() {
 													<li key={form.id}>
 														<a
 															href={href}
-															className="text-sm text-blue-600 hover:underline flex items-center gap-1"
+															className="text-sm text-sage hover:underline flex items-center gap-1"
 															download
 														>
 															<Download className="h-3 w-3" />
@@ -203,11 +203,11 @@ export default async function ResourcesPage() {
 								return (
 									<Card key={link.id}>
 										<CardHeader>
-											<Icon className="h-8 w-8 text-blue-600 mb-2" />
+											<Icon className="h-8 w-8 text-sage mb-2" />
 											<CardTitle className="text-lg">{link.title}</CardTitle>
 										</CardHeader>
 										<CardContent>
-											<p className="text-sm text-gray-600 mb-4">{link.description}</p>
+											<p className="text-sm text-[#4A4640] mb-4">{link.description}</p>
 											{link.externalUrl && (
 												<Button variant="outline" className="w-full" asChild>
 													<a href={link.externalUrl} target="_blank" rel="noopener noreferrer">
@@ -226,7 +226,7 @@ export default async function ResourcesPage() {
 			)}
 
 			{/* Help Section */}
-			<section className="py-12 bg-blue-900 text-white">
+			<section className="py-12 bg-sage-dark text-white">
 				<div className="container mx-auto px-4 text-center">
 					<h2 className="text-3xl font-bold mb-4">Need Additional Help?</h2>
 					<p className="text-lg mb-6 max-w-2xl mx-auto">
@@ -239,7 +239,7 @@ export default async function ResourcesPage() {
 								Contact Us
 							</Link>
 						</Button>
-						<Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-blue-900" asChild>
+						<Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-sage-dark" asChild>
 							<a href={`tel:${contactPhone.replace(/[^0-9]/g, '')}`}>
 								<Phone className="mr-2 h-5 w-5" />
 								Call Town Hall

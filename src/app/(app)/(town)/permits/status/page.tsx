@@ -21,7 +21,7 @@ export default function PermitStatusPage() {
 				</Button>
 
 				<div className="flex items-center gap-3 mb-4">
-					<Search className="h-8 w-8 text-blue-600" />
+					<Search className="h-8 w-8 text-sage" />
 					<h1 className="text-4xl font-bold">Check Permit Status</h1>
 				</div>
 				<p className="text-lg text-muted-foreground">
@@ -72,7 +72,7 @@ export default function PermitStatusPage() {
 							</div>
 							<div>
 								<div className="flex items-center gap-2 mb-1">
-									<div className="w-3 h-3 rounded-full bg-gray-500" />
+									<div className="w-3 h-3 rounded-full bg-[#7A756C]" />
 									<span className="font-medium">Expired</span>
 								</div>
 								<p className="text-muted-foreground text-xs ml-5">

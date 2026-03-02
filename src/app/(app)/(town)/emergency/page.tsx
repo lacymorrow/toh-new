@@ -16,26 +16,26 @@ export const metadata: Metadata = {
 
 export default function EmergencyPage() {
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			<div className="container mx-auto px-4 py-8">
 				{/* Header */}
-				<div className="bg-red-600 text-white rounded-lg p-6 mb-8">
+				<div className="bg-barn-red text-white rounded-lg p-6 mb-8">
 					<div className="flex items-center gap-3 mb-4">
 						<AlertTriangle className="h-8 w-8" />
-						<h1 className="text-3xl font-bold">Emergency Information</h1>
+						<h1 className="text-3xl font-serif font-bold">Emergency Information</h1>
 					</div>
-					<p className="text-red-100 text-lg">
+					<p className="text-white/90 text-lg">
 						Stay informed and prepared with official emergency information for the Town of Harmony.
 					</p>
 				</div>
 
 				{/* Emergency Banner */}
-				<div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
+				<div className="bg-red-50 border-l-4 border-barn-red p-4 mb-8 rounded-r-lg">
 					<div className="flex items-center gap-2 mb-2">
-						<AlertTriangle className="h-5 w-5 text-red-600" />
-						<h2 className="font-bold text-red-800 text-lg">Life-Threatening Emergency: Call 911</h2>
+						<AlertTriangle className="h-5 w-5 text-barn-red" />
+						<h2 className="font-bold text-barn-red text-lg">Life-Threatening Emergency: Call 911</h2>
 					</div>
-					<p className="text-red-700">
+					<p className="text-[#4A4640]">
 						For immediate emergency assistance requiring police, fire, or medical response, always
 						dial <strong>911</strong> first.
 					</p>
@@ -43,8 +43,8 @@ export default function EmergencyPage() {
 
 				{/* Active Alerts Section */}
 				<section className="mb-8">
-					<h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-						<AlertTriangle className="h-6 w-6 text-red-600" />
+					<h2 className="text-2xl font-serif font-bold text-sage-dark mb-4 flex items-center gap-2">
+						<AlertTriangle className="h-6 w-6 text-barn-red" />
 						Active Emergency Alerts
 					</h2>
 					<Suspense
@@ -52,8 +52,8 @@ export default function EmergencyPage() {
 							<Card>
 								<CardContent className="py-12">
 									<div className="flex items-center justify-center">
-										<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600" />
-										<span className="ml-2">Loading active alerts...</span>
+										<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-barn-red" />
+										<span className="ml-2 text-[#4A4640]">Loading active alerts...</span>
 									</div>
 								</CardContent>
 							</Card>
@@ -65,16 +65,16 @@ export default function EmergencyPage() {
 
 				{/* Main Content Tabs */}
 				<Tabs defaultValue="services" className="w-full">
-					<TabsList className="grid w-full grid-cols-3">
-						<TabsTrigger value="services" className="flex items-center gap-2">
+					<TabsList className="grid w-full grid-cols-3 bg-stone h-auto p-1.5">
+						<TabsTrigger value="services" className="flex items-center gap-2 py-2.5 text-[#4A4640] data-[state=active]:bg-warm-white data-[state=active]:text-sage-dark data-[state=active]:shadow-sm">
 							<Shield className="h-4 w-4" />
 							Emergency Services
 						</TabsTrigger>
-						<TabsTrigger value="contacts" className="flex items-center gap-2">
+						<TabsTrigger value="contacts" className="flex items-center gap-2 py-2.5 text-[#4A4640] data-[state=active]:bg-warm-white data-[state=active]:text-sage-dark data-[state=active]:shadow-sm">
 							<Phone className="h-4 w-4" />
 							Emergency Contacts
 						</TabsTrigger>
-						<TabsTrigger value="preparedness" className="flex items-center gap-2">
+						<TabsTrigger value="preparedness" className="flex items-center gap-2 py-2.5 text-[#4A4640] data-[state=active]:bg-warm-white data-[state=active]:text-sage-dark data-[state=active]:shadow-sm">
 							<Info className="h-4 w-4" />
 							Preparedness
 						</TabsTrigger>
@@ -86,8 +86,8 @@ export default function EmergencyPage() {
 								<Card>
 									<CardContent className="py-12">
 										<div className="flex items-center justify-center">
-											<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-											<span className="ml-2">Loading emergency services...</span>
+											<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage" />
+											<span className="ml-2 text-[#4A4640]">Loading emergency services...</span>
 										</div>
 									</CardContent>
 								</Card>
@@ -105,15 +105,15 @@ export default function EmergencyPage() {
 						<div className="space-y-6">
 							<Card>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold text-gray-900 mb-4">
+									<h3 className="text-xl font-serif font-bold text-sage-dark mb-4">
 										Emergency Preparedness Kit
 									</h3>
 									<div className="grid md:grid-cols-2 gap-6">
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">
+											<h4 className="font-semibold text-[#2D2A24] mb-2">
 												Basic Supplies (72-hour kit):
 											</h4>
-											<ul className="space-y-1 text-sm text-gray-700">
+											<ul className="space-y-1 text-sm text-[#4A4640]">
 												<li>• Water (1 gallon per person per day)</li>
 												<li>• Non-perishable food</li>
 												<li>• Battery-powered or hand crank radio</li>
@@ -125,8 +125,8 @@ export default function EmergencyPage() {
 											</ul>
 										</div>
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">Additional Items:</h4>
-											<ul className="space-y-1 text-sm text-gray-700">
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Additional Items:</h4>
+											<ul className="space-y-1 text-sm text-[#4A4640]">
 												<li>• Prescription medications</li>
 												<li>• Blankets and clothing</li>
 												<li>• Important documents (copies)</li>
@@ -143,10 +143,10 @@ export default function EmergencyPage() {
 
 							<Card>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold text-gray-900 mb-4">Home Emergency Plan</h3>
-									<div className="space-y-4 text-sm text-gray-700">
+									<h3 className="text-xl font-serif font-bold text-sage-dark mb-4">Home Emergency Plan</h3>
+									<div className="space-y-4 text-sm text-[#4A4640]">
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">
+											<h4 className="font-semibold text-[#2D2A24] mb-2">
 												Create a Family Communication Plan:
 											</h4>
 											<ul className="space-y-1">
@@ -157,7 +157,7 @@ export default function EmergencyPage() {
 											</ul>
 										</div>
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">Know Your Home:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Know Your Home:</h4>
 											<ul className="space-y-1">
 												<li>• Locate main water shut-off valve</li>
 												<li>• Know how to turn off gas at meter</li>
@@ -171,10 +171,10 @@ export default function EmergencyPage() {
 
 							<Card>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold text-gray-900 mb-4">Weather Preparedness</h3>
-									<div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+									<h3 className="text-xl font-serif font-bold text-sage-dark mb-4">Weather Preparedness</h3>
+									<div className="grid md:grid-cols-2 gap-6 text-sm text-[#4A4640]">
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">Severe Thunderstorms:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Severe Thunderstorms:</h4>
 											<ul className="space-y-1">
 												<li>• Move to interior room on lowest floor</li>
 												<li>• Stay away from windows</li>
@@ -182,7 +182,7 @@ export default function EmergencyPage() {
 												<li>• Avoid using landline phones</li>
 											</ul>
 
-											<h4 className="font-semibold text-gray-800 mb-2 mt-4">Winter Storms:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2 mt-4">Winter Storms:</h4>
 											<ul className="space-y-1">
 												<li>• Insulate pipes to prevent freezing</li>
 												<li>• Keep alternate heating source available</li>
@@ -191,7 +191,7 @@ export default function EmergencyPage() {
 											</ul>
 										</div>
 										<div>
-											<h4 className="font-semibold text-gray-800 mb-2">Flooding:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Flooding:</h4>
 											<ul className="space-y-1">
 												<li>• Never drive through flooded roads</li>
 												<li>• Move to higher ground immediately</li>
@@ -199,7 +199,7 @@ export default function EmergencyPage() {
 												<li>• Monitor emergency broadcasts</li>
 											</ul>
 
-											<h4 className="font-semibold text-gray-800 mb-2 mt-4">Power Outages:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2 mt-4">Power Outages:</h4>
 											<ul className="space-y-1">
 												<li>• Use flashlights, not candles</li>
 												<li>• Keep refrigerator and freezer closed</li>
@@ -211,12 +211,12 @@ export default function EmergencyPage() {
 								</CardContent>
 							</Card>
 
-							<Card className="bg-blue-50 border-blue-200">
+							<Card className="bg-sage/5 border-sage/20">
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold text-blue-800 mb-4">Stay Connected</h3>
-									<div className="grid md:grid-cols-2 gap-6 text-sm text-blue-700">
+									<h3 className="text-xl font-serif font-bold text-sage-dark mb-4">Stay Connected</h3>
+									<div className="grid md:grid-cols-2 gap-6 text-sm text-[#4A4640]">
 										<div>
-											<h4 className="font-semibold mb-2">Alert Systems:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Alert Systems:</h4>
 											<ul className="space-y-1">
 												<li>• Text HARMONY to 67283 for alerts</li>
 												<li>• Download FEMA app for warnings</li>
@@ -225,7 +225,7 @@ export default function EmergencyPage() {
 											</ul>
 										</div>
 										<div>
-											<h4 className="font-semibold mb-2">Local Information:</h4>
+											<h4 className="font-semibold text-[#2D2A24] mb-2">Local Information:</h4>
 											<ul className="space-y-1">
 												<li>• Website: harmonytown.gov/emergency</li>
 												<li>• Radio: AM 1090 or FM 101.5</li>

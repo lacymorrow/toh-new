@@ -7,7 +7,7 @@ export async function UpcomingEvents() {
 
 	if (upcomingEvents.length === 0) {
 		return (
-			<div className="bg-cream rounded-xl p-8 text-center text-[#7A756C]">
+			<div className="bg-cream rounded-xl p-8 text-center text-[#4A4640]">
 				No upcoming events scheduled.
 			</div>
 		);
@@ -39,7 +39,7 @@ export async function UpcomingEvents() {
 								{event.title}
 							</h4>
 							{event.location && (
-								<p className="text-[13px] text-[#7A756C]">{event.location}</p>
+								<p className="text-[13px] text-[#4A4640]">{event.location}</p>
 							)}
 						</div>
 					</Link>

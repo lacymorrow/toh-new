@@ -5,8 +5,8 @@ import { resolveIcon } from "@/lib/utils/icon-resolver";
 
 const categoryColors: Record<string, string> = {
 	immediate: "border-red-200 bg-red-50",
-	utility: "border-yellow-200 bg-yellow-50",
-	"public-safety": "border-blue-200 bg-blue-50",
+	utility: "border-amber-200 bg-amber-50",
+	"public-safety": "border-sage/20 bg-sage/5",
 	health: "border-green-200 bg-green-50",
 };
 
@@ -22,13 +22,13 @@ export const EmergencyServices = async () => {
 
 	if (services.length === 0) {
 		return (
-			<Card>
+			<Card className="border-stone bg-warm-white">
 				<CardContent className="py-12 text-center">
 					<div className="flex flex-col items-center gap-4">
-						<Info className="h-12 w-12 text-gray-400" />
+						<Info className="h-12 w-12 text-sage-light" />
 						<div>
-							<h3 className="text-lg font-semibold text-gray-700 mb-2">No Emergency Services</h3>
-							<p className="text-gray-500">Emergency services information is not available.</p>
+							<h3 className="text-lg font-semibold text-sage-dark mb-2">No Emergency Services</h3>
+							<p className="text-[#4A4640]">Emergency services information is not available.</p>
 						</div>
 					</div>
 				</CardContent>
@@ -53,14 +53,14 @@ export const EmergencyServices = async () => {
 		<div className="space-y-8">
 			{Object.entries(groupedServices).map(([category, categoryServices]) => (
 				<div key={category}>
-					<h2 className="text-2xl font-bold text-gray-900 mb-4">
+					<h2 className="text-2xl font-serif font-bold text-sage-dark mb-4">
 						{categoryTitles[category] || category}
 					</h2>
 
 					<div className="grid gap-4 md:grid-cols-2">
 						{categoryServices.map((service) => {
 							const Icon = resolveIcon(service.icon as string | null | undefined);
-							const colorClass = categoryColors[category] || "border-gray-200 bg-gray-50";
+							const colorClass = categoryColors[category] || "border-stone bg-cream";
 
 							// Parse preparedness tips from JSON field
 							const preparedness: string[] = Array.isArray(service.preparedness)
@@ -74,33 +74,33 @@ export const EmergencyServices = async () => {
 								>
 									<CardHeader className="pb-3">
 										<div className="flex items-center gap-3">
-											<Icon className="h-6 w-6 text-gray-700" />
+											<Icon className="h-6 w-6 text-sage-dark" />
 											<CardTitle className="text-lg">{service.title}</CardTitle>
 										</div>
 									</CardHeader>
 
 									<CardContent className="space-y-4">
-										<p className="text-gray-700 text-sm">{service.description}</p>
+										<p className="text-[#4A4640] text-sm">{service.description}</p>
 
 										<div className="flex items-center gap-2">
-											<span className="font-semibold text-gray-700">Emergency Phone:</span>
+											<span className="font-semibold text-[#2D2A24]">Emergency Phone:</span>
 											<a
 												href={`tel:${service.phone}`}
-												className="text-red-600 font-bold text-lg hover:underline"
+												className="text-barn-red font-bold text-lg hover:underline"
 											>
 												{service.phone}
 											</a>
 										</div>
 
 										{preparedness.length > 0 && (
-											<div className="pt-3 border-t">
-												<h4 className="font-semibold text-gray-800 mb-2 text-sm">
+											<div className="pt-3 border-t border-[#DDD7CC]">
+												<h4 className="font-semibold text-[#2D2A24] mb-2 text-sm">
 													Preparedness Tips:
 												</h4>
-												<ul className="text-xs text-gray-600 space-y-1">
+												<ul className="text-xs text-[#4A4640] space-y-1">
 													{preparedness.map((tip, tipIndex) => (
 														<li key={tipIndex} className="flex items-start gap-2">
-															<span className="text-gray-400 mt-1">•</span>
+															<span className="text-sage mt-1">&bull;</span>
 															<span>{tip}</span>
 														</li>
 													))}
@@ -115,23 +115,23 @@ export const EmergencyServices = async () => {
 				</div>
 			))}
 
-			<Card className="bg-orange-50 border-orange-200 border-2">
+			<Card className="bg-wheat/10 border-wheat/30 border-2">
 				<CardContent className="p-6">
-					<h3 className="font-bold text-orange-800 mb-3 text-lg">
+					<h3 className="font-bold text-sage-dark mb-3 text-lg font-serif">
 						Stay Connected During Emergencies
 					</h3>
-					<div className="space-y-2 text-sm text-orange-700">
+					<div className="space-y-2 text-sm text-[#4A4640]">
 						<p>
-							<strong>Text Alerts:</strong> Text HARMONY to 67283 for emergency notifications
+							<strong className="text-[#2D2A24]">Text Alerts:</strong> Text HARMONY to 67283 for emergency notifications
 						</p>
 						<p>
-							<strong>Social Media:</strong> Follow @HarmonyTownWV for real-time updates
+							<strong className="text-[#2D2A24]">Social Media:</strong> Follow @HarmonyTownWV for real-time updates
 						</p>
 						<p>
-							<strong>Local Radio:</strong> Tune to AM 1090 or FM 101.5 for emergency broadcasts
+							<strong className="text-[#2D2A24]">Local Radio:</strong> Tune to AM 1090 or FM 101.5 for emergency broadcasts
 						</p>
 						<p>
-							<strong>Website:</strong> Visit harmonytown.gov/emergency for current information
+							<strong className="text-[#2D2A24]">Website:</strong> Visit harmonytown.gov/emergency for current information
 						</p>
 					</div>
 				</CardContent>

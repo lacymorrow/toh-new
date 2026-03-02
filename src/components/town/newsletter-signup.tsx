@@ -44,7 +44,7 @@ export function NewsletterSignup() {
 		<section className="py-16 bg-sage-deep text-white text-center">
 			<div className="container mx-auto px-4">
 				<h2 className="text-[28px] font-serif font-bold mb-3">Stay Connected with Harmony</h2>
-				<p className="text-base text-white/65 mb-7">
+				<p className="text-base text-white/85 mb-7">
 					Get the latest news, events, and town updates delivered to your inbox.
 				</p>
 
@@ -59,7 +59,7 @@ export function NewsletterSignup() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 						disabled={isLoading}
-						className="flex-1 px-4 py-3.5 border border-white/20 bg-white/[0.08] text-white text-[15px] rounded-lg outline-none placeholder:text-white/40 focus:border-wheat transition-colors"
+						className="flex-1 px-4 py-3.5 border border-white/20 bg-white/[0.08] text-white text-[15px] rounded-lg outline-none placeholder:text-white/60 focus:border-wheat transition-colors"
 					/>
 					<button
 						type="submit"
@@ -70,7 +70,7 @@ export function NewsletterSignup() {
 					</button>
 				</form>
 
-				<p className="text-sm text-white/40 mt-4">
+				<p className="text-sm text-white/60 mt-4">
 					We respect your privacy. Unsubscribe at any time.
 				</p>
 			</div>

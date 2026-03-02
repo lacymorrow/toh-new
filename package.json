@@ -92,12 +92,6 @@
     "@opentelemetry/api-logs": "^0.203.0",
     "@opentelemetry/instrumentation": "^0.203.0",
     "@opentelemetry/sdk-logs": "^0.203.0",
-    "@payloadcms/email-resend": "^3.53.0",
-    "@payloadcms/next": "^3.53.0",
-    "@payloadcms/payload-cloud": "^3.53.0",
-    "@payloadcms/richtext-lexical": "^3.53.0",
-    "@payloadcms/storage-s3": "^3.53.0",
-    "@payloadcms/storage-vercel-blob": "^3.53.0",
     "@polar-sh/nextjs": "^0.4.4",
     "@polar-sh/sdk": "^0.34.13",
     "@radix-ui/react-icons": "1.3.2",
@@ -226,8 +220,6 @@
     "@next/bundle-analyzer": "15.5.0",
     "@next/eslint-plugin-next": "15.5.0",
     "@next/mdx": "15.5.0",
-    "@payloadcms/db-postgres": "^3.53.0",
-    "@payloadcms/plugin-nested-docs": "^3.53.0",
     "@playwright/test": "^1.55.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -255,7 +247,6 @@
     "jsdom": "^26.1.0",
     "next-sitemap": "^4.2.3",
     "npm-check-updates": "^18.0.2",
-    "payload": "^3.53.0",
     "playwright": "^1.55.0",
     "postcss": "8.5.6",
     "prettier": "3.6.2",
@@ -269,9 +260,6 @@
     "vitest-browser-react": "^1.0.1",
     "webdriverio": "9.19.2",
     "worker-loader": "^3.0.8"
-  },
-  "shipkit": {
-    "bones": "0.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -110,9 +110,9 @@ const years = ["2024", "2023", "2022", "2021", "2020"];
 
 export default function AgendaMinutesPage() {
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			{/* Hero Section */}
-			<section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+			<section className="bg-gradient-to-r from-sage-dark to-sage text-white py-16">
 				<div className="container mx-auto px-4">
 					<h1 className="text-4xl font-bold mb-4">Agendas & Minutes</h1>
 					<p className="text-xl">Stay informed about town government meetings and decisions</p>
@@ -125,8 +125,8 @@ export default function AgendaMinutesPage() {
 					<div className="flex items-center gap-3">
 						<Calendar className="h-6 w-6 text-yellow-600" />
 						<div>
-							<p className="font-semibold text-gray-900">Next Regular Board Meeting</p>
-							<p className="text-sm text-gray-600">December 12, 2024 at 7:00 PM - Town Hall Council Chambers</p>
+							<p className="font-semibold text-[#2D2A24]">Next Regular Board Meeting</p>
+							<p className="text-sm text-[#4A4640]">December 12, 2024 at 7:00 PM - Town Hall Council Chambers</p>
 						</div>
 					</div>
 				</div>
@@ -145,7 +145,7 @@ export default function AgendaMinutesPage() {
 							{/* Search and Filter */}
 							<div className="flex gap-2 w-full md:w-auto">
 								<div className="relative flex-1 md:w-64">
-									<Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
+									<Search className="absolute left-2 top-2.5 h-4 w-4 text-[#7A756C]" />
 									<Input placeholder="Search meetings..." className="pl-8" />
 								</div>
 								<Select defaultValue="all">
@@ -179,15 +179,15 @@ export default function AgendaMinutesPage() {
 									<CardContent>
 										<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 											<div className="flex items-center gap-2 text-sm">
-												<Calendar className="h-4 w-4 text-gray-400" />
+												<Calendar className="h-4 w-4 text-[#7A756C]" />
 												<span>{meeting.date}</span>
 											</div>
 											<div className="flex items-center gap-2 text-sm">
-												<Clock className="h-4 w-4 text-gray-400" />
+												<Clock className="h-4 w-4 text-[#7A756C]" />
 												<span>{meeting.time}</span>
 											</div>
 											<div className="flex items-center gap-2 text-sm col-span-2">
-												<FileText className="h-4 w-4 text-gray-400" />
+												<FileText className="h-4 w-4 text-[#7A756C]" />
 												<span>{meeting.location}</span>
 											</div>
 										</div>
@@ -236,7 +236,7 @@ export default function AgendaMinutesPage() {
 									<CardHeader>
 										<div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 											<CardTitle className="text-xl">{meeting.type}</CardTitle>
-											<div className="flex items-center gap-2 text-sm text-gray-500">
+											<div className="flex items-center gap-2 text-sm text-[#7A756C]">
 												<Calendar className="h-4 w-4" />
 												<span>{meeting.date}</span>
 												<Clock className="h-4 w-4 ml-2" />
@@ -298,7 +298,7 @@ export default function AgendaMinutesPage() {
 					<div className="grid md:grid-cols-2 gap-6">
 						<Card className="p-6">
 							<h3 className="text-lg font-semibold mb-3">Public Participation</h3>
-							<p className="text-gray-600 mb-4">
+							<p className="text-[#4A4640] mb-4">
 								All regular meetings are open to the public. Citizens may address the Board during the public comment period 
 								at the beginning of each regular meeting. Comments are limited to 3 minutes per speaker.
 							</p>
@@ -308,7 +308,7 @@ export default function AgendaMinutesPage() {
 						</Card>
 						<Card className="p-6">
 							<h3 className="text-lg font-semibold mb-3">Meeting Broadcasts</h3>
-							<p className="text-gray-600 mb-4">
+							<p className="text-[#4A4640] mb-4">
 								Regular Board meetings are broadcast live on the Town's YouTube channel and local cable channel 21. 
 								Recordings are available within 48 hours of the meeting.
 							</p>
@@ -320,7 +320,7 @@ export default function AgendaMinutesPage() {
 						</Card>
 						<Card className="p-6">
 							<h3 className="text-lg font-semibold mb-3">Meeting Notifications</h3>
-							<p className="text-gray-600 mb-4">
+							<p className="text-[#4A4640] mb-4">
 								Sign up to receive email notifications about upcoming meetings, agenda postings, and meeting cancellations.
 							</p>
 							<Button variant="outline" size="sm">
@@ -329,7 +329,7 @@ export default function AgendaMinutesPage() {
 						</Card>
 						<Card className="p-6">
 							<h3 className="text-lg font-semibold mb-3">Records Request</h3>
-							<p className="text-gray-600 mb-4">
+							<p className="text-[#4A4640] mb-4">
 								To request meeting records not available online, please submit a public records request to the Town Clerk's office.
 							</p>
 							<Button variant="outline" size="sm">
@@ -341,24 +341,24 @@ export default function AgendaMinutesPage() {
 			</section>
 
 			{/* Archive Notice */}
-			<section className="py-12 bg-gray-100">
+			<section className="py-12 bg-stone">
 				<div className="container mx-auto px-4">
-					<Card className="p-6 bg-blue-50 border-blue-200">
+					<Card className="p-6 bg-cream border-sage/20">
 						<div className="flex items-start gap-4">
-							<FileText className="h-6 w-6 text-blue-600 mt-1" />
+							<FileText className="h-6 w-6 text-sage mt-1" />
 							<div>
 								<h3 className="text-lg font-semibold mb-2">Historical Archives</h3>
-								<p className="text-gray-700 mb-3">
+								<p className="text-[#4A4640] mb-3">
 									Meeting agendas and minutes from 2019 and earlier are available in the Town Clerk's office. 
 									Digital archives are being developed and will be available online soon.
 								</p>
-								<p className="text-sm text-gray-600">
+								<p className="text-sm text-[#4A4640]">
 									For assistance accessing historical records, contact the Town Clerk at{" "}
-									<a href="tel:704-546-7002" className="text-blue-600 hover:underline">
+									<a href="tel:704-546-7002" className="text-sage hover:underline">
 										(704) 546-7002
 									</a>{" "}
 									or{" "}
-									<a href="mailto:clerk@townofharmony.org" className="text-blue-600 hover:underline">
+									<a href="mailto:clerk@townofharmony.org" className="text-sage hover:underline">
 										clerk@townofharmony.org
 									</a>
 								</p>

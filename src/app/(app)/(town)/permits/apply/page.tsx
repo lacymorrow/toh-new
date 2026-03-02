@@ -27,7 +27,7 @@ export default function PermitApplicationPage({
 				</Button>
 
 				<div className="flex items-center gap-3 mb-4">
-					<FileText className="h-8 w-8 text-blue-600" />
+					<FileText className="h-8 w-8 text-sage" />
 					<h1 className="text-4xl font-bold">Apply for Permit</h1>
 				</div>
 				<p className="text-lg text-muted-foreground">
@@ -49,8 +49,8 @@ export default function PermitApplicationPage({
 							<li>Your contact information (name, phone, email)</li>
 							<li>Supporting documents (plans, drawings, specifications) if applicable</li>
 						</ul>
-						<div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
-							<p className="text-blue-800 text-sm">
+						<div className="bg-cream p-4 rounded-lg border border-sage/20 mt-4">
+							<p className="text-sage-dark text-sm">
 								<strong>Note:</strong> Applications are reviewed in the order they are received.
 								Processing times vary by permit type. You will receive an email confirmation with
 								your permit number once submitted.

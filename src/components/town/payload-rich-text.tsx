@@ -1,33 +1,46 @@
-import {
-	type SerializedEditorState,
-	type SerializedLexicalNode,
-} from "lexical";
-
 interface PayloadRichTextProps {
-	content: SerializedEditorState | null | undefined;
+	content: string | Record<string, unknown> | null | undefined;
 	className?: string;
 }
 
 /**
- * Renders Payload CMS Lexical rich text content as HTML.
- * This is a server component — no "use client" needed.
+ * Renders rich text content as HTML.
+ * Handles plain strings (static data) and Lexical editor state (legacy).
  */
 export function PayloadRichText({ content, className }: PayloadRichTextProps) {
-	if (!content?.root?.children) {
+	if (!content) {
+		return null;
+	}
+
+	// Handle plain string content (from static data)
+	if (typeof content === "string") {
+		const paragraphs = content.split("\n").filter((p) => p.trim());
+		return (
+			<div className={className ?? "prose prose-lg max-w-none"}>
+				{paragraphs.map((paragraph, index) => (
+					<p key={index}>{paragraph}</p>
+				))}
+			</div>
+		);
+	}
+
+	// Handle Lexical editor state (legacy fallback)
+	const lexical = content as { root?: { children?: any[] } };
+	if (!lexical?.root?.children) {
 		return null;
 	}
 
 	return (
 		<div className={className ?? "prose prose-lg max-w-none"}>
-			{content.root.children.map((node, index) => (
+			{lexical.root.children.map((node: any, index: number) => (
 				<RichTextNode key={index} node={node} />
 			))}
 		</div>
 	);
 }
 
-function RichTextNode({ node }: { node: SerializedLexicalNode }) {
-	const n = node as any;
+function RichTextNode({ node }: { node: any }) {
+	const n = node;
 
 	if (n.type === "paragraph") {
 		return (
@@ -125,10 +138,14 @@ function RichTextNode({ node }: { node: SerializedLexicalNode }) {
 }
 
 /**
- * Extracts plain text from Payload rich text content for use in excerpts.
+ * Extracts plain text from content for use in excerpts.
  */
-export function extractTextFromRichText(content: SerializedEditorState | null | undefined): string {
-	if (!content?.root?.children) return "";
+export function extractTextFromRichText(content: string | Record<string, unknown> | null | undefined): string {
+	if (!content) return "";
+	if (typeof content === "string") return content;
+
+	const lexical = content as { root?: { children?: any[] } };
+	if (!lexical?.root?.children) return "";
 
 	const extractFromNode = (node: any): string => {
 		if (node.type === "text") return node.text ?? "";
@@ -136,5 +153,5 @@ export function extractTextFromRichText(content: SerializedEditorState | null | 
 		return "";
 	};
 
-	return content.root.children.map(extractFromNode).join(" ").trim();
+	return lexical.root.children.map(extractFromNode).join(" ").trim();
 }

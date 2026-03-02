@@ -56,23 +56,17 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 		{} as Record<string, typeof electionCandidates>
 	);
 
-	// Resolve sampleBallot URL from upload relation
-	const sampleBallotUrl =
-		typeof election.sampleBallot === "object" && election.sampleBallot?.url
-			? election.sampleBallot.url
-			: typeof election.sampleBallot === "string"
-				? election.sampleBallot
-				: null;
+	const sampleBallotUrl = election.sampleBallot ?? null;
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-cream">
 			{/* Page Header */}
-			<div className="bg-blue-900 text-white py-12">
+			<div className="bg-sage-dark text-white py-12">
 				<div className="container mx-auto px-4">
 					<div className="flex items-start justify-between">
 						<div>
 							<h1 className="text-4xl font-bold mb-4">{election.title}</h1>
-							<div className="flex items-center gap-4 text-blue-100">
+							<div className="flex items-center gap-4 text-cream">
 								<div className="flex items-center gap-2">
 									<Calendar className="h-5 w-5" />
 									{formatDate(electionDate)}
@@ -85,7 +79,7 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 					</div>
 
 					{election.description && (
-						<div className="text-xl text-blue-100 mt-4 max-w-3xl">
+						<div className="text-xl text-cream mt-4 max-w-3xl">
 							<PayloadRichText
 								content={election.description as any}
 								className="prose prose-lg prose-invert max-w-none"
@@ -111,30 +105,30 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 							<CardContent>
 								<div className="grid sm:grid-cols-2 gap-6">
 									<div>
-										<h3 className="font-semibold text-gray-900 mb-2">Election Date</h3>
-										<p className="text-gray-600">{formatDate(electionDate)}</p>
+										<h3 className="font-semibold text-[#2D2A24] mb-2">Election Date</h3>
+										<p className="text-[#4A4640]">{formatDate(electionDate)}</p>
 									</div>
 
 									{election.registrationDeadline && (
 										<div>
-											<h3 className="font-semibold text-gray-900 mb-2">Registration Deadline</h3>
-											<p className="text-gray-600">
+											<h3 className="font-semibold text-[#2D2A24] mb-2">Registration Deadline</h3>
+											<p className="text-[#4A4640]">
 												{formatDate(new Date(election.registrationDeadline))}
 											</p>
 										</div>
 									)}
 
 									<div>
-										<h3 className="font-semibold text-gray-900 mb-2">Candidates</h3>
-										<p className="text-gray-600">
+										<h3 className="font-semibold text-[#2D2A24] mb-2">Candidates</h3>
+										<p className="text-[#4A4640]">
 											{electionCandidates.length} candidate
 											{electionCandidates.length !== 1 ? "s" : ""}
 										</p>
 									</div>
 
 									<div>
-										<h3 className="font-semibold text-gray-900 mb-2">Polling Locations</h3>
-										<p className="text-gray-600">
+										<h3 className="font-semibold text-[#2D2A24] mb-2">Polling Locations</h3>
+										<p className="text-[#4A4640]">
 											{Array.isArray(election.pollingLocations)
 												? `${election.pollingLocations.length} location${election.pollingLocations.length !== 1 ? "s" : ""}`
 												: "Information not available"}
@@ -149,7 +143,7 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 											href={sampleBallotUrl}
 											target="_blank"
 											rel="noopener noreferrer"
-											className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-md text-sm"
+											className="inline-flex items-center gap-2 text-sage hover:text-sage-dark bg-stone px-3 py-2 rounded-md text-sm"
 										>
 											<FileText className="h-4 w-4" />
 											Sample Ballot
@@ -181,7 +175,7 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 										<Users className="h-5 w-5" />
 										{position}
 									</CardTitle>
-									<p className="text-sm text-gray-600">
+									<p className="text-sm text-[#4A4640]">
 										{positionCandidates.length} candidate
 										{positionCandidates.length !== 1 ? "s" : ""}
 									</p>
@@ -200,8 +194,8 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 						{electionCandidates.length === 0 && (
 							<Card>
 								<CardContent className="py-12 text-center">
-									<Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-									<p className="text-gray-500">
+									<Users className="h-12 w-12 text-[#7A756C] mx-auto mb-4" />
+									<p className="text-[#7A756C]">
 										No candidates have been registered for this election yet.
 									</p>
 								</CardContent>

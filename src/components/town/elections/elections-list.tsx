@@ -28,7 +28,7 @@ export async function ElectionsList({ page, status, search }: ElectionsListProps
 		return (
 			<Card>
 				<CardContent className="py-12 text-center">
-					<p className="text-gray-500">
+					<p className="text-[#7A756C]">
 						{search ? "No elections found matching your search criteria." : "No elections found."}
 					</p>
 				</CardContent>
@@ -39,7 +39,7 @@ export async function ElectionsList({ page, status, search }: ElectionsListProps
 	return (
 		<>
 			<div className="mb-4 flex items-center justify-between">
-				<p className="text-sm text-gray-600">
+				<p className="text-sm text-[#4A4640]">
 					Showing {(page - 1) * ITEMS_PER_PAGE + 1}-{Math.min(page * ITEMS_PER_PAGE, total)} of{" "}
 					{total} elections
 				</p>

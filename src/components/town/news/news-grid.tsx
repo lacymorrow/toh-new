@@ -28,7 +28,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 		return (
 			<Card>
 				<CardContent className="py-12 text-center">
-					<p className="text-gray-500">No articles found matching your criteria.</p>
+					<p className="text-[#7A756C]">No articles found matching your criteria.</p>
 				</CardContent>
 			</Card>
 		);
@@ -37,7 +37,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 	return (
 		<>
 			<div className="mb-4 flex items-center justify-between">
-				<p className="text-sm text-gray-600">
+				<p className="text-sm text-[#4A4640]">
 					Showing {(page - 1) * ITEMS_PER_PAGE + 1}-{Math.min(page * ITEMS_PER_PAGE, total)} of{" "}
 					{total} articles
 				</p>
@@ -67,13 +67,13 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 								<CardTitle className="text-lg line-clamp-2">
 									<Link
 										href={`/news/${article.slug}`}
-										className="hover:text-blue-600 transition-colors"
+										className="hover:text-sage-dark transition-colors"
 									>
 										{article.title}
 									</Link>
 								</CardTitle>
 
-								<div className="flex items-center gap-4 text-xs text-gray-500 mt-2">
+								<div className="flex items-center gap-4 text-xs text-[#7A756C] mt-2">
 									{article.publishedAt && (
 										<div className="flex items-center gap-1">
 											<Calendar className="h-3 w-3" />
@@ -101,14 +101,14 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 							</CardHeader>
 
 							<CardContent>
-								<p className="text-sm text-gray-600 line-clamp-3 mb-4">
+								<p className="text-sm text-[#4A4640] line-clamp-3 mb-4">
 									{excerptText}
 								</p>
 
 								{article.categories && (article.categories as string[]).length > 0 && (
 									<div className="flex gap-1 mb-3">
 										{(article.categories as string[]).slice(0, 2).map((cat) => (
-											<span key={cat} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+											<span key={cat} className="bg-stone text-[#4A4640] px-2 py-1 rounded text-xs">
 												{cat}
 											</span>
 										))}
@@ -117,7 +117,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 
 								<Link
 									href={`/news/${article.slug}`}
-									className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium"
+									className="inline-flex items-center gap-1 text-sage font-semibold hover:text-sage-dark text-sm font-medium"
 								>
 									Read more
 									<ArrowRight className="h-3 w-3" />

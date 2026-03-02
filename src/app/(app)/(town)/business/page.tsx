@@ -23,7 +23,7 @@ export default function BusinessDirectoryPage({
 		<div className="container py-8">
 			<div className="mb-8">
 				<div className="flex items-center gap-3 mb-4">
-					<Building2 className="h-8 w-8 text-blue-600" />
+					<Building2 className="h-8 w-8 text-sage" />
 					<h1 className="text-4xl font-bold">Business Directory</h1>
 				</div>
 				<p className="text-lg text-muted-foreground">

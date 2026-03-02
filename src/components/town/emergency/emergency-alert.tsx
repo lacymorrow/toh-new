@@ -33,18 +33,18 @@ const getLevelColors = (level: string) => {
 			};
 		case "warning":
 			return {
-				bg: "bg-yellow-50",
-				border: "border-yellow-200",
-				text: "text-yellow-800",
-				icon: "text-yellow-600",
+				bg: "bg-amber-50",
+				border: "border-amber-200",
+				text: "text-amber-900",
+				icon: "text-amber-600",
 			};
 		case "info":
 		default:
 			return {
-				bg: "bg-blue-50",
-				border: "border-blue-200",
-				text: "text-blue-800",
-				icon: "text-blue-600",
+				bg: "bg-sage/5",
+				border: "border-sage/20",
+				text: "text-sage-dark",
+				icon: "text-sage",
 			};
 	}
 };
@@ -82,7 +82,7 @@ export const EmergencyAlert = ({
 
 						{!compact && alert.affectedAreas && alert.affectedAreas.length > 0 && (
 							<div className="mt-2">
-								<span className={`text-xs ${colors.text} opacity-75`}>
+								<span className={`text-xs ${colors.text}`}>
 									Affected areas: {alert.affectedAreas.join(", ")}
 								</span>
 							</div>
@@ -102,7 +102,7 @@ export const EmergencyAlert = ({
 						)}
 
 						{!!alert.contactInfo && (
-							<div className="mt-3 text-xs text-gray-600">
+							<div className="mt-3 text-xs text-[#4A4640]">
 								Contact:{" "}
 								{typeof alert.contactInfo === "string"
 									? alert.contactInfo
@@ -110,7 +110,7 @@ export const EmergencyAlert = ({
 							</div>
 						)}
 
-						<div className="mt-2 text-xs text-gray-500">
+						<div className="mt-2 text-xs text-[#7A756C]">
 							{alert.startsAt && (
 								<span>Active from {new Date(alert.startsAt).toLocaleString()}</span>
 							)}

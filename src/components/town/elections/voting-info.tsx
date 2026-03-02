@@ -74,10 +74,10 @@ export function VotingInfo({ election }: VotingInfoProps) {
 				</CardHeader>
 				<CardContent className="space-y-4">
 					<div className="flex items-start gap-3">
-						<Calendar className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+						<Calendar className="h-5 w-5 text-sage mt-0.5 flex-shrink-0" />
 						<div>
 							<p className="font-medium">Election Day</p>
-							<p className="text-gray-600">{formatDate(electionDate)}</p>
+							<p className="text-[#4A4640]">{formatDate(electionDate)}</p>
 							{isToday && (
 								<Badge variant="destructive" className="mt-1">
 									<CheckCircle className="h-3 w-3 mr-1" />
@@ -96,7 +96,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 						<Clock className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
 						<div>
 							<p className="font-medium">Polling Hours</p>
-							<p className="text-gray-600">6:30 AM - 7:30 PM</p>
+							<p className="text-[#4A4640]">6:30 AM - 7:30 PM</p>
 						</div>
 					</div>
 				</CardContent>
@@ -117,7 +117,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								<FileText className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
 								<div>
 									<p className="font-medium">Registration Deadline</p>
-									<p className="text-gray-600">{formatDate(registrationDeadline)}</p>
+									<p className="text-[#4A4640]">{formatDate(registrationDeadline)}</p>
 									{registrationDeadline < new Date() && (
 										<Badge variant="secondary" className="mt-1">
 											Registration Closed
@@ -132,7 +132,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								<Clock className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
 								<div>
 									<p className="font-medium">Early Voting Period</p>
-									<p className="text-gray-600">
+									<p className="text-[#4A4640]">
 										{formatDate(earlyVotingStart)} - {formatDate(earlyVotingEnd)}
 									</p>
 								</div>
@@ -154,8 +154,8 @@ export function VotingInfo({ election }: VotingInfoProps) {
 					<CardContent className="space-y-4">
 						{pollingLocations.map((location, index) => (
 							<div key={index} className="border rounded-lg p-4">
-								<h4 className="font-semibold text-gray-900 mb-2">{location.name}</h4>
-								<div className="space-y-2 text-sm text-gray-600">
+								<h4 className="font-semibold text-[#2D2A24] mb-2">{location.name}</h4>
+								<div className="space-y-2 text-sm text-[#4A4640]">
 									<p className="flex items-start gap-2">
 										<MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
 										{location.address}
@@ -172,7 +172,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 										</p>
 									)}
 									{location.parking && (
-										<p className="text-blue-600">
+										<p className="text-sage">
 											<strong>Parking:</strong> {location.parking}
 										</p>
 									)}
@@ -197,7 +197,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 							href={sampleBallotUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-2 rounded-md"
+							className="inline-flex items-center gap-2 text-sage hover:text-sage-dark bg-stone px-3 py-2 rounded-md"
 						>
 							<FileText className="h-4 w-4" />
 							Sample Ballot
@@ -219,13 +219,13 @@ export function VotingInfo({ election }: VotingInfoProps) {
 					)}
 
 					<div className="pt-2 border-t">
-						<h4 className="font-medium text-gray-900 mb-2">General Voter Resources</h4>
+						<h4 className="font-medium text-[#2D2A24] mb-2">General Voter Resources</h4>
 						<div className="space-y-1 text-sm">
 							<a
 								href="https://ovr.sos.wv.gov/Register"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="block text-blue-600 hover:underline"
+								className="block text-sage hover:underline"
 							>
 								Register to Vote Online
 							</a>
@@ -233,7 +233,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								href="https://apps.sos.wv.gov/elections/voter/amiregisteredtovote"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="block text-blue-600 hover:underline"
+								className="block text-sage hover:underline"
 							>
 								Check Your Registration Status
 							</a>
@@ -241,7 +241,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								href="https://sos.wv.gov/elections/Pages/AbsenteeBallot.aspx"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="block text-blue-600 hover:underline"
+								className="block text-sage hover:underline"
 							>
 								Absentee Voting Information
 							</a>

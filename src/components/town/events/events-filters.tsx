@@ -38,12 +38,12 @@ const months = [
 export function EventsFilters() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const currentCategory = searchParams?.get("category") || "";
-	const currentMonth = searchParams?.get("month") || "";
+	const currentCategory = searchParams?.get("category") || "all";
+	const currentMonth = searchParams?.get("month") || "all";
 
 	const updateFilters = (key: string, value: string) => {
 		const params = new URLSearchParams(searchParams?.toString() ?? "");
-		if (value) {
+		if (value && value !== "all") {
 			params.set(key, value);
 		} else {
 			params.delete(key);
@@ -72,7 +72,7 @@ export function EventsFilters() {
 							<SelectValue placeholder="All categories" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="">All categories</SelectItem>
+							<SelectItem value="all">All categories</SelectItem>
 							{categories.map((cat) => (
 								<SelectItem key={cat.value} value={cat.value}>
 									{cat.label}
@@ -89,7 +89,7 @@ export function EventsFilters() {
 							<SelectValue placeholder="All months" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="">All months</SelectItem>
+							<SelectItem value="all">All months</SelectItem>
 							{months.map((month) => (
 								<SelectItem key={month.value} value={month.value}>
 									{month.label}
@@ -99,7 +99,7 @@ export function EventsFilters() {
 					</Select>
 				</div>
 
-				{(currentCategory || currentMonth) && (
+				{(currentCategory !== "all" || currentMonth !== "all") && (
 					<Button variant="outline" onClick={clearFilters} className="w-full">
 						Clear filters
 					</Button>

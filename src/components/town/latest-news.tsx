@@ -8,7 +8,7 @@ export async function LatestNews() {
 
 	if (articles.length === 0) {
 		return (
-			<div className="bg-cream rounded-xl p-8 text-center text-[#7A756C]">
+			<div className="bg-cream rounded-xl p-8 text-center text-[#4A4640]">
 				No news articles available at this time.
 			</div>
 		);
@@ -37,7 +37,7 @@ export async function LatestNews() {
 							<h3 className="font-semibold text-[17px] text-[#2D2A24] mb-1.5 group-hover:text-sage-dark transition-colors">
 								{article.title}
 							</h3>
-							<p className="text-sm text-[#7A756C] leading-relaxed line-clamp-2">
+							<p className="text-sm text-[#4A4640] leading-relaxed line-clamp-2">
 								{article.excerpt || extractTextFromRichText(article.content as any).substring(0, 150) + "..."}
 							</p>
 						</div>

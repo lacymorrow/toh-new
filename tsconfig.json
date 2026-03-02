@@ -31,7 +31,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@payload-config": ["./src/payload.config.ts"],
       "@/public/*": ["./public/*"],
       "@/*": ["./src/*"]
     }

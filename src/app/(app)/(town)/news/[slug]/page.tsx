@@ -62,25 +62,25 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
 	return (
 		<article className="min-h-screen bg-white">
 			{/* Article Header */}
-			<div className="bg-gray-50 border-b">
+			<div className="bg-cream border-b">
 				<div className="container mx-auto px-4 py-8">
 					{/* Breadcrumb */}
-					<nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-						<Link href="/" className="hover:text-blue-600">
+					<nav className="flex items-center gap-2 text-sm text-[#4A4640] mb-6">
+						<Link href="/" className="hover:text-sage-dark">
 							Home
 						</Link>
 						<span>/</span>
-						<Link href="/news" className="hover:text-blue-600">
+						<Link href="/news" className="hover:text-sage-dark">
 							News
 						</Link>
 						<span>/</span>
-						<span className="text-gray-900">{article.title}</span>
+						<span className="text-[#2D2A24]">{article.title}</span>
 					</nav>
 
 					{/* Title and Meta */}
-					<h1 className="text-4xl font-bold text-gray-900 mb-4">{article.title}</h1>
+					<h1 className="text-4xl font-bold text-[#2D2A24] mb-4">{article.title}</h1>
 
-					<div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+					<div className="flex flex-wrap items-center gap-4 text-sm text-[#4A4640]">
 						{article.publishedAt && (
 							<div className="flex items-center gap-1">
 								<Calendar className="h-4 w-4" />
@@ -106,7 +106,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
 								{(article.categories as string[]).map((category) => (
 									<span
 										key={category}
-										className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+										className="bg-stone text-sage-dark px-2 py-1 rounded-full text-xs"
 									>
 										{category}
 									</span>
@@ -142,13 +142,13 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
 						{/* Tags */}
 						{article.tags && (article.tags as string[]).length > 0 && (
 							<div className="mt-8 pt-8 border-t">
-								<h3 className="text-sm font-semibold text-gray-900 mb-3">Tags</h3>
+								<h3 className="text-sm font-semibold text-[#2D2A24] mb-3">Tags</h3>
 								<div className="flex flex-wrap gap-2">
 									{(article.tags as string[]).map((tag) => (
 										<Link
 											key={tag}
 											href={`/news?tag=${encodeURIComponent(tag)}`}
-											className="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-sm text-gray-700 transition-colors"
+											className="bg-stone hover:bg-stone px-3 py-1 rounded-full text-sm text-[#4A4640] transition-colors"
 										>
 											#{tag}
 										</Link>

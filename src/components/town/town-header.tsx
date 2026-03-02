@@ -57,7 +57,7 @@ export function TownHeader() {
 	return (
 		<header>
 			{/* Top bar - sage deep */}
-			<div className="bg-sage-deep text-white/80">
+			<div className="bg-sage-deep text-white/90">
 				<div className="container mx-auto px-4">
 					<div className="flex items-center justify-between py-2 text-[13px]">
 						<div className="flex items-center gap-6">
@@ -201,7 +201,7 @@ export function TownHeader() {
 											<Link
 												key={child.name}
 												href={child.href}
-												className="block py-1 text-sm text-[#7A756C] hover:text-sage-dark transition-colors"
+												className="block py-1 text-sm text-[#4A4640] hover:text-sage-dark transition-colors"
 												onClick={() => setMobileMenuOpen(false)}
 											>
 												{child.name}

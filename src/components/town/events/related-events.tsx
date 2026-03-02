@@ -39,7 +39,7 @@ export async function RelatedEvents({ currentEventId, categories }: RelatedEvent
 						<div key={event.id} className="pb-4 border-b last:border-0">
 							<Link
 								href={`/events/${event.slug}`}
-								className="block hover:text-blue-600 transition-colors"
+								className="block hover:text-sage-dark transition-colors"
 							>
 								<h4 className="font-medium mb-2 line-clamp-2">{event.title}</h4>
 								<div className="space-y-1 text-xs text-muted-foreground">

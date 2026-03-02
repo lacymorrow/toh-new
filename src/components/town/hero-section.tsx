@@ -19,7 +19,7 @@ export async function HeroSection() {
 						<h2 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4">
 							{firstSlide?.title ?? "Welcome to the Town of Harmony"}
 						</h2>
-						<p className="text-lg text-white/75 mb-8 max-w-[480px] leading-relaxed">
+						<p className="text-lg text-white/90 mb-8 max-w-[480px] leading-relaxed">
 							{firstSlide?.description ??
 								"Where Harmony LIVES and SINGS! A proud community rooted in southern tradition, natural beauty, and neighborly spirit."}
 						</p>

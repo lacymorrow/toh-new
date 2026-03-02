@@ -69,7 +69,7 @@ export function QuickLinks() {
 					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
 						Town Services
 					</h2>
-					<p className="text-[#7A756C] text-base">Find what you need quickly</p>
+					<p className="text-[#4A4640] text-base">Find what you need quickly</p>
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 					{quickLinks.map((link) => {
@@ -85,7 +85,7 @@ export function QuickLinks() {
 								</div>
 								<div>
 									<h3 className="font-semibold text-base text-[#2D2A24] mb-1">{link.title}</h3>
-									<p className="text-[13px] text-[#7A756C]">{link.description}</p>
+									<p className="text-[13px] text-[#4A4640]">{link.description}</p>
 								</div>
 							</Link>
 						);

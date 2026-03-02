@@ -1,13 +1,36 @@
-import type { Where } from "payload";
-import { getPayloadClient } from "./payload";
+import { news } from "@/data/town/news";
+import { events } from "@/data/town/events";
+import { meetings } from "@/data/town/meetings";
+import { teamMembers } from "@/data/town/team-members";
+import { historyArticles } from "@/data/town/history";
+import { pointsOfInterest } from "@/data/town/points-of-interest";
+import { resources } from "@/data/town/resources";
+import { emergencyServices } from "@/data/town/emergency-services";
+import { announcements } from "@/data/town/announcements";
+import { businesses } from "@/data/town/businesses";
+import { elections } from "@/data/town/elections";
+import { settings } from "@/data/town/settings";
+import { navigation } from "@/data/town/navigation";
+import { homepage } from "@/data/town/homepage";
 
 /**
- * Typed helper functions for fetching town content from Payload CMS.
- * All functions gracefully return empty/null when Payload is unavailable.
+ * Static data access layer for town content.
+ * All functions stay async to keep existing await calls valid.
+ * Returns the same shapes as the previous Payload CMS queries.
  */
 
-// Re-export for convenience
-export { getPayloadClient };
+const paginate = <T>(items: T[], limit: number, page: number) => {
+	const totalDocs = items.length;
+	const totalPages = Math.ceil(totalDocs / limit);
+	const start = (page - 1) * limit;
+	const docs = items.slice(start, start + limit);
+	return { docs, totalDocs, totalPages, page };
+};
+
+const likeMatch = (value: string | undefined, search: string): boolean => {
+	if (!value) return false;
+	return value.toLowerCase().includes(search.toLowerCase());
+};
 
 /**
  * Get published news articles
@@ -18,63 +41,37 @@ export const getNews = async (options?: {
 	category?: string;
 	search?: string;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, category, search } = options ?? {};
 
-	const where: Where = {
-		status: { equals: "published" },
-	};
+	let filtered = news.filter((n) => n.status === "published");
 
 	if (category) {
-		where.categories = { contains: category };
+		filtered = filtered.filter((n) => n.categories.includes(category));
 	}
 
 	if (search) {
-		where.or = [
-			{ title: { like: search } },
-			{ excerpt: { like: search } },
-		];
+		filtered = filtered.filter(
+			(n) => likeMatch(n.title, search) || likeMatch(n.excerpt, search),
+		);
 	}
 
-	return payload.find({
-		collection: "news",
-		where,
-		sort: "-publishedAt",
-		limit,
-		page,
-	});
+	filtered.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single news article by slug
  */
 export const getNewsBySlug = async (slug: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	const result = await payload.find({
-		collection: "news",
-		where: { slug: { equals: slug } },
-		limit: 1,
-	});
-
-	return result.docs[0] ?? null;
+	return news.find((n) => n.slug === slug) ?? null;
 };
 
 /**
- * Increment view count on a news article
+ * Increment view count on a news article (no-op for static data)
  */
-export const incrementNewsViewCount = async (id: number, currentCount: number) => {
-	const payload = await getPayloadClient();
-	if (!payload) return;
-
-	await payload.update({
-		collection: "news",
-		id,
-		data: { viewCount: (currentCount || 0) + 1 },
-	});
+export const incrementNewsViewCount = async (_id: number, _currentCount: number) => {
+	// No-op for static data
 };
 
 /**
@@ -88,55 +85,39 @@ export const getEvents = async (options?: {
 	month?: string;
 	year?: string;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, category, status, month, year } = options ?? {};
 
-	const conditions: Where[] = [];
+	let filtered = [...events];
 
 	if (status) {
-		conditions.push({ status: { equals: status } });
+		filtered = filtered.filter((e) => e.status === status);
 	} else {
-		conditions.push({ status: { equals: "upcoming" } });
+		filtered = filtered.filter((e) => e.status === "upcoming");
 	}
 
 	if (category) {
-		conditions.push({ categories: { contains: category } });
+		filtered = filtered.filter((e) => e.categories.includes(category));
 	}
 
 	if (month && year) {
 		const monthNum = parseInt(month);
 		const yearNum = parseInt(year);
-		const startDate = new Date(yearNum, monthNum - 1, 1).toISOString();
-		const endDate = new Date(yearNum, monthNum, 0).toISOString();
-		conditions.push({ eventDate: { greater_than_equal: startDate } });
-		conditions.push({ eventDate: { less_than_equal: endDate } });
+		filtered = filtered.filter((e) => {
+			const d = new Date(e.eventDate);
+			return d.getMonth() + 1 === monthNum && d.getFullYear() === yearNum;
+		});
 	}
 
-	return payload.find({
-		collection: "events",
-		where: conditions.length > 0 ? { and: conditions } : {},
-		sort: "eventDate",
-		limit,
-		page,
-	});
+	filtered.sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime());
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single event by slug
  */
 export const getEventBySlug = async (slug: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	const result = await payload.find({
-		collection: "events",
-		where: { slug: { equals: slug } },
-		limit: 1,
-	});
-
-	return result.docs[0] ?? null;
+	return events.find((e) => e.slug === slug) ?? null;
 };
 
 /**
@@ -151,232 +132,126 @@ export const getMeetings = async (options?: {
 	status?: string;
 	hasRecordings?: boolean;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, type, month, year, status, hasRecordings } = options ?? {};
 
-	const conditions: Where[] = [
-		{ isPublic: { equals: true } },
-	];
+	let filtered = meetings.filter((m) => m.isPublic);
 
 	if (type) {
-		conditions.push({ type: { equals: type } });
+		filtered = filtered.filter((m) => m.type === type);
 	}
 
 	if (month && year) {
 		const monthNum = parseInt(month);
 		const yearNum = parseInt(year);
-		const startDate = new Date(yearNum, monthNum - 1, 1).toISOString().split("T")[0];
-		const endDate = new Date(yearNum, monthNum, 0).toISOString().split("T")[0];
-		conditions.push({ meetingDate: { greater_than_equal: startDate } });
-		conditions.push({ meetingDate: { less_than_equal: endDate } });
+		filtered = filtered.filter((m) => {
+			const d = new Date(m.meetingDate);
+			return d.getMonth() + 1 === monthNum && d.getFullYear() === yearNum;
+		});
 	} else if (year) {
 		const yearNum = parseInt(year);
-		const startDate = new Date(yearNum, 0, 1).toISOString().split("T")[0];
-		const endDate = new Date(yearNum, 11, 31).toISOString().split("T")[0];
-		conditions.push({ meetingDate: { greater_than_equal: startDate } });
-		conditions.push({ meetingDate: { less_than_equal: endDate } });
+		filtered = filtered.filter((m) => {
+			const d = new Date(m.meetingDate);
+			return d.getFullYear() === yearNum;
+		});
 	}
 
 	if (status) {
 		const today = new Date().toISOString().split("T")[0];
 		switch (status) {
 			case "upcoming":
-				conditions.push({ meetingDate: { greater_than_equal: today } });
+				filtered = filtered.filter((m) => m.meetingDate.split("T")[0] >= today!);
 				break;
 			case "past":
-				conditions.push({ meetingDate: { less_than_equal: today } });
+				filtered = filtered.filter((m) => m.meetingDate.split("T")[0] <= today!);
 				break;
 			case "has-recordings":
-				conditions.push({
-					or: [
-						{ videoUrl: { exists: true } },
-						{ audioUrl: { exists: true } },
-					],
-				});
+				filtered = filtered.filter((m) => m.videoUrl || m.audioUrl);
 				break;
 			case "has-minutes":
-				conditions.push({
-					or: [
-						{ minutes: { exists: true } },
-						{ minutesUrl: { exists: true } },
-					],
-				});
+				filtered = filtered.filter((m) => m.minutes || m.minutesUrl);
 				break;
 		}
 	}
 
 	if (hasRecordings) {
-		conditions.push({
-			or: [
-				{ videoUrl: { exists: true } },
-				{ audioUrl: { exists: true } },
-			],
-		});
+		filtered = filtered.filter((m) => m.videoUrl || m.audioUrl);
 	}
 
-	return payload.find({
-		collection: "meetings",
-		where: { and: conditions },
-		sort: "-meetingDate",
-		limit,
-		page,
-	});
+	filtered.sort((a, b) => new Date(b.meetingDate).getTime() - new Date(a.meetingDate).getTime());
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single meeting by slug
  */
 export const getMeetingBySlug = async (slug: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	const result = await payload.find({
-		collection: "meetings",
-		where: { slug: { equals: slug } },
-		limit: 1,
-	});
-
-	return result.docs[0] ?? null;
+	return meetings.find((m) => m.slug === slug) ?? null;
 };
 
 /**
  * Get team members, sorted by category and sortOrder
  */
 export const getTeamMembers = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
-	const result = await payload.find({
-		collection: "team-members",
-		where: { isActive: { equals: true } },
-		sort: "sortOrder",
-		limit: 100,
-	});
-
-	return result.docs;
+	return teamMembers
+		.filter((m) => m.isActive)
+		.sort((a, b) => a.sortOrder - b.sortOrder);
 };
 
 /**
  * Get history articles
  */
 export const getHistoryArticles = async (type?: "period" | "landmark") => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
-	const where: Where = {};
+	let filtered = [...historyArticles];
 	if (type) {
-		where.type = { equals: type };
+		filtered = filtered.filter((a) => a.type === type);
 	}
-
-	const result = await payload.find({
-		collection: "history-articles",
-		where,
-		sort: "sortOrder",
-		limit: 100,
-	});
-
-	return result.docs;
+	return filtered.sort((a, b) => a.sortOrder - b.sortOrder);
 };
 
 /**
  * Get points of interest
  */
 export const getPointsOfInterest = async (category?: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
-	const where: Where = {};
+	let filtered = [...pointsOfInterest];
 	if (category) {
-		where.category = { equals: category };
+		filtered = filtered.filter((p) => p.category === category);
 	}
-
-	const result = await payload.find({
-		collection: "points-of-interest",
-		where,
-		sort: "name",
-		limit: 100,
-	});
-
-	return result.docs;
+	return filtered.sort((a, b) => a.name.localeCompare(b.name));
 };
 
 /**
  * Get resources
  */
 export const getResources = async (options?: { type?: string; category?: string }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
-	const conditions: Where[] = [];
-
+	let filtered = [...resources];
 	if (options?.type) {
-		conditions.push({ type: { equals: options.type } });
+		filtered = filtered.filter((r) => r.type === options.type);
 	}
 	if (options?.category) {
-		conditions.push({ category: { equals: options.category } });
+		filtered = filtered.filter((r) => r.category === options.category);
 	}
-
-	const result = await payload.find({
-		collection: "resources",
-		where: conditions.length > 0 ? { and: conditions } : {},
-		sort: "sortOrder",
-		limit: 100,
-	});
-
-	return result.docs;
+	return filtered.sort((a, b) => a.sortOrder - b.sortOrder);
 };
 
 /**
  * Get emergency services
  */
 export const getEmergencyServices = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
-	const result = await payload.find({
-		collection: "emergency-services",
-		sort: "sortOrder",
-		limit: 100,
-	});
-
-	return result.docs;
+	return [...emergencyServices].sort((a, b) => a.sortOrder - b.sortOrder);
 };
 
 /**
  * Get active announcements (emergency alerts)
  */
 export const getActiveAnnouncements = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return [];
-
 	const now = new Date().toISOString();
-
-	const result = await payload.find({
-		collection: "announcements",
-		where: {
-			and: [
-				{ isActive: { equals: true } },
-				{
-					or: [
-						{ startsAt: { exists: false } },
-						{ startsAt: { less_than_equal: now } },
-					],
-				},
-				{
-					or: [
-						{ endsAt: { exists: false } },
-						{ endsAt: { greater_than_equal: now } },
-					],
-				},
-			],
-		},
-		sort: "-level",
-		limit: 10,
+	return announcements.filter((a) => {
+		if (!a.isActive) return false;
+		if (a.startsAt && a.startsAt > now) return false;
+		if (a.endsAt && a.endsAt < now) return false;
+		return true;
 	});
-
-	return result.docs;
 };
 
 /**
@@ -388,58 +263,34 @@ export const getAnnouncements = async (options?: {
 	level?: string;
 	activeOnly?: boolean;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, level, activeOnly } = options ?? {};
 
-	const conditions: Where[] = [];
+	let filtered = [...announcements];
 
 	if (level) {
-		conditions.push({ level: { equals: level } });
+		filtered = filtered.filter((a) => a.level === level);
 	}
 
 	if (activeOnly) {
 		const now = new Date().toISOString();
-		conditions.push({ isActive: { equals: true } });
-		conditions.push({
-			or: [
-				{ startsAt: { exists: false } },
-				{ startsAt: { less_than_equal: now } },
-			],
-		});
-		conditions.push({
-			or: [
-				{ endsAt: { exists: false } },
-				{ endsAt: { greater_than_equal: now } },
-			],
+		filtered = filtered.filter((a) => {
+			if (!a.isActive) return false;
+			if (a.startsAt && a.startsAt > now) return false;
+			if (a.endsAt && a.endsAt < now) return false;
+			return true;
 		});
 	}
 
-	return payload.find({
-		collection: "announcements",
-		where: conditions.length > 0 ? { and: conditions } : {},
-		sort: "-createdAt",
-		limit,
-		page,
-	});
+	filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single announcement by ID
  */
 export const getAnnouncementById = async (id: number) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	try {
-		return await payload.findByID({
-			collection: "announcements",
-			id,
-		});
-	} catch {
-		return null;
-	}
+	return announcements.find((a) => a.id === id) ?? null;
 };
 
 /**
@@ -452,53 +303,39 @@ export const getBusinesses = async (options?: {
 	search?: string;
 	featured?: boolean;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, category, search, featured } = options ?? {};
 
-	const conditions: Where[] = [];
+	let filtered = [...businesses];
 
 	if (category) {
-		conditions.push({ category: { equals: category } });
+		filtered = filtered.filter((b) => b.category === category);
 	}
 
 	if (search) {
-		conditions.push({
-			or: [
-				{ name: { like: search } },
-				{ description: { like: search } },
-			],
-		});
+		filtered = filtered.filter(
+			(b) => likeMatch(b.name, search) || likeMatch(b.description, search),
+		);
 	}
 
 	if (featured) {
-		conditions.push({ isFeatured: { equals: true } });
+		filtered = filtered.filter((b) => b.isFeatured);
 	}
 
-	return payload.find({
-		collection: "businesses",
-		where: conditions.length > 0 ? { and: conditions } : {},
-		sort: "-isFeatured,-isVerified,name",
-		limit,
-		page,
+	// Sort: featured first, then verified, then alphabetical
+	filtered.sort((a, b) => {
+		if (a.isFeatured !== b.isFeatured) return a.isFeatured ? -1 : 1;
+		if (a.isVerified !== b.isVerified) return a.isVerified ? -1 : 1;
+		return a.name.localeCompare(b.name);
 	});
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single business by slug
  */
 export const getBusinessBySlug = async (slug: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	const result = await payload.find({
-		collection: "businesses",
-		where: { slug: { equals: slug } },
-		limit: 1,
-	});
-
-	return result.docs[0] ?? null;
+	return businesses.find((b) => b.slug === slug) ?? null;
 };
 
 /**
@@ -510,54 +347,35 @@ export const getElections = async (options?: {
 	status?: "upcoming" | "today" | "past";
 	search?: string;
 }) => {
-	const payload = await getPayloadClient();
-	if (!payload) return { docs: [], totalDocs: 0, totalPages: 0, page: 1 };
-
 	const { limit = 10, page = 1, status, search } = options ?? {};
 
-	const conditions: Where[] = [];
+	let filtered = [...elections];
 	const today = new Date().toISOString().split("T")[0];
 
 	if (status === "upcoming") {
-		conditions.push({ electionDate: { greater_than: today } });
+		filtered = filtered.filter((e) => e.electionDate.split("T")[0] > today!);
 	} else if (status === "today") {
-		conditions.push({ electionDate: { equals: today } });
+		filtered = filtered.filter((e) => e.electionDate.split("T")[0] === today);
 	} else if (status === "past") {
-		conditions.push({ electionDate: { less_than: today } });
+		filtered = filtered.filter((e) => e.electionDate.split("T")[0]! < today!);
 	}
 
 	if (search) {
-		conditions.push({
-			or: [
-				{ title: { like: search } },
-				{ description: { like: search } },
-			],
-		});
+		filtered = filtered.filter(
+			(e) => likeMatch(e.title, search) || likeMatch(e.description, search),
+		);
 	}
 
-	return payload.find({
-		collection: "elections",
-		where: conditions.length > 0 ? { and: conditions } : {},
-		sort: "-electionDate",
-		limit,
-		page,
-	});
+	filtered.sort((a, b) => new Date(b.electionDate).getTime() - new Date(a.electionDate).getTime());
+
+	return paginate(filtered, limit, page);
 };
 
 /**
  * Get a single election by slug
  */
 export const getElectionBySlug = async (slug: string) => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	const result = await payload.find({
-		collection: "elections",
-		where: { slug: { equals: slug } },
-		limit: 1,
-	});
-
-	return result.docs[0] ?? null;
+	return elections.find((e) => e.slug === slug) ?? null;
 };
 
 // --- Globals ---
@@ -566,40 +384,19 @@ export const getElectionBySlug = async (slug: string) => {
  * Get settings global
  */
 export const getSettings = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	try {
-		return await payload.findGlobal({ slug: "settings" });
-	} catch {
-		return null;
-	}
+	return settings;
 };
 
 /**
  * Get navigation global
  */
 export const getNavigation = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	try {
-		return await payload.findGlobal({ slug: "navigation" });
-	} catch {
-		return null;
-	}
+	return navigation;
 };
 
 /**
  * Get homepage global
  */
 export const getHomepage = async () => {
-	const payload = await getPayloadClient();
-	if (!payload) return null;
-
-	try {
-		return await payload.findGlobal({ slug: "homepage" });
-	} catch {
-		return null;
-	}
+	return homepage;
 };

@@ -39,26 +39,26 @@ const getLevelColors = (level: string) => {
 				text: "text-red-800",
 				icon: "text-red-600",
 				badge: "bg-red-100 text-red-800",
-				headerBg: "bg-red-600",
+				headerBg: "bg-barn-red",
 			};
 		case "warning":
 			return {
-				bg: "bg-yellow-50",
-				border: "border-yellow-200",
-				text: "text-yellow-800",
-				icon: "text-yellow-600",
-				badge: "bg-yellow-100 text-yellow-800",
-				headerBg: "bg-yellow-600",
+				bg: "bg-amber-50",
+				border: "border-amber-200",
+				text: "text-amber-900",
+				icon: "text-amber-600",
+				badge: "bg-amber-100 text-amber-900",
+				headerBg: "bg-amber-600",
 			};
 		case "info":
 		default:
 			return {
-				bg: "bg-blue-50",
-				border: "border-blue-200",
-				text: "text-blue-800",
-				icon: "text-blue-600",
-				badge: "bg-blue-100 text-blue-800",
-				headerBg: "bg-blue-600",
+				bg: "bg-sage/5",
+				border: "border-sage/20",
+				text: "text-sage-dark",
+				icon: "text-sage",
+				badge: "bg-sage/10 text-sage-dark",
+				headerBg: "bg-sage",
 			};
 	}
 };
@@ -106,12 +106,12 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 									</span>
 								)}
 								{!isActive && (
-									<span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-bold">
+									<span className="px-3 py-1 bg-stone text-[#4A4640] rounded-full text-sm font-bold">
 										INACTIVE
 									</span>
 								)}
 							</div>
-							<CardTitle className={`text-2xl ${colors.text} mb-3`}>{alert.title}</CardTitle>
+							<CardTitle className={`text-2xl font-serif ${colors.text} mb-3`}>{alert.title}</CardTitle>
 						</div>
 					</div>
 				</CardHeader>
@@ -129,7 +129,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{alert.instructions && (
 						<Card>
 							<CardHeader>
-								<CardTitle className="text-lg text-gray-900">Instructions & Actions</CardTitle>
+								<CardTitle className="text-lg text-sage-dark font-serif">Instructions & Actions</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<div className="prose prose-sm max-w-none">
@@ -143,10 +143,10 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{alert.externalUrl && (
 						<Card>
 							<CardHeader>
-								<CardTitle className="text-lg text-gray-900">Additional Information</CardTitle>
+								<CardTitle className="text-lg text-sage-dark font-serif">Additional Information</CardTitle>
 							</CardHeader>
 							<CardContent>
-								<Button asChild variant="outline" className="w-full">
+								<Button asChild variant="outline" className="w-full border-sage/30 hover:bg-sage/5 hover:text-sage-dark">
 									<a
 										href={alert.externalUrl}
 										target="_blank"
@@ -166,46 +166,46 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{/* Alert Timeline */}
 					<Card>
 						<CardHeader>
-							<CardTitle className="text-lg text-gray-900 flex items-center gap-2">
+							<CardTitle className="text-lg text-sage-dark font-serif flex items-center gap-2">
 								<Clock className="h-5 w-5" />
 								Alert Timeline
 							</CardTitle>
 						</CardHeader>
 						<CardContent className="space-y-3">
 							<div className="flex items-center gap-3 text-sm">
-								<Calendar className="h-4 w-4 text-gray-500" />
+								<Calendar className="h-4 w-4 text-[#7A756C]" />
 								<div>
-									<div className="font-medium">Issued</div>
-									<div className="text-gray-600">{new Date(alert.createdAt).toLocaleString()}</div>
+									<div className="font-medium text-[#2D2A24]">Issued</div>
+									<div className="text-[#4A4640]">{new Date(alert.createdAt).toLocaleString()}</div>
 								</div>
 							</div>
 
 							{alert.startsAt && (
 								<div className="flex items-center gap-3 text-sm">
-									<Clock className="h-4 w-4 text-green-500" />
+									<Clock className="h-4 w-4 text-sage" />
 									<div>
-										<div className="font-medium">Active From</div>
-										<div className="text-gray-600">{new Date(alert.startsAt).toLocaleString()}</div>
+										<div className="font-medium text-[#2D2A24]">Active From</div>
+										<div className="text-[#4A4640]">{new Date(alert.startsAt).toLocaleString()}</div>
 									</div>
 								</div>
 							)}
 
 							{alert.endsAt && (
 								<div className="flex items-center gap-3 text-sm">
-									<Clock className="h-4 w-4 text-red-500" />
+									<Clock className="h-4 w-4 text-barn-red" />
 									<div>
-										<div className="font-medium">Active Until</div>
-										<div className="text-gray-600">{new Date(alert.endsAt).toLocaleString()}</div>
+										<div className="font-medium text-[#2D2A24]">Active Until</div>
+										<div className="text-[#4A4640]">{new Date(alert.endsAt).toLocaleString()}</div>
 									</div>
 								</div>
 							)}
 
 							{alert.updatedAt && alert.updatedAt !== alert.createdAt && (
 								<div className="flex items-center gap-3 text-sm">
-									<Clock className="h-4 w-4 text-blue-500" />
+									<Clock className="h-4 w-4 text-sage" />
 									<div>
-										<div className="font-medium">Last Updated</div>
-										<div className="text-gray-600">
+										<div className="font-medium text-[#2D2A24]">Last Updated</div>
+										<div className="text-[#4A4640]">
 											{new Date(alert.updatedAt).toLocaleString()}
 										</div>
 									</div>
@@ -218,7 +218,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{affectedAreas.length > 0 && (
 						<Card>
 							<CardHeader>
-								<CardTitle className="text-lg text-gray-900 flex items-center gap-2">
+								<CardTitle className="text-lg text-sage-dark font-serif flex items-center gap-2">
 									<MapPin className="h-5 w-5" />
 									Affected Areas
 								</CardTitle>
@@ -226,8 +226,8 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 							<CardContent>
 								<ul className="space-y-1">
 									{affectedAreas.map((area, index) => (
-										<li key={index} className="text-sm text-gray-700 flex items-center gap-2">
-											<span className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
+										<li key={index} className="text-sm text-[#4A4640] flex items-center gap-2">
+											<span className="w-1.5 h-1.5 bg-sage rounded-full" />
 											{area}
 										</li>
 									))}
@@ -240,18 +240,18 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{hasContactInfo && (
 						<Card>
 							<CardHeader>
-								<CardTitle className="text-lg text-gray-900 flex items-center gap-2">
+								<CardTitle className="text-lg text-sage-dark font-serif flex items-center gap-2">
 									<Phone className="h-5 w-5" />
 									Emergency Contacts
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
-								<div className="text-sm text-gray-700 space-y-1">
-									{contactInfo.name && <p className="font-medium">{contactInfo.name}</p>}
+								<div className="text-sm text-[#4A4640] space-y-1">
+									{contactInfo.name && <p className="font-medium text-[#2D2A24]">{contactInfo.name}</p>}
 									{contactInfo.phone && (
 										<p>
 											Phone:{" "}
-											<a href={`tel:${contactInfo.phone}`} className="text-blue-600 hover:underline">
+											<a href={`tel:${contactInfo.phone}`} className="text-sage hover:text-sage-dark hover:underline">
 												{contactInfo.phone}
 											</a>
 										</p>
@@ -259,7 +259,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 									{contactInfo.email && (
 										<p>
 											Email:{" "}
-											<a href={`mailto:${contactInfo.email}`} className="text-blue-600 hover:underline">
+											<a href={`mailto:${contactInfo.email}`} className="text-sage hover:text-sage-dark hover:underline">
 												{contactInfo.email}
 											</a>
 										</p>
@@ -272,16 +272,16 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 					{/* Emergency Contacts */}
 					<Card className="bg-red-50 border-red-200">
 						<CardHeader>
-							<CardTitle className="text-lg text-red-800">Emergency Services</CardTitle>
+							<CardTitle className="text-lg text-barn-red font-serif">Emergency Services</CardTitle>
 						</CardHeader>
 						<CardContent className="space-y-2">
 							<div className="text-sm">
-								<div className="font-semibold text-red-800">Emergency: 911</div>
-								<div className="text-red-700">Police, Fire, Medical</div>
+								<div className="font-semibold text-barn-red">Emergency: 911</div>
+								<div className="text-[#4A4640]">Police, Fire, Medical</div>
 							</div>
 							<div className="text-sm">
-								<div className="font-semibold text-red-800">Town Emergency: (304) 555-0100</div>
-								<div className="text-red-700">Non-life-threatening emergencies</div>
+								<div className="font-semibold text-barn-red">Town Emergency: (304) 555-0100</div>
+								<div className="text-[#4A4640]">Non-life-threatening emergencies</div>
 							</div>
 						</CardContent>
 					</Card>

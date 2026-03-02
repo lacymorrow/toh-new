@@ -23,7 +23,7 @@ const footerLinks = {
 
 export function TownFooter() {
 	return (
-		<footer className="bg-[#1E2118] text-white/60">
+		<footer className="bg-[#1E2118] text-white/80">
 			<div className="container mx-auto px-4 py-12">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
 					{/* Town Info */}
@@ -81,7 +81,7 @@ export function TownFooter() {
 									<li key={link.name}>
 										<Link
 											href={link.href}
-											className="text-sm text-white/60 hover:text-wheat transition-colors"
+											className="text-sm text-white/70 hover:text-wheat transition-colors"
 										>
 											{link.name}
 										</Link>
@@ -97,13 +97,13 @@ export function TownFooter() {
 					<div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[13px]">
 						<span>&copy; {new Date().getFullYear()} Town of Harmony. All rights reserved.</span>
 						<div className="flex gap-5">
-							<Link href="/privacy-policy" className="text-white/50 hover:text-wheat transition-colors">
+							<Link href="/privacy-policy" className="text-white/65 hover:text-wheat transition-colors">
 								Privacy
 							</Link>
-							<Link href="/accessibility" className="text-white/50 hover:text-wheat transition-colors">
+							<Link href="/accessibility" className="text-white/65 hover:text-wheat transition-colors">
 								Accessibility
 							</Link>
-							<Link href="/sitemap" className="text-white/50 hover:text-wheat transition-colors">
+							<Link href="/sitemap" className="text-white/65 hover:text-wheat transition-colors">
 								Sitemap
 							</Link>
 						</div>

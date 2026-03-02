@@ -13,11 +13,11 @@ import { PayloadRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Business } from "@/payload-types";
+import type { TownBusiness } from "@/data/town/types";
 import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 interface BusinessDetailProps {
-	business: Business;
+	business: TownBusiness;
 }
 
 const categoryLabels: Record<string, string> = {
@@ -122,7 +122,7 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 										return (
 											<div
 												key={day}
-												className={`flex justify-between py-2 ${isToday ? "font-semibold text-blue-600" : ""}`}
+												className={`flex justify-between py-2 ${isToday ? "font-semibold text-sage" : ""}`}
 											>
 												<span>{dayLabels[day]}</span>
 												<span>{hours === "Closed" ? "Closed" : String(hours)}</span>
@@ -155,7 +155,7 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 									<Phone className="h-5 w-5 text-muted-foreground" />
 									<a
 										href={`tel:${business.phone}`}
-										className="hover:text-blue-600 transition-colors"
+										className="hover:text-sage transition-colors"
 									>
 										{business.phone}
 									</a>
@@ -167,7 +167,7 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 									<Mail className="h-5 w-5 text-muted-foreground" />
 									<a
 										href={`mailto:${business.email}`}
-										className="hover:text-blue-600 transition-colors"
+										className="hover:text-sage transition-colors"
 									>
 										{business.email}
 									</a>
@@ -181,7 +181,7 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 										href={business.website}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="hover:text-blue-600 transition-colors"
+										className="hover:text-sage transition-colors"
 									>
 										Visit website
 										<ExternalLink className="inline ml-1 h-3 w-3" />

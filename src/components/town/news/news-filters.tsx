@@ -79,8 +79,8 @@ export function NewsFilters({ currentCategory, currentSearch }: NewsFiltersProps
 								onClick={() => handleCategoryChange(category.value)}
 								className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
 									currentCategory === category.value
-										? "bg-blue-100 text-blue-900"
-										: "hover:bg-gray-100"
+										? "bg-stone text-[#2D2A24]"
+										: "hover:bg-stone"
 								}`}
 							>
 								{category.label}
@@ -98,17 +98,17 @@ export function NewsFilters({ currentCategory, currentSearch }: NewsFiltersProps
 				<CardContent>
 					<ul className="space-y-2 text-sm">
 						<li>
-							<a href="/news?month=2024-08" className="text-blue-600 hover:underline">
+							<a href="/news?month=2024-08" className="text-sage hover:underline">
 								August 2024
 							</a>
 						</li>
 						<li>
-							<a href="/news?month=2024-07" className="text-blue-600 hover:underline">
+							<a href="/news?month=2024-07" className="text-sage hover:underline">
 								July 2024
 							</a>
 						</li>
 						<li>
-							<a href="/news?month=2024-06" className="text-blue-600 hover:underline">
+							<a href="/news?month=2024-06" className="text-sage hover:underline">
 								June 2024
 							</a>
 						</li>
