@@ -74,8 +74,8 @@ export const EmergencyServices = async () => {
 								>
 									<CardHeader className="pb-3">
 										<div className="flex items-center gap-3">
-											<Icon className="h-6 w-6 text-sage-dark" />
-											<CardTitle className="text-lg">{service.title}</CardTitle>
+											<Icon className="h-6 w-6 text-[#2D2A24]" />
+											<CardTitle className="text-lg text-[#2D2A24]">{service.title}</CardTitle>
 										</div>
 									</CardHeader>
 
@@ -100,7 +100,7 @@ export const EmergencyServices = async () => {
 												<ul className="text-xs text-[#4A4640] space-y-1">
 													{preparedness.map((tip, tipIndex) => (
 														<li key={tipIndex} className="flex items-start gap-2">
-															<span className="text-sage mt-1">&bull;</span>
+															<span className="text-[#7A756C] mt-1">&bull;</span>
 															<span>{tip}</span>
 														</li>
 													))}
