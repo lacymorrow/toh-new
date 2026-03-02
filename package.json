@@ -309,5 +309,8 @@
     "onnxruntime-node",
     "protobufjs",
     "unrs-resolver"
-  ]
+  ],
+  "engines": {
+    "node": ">=18 <23"
+  }
 }
