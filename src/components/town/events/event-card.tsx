@@ -32,7 +32,7 @@ export function EventCard({ event }: EventCardProps) {
 			<CardHeader>
 				<div className="flex justify-between items-start gap-4">
 					<div className="flex-1">
-						<Link href={`/events/${event.slug}`} className="hover:text-blue-600 transition-colors">
+						<Link href={`/events/${event.slug}`} className="hover:text-sage-dark transition-colors">
 							<h3 className="text-xl font-semibold mb-2">{event.title}</h3>
 						</Link>
 
@@ -100,7 +100,7 @@ export function EventCard({ event }: EventCardProps) {
 							href={event.registrationUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+							className="text-sage font-semibold hover:text-sage-dark text-sm font-medium"
 						>
 							Register for this event →
 						</a>

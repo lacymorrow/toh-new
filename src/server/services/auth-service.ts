@@ -7,7 +7,9 @@ import { STATUS_CODES } from "@/config/status-codes";
 // This service can be imported by Node scripts; avoid importing "server-only" here
 import { env } from "@/env";
 import { logger } from "@/lib/logger";
-import { getPayloadClient, payload } from "@/lib/payload/payload";
+// Payload CMS has been removed — stub out the client
+const getPayloadClient = async (): Promise<any> => null;
+const payload: any = null;
 import { signInSchema } from "@/lib/schemas/auth";
 import { signIn, signOut } from "@/server/auth";
 import { db } from "@/server/db";

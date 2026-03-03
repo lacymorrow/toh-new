@@ -84,8 +84,8 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 									onClick={() => handleStatusChange(status.value)}
 									className={`w-full flex items-center gap-3 text-left px-3 py-2 rounded-md transition-colors ${
 										(currentStatus || "all") === status.value
-											? "bg-blue-100 text-blue-900"
-											: "hover:bg-gray-100"
+											? "bg-stone text-[#2D2A24]"
+											: "hover:bg-stone"
 									}`}
 								>
 									<Icon className="h-4 w-4" />
@@ -112,7 +112,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 								href="https://ovr.sos.wv.gov/Register"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
+								className="text-sage hover:underline"
 							>
 								Register to Vote
 							</a>
@@ -122,7 +122,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 								href="https://apps.sos.wv.gov/elections/voter/amiregisteredtovote"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
+								className="text-sage hover:underline"
 							>
 								Check Registration Status
 							</a>
@@ -132,7 +132,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 								href="https://sos.wv.gov/elections/Pages/VoterEducation.aspx"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
+								className="text-sage hover:underline"
 							>
 								Voter Education
 							</a>
@@ -142,7 +142,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 								href="https://sos.wv.gov/elections/Pages/AbsenteeBallot.aspx"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
+								className="text-sage hover:underline"
 							>
 								Absentee Voting
 							</a>
@@ -160,7 +160,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<div className="space-y-2 text-sm text-gray-600">
+					<div className="space-y-2 text-sm text-[#4A4640]">
 						<p>
 							<strong>Registration Deadline:</strong>
 							<br />

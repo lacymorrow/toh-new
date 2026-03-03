@@ -1,11 +1,21 @@
 import { Calendar, FileText, MapPin, Users } from "lucide-react";
 import Link from "next/link";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Election } from "@/server/db/schema-town";
 
 interface ElectionCardProps {
-	election: Election;
+	election: {
+		id: number;
+		title: string;
+		slug: string;
+		description?: any;
+		electionDate: string;
+		registrationDeadline?: string | null;
+		pollingLocations?: { name: string; address: string; hours?: string | null }[] | null;
+		sampleBallot?: any;
+		resultsUrl?: string | null;
+	};
 	candidateCount?: number;
 }
 
@@ -36,6 +46,9 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 		});
 	};
 
+	// Extract plain text from rich text description for card display
+	const descriptionText = extractTextFromRichText(election.description);
+
 	return (
 		<Card className="hover:shadow-lg transition-shadow h-full flex flex-col">
 			<CardHeader>
@@ -43,7 +56,7 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 					<CardTitle className="text-lg line-clamp-2">
 						<Link
 							href={`/elections/${election.slug}`}
-							className="hover:text-blue-600 transition-colors"
+							className="hover:text-sage-dark transition-colors"
 						>
 							{election.title}
 						</Link>
@@ -51,8 +64,8 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 					<Badge variant={status.variant}>{status.label}</Badge>
 				</div>
 
-				{election.description && (
-					<p className="text-sm text-gray-600 line-clamp-2 mt-2">{election.description}</p>
+				{descriptionText && (
+					<p className="text-sm text-[#4A4640] line-clamp-2 mt-2">{descriptionText}</p>
 				)}
 			</CardHeader>
 
@@ -60,10 +73,10 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 				<div className="space-y-3">
 					{/* Election Date */}
 					<div className="flex items-start gap-2 text-sm">
-						<Calendar className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+						<Calendar className="h-4 w-4 text-sage mt-0.5 flex-shrink-0" />
 						<div>
 							<p className="font-medium">Election Day</p>
-							<p className="text-gray-600">{formatDate(electionDate)}</p>
+							<p className="text-[#4A4640]">{formatDate(electionDate)}</p>
 						</div>
 					</div>
 
@@ -73,7 +86,7 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 							<FileText className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
 							<div>
 								<p className="font-medium">Registration Deadline</p>
-								<p className="text-gray-600">{formatDate(registrationDeadline)}</p>
+								<p className="text-[#4A4640]">{formatDate(registrationDeadline)}</p>
 							</div>
 						</div>
 					)}
@@ -82,7 +95,7 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 					{candidateCount > 0 && (
 						<div className="flex items-center gap-2 text-sm">
 							<Users className="h-4 w-4 text-green-600" />
-							<span className="text-gray-600">
+							<span className="text-[#4A4640]">
 								{candidateCount} candidate{candidateCount !== 1 ? "s" : ""}
 							</span>
 						</div>
@@ -94,7 +107,7 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 						election.pollingLocations.length > 0 && (
 							<div className="flex items-center gap-2 text-sm">
 								<MapPin className="h-4 w-4 text-purple-600" />
-								<span className="text-gray-600">
+								<span className="text-[#4A4640]">
 									{election.pollingLocations.length} polling location
 									{election.pollingLocations.length !== 1 ? "s" : ""}
 								</span>
@@ -105,7 +118,7 @@ export function ElectionCard({ election, candidateCount = 0 }: ElectionCardProps
 				<div className="mt-6 pt-4 border-t">
 					<Link
 						href={`/elections/${election.slug}`}
-						className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium"
+						className="inline-flex items-center gap-1 text-sage hover:text-sage-dark text-sm font-medium"
 					>
 						View Details
 						<span className="ml-1">→</span>

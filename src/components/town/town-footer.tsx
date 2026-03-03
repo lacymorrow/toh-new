@@ -1,66 +1,42 @@
-import { Facebook, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
+import { Facebook, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
 const footerLinks = {
 	"Agenda & Minutes": [
 		{ name: "Town Meetings", href: "/meetings" },
-		{ name: "Meeting Archives", href: "/meetings/archives" },
-		{ name: "Public Records", href: "/meetings/records" },
+		{ name: "Agendas & Minutes", href: "/agenda-minutes" },
 	],
 	Explore: [
 		{ name: "Points of Interest", href: "/points-of-interest" },
 		{ name: "Events", href: "/events" },
 		{ name: "News", href: "/news" },
-		{ name: "Photo Gallery", href: "/gallery" },
+		{ name: "Business Directory", href: "/business" },
 	],
 	Town: [
 		{ name: "Our Team", href: "/our-team" },
 		{ name: "History", href: "/history" },
 		{ name: "Resources", href: "/resources" },
-		{ name: "Contact Us", href: "/contact" },
 		{ name: "Emergency Services", href: "/emergency" },
+		{ name: "Contact Us", href: "/contact" },
 	],
 };
 
 export function TownFooter() {
 	return (
-		<footer className="bg-gray-900 text-gray-300">
+		<footer className="bg-[#1E2118] text-white/80">
 			<div className="container mx-auto px-4 py-12">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
 					{/* Town Info */}
-					<div className="lg:col-span-2">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-								TH
-							</div>
-							<div>
-								<h3 className="text-xl font-bold text-white">Town of Harmony</h3>
-								<p className="text-sm">North Carolina</p>
-							</div>
-						</div>
-						<p className="text-sm mb-4">
-							Where Harmony LIVES and SINGS! Serving our community with pride since 1927.
+					<div>
+						<h3 className="text-xl font-serif font-bold text-white mb-2">Town of Harmony</h3>
+						<p className="text-sm leading-relaxed mb-2">
+							Where Harmony LIVES and SINGS! Serving our community since 1927.
 						</p>
-
-						{/* Contact Info */}
-						<div className="space-y-2">
-							<div className="flex items-center gap-2">
-								<MapPin className="h-4 w-4" />
-								<span className="text-sm">3389 Harmony Hwy, Harmony, NC 28634</span>
-							</div>
-							<div className="flex items-center gap-2">
-								<Phone className="h-4 w-4" />
-								<a href="tel:704-546-2339" className="text-sm hover:text-white">
-									(704) 546-2339
-								</a>
-							</div>
-							<div className="flex items-center gap-2">
-								<Mail className="h-4 w-4" />
-								<a href="mailto:info@townofharmony.org" className="text-sm hover:text-white">
-									info@townofharmony.org
-								</a>
-							</div>
-						</div>
+						<p className="text-sm leading-relaxed">
+							3389 Harmony Hwy, Harmony, NC 28634
+							<br />
+							(704) 546-2339 &middot; info@townofharmony.org
+						</p>
 
 						{/* Social Media */}
 						<div className="flex gap-3 mt-4">
@@ -68,7 +44,8 @@ export function TownFooter() {
 								href="https://facebook.com/townofharmony"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
+								aria-label="Facebook"
 							>
 								<Facebook className="h-4 w-4" />
 							</a>
@@ -76,7 +53,8 @@ export function TownFooter() {
 								href="https://twitter.com/harmonytown"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors"
+								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
+								aria-label="Twitter"
 							>
 								<Twitter className="h-4 w-4" />
 							</a>
@@ -84,7 +62,8 @@ export function TownFooter() {
 								href="https://youtube.com/townofharmony"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
+								aria-label="YouTube"
 							>
 								<Youtube className="h-4 w-4" />
 							</a>
@@ -94,11 +73,16 @@ export function TownFooter() {
 					{/* Footer Links */}
 					{Object.entries(footerLinks).map(([category, links]) => (
 						<div key={category}>
-							<h4 className="text-white font-semibold mb-3">{category}</h4>
+							<h4 className="text-[13px] text-white/85 uppercase tracking-[1.5px] font-bold mb-4">
+								{category}
+							</h4>
 							<ul className="space-y-2">
 								{links.map((link) => (
 									<li key={link.name}>
-										<Link href={link.href} className="text-sm hover:text-white transition-colors">
+										<Link
+											href={link.href}
+											className="text-sm text-white/70 hover:text-wheat transition-colors"
+										>
 											{link.name}
 										</Link>
 									</li>
@@ -109,23 +93,15 @@ export function TownFooter() {
 				</div>
 
 				{/* Bottom Bar */}
-				<div className="border-t border-gray-800 mt-8 pt-8">
-					<div className="flex flex-col md:flex-row justify-between items-center gap-4">
-						<p className="text-sm text-center md:text-left">
-							© {new Date().getFullYear()} Town of Harmony. All rights reserved.
-						</p>
-						<div className="flex gap-4 text-sm">
-							<Link href="/privacy-policy" className="hover:text-white transition-colors">
-								Privacy Policy
+				<div className="border-t border-white/[0.08] pt-6">
+					<div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[13px]">
+						<span>&copy; {new Date().getFullYear()} Town of Harmony. All rights reserved.</span>
+						<div className="flex gap-5">
+							<Link href="/contact" className="text-white/65 hover:text-wheat transition-colors">
+								Privacy
 							</Link>
-							<Link href="/terms-of-service" className="hover:text-white transition-colors">
-								Terms of Service
-							</Link>
-							<Link href="/accessibility" className="hover:text-white transition-colors">
+							<Link href="/contact" className="text-white/65 hover:text-wheat transition-colors">
 								Accessibility
-							</Link>
-							<Link href="/sitemap" className="hover:text-white transition-colors">
-								Sitemap
 							</Link>
 						</div>
 					</div>

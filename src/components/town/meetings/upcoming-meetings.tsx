@@ -50,7 +50,7 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 					</CardTitle>
 					<Link
 						href="/meetings?status=upcoming"
-						className="text-sm text-blue-600 hover:text-blue-800"
+						className="text-sm text-sage hover:text-sage-dark"
 					>
 						View all →
 					</Link>
@@ -64,7 +64,7 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 							<Link
 								key={meeting.id}
 								href={`/meetings/${meeting.slug}`}
-								className="block p-4 border rounded-lg hover:shadow-md transition-all hover:border-blue-200"
+								className="block p-4 border rounded-lg hover:shadow-md transition-all hover:border-[#DDD7CC]"
 							>
 								<div className="flex justify-between items-start gap-4">
 									<div className="flex-1 min-w-0">
@@ -96,7 +96,7 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 												</div>
 											)}
 
-											{meeting.attendees &&
+											{!!meeting.attendees &&
 												Array.isArray(meeting.attendees) &&
 												meeting.attendees.length > 0 && (
 													<div className="flex items-center gap-2">

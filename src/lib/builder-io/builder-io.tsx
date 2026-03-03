@@ -4,6 +4,7 @@ import { builder } from "@builder.io/sdk";
 import DefaultErrorPage from "next/error";
 import type { ComponentProps } from "react";
 import { env } from "@/env";
+import "@/builder-registry";
 
 builder.init(env.NEXT_PUBLIC_BUILDER_API_KEY!);
 

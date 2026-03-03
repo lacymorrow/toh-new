@@ -21,11 +21,11 @@ const categories = [
 export function BusinessFilters() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const currentCategory = searchParams.get("category") || "";
-	const showFeatured = searchParams.get("featured") === "true";
+	const currentCategory = searchParams?.get("category") || "";
+	const showFeatured = searchParams?.get("featured") === "true";
 
 	const updateCategory = (value: string) => {
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 		if (value && value !== "all") {
 			params.set("category", value);
 		} else {
@@ -36,7 +36,7 @@ export function BusinessFilters() {
 	};
 
 	const toggleFeatured = (checked: boolean) => {
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 		if (checked) {
 			params.set("featured", "true");
 		} else {
@@ -47,7 +47,7 @@ export function BusinessFilters() {
 	};
 
 	const clearFilters = () => {
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 		params.delete("category");
 		params.delete("featured");
 		params.delete("page");

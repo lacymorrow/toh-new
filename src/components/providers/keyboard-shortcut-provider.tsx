@@ -107,12 +107,14 @@ export function KeyboardShortcutProvider({
 	);
 }
 
+const noopContext: KeyboardShortcutContextProps = {
+	registerShortcut: () => () => {},
+	triggerAction: () => {},
+};
+
 export function useKeyboardShortcutContext(): KeyboardShortcutContextProps {
 	const context = useContext(KeyboardShortcutContext);
-	if (!context) {
-		throw new Error("useKeyboardShortcutContext must be used within a KeyboardShortcutProvider");
-	}
-	return context;
+	return context ?? noopContext;
 }
 
 /**

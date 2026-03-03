@@ -98,7 +98,7 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 
 		// Empty cells for days before the first day of the month
 		for (let i = 0; i < startingDayOfWeek; i++) {
-			days.push(<div key={`empty-${i}`} className="p-2 h-24 border border-gray-100" />);
+			days.push(<div key={`empty-${i}`} className="p-2 h-24 border border-[#DDD7CC]" />);
 		}
 
 		// Days of the month
@@ -112,18 +112,18 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 			days.push(
 				<div
 					key={day}
-					className={`p-2 h-24 border border-gray-100 overflow-hidden ${
-						isToday ? "bg-blue-50 border-blue-200" : "hover:bg-gray-50"
+					className={`p-2 h-24 border border-[#DDD7CC] overflow-hidden ${
+						isToday ? "bg-cream border-[#DDD7CC]" : "hover:bg-cream"
 					}`}
 				>
-					<div className={`font-medium text-sm mb-1 ${isToday ? "text-blue-600" : ""}`}>
+					<div className={`font-medium text-sm mb-1 ${isToday ? "text-sage" : ""}`}>
 						{day}
 						{isToday && <span className="ml-1 text-xs">(Today)</span>}
 					</div>
 					<div className="space-y-1">
 						{dayMeetings.slice(0, 2).map((meeting) => (
 							<Link key={meeting.id} href={`/meetings/${meeting.slug}`} className="block">
-								<div className="text-xs bg-blue-100 text-blue-800 p-1 rounded truncate hover:bg-blue-200 transition-colors">
+								<div className="text-xs bg-stone text-[#2D2A24] p-1 rounded truncate hover:bg-[#DDD7CC] transition-colors">
 									{meeting.meetingTime && (
 										<div className="font-medium">{formatTime(meeting.meetingTime)}</div>
 									)}
@@ -132,7 +132,7 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 							</Link>
 						))}
 						{dayMeetings.length > 2 && (
-							<div className="text-xs text-gray-500 font-medium">
+							<div className="text-xs text-[#7A756C] font-medium">
 								+{dayMeetings.length - 2} more
 							</div>
 						)}
@@ -173,13 +173,13 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 					{DAYS_OF_WEEK.map((day) => (
 						<div
 							key={day}
-							className="p-2 text-center text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200"
+							className="p-2 text-center text-sm font-medium text-[#4A4640] bg-cream border border-[#DDD7CC]"
 						>
 							{day}
 						</div>
 					))}
 				</div>
-				<div className="grid grid-cols-7 gap-0 border-l border-t border-gray-100">
+				<div className="grid grid-cols-7 gap-0 border-l border-t border-[#DDD7CC]">
 					{renderCalendarDays()}
 				</div>
 
@@ -196,7 +196,7 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 									<Link
 										key={meeting.id}
 										href={`/meetings/${meeting.slug}`}
-										className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+										className="block p-3 border rounded-lg hover:bg-cream transition-colors"
 									>
 										<div className="flex items-start justify-between gap-3">
 											<div className="flex-1 min-w-0">

@@ -1,6 +1,4 @@
-import { and, desc, eq, gte, like, lte, or, sql } from "drizzle-orm";
-import { db, safeDbExecute } from "@/server/db";
-import { meetings } from "@/server/db/schema-town";
+import { getMeetings } from "@/lib/payload/town-data";
 import { MeetingCard } from "./meeting-card";
 import { MeetingsPagination } from "./meetings-pagination";
 
@@ -24,84 +22,19 @@ export async function MeetingsList({
 	limit = ITEMS_PER_PAGE,
 }: MeetingsListProps) {
 	const currentPage = Number.parseInt(page) || 1;
-	const offset = (currentPage - 1) * limit;
 
-	// Build where conditions
-	const conditions = [];
+	const result = await getMeetings({
+		limit,
+		page: currentPage,
+		type,
+		month,
+		year,
+		status,
+	});
 
-	// Only show public meetings by default
-	conditions.push(eq(meetings.isPublic, true));
-
-	if (type) {
-		conditions.push(eq(meetings.type, type));
-	}
-
-	if (month && year) {
-		const startDate = new Date(Number.parseInt(year), Number.parseInt(month) - 1, 1);
-		const endDate = new Date(Number.parseInt(year), Number.parseInt(month), 0);
-		conditions.push(
-			and(
-				gte(meetings.meetingDate, startDate.toISOString().split("T")[0]),
-				lte(meetings.meetingDate, endDate.toISOString().split("T")[0])
-			)
-		);
-	} else if (year) {
-		const startDate = new Date(Number.parseInt(year), 0, 1);
-		const endDate = new Date(Number.parseInt(year), 11, 31);
-		conditions.push(
-			and(
-				gte(meetings.meetingDate, startDate.toISOString().split("T")[0]),
-				lte(meetings.meetingDate, endDate.toISOString().split("T")[0])
-			)
-		);
-	}
-
-	if (status) {
-		const today = new Date().toISOString().split("T")[0];
-		switch (status) {
-			case "upcoming":
-				conditions.push(gte(meetings.meetingDate, today));
-				break;
-			case "past":
-				conditions.push(lte(meetings.meetingDate, today));
-				break;
-			case "has-recordings":
-				conditions.push(
-					or(sql`${meetings.videoUrl} IS NOT NULL`, sql`${meetings.audioUrl} IS NOT NULL`)
-				);
-				break;
-			case "has-minutes":
-				conditions.push(
-					or(sql`${meetings.minutes} IS NOT NULL`, sql`${meetings.minutesUrl} IS NOT NULL`)
-				);
-				break;
-		}
-	}
-
-	const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
-
-	// Get meetings and total count
-	const [meetingsData, totalCountResult] = await Promise.all([
-		safeDbExecute(async (database) => {
-			return database
-				.select()
-				.from(meetings)
-				.where(whereClause)
-				.orderBy(desc(meetings.meetingDate))
-				.limit(limit)
-				.offset(offset);
-		}, []),
-		safeDbExecute(async (database) => {
-			const result = await database
-				.select({ count: sql<number>`count(*)` })
-				.from(meetings)
-				.where(whereClause);
-			return result[0]?.count || 0;
-		}, 0),
-	]);
-
-	const totalCount = totalCountResult;
-	const totalPages = Math.ceil(totalCount / limit);
+	const meetingsData = result.docs;
+	const totalCount = result.totalDocs;
+	const totalPages = result.totalPages;
 	const hasNextPage = currentPage < totalPages;
 	const hasPrevPage = currentPage > 1;
 
@@ -124,7 +57,7 @@ export async function MeetingsList({
 
 			<div className="grid gap-6">
 				{meetingsData.map((meeting) => (
-					<MeetingCard key={meeting.id} meeting={meeting} />
+					<MeetingCard key={meeting.id} meeting={meeting as any} />
 				))}
 			</div>
 

@@ -9,11 +9,11 @@ import { Input } from "@/components/ui/input";
 export function BusinessSearch() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+	const [searchQuery, setSearchQuery] = useState(searchParams?.get("search") || "");
 
 	const handleSearch = (e: React.FormEvent) => {
 		e.preventDefault();
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 
 		if (searchQuery) {
 			params.set("search", searchQuery);
@@ -27,7 +27,7 @@ export function BusinessSearch() {
 
 	const clearSearch = () => {
 		setSearchQuery("");
-		const params = new URLSearchParams(searchParams.toString());
+		const params = new URLSearchParams(searchParams?.toString() ?? "");
 		params.delete("search");
 		params.delete("page");
 		router.push(`/business?${params.toString()}`);
@@ -40,7 +40,7 @@ export function BusinessSearch() {
 					<Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 					<Input
 						type="search"
-						placeholder="Search businesses by name, description, or tags..."
+						placeholder="Search businesses by name or description..."
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 						className="pl-10 pr-10"

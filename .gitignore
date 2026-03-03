@@ -76,3 +76,4 @@ public/workbox*
 
 .gemini/
 gha-creds-*.json
+.env*.local

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style C: Pastoral Modern - Town of Harmony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #5B7553;
+    --sage-dark: #3D5038;
+    --sage-light: #7A9470;
+    --wheat: #C9B57E;
+    --wheat-light: #D8C99A;
+    --barn-red: #8B3A3A;
+    --sky: #6B8FAD;
+    --cream: #F9F6F0;
+    --warm-white: #FDFCF9;
+    --stone: #E8E2D6;
+    --text-primary: #2D2A24;
+    --text-secondary: #4A4640;
+    --text-muted: #7A756C;
+    --border: #DDD7CC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background: var(--warm-white);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  /* Style Label */
+  .style-label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    z-index: 9999;
+    font-family: monospace;
+  }
+  .style-label strong { color: #7A9470; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Top Bar */
+  .top-bar {
+    background: var(--sage-dark);
+    color: rgba(255,255,255,0.85);
+    padding: 8px 0;
+    font-size: 13px;
+    margin-top: 38px;
+  }
+  .top-bar a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .top-bar a:hover { color: white; }
+
+  /* Header */
+  .header {
+    background: var(--warm-white);
+    padding: 0;
+    position: sticky;
+    top: 38px;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+  .logo-mark-inner {
+    width: 48px;
+    height: 48px;
+    background: var(--sage);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .logo-text h1 {
+    font-size: 22px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .logo-text p {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+  .nav { display: flex; gap: 2px; }
+  .nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.15s;
+  }
+  .nav a:hover {
+    color: var(--sage-dark);
+    background: var(--stone);
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--cream);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(91,117,83,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sage);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--sage);
+  }
+  .hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  .hero h2 em {
+    color: var(--sage);
+    font-style: normal;
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.7;
+    max-width: 440px;
+  }
+  .hero-buttons { display: flex; gap: 12px; }
+  .btn-sage {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--sage);
+    color: white;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-sage:hover { background: var(--sage-dark); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    padding: 14px 28px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-outline:hover { border-color: var(--sage); color: var(--sage); }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-card-stack {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  .hero-main-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .hero-main-card .icon-circle {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 100%);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-style: italic;
+  }
+  .hero-main-card h3 {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .hero-main-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .hero-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .hero-stat {
+    background: var(--cream);
+    padding: 16px 12px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--sage);
+  }
+  .hero-stat .label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  /* Quick Links */
+  .quick-links {
+    padding: 72px 0;
+    background: var(--warm-white);
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-header h2 {
+    font-size: 36px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .link-card {
+    background: var(--cream);
+    padding: 28px 24px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .link-card:hover {
+    background: white;
+    border-color: var(--sage-light);
+    box-shadow: 0 8px 24px rgba(91,117,83,0.08);
+    transform: translateY(-3px);
+  }
+  .link-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--sage);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .link-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .link-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* News & Events */
+  .news-events {
+    padding: 72px 0;
+    background: var(--cream);
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 48px;
+  }
+  .col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .col-header h2 {
+    font-size: 28px;
+    color: var(--text-primary);
+  }
+  .col-header a {
+    color: var(--sage);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .col-header a:hover { text-decoration: underline; }
+  .news-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .news-card:hover {
+    border-color: var(--sage-light);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .news-tag {
+    display: inline-block;
+    background: rgba(91,117,83,0.1);
+    color: var(--sage-dark);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .news-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .news-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .news-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+  .event-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .event-card:hover { border-color: var(--sage-light); }
+  .event-date-box {
+    background: var(--sage);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 54px;
+  }
+  .event-date-box .month {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+  .event-date-box .day {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.1;
+  }
+  .event-info h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .event-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Spotlight */
+  .spotlight {
+    padding: 72px 0;
+    background: var(--warm-white);
+  }
+  .spotlight-card {
+    background: var(--sage-dark);
+    border-radius: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+  }
+  .spotlight-img {
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: rgba(255,255,255,0.15);
+    font-style: italic;
+  }
+  .spotlight-content {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .spotlight-eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .spotlight-content h3 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: white;
+  }
+  .spotlight-content p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .spotlight-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--wheat);
+    color: var(--sage-dark);
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    width: fit-content;
+    transition: background 0.2s;
+  }
+  .spotlight-btn:hover { background: var(--wheat-light); }
+
+  /* Newsletter */
+  .newsletter {
+    padding: 60px 0;
+    background: var(--cream);
+    text-align: center;
+  }
+  .newsletter-card {
+    background: white;
+    border-radius: 20px;
+    padding: 48px;
+    border: 1px solid var(--border);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .newsletter h2 {
+    font-size: 28px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .newsletter p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 8px;
+  }
+  .newsletter-form input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--text-primary);
+    font-size: 15px;
+    border-radius: 10px;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .newsletter-form input:focus { border-color: var(--sage); }
+  .newsletter-form input::placeholder { color: var(--text-muted); }
+  .newsletter-form button {
+    padding: 14px 24px;
+    background: var(--sage);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s;
+  }
+  .newsletter-form button:hover { background: var(--sage-dark); }
+
+  /* Footer */
+  .footer {
+    background: var(--text-primary);
+    color: rgba(255,255,255,0.6);
+    padding: 48px 0 24px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer h3 {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .footer h4 {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .footer p { font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: 8px; }
+  .footer ul a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .footer ul a:hover { color: var(--sage-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  .footer-bottom a:hover { color: var(--sage-light); }
+
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .links-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .spotlight-card { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav { display: none; }
+    .hero h2 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="style-label">STYLE C: <strong>Pastoral Modern</strong> &mdash; Sage green, warm neutrals, contemporary rustic. Playfair Display + Inter. Fresh but grounded.</div>
+
+<div class="top-bar">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;gap:24px;">
+      <a href="#">(704) 546-2339</a>
+      <span>3389 Harmony Hwy, Harmony, NC 28634</span>
+    </div>
+    <div style="display:flex;gap:16px;">
+      <a href="#">Events</a>
+      <a href="#">Emergency</a>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-group">
+      <div class="logo-mark">
+        <div class="logo-mark-inner">TH</div>
+      </div>
+      <div class="logo-text">
+        <h1>Town of Harmony</h1>
+        <p>North Carolina &middot; Est. 1927</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Agenda & Minutes</a>
+      <a href="#">Explore</a>
+      <a href="#">Town</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Iredell County, North Carolina</div>
+        <h2>Where Harmony <em>Lives</em> and <em>Sings</em></h2>
+        <p>A small town with a big heart. Serving our community with pride, preserving our heritage, and building a future together since 1927.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-sage">Explore Harmony</a>
+          <a href="#" class="btn-outline">Town Services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-main-card">
+            <div class="icon-circle">H</div>
+            <h3>Community First</h3>
+            <p>Small-town values, real connections, and a place where every neighbor matters.</p>
+            <div class="hero-stat-row">
+              <div class="hero-stat">
+                <div class="num">1927</div>
+                <div class="label">Founded</div>
+              </div>
+              <div class="hero-stat">
+                <div class="num">2.5k</div>
+                <div class="label">Residents</div>
+              </div>
+              <div class="hero-stat">
+                <div class="num">98</div>
+                <div class="label">Years</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quick-links">
+  <div class="container">
+    <div class="section-header">
+      <h2>How Can We Help?</h2>
+      <p>Quick access to the services and information you need</p>
+    </div>
+    <div class="links-grid">
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Permits & Forms</h3>
+        <p>Apply for permits and download forms</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Events</h3>
+        <p>Community events and activities</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Town Council</h3>
+        <p>Meetings and agendas</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Report an Issue</h3>
+        <p>Report problems or concerns</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Business Directory</h3>
+        <p>Find local businesses</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Resident Resources</h3>
+        <p>Information for residents</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Contact Us</h3>
+        <p>Reach town offices</p>
+      </a>
+      <a class="link-card" href="#">
+        <div class="link-icon">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Points of Interest</h3>
+        <p>Explore local landmarks</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="news-events">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="col-header">
+          <h2>Latest News</h2>
+          <a href="#">View All &rarr;</a>
+        </div>
+        <div class="news-card">
+          <span class="news-tag">Infrastructure</span>
+          <h3>Spring Road Maintenance Schedule Announced</h3>
+          <p>The Town Council has approved the 2026 spring road maintenance schedule. Work will begin on Harmony Highway in March and continue through May.</p>
+          <div class="news-meta">February 12, 2026</div>
+        </div>
+        <div class="news-card">
+          <span class="news-tag">Community</span>
+          <h3>Community Garden Plot Registration Now Open</h3>
+          <p>Residents can now register for community garden plots at the Harmony Community Center. Plots are available first-come, first-served.</p>
+          <div class="news-meta">February 8, 2026</div>
+        </div>
+        <div class="news-card">
+          <span class="news-tag">Heritage</span>
+          <h3>Town Hall Renovation Project Update</h3>
+          <p>The restoration of the historic Town Hall building is on schedule with reopening expected in late spring.</p>
+          <div class="news-meta">February 1, 2026</div>
+        </div>
+      </div>
+      <div>
+        <div class="col-header">
+          <h2>Events</h2>
+          <a href="#">View All &rarr;</a>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box">
+            <div class="month">Feb</div>
+            <div class="day">22</div>
+          </div>
+          <div class="event-info">
+            <h4>Town Council Meeting</h4>
+            <p>7:00 PM &middot; Town Hall</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box">
+            <div class="month">Mar</div>
+            <div class="day">1</div>
+          </div>
+          <div class="event-info">
+            <h4>Spring Festival Planning</h4>
+            <p>6:30 PM &middot; Community Center</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box">
+            <div class="month">Mar</div>
+            <div class="day">15</div>
+          </div>
+          <div class="event-info">
+            <h4>Harmony Farmers Market</h4>
+            <p>8:00 AM &middot; Town Square</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date-box">
+            <div class="month">Apr</div>
+            <div class="day">5</div>
+          </div>
+          <div class="event-info">
+            <h4>Annual Easter Egg Hunt</h4>
+            <p>10:00 AM &middot; Heritage Park</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spotlight">
+  <div class="container">
+    <div class="spotlight-card">
+      <div class="spotlight-img">H</div>
+      <div class="spotlight-content">
+        <div class="spotlight-eyebrow">Community Spotlight</div>
+        <h3>Harmony Heritage Trail</h3>
+        <p>Walk through history along our newly restored Heritage Trail, connecting nine landmarks that tell the story of Harmony from its founding in 1927 to today. Open year-round for self-guided tours.</p>
+        <a href="#" class="spotlight-btn">Explore the Trail &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-card">
+      <h2>Stay Connected</h2>
+      <p>Get the latest news, events, and town updates delivered to your inbox.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email address">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Town of Harmony</h3>
+        <p>Where Harmony LIVES and SINGS! Serving our community since 1927.</p>
+        <p>3389 Harmony Hwy, Harmony, NC 28634<br>(704) 546-2339 &middot; info@townofharmony.org</p>
+      </div>
+      <div>
+        <h4>Agenda & Minutes</h4>
+        <ul>
+          <li><a href="#">Town Meetings</a></li>
+          <li><a href="#">Meeting Archives</a></li>
+          <li><a href="#">Public Records</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Points of Interest</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Photo Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Town</h4>
+        <ul>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Town of Harmony. All rights reserved.</span>
+      <div>
+        <a href="#">Privacy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

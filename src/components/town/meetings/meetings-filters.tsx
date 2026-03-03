@@ -82,14 +82,14 @@ export function MeetingsFilters() {
 				<div>
 					<Label htmlFor="type-select">Meeting Type</Label>
 					<Select
-						value={currentType || ""}
-						onValueChange={(value) => updateFilter("type", value || null)}
+						value={currentType || "all"}
+						onValueChange={(value) => updateFilter("type", value === "all" ? null : value)}
 					>
 						<SelectTrigger id="type-select">
 							<SelectValue placeholder="All types" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="">All types</SelectItem>
+							<SelectItem value="all">All types</SelectItem>
 							{MEETING_TYPES.map((type) => (
 								<SelectItem key={type} value={type}>
 									{type}
@@ -102,14 +102,14 @@ export function MeetingsFilters() {
 				<div>
 					<Label htmlFor="status-select">Status</Label>
 					<Select
-						value={currentStatus || ""}
-						onValueChange={(value) => updateFilter("status", value || null)}
+						value={currentStatus || "all"}
+						onValueChange={(value) => updateFilter("status", value === "all" ? null : value)}
 					>
 						<SelectTrigger id="status-select">
 							<SelectValue placeholder="All meetings" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="">All meetings</SelectItem>
+							<SelectItem value="all">All meetings</SelectItem>
 							<SelectItem value="upcoming">Upcoming</SelectItem>
 							<SelectItem value="past">Past</SelectItem>
 							<SelectItem value="has-recordings">With Recordings</SelectItem>
@@ -122,14 +122,14 @@ export function MeetingsFilters() {
 					<div>
 						<Label htmlFor="month-select">Month</Label>
 						<Select
-							value={currentMonth || ""}
-							onValueChange={(value) => updateFilter("month", value || null)}
+							value={currentMonth || "all"}
+							onValueChange={(value) => updateFilter("month", value === "all" ? null : value)}
 						>
 							<SelectTrigger id="month-select">
 								<SelectValue placeholder="Month" />
 							</SelectTrigger>
 							<SelectContent>
-								<SelectItem value="">All</SelectItem>
+								<SelectItem value="all">All</SelectItem>
 								{MONTHS.map((month) => (
 									<SelectItem key={month.value} value={month.value}>
 										{month.label}
@@ -142,14 +142,14 @@ export function MeetingsFilters() {
 					<div>
 						<Label htmlFor="year-select">Year</Label>
 						<Select
-							value={currentYear || ""}
-							onValueChange={(value) => updateFilter("year", value || null)}
+							value={currentYear || "all"}
+							onValueChange={(value) => updateFilter("year", value === "all" ? null : value)}
 						>
 							<SelectTrigger id="year-select">
 								<SelectValue placeholder="Year" />
 							</SelectTrigger>
 							<SelectContent>
-								<SelectItem value="">All</SelectItem>
+								<SelectItem value="all">All</SelectItem>
 								{YEARS.map((year) => (
 									<SelectItem key={year} value={year.toString()}>
 										{year}

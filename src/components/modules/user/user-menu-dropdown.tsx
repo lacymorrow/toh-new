@@ -2,13 +2,10 @@ import {
 	DesktopIcon,
 	ExitIcon,
 	GearIcon,
-	LockClosedIcon,
 	MoonIcon,
 	PersonIcon,
-	RocketIcon,
 	SunIcon,
 } from "@radix-ui/react-icons";
-import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import type * as React from "react";
@@ -107,20 +104,6 @@ export function UserMenuDropdown({
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 
-				{showUpgrade && !hasActiveSubscription && (
-					<>
-						<DropdownMenuGroup>
-							<DropdownMenuItem asChild>
-								<Link href={routes.pricing}>
-									<Sparkles className="mr-2 size-4" />
-									Upgrade to Pro
-								</Link>
-							</DropdownMenuItem>
-						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
-					</>
-				)}
-
 				<DropdownMenuGroup>
 					{isAdmin && (
 						<DropdownMenuItem asChild>
@@ -131,13 +114,6 @@ export function UserMenuDropdown({
 							</Link>
 						</DropdownMenuItem>
 					)}
-					<DropdownMenuItem asChild>
-						<Link href={routes.app.dashboard}>
-							<RocketIcon className="mr-2 size-4" />
-							Dashboard
-							<DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-						</Link>
-					</DropdownMenuItem>
 					<DropdownMenuItem asChild>
 						<Link href={routes.settings.index}>
 							<GearIcon className="mr-2 size-4" />

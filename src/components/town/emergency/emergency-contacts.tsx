@@ -77,10 +77,10 @@ export const EmergencyContacts = () => {
 	return (
 		<div className="space-y-6">
 			<div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-				<h2 className="text-xl font-bold text-red-800 mb-2">
-					🚨 Life-Threatening Emergency: Call 911
+				<h2 className="text-xl font-serif font-bold text-barn-red mb-2">
+					Life-Threatening Emergency: Call 911
 				</h2>
-				<p className="text-red-700">
+				<p className="text-[#4A4640]">
 					For immediate emergency assistance requiring police, fire, or medical response, always
 					dial 911 first.
 				</p>
@@ -90,26 +90,26 @@ export const EmergencyContacts = () => {
 				{emergencyContacts.map((contact, index) => (
 					<Card key={index} className="hover:shadow-lg transition-shadow">
 						<CardHeader className="pb-3">
-							<CardTitle className="text-lg text-gray-900">{contact.name}</CardTitle>
+							<CardTitle className="text-lg text-sage-dark">{contact.name}</CardTitle>
 						</CardHeader>
 
 						<CardContent className="space-y-3">
-							<div className="flex items-center gap-2 text-gray-700">
-								<Phone className="h-4 w-4 text-green-600" />
+							<div className="flex items-center gap-2 text-[#4A4640]">
+								<Phone className="h-4 w-4 text-sage" />
 								<a
 									href={`tel:${contact.phone}`}
-									className="font-semibold text-green-600 hover:underline"
+									className="font-semibold text-sage hover:text-sage-dark hover:underline"
 								>
 									{contact.phone}
 								</a>
 							</div>
 
 							{contact.email && (
-								<div className="flex items-center gap-2 text-gray-700">
-									<Mail className="h-4 w-4 text-blue-600" />
+								<div className="flex items-center gap-2 text-[#4A4640]">
+									<Mail className="h-4 w-4 text-sage" />
 									<a
 										href={`mailto:${contact.email}`}
-										className="text-blue-600 hover:underline text-sm"
+										className="text-sage hover:text-sage-dark hover:underline text-sm"
 									>
 										{contact.email}
 									</a>
@@ -117,52 +117,52 @@ export const EmergencyContacts = () => {
 							)}
 
 							{contact.address && (
-								<div className="flex items-start gap-2 text-gray-700">
-									<MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
+								<div className="flex items-start gap-2 text-[#4A4640]">
+									<MapPin className="h-4 w-4 text-[#7A756C] mt-0.5" />
 									<span className="text-sm">{contact.address}</span>
 								</div>
 							)}
 
 							{contact.hours && (
-								<div className="flex items-center gap-2 text-gray-700">
-									<Clock className="h-4 w-4 text-orange-500" />
+								<div className="flex items-center gap-2 text-[#4A4640]">
+									<Clock className="h-4 w-4 text-wheat" />
 									<span className="text-sm font-medium">{contact.hours}</span>
 								</div>
 							)}
 
 							{contact.description && (
-								<p className="text-sm text-gray-600 pt-2 border-t">{contact.description}</p>
+								<p className="text-sm text-[#4A4640] pt-2 border-t border-[#DDD7CC]">{contact.description}</p>
 							)}
 						</CardContent>
 					</Card>
 				))}
 			</div>
 
-			<Card className="bg-blue-50 border-blue-200">
+			<Card className="bg-sage/5 border-sage/20">
 				<CardContent className="p-6">
-					<h3 className="font-semibold text-blue-800 mb-3">Additional Resources</h3>
-					<div className="space-y-2 text-sm text-blue-700">
+					<h3 className="font-semibold text-sage-dark mb-3 font-serif">Additional Resources</h3>
+					<div className="space-y-2 text-sm text-[#4A4640]">
 						<p>
-							<strong>West Virginia State Police:</strong>{" "}
-							<a href="tel:304-558-1400" className="underline">
+							<strong className="text-[#2D2A24]">West Virginia State Police:</strong>{" "}
+							<a href="tel:304-558-1400" className="text-sage hover:text-sage-dark underline">
 								(304) 558-1400
 							</a>
 						</p>
 						<p>
-							<strong>Jefferson County Emergency Services:</strong>{" "}
-							<a href="tel:304-728-3290" className="underline">
+							<strong className="text-[#2D2A24]">Jefferson County Emergency Services:</strong>{" "}
+							<a href="tel:304-728-3290" className="text-sage hover:text-sage-dark underline">
 								(304) 728-3290
 							</a>
 						</p>
 						<p>
-							<strong>Red Cross Disaster Relief:</strong>{" "}
-							<a href="tel:1-800-733-2767" className="underline">
+							<strong className="text-[#2D2A24]">Red Cross Disaster Relief:</strong>{" "}
+							<a href="tel:1-800-733-2767" className="text-sage hover:text-sage-dark underline">
 								1-800-RED-CROSS
 							</a>
 						</p>
 						<p>
-							<strong>Crisis Text Line:</strong> Text HOME to{" "}
-							<a href="sms:741741" className="underline">
+							<strong className="text-[#2D2A24]">Crisis Text Line:</strong> Text HOME to{" "}
+							<a href="sms:741741" className="text-sage hover:text-sage-dark underline">
 								741741
 							</a>
 						</p>

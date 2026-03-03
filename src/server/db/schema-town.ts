@@ -372,6 +372,29 @@ export type EmergencyAlert = typeof emergencyAlerts.$inferSelect;
 export type NewEmergencyAlert = typeof emergencyAlerts.$inferInsert;
 
 /**
+ * Newsletter subscribers
+ */
+export const newsletterSubscribers = createTable(
+	"newsletter_subscribers",
+	{
+		id: serial("id").primaryKey(),
+		email: varchar("email", { length: 255 }).notNull().unique(),
+		subscribedAt: timestamp("subscribed_at", { withTimezone: true })
+			.default(sql`CURRENT_TIMESTAMP`)
+			.notNull(),
+		unsubscribedAt: timestamp("unsubscribed_at", { withTimezone: true }),
+		isActive: boolean("is_active").default(true).notNull(),
+	},
+	(table) => ({
+		emailIdx: index("newsletter_email_idx").on(table.email),
+		activeIdx: index("newsletter_active_idx").on(table.isActive),
+	})
+);
+
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+export type NewNewsletterSubscriber = typeof newsletterSubscribers.$inferInsert;
+
+/**
  * Page views tracking for analytics
  */
 export const pageViews = createTable(

@@ -186,7 +186,7 @@ export const getAllPermits = async (options?: {
 
 		const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
-		let query = db.select().from(permits).where(whereClause);
+		let query = db.select().from(permits).where(whereClause).$dynamic();
 
 		// Add pagination
 		if (options?.limit) {

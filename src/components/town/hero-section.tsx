@@ -1,147 +1,63 @@
-"use client";
-
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
+import { getHomepage } from "@/lib/payload/town-data";
 
-const slides = [
-	{
-		id: 1,
-		title: "Welcome to the Town of Harmony",
-		subtitle: "Where Harmony LIVES and SINGS!",
-		description: "Established in 1927, our charming town in Iredell County, North Carolina continues to be a beacon of community spirit and southern hospitality.",
-		image: "/images/hero-1.jpg",
-		cta: {
-			text: "Discover Our History",
-			href: "/history",
-		},
-	},
-	{
-		id: 2,
-		title: "Community Events & Activities",
-		subtitle: "Join Us for Year-Round Celebrations",
-		description:
-			"From seasonal festivals to community gatherings, experience the vibrant spirit that makes Harmony special.",
-		image: "/images/hero-2.jpg",
-		cta: {
-			text: "View Upcoming Events",
-			href: "/events",
-		},
-	},
-	{
-		id: 3,
-		title: "Town Meetings & Services",
-		subtitle: "Your Voice Matters",
-		description: "Stay informed with town meetings, access public records, and connect with your local government.",
-		image: "/images/hero-3.jpg",
-		cta: {
-			text: "Meeting Agendas & Minutes",
-			href: "/meetings",
-		},
-	},
-	{
-		id: 4,
-		title: "Points of Interest",
-		subtitle: "Explore Our Heritage",
-		description: "Discover the landmarks and locations that tell the story of Harmony's rich history and bright future.",
-		image: "/images/hero-4.jpg",
-		cta: {
-			text: "Explore Harmony",
-			href: "/points-of-interest",
-		},
-	},
-];
-
-export function HeroSection() {
-	const [currentSlide, setCurrentSlide] = useState(0);
-
-	useEffect(() => {
-		const timer = setInterval(() => {
-			setCurrentSlide((prev) => (prev + 1) % slides.length);
-		}, 5000);
-
-		return () => clearInterval(timer);
-	}, []);
-
-	const goToSlide = (index: number) => {
-		setCurrentSlide(index);
-	};
-
-	const goToPrevious = () => {
-		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-	};
-
-	const goToNext = () => {
-		setCurrentSlide((prev) => (prev + 1) % slides.length);
-	};
+export async function HeroSection() {
+	const homepage = await getHomepage();
+	const firstSlide = (homepage as any)?.heroSlides?.[0];
+	const heroImageUrl = firstSlide?.image ? getMediaUrl(firstSlide.image) : null;
 
 	return (
-		<div className="relative h-[500px] bg-gray-900">
-			{/* Slides */}
-			{slides.map((slide, index) => (
-				<div
-					key={slide.id}
-					className={`absolute inset-0 transition-opacity duration-1000 ${
-						index === currentSlide ? "opacity-100" : "opacity-0"
-					}`}
-				>
-					{/* Background Image with Overlay */}
-					<div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30">
-						<div
-							className="absolute inset-0 bg-cover bg-center"
-							style={{
-								backgroundImage: "url(/images/placeholder-hero.jpg)",
-							}}
-						/>
-					</div>
-
+		<section className="bg-gradient-to-r from-sage-deep via-sage-dark to-sage text-white relative overflow-hidden">
+			<div className="container mx-auto">
+				<div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px]">
 					{/* Content */}
-					<div className="relative h-full container mx-auto px-4">
-						<div className="flex items-center h-full">
-							<div className="max-w-2xl text-white">
-								<h1 className="text-4xl md:text-5xl font-bold mb-4">{slide.title}</h1>
-								<p className="text-xl md:text-2xl mb-2 text-blue-300">{slide.subtitle}</p>
-								<p className="text-lg mb-8 text-gray-200">{slide.description}</p>
-								<Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-									<Link href={slide.cta.href}>{slide.cta.text}</Link>
-								</Button>
-							</div>
+					<div className="flex flex-col justify-center py-12 px-4 lg:py-16 lg:pr-12">
+						<div className="inline-flex items-center gap-2 bg-wheat/15 border border-wheat/30 text-wheat-light px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wide w-fit mb-5">
+							Est. 1927 &middot; Iredell County
+						</div>
+						<h2 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4">
+							{firstSlide?.title ?? "Welcome to the Town of Harmony"}
+						</h2>
+						<p className="text-lg text-white/90 mb-8 max-w-[480px] leading-relaxed">
+							{firstSlide?.description ??
+								"Where Harmony LIVES and SINGS! A proud community rooted in southern tradition, natural beauty, and neighborly spirit."}
+						</p>
+						<div className="flex flex-wrap gap-3">
+							<Link
+								href={firstSlide?.ctaHref ?? "/history"}
+								className="inline-flex items-center gap-2 bg-wheat text-sage-deep px-7 py-3.5 rounded-lg text-[15px] font-bold hover:bg-wheat-light transition-colors cursor-pointer"
+							>
+								{firstSlide?.ctaText ?? "Discover Harmony"}
+							</Link>
+							<Link
+								href="/meetings"
+								className="inline-flex items-center gap-2 bg-white/10 text-white px-7 py-3.5 rounded-lg text-[15px] font-medium border border-white/20 hover:bg-white/15 hover:border-white/30 transition-colors cursor-pointer"
+							>
+								Meeting Agendas
+							</Link>
 						</div>
 					</div>
+
+					{/* Image area */}
+					<div className="hidden lg:flex items-center justify-center relative overflow-hidden">
+						{heroImageUrl ? (
+							<img
+								src={heroImageUrl}
+								alt={firstSlide?.title ?? "Town of Harmony"}
+								className="absolute inset-0 w-full h-full object-cover"
+							/>
+						) : (
+							<div className="absolute inset-0 bg-gradient-to-br from-wheat/[0.08] to-wheat/[0.04]" />
+						)}
+						{!heroImageUrl && (
+							<div className="w-[280px] h-[280px] border-[3px] border-wheat/30 rounded-full flex items-center justify-center relative z-10">
+								<span className="font-serif text-[80px] text-wheat/35 italic">H</span>
+							</div>
+						)}
+					</div>
 				</div>
-			))}
-
-			{/* Navigation */}
-			<button
-				onClick={goToPrevious}
-				className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-				aria-label="Previous slide"
-			>
-				<ChevronLeft className="h-6 w-6" />
-			</button>
-			<button
-				onClick={goToNext}
-				className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-				aria-label="Next slide"
-			>
-				<ChevronRight className="h-6 w-6" />
-			</button>
-
-			{/* Dots */}
-			<div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-				{slides.map((_, index) => (
-					<button
-						key={index}
-						onClick={() => goToSlide(index)}
-						className={`w-3 h-3 rounded-full transition-colors ${
-							index === currentSlide ? "bg-white" : "bg-white/50"
-						}`}
-						aria-label={`Go to slide ${index + 1}`}
-					/>
-				))}
 			</div>
-		</div>
+		</section>
 	);
 }

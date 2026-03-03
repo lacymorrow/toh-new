@@ -3,8 +3,9 @@ import { migrate } from "drizzle-orm/postgres-js/migrator";
 import path from "path";
 import { promisify } from "util";
 // import "../scripts/env-config.js";
-import { getPayloadClient } from "@/lib/payload/payload";
-import { seed } from "@/lib/payload/seed";
+// Payload CMS has been removed — stub out imports
+const getPayloadClient = async () => null;
+const seed = async () => { console.warn("Payload seed removed"); };
 import { db } from "@/server/db";
 
 const execAsync = promisify(exec);

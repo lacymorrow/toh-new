@@ -1,8 +1,8 @@
-import { and, eq, ilike, sql } from "drizzle-orm";
-import { db } from "@/server/db";
-import { businesses } from "@/server/db/schema-town";
+import { getBusinesses } from "@/lib/payload/town-data";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { BusinessCard } from "./business-card";
 import { BusinessPagination } from "./business-pagination";
+import { getMediaUrl } from "@/lib/utils/get-media-url";
 
 interface BusinessListProps {
 	category?: string;
@@ -11,63 +11,19 @@ interface BusinessListProps {
 	page?: string;
 }
 
-async function getBusinesses(category?: string, search?: string, featured?: string, page = "1") {
-	if (!db) return { items: [], total: 0 };
-
-	const pageSize = 12;
-	const offset = (Number.parseInt(page) - 1) * pageSize;
-
-	const conditions = [];
-
-	if (category) {
-		conditions.push(eq(businesses.category, category));
-	}
-
-	if (search) {
-		conditions.push(
-			sql`(
-				${businesses.name} ILIKE ${"%" + search + "%"} OR
-				${businesses.description} ILIKE ${"%" + search + "%"} OR
-				${businesses.tags}::text ILIKE ${"%" + search + "%"}
-			)`
-		);
-	}
-
-	if (featured === "true") {
-		conditions.push(eq(businesses.isFeatured, true));
-	}
-
-	// Always show verified businesses first
-	const orderBy = [
-		sql`${businesses.isVerified} DESC`,
-		sql`${businesses.isFeatured} DESC`,
-		businesses.name,
-	];
-
-	const [items, totalResult] = await Promise.all([
-		db
-			.select()
-			.from(businesses)
-			.where(conditions.length > 0 ? and(...conditions) : undefined)
-			.orderBy(...orderBy)
-			.limit(pageSize)
-			.offset(offset),
-		db
-			.select({ count: sql`count(*)::int` })
-			.from(businesses)
-			.where(conditions.length > 0 ? and(...conditions) : undefined),
-	]);
-
-	return {
-		items,
-		total: totalResult[0]?.count || 0,
-	};
-}
-
 export async function BusinessList({ category, search, featured, page = "1" }: BusinessListProps) {
-	const { items, total } = await getBusinesses(category, search, featured, page);
 	const pageSize = 12;
-	const totalPages = Math.ceil(total / pageSize);
+	const currentPage = Number.parseInt(page) || 1;
+
+	const result = await getBusinesses({
+		category,
+		search,
+		featured: featured === "true" ? true : undefined,
+		limit: pageSize,
+		page: currentPage,
+	});
+
+	const { docs: items, totalDocs, totalPages } = result;
 
 	if (items.length === 0) {
 		return (
@@ -82,18 +38,35 @@ export async function BusinessList({ category, search, featured, page = "1" }: B
 	return (
 		<>
 			<div className="mb-4 text-sm text-muted-foreground">
-				Showing {items.length} of {total} businesses
+				Showing {items.length} of {totalDocs} businesses
 			</div>
 
 			<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{items.map((business) => (
-					<BusinessCard key={business.id} business={business} />
+					<BusinessCard
+						key={business.id}
+						business={{
+							id: business.id,
+							name: business.name,
+							slug: business.slug,
+							description: extractTextFromRichText(business.description as any) || null,
+							category: business.category,
+							address: business.address ?? null,
+							phone: business.phone ?? null,
+							email: business.email ?? null,
+							website: business.website ?? null,
+							hours: business.hours,
+							logo: getMediaUrl(business.logo),
+							isVerified: business.isVerified ?? null,
+							isFeatured: business.isFeatured ?? null,
+						}}
+					/>
 				))}
 			</div>
 
 			{totalPages > 1 && (
 				<BusinessPagination
-					currentPage={Number.parseInt(page)}
+					currentPage={currentPage}
 					totalPages={totalPages}
 					baseUrl="/business"
 					searchParams={{ category, search, featured }}

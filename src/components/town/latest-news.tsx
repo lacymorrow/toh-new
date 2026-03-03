@@ -1,83 +1,58 @@
-import { desc, eq } from "drizzle-orm";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { news } from "@/server/db/schema-town";
-
-async function getLatestNews() {
-	if (!db) return [];
-
-	const articles = await db
-		.select()
-		.from(news)
-		.where(eq(news.status, "published"))
-		.orderBy(desc(news.publishedAt))
-		.limit(3);
-
-	return articles;
-}
+import { getNews } from "@/lib/payload/town-data";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 
 export async function LatestNews() {
-	const articles = await getLatestNews();
+	const { docs: articles } = await getNews({ limit: 3 });
 
 	if (articles.length === 0) {
 		return (
-			<Card>
-				<CardContent className="py-8 text-center text-gray-500">
-					No news articles available at this time.
-				</CardContent>
-			</Card>
+			<div className="bg-cream rounded-xl p-8 text-center text-[#4A4640]">
+				No news articles available at this time.
+			</div>
 		);
 	}
 
 	return (
-		<div className="space-y-4">
-			{articles.map((article) => (
-				<Card key={article.id} className="hover:shadow-lg transition-shadow">
-					<CardHeader>
-						<div className="flex items-start justify-between">
-							<div className="flex-1">
-								<CardTitle className="text-lg">
-									<Link
-										href={`/news/${article.slug}`}
-										className="hover:text-blue-600 transition-colors"
-									>
-										{article.title}
-									</Link>
-								</CardTitle>
-								<div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
-									<Calendar className="h-4 w-4" />
-									{article.publishedAt &&
-										new Date(article.publishedAt).toLocaleDateString("en-US", {
-											month: "long",
-											day: "numeric",
-											year: "numeric",
-										})}
-								</div>
-							</div>
-						</div>
-					</CardHeader>
-					<CardContent>
-						<p className="text-gray-600 line-clamp-2">
-							{article.excerpt || article.content.substring(0, 150) + "..."}
-						</p>
-						<Link
-							href={`/news/${article.slug}`}
-							className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 mt-3 text-sm font-medium"
-						>
-							Read more
-							<ArrowRight className="h-4 w-4" />
-						</Link>
-					</CardContent>
-				</Card>
-			))}
+		<div>
+			{articles.map((article) => {
+				const date = article.publishedAt ? new Date(article.publishedAt) : new Date();
+				const month = date.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+				const day = date.getDate();
 
-			<div className="text-center pt-4">
-				<Button asChild variant="outline">
-					<Link href="/news">View All News</Link>
-				</Button>
+				return (
+					<Link
+						key={article.id}
+						href={`/news/${article.slug}`}
+						className="flex gap-5 items-start py-5 border-b border-[#DDD7CC] last:border-b-0 group cursor-pointer"
+					>
+						{/* Date block */}
+						<div className="bg-sage-dark text-white py-2 px-3 rounded-lg text-center flex-shrink-0 min-w-[56px]">
+							<div className="text-[11px] uppercase tracking-wider text-wheat-light font-bold">{month}</div>
+							<div className="text-[22px] font-bold leading-tight">{day}</div>
+						</div>
+						{/* Content */}
+						<div className="flex-1">
+							<h3 className="font-semibold text-[17px] text-[#2D2A24] mb-1.5 group-hover:text-sage-dark transition-colors">
+								{article.title}
+							</h3>
+							<p className="text-sm text-[#4A4640] leading-relaxed line-clamp-2">
+								{article.excerpt || extractTextFromRichText(article.content as any).substring(0, 150) + "..."}
+							</p>
+						</div>
+					</Link>
+				);
+			})}
+
+			<div className="pt-6">
+				<Link
+					href="/news"
+					className="inline-flex items-center gap-2 text-sage font-semibold text-[15px] hover:text-sage-dark transition-colors cursor-pointer"
+				>
+					View All News
+					<ArrowRight className="h-4 w-4" />
+				</Link>
 			</div>
 		</div>
 	);

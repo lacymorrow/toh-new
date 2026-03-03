@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Town of Harmony - Style Previews</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  h1 strong { font-weight: 700; }
+  .subtitle {
+    color: #888;
+    font-size: 16px;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    width: 100%;
+  }
+  .card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #333;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .card:hover {
+    border-color: #555;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .card-preview {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-preview .bg-text {
+    font-size: 80px;
+    font-weight: 700;
+    opacity: 0.15;
+    position: absolute;
+  }
+  .card-a .card-preview { background: linear-gradient(135deg, #1A2E14, #2D4A22, #5C4033); }
+  .card-b .card-preview { background: linear-gradient(135deg, #0F2A44, #1B3A5C, #2E5077); }
+  .card-c .card-preview { background: linear-gradient(135deg, #3D5038, #5B7553, #7A9470); }
+  .color-dots {
+    display: flex;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .color-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .card-body { padding: 24px; }
+  .card-body h2 {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .card-body .style-name {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .card-body p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    background: #2a2a2a;
+    color: #aaa;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .open-btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background: #222;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-top: 1px solid #333;
+    transition: background 0.15s;
+  }
+  .card:hover .open-btn { background: #333; }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <h1><strong>Town of Harmony</strong> Style Previews</h1>
+  <p class="subtitle">Click any card to open the full-page preview. Compare all three to find your direction.</p>
+
+  <div class="grid">
+    <a class="card card-a" href="style-a-rustic-heritage.html">
+      <div class="card-preview">
+        <span class="bg-text">A</span>
+        <div class="color-dots">
+          <div class="color-dot" style="background:#2D4A22"></div>
+          <div class="color-dot" style="background:#B5651D"></div>
+          <div class="color-dot" style="background:#D4C4A8"></div>
+          <div class="color-dot" style="background:#FAF6EF"></div>
+          <div class="color-dot" style="background:#5C4033"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2>Style A</h2>
+        <div class="style-name">Rustic Heritage</div>
+        <p>Earthy, warm, and grounded. Forest green + terracotta + cream. Feels like a well-kept town with deep roots. Traditional serif headings with clean sans body.</p>
+        <div class="card-meta">
+          <span class="tag">EB Garamond</span>
+          <span class="tag">Lato</span>
+          <span class="tag">Earthy</span>
+          <span class="tag">Traditional</span>
+        </div>
+      </div>
+      <div class="open-btn">Open Full Preview &rarr;</div>
+    </a>
+
+    <a class="card card-b" href="style-b-classic-civic.html">
+      <div class="card-preview">
+        <span class="bg-text">B</span>
+        <div class="color-dots">
+          <div class="color-dot" style="background:#0F2A44"></div>
+          <div class="color-dot" style="background:#C8A951"></div>
+          <div class="color-dot" style="background:#2E5077"></div>
+          <div class="color-dot" style="background:#F7F8FA"></div>
+          <div class="color-dot" style="background:#8B2E2E"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2>Style B</h2>
+        <div class="style-name">Classic Civic</div>
+        <p>Authoritative and trustworthy. Navy + gold + clean whites. The traditional government look done well. Professional serif headings, highly readable body text.</p>
+        <div class="card-meta">
+          <span class="tag">Libre Baskerville</span>
+          <span class="tag">Source Sans 3</span>
+          <span class="tag">Civic</span>
+          <span class="tag">Polished</span>
+        </div>
+      </div>
+      <div class="open-btn">Open Full Preview &rarr;</div>
+    </a>
+
+    <a class="card card-c" href="style-c-pastoral-modern.html">
+      <div class="card-preview">
+        <span class="bg-text">C</span>
+        <div class="color-dots">
+          <div class="color-dot" style="background:#5B7553"></div>
+          <div class="color-dot" style="background:#C9B57E"></div>
+          <div class="color-dot" style="background:#F9F6F0"></div>
+          <div class="color-dot" style="background:#3D5038"></div>
+          <div class="color-dot" style="background:#8B3A3A"></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2>Style C</h2>
+        <div class="style-name">Pastoral Modern</div>
+        <p>Fresh and contemporary but rooted. Sage green + warm neutrals + rounded cards. A modern take that still feels small-town and approachable. Clean and spacious.</p>
+        <div class="card-meta">
+          <span class="tag">Playfair Display</span>
+          <span class="tag">Inter</span>
+          <span class="tag">Contemporary</span>
+          <span class="tag">Warm</span>
+        </div>
+      </div>
+      <div class="open-btn">Open Full Preview &rarr;</div>
+    </a>
+  </div>
+</body>
+</html>

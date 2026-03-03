@@ -1,10 +1,8 @@
 "use client";
 
-import { Mail } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/server/actions/newsletter-actions";
 
 export function NewsletterSignup() {
 	const [email, setEmail] = useState("");
@@ -16,14 +14,21 @@ export function NewsletterSignup() {
 		setIsLoading(true);
 
 		try {
-			// TODO: Implement newsletter signup API
-			await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+			const result = await subscribeToNewsletter(email);
 
-			toast({
-				title: "Success!",
-				description: "You've been subscribed to our newsletter.",
-			});
-			setEmail("");
+			if (result.success) {
+				toast({
+					title: "Success!",
+					description: result.message || "You've been subscribed to our newsletter.",
+				});
+				setEmail("");
+			} else {
+				toast({
+					title: "Error",
+					description: result.error || "Failed to subscribe. Please try again.",
+					variant: "destructive",
+				});
+			}
 		} catch (error) {
 			toast({
 				title: "Error",
@@ -36,47 +41,38 @@ export function NewsletterSignup() {
 	};
 
 	return (
-		<section className="py-12 bg-blue-900 text-white">
+		<section className="py-16 bg-sage-deep text-white text-center">
 			<div className="container mx-auto px-4">
-				<div className="max-w-2xl mx-auto text-center">
-					<div className="flex justify-center mb-4">
-						<div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
-							<Mail className="h-8 w-8" />
-						</div>
-					</div>
-					<h2 className="text-3xl font-bold mb-4">Stay Informed</h2>
-					<p className="text-lg mb-8 text-blue-100">
-						Subscribe to our newsletter for the latest news, events, and updates from the Town of
-						Harmony.
-					</p>
+				<h2 className="text-[28px] font-serif font-bold mb-3">Stay Connected with Harmony</h2>
+				<p className="text-base text-white/85 mb-7">
+					Get the latest news, events, and town updates delivered to your inbox.
+				</p>
 
-					<form
-						onSubmit={handleSubmit}
-						className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+				<form
+					onSubmit={handleSubmit}
+					className="flex flex-col sm:flex-row gap-2 max-w-[460px] mx-auto"
+				>
+					<input
+						type="email"
+						placeholder="Enter your email address"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						required
+						disabled={isLoading}
+						className="flex-1 px-4 py-3.5 border border-white/20 bg-white/[0.08] text-white text-[15px] rounded-lg outline-none placeholder:text-white/60 focus:border-wheat transition-colors"
+					/>
+					<button
+						type="submit"
+						disabled={isLoading}
+						className="px-6 py-3.5 bg-wheat text-sage-deep border-none font-bold text-[15px] rounded-lg cursor-pointer hover:bg-wheat-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 					>
-						<Input
-							type="email"
-							placeholder="Enter your email address"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-							className="flex-1 bg-white text-gray-900"
-							disabled={isLoading}
-						/>
-						<Button
-							type="submit"
-							size="lg"
-							className="bg-white text-blue-900 hover:bg-gray-100"
-							disabled={isLoading}
-						>
-							{isLoading ? "Subscribing..." : "Subscribe"}
-						</Button>
-					</form>
+						{isLoading ? "Subscribing..." : "Subscribe"}
+					</button>
+				</form>
 
-					<p className="text-sm text-blue-200 mt-4">
-						We respect your privacy. Unsubscribe at any time.
-					</p>
-				</div>
+				<p className="text-sm text-white/60 mt-4">
+					We respect your privacy. Unsubscribe at any time.
+				</p>
 			</div>
 		</section>
 	);

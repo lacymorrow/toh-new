@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { AuthenticationCard } from "@/app/(app)/(authentication)/_components/authentication-card";
 import { SignIn } from "@/app/(app)/(authentication)/sign-in/_components/sign-in";
 import { Icon } from "@/components/assets/icon";

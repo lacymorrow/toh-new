@@ -1,32 +1,46 @@
-import { ExternalLink, Mail, User } from "lucide-react";
+import { ExternalLink, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Candidate } from "@/server/db/schema-town";
 
 interface CandidateCardProps {
-	candidate: Candidate;
+	candidate: {
+		id?: string | null;
+		name: string;
+		position: string;
+		party?: string | null;
+		photo?: { url?: string | null } | number | null;
+		bio?: string | null;
+		website?: string | null;
+		sortOrder?: number | null;
+	};
 }
 
 export function CandidateCard({ candidate }: CandidateCardProps) {
+	// Resolve photo URL from upload relation
+	const photoUrl =
+		typeof candidate.photo === "object" && candidate.photo?.url
+			? candidate.photo.url
+			: null;
+
 	return (
 		<Card className="h-full">
 			<CardHeader>
 				<div className="flex items-start gap-4">
-					{candidate.photo ? (
+					{photoUrl ? (
 						<img
-							src={candidate.photo}
+							src={photoUrl}
 							alt={candidate.name}
-							className="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
+							className="w-16 h-16 rounded-full object-cover border-2 border-[#DDD7CC]"
 						/>
 					) : (
-						<div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-							<User className="h-8 w-8 text-gray-400" />
+						<div className="w-16 h-16 rounded-full bg-stone flex items-center justify-center">
+							<User className="h-8 w-8 text-[#7A756C]" />
 						</div>
 					)}
 
 					<div className="flex-1 min-w-0">
 						<CardTitle className="text-lg">{candidate.name}</CardTitle>
-						<p className="text-sm text-gray-600 mb-2">{candidate.position}</p>
+						<p className="text-sm text-[#4A4640] mb-2">{candidate.position}</p>
 						{candidate.party && (
 							<Badge variant="outline" className="text-xs">
 								{candidate.party}
@@ -39,23 +53,13 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
 			<CardContent className="space-y-4">
 				{candidate.bio && (
 					<div>
-						<p className="text-sm text-gray-700 leading-relaxed">
+						<p className="text-sm text-[#4A4640] leading-relaxed">
 							{candidate.bio.length > 300 ? `${candidate.bio.substring(0, 300)}...` : candidate.bio}
 						</p>
 					</div>
 				)}
 
 				<div className="flex flex-wrap gap-2 pt-2 border-t">
-					{candidate.contactEmail && (
-						<a
-							href={`mailto:${candidate.contactEmail}`}
-							className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 bg-blue-50 px-2 py-1 rounded-md"
-						>
-							<Mail className="h-3 w-3" />
-							Email
-						</a>
-					)}
-
 					{candidate.website && (
 						<a
 							href={candidate.website}

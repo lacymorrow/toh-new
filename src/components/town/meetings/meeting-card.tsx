@@ -39,7 +39,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 					<div className="flex-1">
 						<Link
 							href={`/meetings/${meeting.slug}`}
-							className="hover:text-blue-600 transition-colors"
+							className="hover:text-sage-dark transition-colors"
 						>
 							<h3 className="text-xl font-semibold mb-2">{meeting.title}</h3>
 						</Link>
@@ -117,7 +117,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 									href={meeting.agendaUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-blue-600 hover:text-blue-800 underline"
+									className="text-sage hover:text-sage-dark underline"
 								>
 									Agenda
 								</a>
@@ -127,7 +127,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 									href={meeting.minutesUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-blue-600 hover:text-blue-800 underline"
+									className="text-sage hover:text-sage-dark underline"
 								>
 									Minutes
 								</a>
@@ -139,7 +139,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 										href={doc}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="text-blue-600 hover:text-blue-800 underline"
+										className="text-sage hover:text-sage-dark underline"
 									>
 										Document {index + 1}
 									</a>
@@ -156,7 +156,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 									href={meeting.videoUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+									className="flex items-center gap-2 text-sage hover:text-sage-dark text-sm font-medium"
 								>
 									<Video className="h-4 w-4" />
 									Watch Recording
@@ -167,7 +167,7 @@ export function MeetingCard({ meeting }: MeetingCardProps) {
 									href={meeting.audioUrl}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+									className="flex items-center gap-2 text-sage hover:text-sage-dark text-sm font-medium"
 								>
 									<Headphones className="h-4 w-4" />
 									Listen to Audio

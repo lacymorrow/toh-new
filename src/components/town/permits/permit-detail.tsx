@@ -42,7 +42,7 @@ const statusConfig = {
 	},
 	expired: {
 		icon: AlertCircle,
-		color: "bg-gray-100 text-gray-800",
+		color: "bg-stone text-[#2D2A24]",
 		description: "This permit has expired and is no longer valid",
 	},
 };
@@ -110,7 +110,7 @@ export function PermitDetail({ permit }: PermitDetailProps) {
 									<Mail className="h-4 w-4 text-muted-foreground" />
 									<a
 										href={`mailto:${permit.applicantEmail}`}
-										className="text-sm text-blue-600 hover:underline"
+										className="text-sm text-sage hover:underline"
 									>
 										{permit.applicantEmail}
 									</a>
@@ -125,7 +125,7 @@ export function PermitDetail({ permit }: PermitDetailProps) {
 									<Phone className="h-4 w-4 text-muted-foreground" />
 									<a
 										href={`tel:${permit.applicantPhone}`}
-										className="text-sm text-blue-600 hover:underline"
+										className="text-sm text-sage hover:underline"
 									>
 										{permit.applicantPhone}
 									</a>
@@ -158,7 +158,7 @@ export function PermitDetail({ permit }: PermitDetailProps) {
 					<CardContent className="space-y-4">
 						<div className="space-y-3">
 							<div className="flex items-start gap-3">
-								<div className="w-2 h-2 rounded-full bg-blue-600 mt-2" />
+								<div className="w-2 h-2 rounded-full bg-sage mt-2" />
 								<div className="flex-1">
 									<p className="text-sm font-medium">Submitted</p>
 									<p className="text-xs text-muted-foreground">
@@ -318,7 +318,7 @@ export function PermitDetail({ permit }: PermitDetailProps) {
 							<div className="text-sm space-y-1">
 								<div className="flex items-center gap-2">
 									<Phone className="h-4 w-4 text-muted-foreground" />
-									<a href="tel:+1234567890" className="text-blue-600 hover:underline">
+									<a href="tel:+1234567890" className="text-sage hover:underline">
 										(123) 456-7890
 									</a>
 								</div>
@@ -326,7 +326,7 @@ export function PermitDetail({ permit }: PermitDetailProps) {
 									<Mail className="h-4 w-4 text-muted-foreground" />
 									<a
 										href="mailto:permits@townofharmony.gov"
-										className="text-blue-600 hover:underline"
+										className="text-sage hover:underline"
 									>
 										permits@townofharmony.gov
 									</a>

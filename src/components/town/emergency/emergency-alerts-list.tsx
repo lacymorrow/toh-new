@@ -1,44 +1,13 @@
-import { and, desc, eq, gte, isNull, lte, or } from "drizzle-orm";
 import { AlertOctagon, AlertTriangle, Calendar, Info, MapPin } from "lucide-react";
 import Link from "next/link";
+import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from "@/server/db";
-import { emergencyAlerts } from "@/server/db/schema-town";
+import { getAnnouncements } from "@/lib/payload/town-data";
 
 interface EmergencyAlertsListProps {
 	showAll?: boolean;
 	limit?: number;
 	activeOnly?: boolean;
-}
-
-async function getEmergencyAlerts(showAll = false, limit = 10, activeOnly = false) {
-	if (!db) return [];
-
-	const conditions = [];
-
-	if (activeOnly) {
-		const now = new Date();
-		conditions.push(
-			eq(emergencyAlerts.isActive, true),
-			or(isNull(emergencyAlerts.startsAt), lte(emergencyAlerts.startsAt, now)),
-			or(isNull(emergencyAlerts.endsAt), gte(emergencyAlerts.endsAt, now))
-		);
-	}
-
-	const query = db
-		.select()
-		.from(emergencyAlerts)
-		.orderBy(desc(emergencyAlerts.level), desc(emergencyAlerts.createdAt));
-
-	if (conditions.length > 0) {
-		query.where(and(...conditions));
-	}
-
-	if (!showAll) {
-		query.limit(limit);
-	}
-
-	return await query;
 }
 
 const getLevelIcon = (level: string) => {
@@ -65,20 +34,20 @@ const getLevelColors = (level: string) => {
 			};
 		case "warning":
 			return {
-				bg: "bg-yellow-50",
-				border: "border-yellow-200",
-				text: "text-yellow-800",
-				icon: "text-yellow-600",
-				badge: "bg-yellow-100 text-yellow-800",
+				bg: "bg-amber-50",
+				border: "border-amber-200",
+				text: "text-amber-900",
+				icon: "text-amber-600",
+				badge: "bg-amber-100 text-amber-900",
 			};
 		case "info":
 		default:
 			return {
-				bg: "bg-blue-50",
-				border: "border-blue-200",
-				text: "text-blue-800",
-				icon: "text-blue-600",
-				badge: "bg-blue-100 text-blue-800",
+				bg: "bg-sage/5",
+				border: "border-sage/20",
+				text: "text-sage-dark",
+				icon: "text-sage",
+				badge: "bg-sage/10 text-sage-dark",
 			};
 	}
 };
@@ -88,17 +57,22 @@ export async function EmergencyAlertsList({
 	limit = 10,
 	activeOnly = false,
 }: EmergencyAlertsListProps) {
-	const alerts = await getEmergencyAlerts(showAll, limit, activeOnly);
+	const result = await getAnnouncements({
+		limit: showAll ? 100 : limit,
+		activeOnly,
+	});
+
+	const alerts = result.docs;
 
 	if (alerts.length === 0) {
 		return (
-			<Card>
+			<Card className="border-stone bg-warm-white">
 				<CardContent className="py-12 text-center">
 					<div className="flex flex-col items-center gap-4">
-						<Info className="h-12 w-12 text-gray-400" />
+						<Info className="h-12 w-12 text-sage-light" />
 						<div>
-							<h3 className="text-lg font-semibold text-gray-700 mb-2">No Emergency Alerts</h3>
-							<p className="text-gray-500">
+							<h3 className="text-lg font-semibold text-sage-dark mb-2">No Emergency Alerts</h3>
+							<p className="text-[#4A4640]">
 								{activeOnly
 									? "There are currently no active emergency alerts."
 									: "No emergency alerts have been issued."}
@@ -120,27 +94,35 @@ export async function EmergencyAlertsList({
 					(!alert.startsAt || new Date(alert.startsAt) <= new Date()) &&
 					(!alert.endsAt || new Date(alert.endsAt) >= new Date());
 
+				// Extract plain text from rich text message
+				const messageText = extractTextFromRichText(alert.message as any);
+
+				// Parse affectedAreas from JSON field
+				const affectedAreas: string[] = Array.isArray(alert.affectedAreas)
+					? (alert.affectedAreas as string[])
+					: [];
+
 				return (
 					<Card
 						key={alert.id}
 						className={`hover:shadow-lg transition-shadow border-l-4 ${
 							isActive
 								? `${colors.border} ${colors.bg} border-l-current`
-								: "border-gray-200 bg-gray-50 border-l-gray-400"
+								: "border-stone bg-cream border-l-[#7A756C]"
 						}`}
 					>
 						<CardHeader className="pb-3">
 							<div className="flex items-start justify-between gap-3">
 								<div className="flex items-start gap-3 flex-1">
-									<Icon className={`h-5 w-5 mt-0.5 ${isActive ? colors.icon : "text-gray-400"}`} />
+									<Icon className={`h-5 w-5 mt-0.5 ${isActive ? colors.icon : "text-[#7A756C]"}`} />
 									<div className="flex-1">
 										<div className="flex items-center gap-2 mb-2">
-											<CardTitle className={`text-lg ${isActive ? colors.text : "text-gray-600"}`}>
+											<CardTitle className={`text-lg ${isActive ? colors.text : "text-[#4A4640]"}`}>
 												{alert.title}
 											</CardTitle>
 											<span
 												className={`px-2 py-1 rounded-full text-xs font-medium ${
-													isActive ? colors.badge : "bg-gray-200 text-gray-600"
+													isActive ? colors.badge : "bg-stone text-[#4A4640]"
 												}`}
 											>
 												{alert.level.toUpperCase()}
@@ -157,19 +139,19 @@ export async function EmergencyAlertsList({
 						</CardHeader>
 
 						<CardContent className="space-y-3">
-							<p className={`text-sm ${isActive ? colors.text : "text-gray-600"}`}>
-								{alert.message}
+							<p className={`text-sm ${isActive ? colors.text : "text-[#4A4640]"}`}>
+								{messageText}
 							</p>
 
-							{alert.affectedAreas && alert.affectedAreas.length > 0 && (
-								<div className="flex items-center gap-2 text-sm text-gray-600">
+							{affectedAreas.length > 0 && (
+								<div className="flex items-center gap-2 text-sm text-[#4A4640]">
 									<MapPin className="h-4 w-4" />
-									<span>Affected areas: {alert.affectedAreas.join(", ")}</span>
+									<span>Affected areas: {affectedAreas.join(", ")}</span>
 								</div>
 							)}
 
-							<div className="flex items-center justify-between pt-2 border-t">
-								<div className="flex items-center gap-4 text-xs text-gray-500">
+							<div className="flex items-center justify-between pt-2 border-t border-[#DDD7CC]">
+								<div className="flex items-center gap-4 text-xs text-[#7A756C]">
 									<div className="flex items-center gap-1">
 										<Calendar className="h-3 w-3" />
 										<span>Issued {new Date(alert.createdAt).toLocaleString()}</span>
@@ -185,10 +167,10 @@ export async function EmergencyAlertsList({
 								<Link
 									href={`/emergency/alerts/${alert.id}`}
 									className={`text-sm font-medium hover:underline ${
-										isActive ? colors.text : "text-gray-600"
+										isActive ? colors.text : "text-sage font-semibold hover:text-sage-dark"
 									}`}
 								>
-									View Details →
+									View Details &rarr;
 								</Link>
 							</div>
 						</CardContent>
@@ -200,7 +182,7 @@ export async function EmergencyAlertsList({
 				<div className="text-center pt-4">
 					<Link
 						href="/emergency/alerts"
-						className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+						className="inline-flex items-center gap-2 text-sage font-semibold hover:text-sage-dark transition-colors"
 					>
 						View All Emergency Alerts
 						<Calendar className="h-4 w-4" />

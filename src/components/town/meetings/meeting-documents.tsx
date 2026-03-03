@@ -55,7 +55,7 @@ export function MeetingDocuments({ meeting }: MeetingDocumentsProps) {
 				{meeting.agendaUrl && (
 					<div className="flex items-center justify-between p-3 border rounded-lg">
 						<div className="flex items-center gap-3">
-							<FileText className="h-5 w-5 text-blue-600" />
+							<FileText className="h-5 w-5 text-sage" />
 							<div>
 								<h4 className="font-medium">Meeting Agenda</h4>
 								<p className="text-sm text-muted-foreground">Agenda for {meeting.title}</p>
@@ -156,7 +156,7 @@ export function MeetingDocuments({ meeting }: MeetingDocumentsProps) {
 						{meeting.documents.map((doc, index) => (
 							<div key={index} className="flex items-center justify-between p-3 border rounded-lg">
 								<div className="flex items-center gap-3">
-									<FileText className="h-5 w-5 text-gray-600" />
+									<FileText className="h-5 w-5 text-[#4A4640]" />
 									<div>
 										<h4 className="font-medium">Document {index + 1}</h4>
 										<p className="text-sm text-muted-foreground">Additional meeting document</p>
@@ -181,9 +181,9 @@ export function MeetingDocuments({ meeting }: MeetingDocumentsProps) {
 				{/* Inline Content */}
 				<div className="space-y-4">
 					{meeting.agenda && (
-						<div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-							<h4 className="font-medium mb-2 text-blue-900">Agenda Content</h4>
-							<div className="prose prose-sm max-w-none text-blue-800">
+						<div className="p-4 bg-cream rounded-lg border border-[#DDD7CC]">
+							<h4 className="font-medium mb-2 text-[#2D2A24]">Agenda Content</h4>
+							<div className="prose prose-sm max-w-none text-[#2D2A24]">
 								<div dangerouslySetInnerHTML={{ __html: meeting.agenda }} />
 							</div>
 						</div>

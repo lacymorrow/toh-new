@@ -202,8 +202,8 @@ const nextConfig: NextConfig = {
 		 * Optimizes navigation performance by caching page segments
 		 */
 		staleTimes: {
-			dynamic: buildTimeFeatures.PAYLOAD_ENABLED ? 0 : 90, // Payload needs to be re-rendered on every request
-			static: 360, // 360 seconds for static routes
+			dynamic: 90,
+			static: 360,
 		},
 
 		// Memory optimization for builds
