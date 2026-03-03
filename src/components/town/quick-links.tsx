@@ -15,7 +15,7 @@ const quickLinks = [
 		icon: FileText,
 		title: "Permits & Forms",
 		description: "Apply for permits and download forms",
-		href: "/services/permits",
+		href: "/permits",
 	},
 	{
 		icon: Calendar,
@@ -26,14 +26,14 @@ const quickLinks = [
 	{
 		icon: Users,
 		title: "Town Council",
-		description: "Meetings and agendas",
-		href: "/government/council",
+		description: "Meeting schedules and agendas",
+		href: "/meetings",
 	},
 	{
 		icon: AlertCircle,
 		title: "Report an Issue",
 		description: "Report problems or concerns",
-		href: "/services/report",
+		href: "/contact",
 	},
 	{
 		icon: Briefcase,
@@ -45,12 +45,12 @@ const quickLinks = [
 		icon: Home,
 		title: "Resident Resources",
 		description: "Information for residents",
-		href: "/residents",
+		href: "/resources",
 	},
 	{
 		icon: Phone,
 		title: "Contact Us",
-		description: "Reach town offices",
+		description: "Get in touch with town offices",
 		href: "/contact",
 	},
 	{

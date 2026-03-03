@@ -1,0 +1,130 @@
+"use client";
+
+import { getNewsBySlugSync } from "@/lib/town-data-client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+interface TownNewsDetailProps {
+	slug?: string;
+}
+
+export const TownNewsDetail = ({ slug: slugProp }: TownNewsDetailProps) => {
+	const pathname = usePathname();
+	const slug =
+		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
+
+	const article = getNewsBySlugSync(slug);
+
+	if (!article) {
+		return (
+			<section className="bg-warm-white py-16">
+				<div className="container mx-auto px-4 text-center">
+					<h1 className="text-3xl font-serif font-bold text-sage-dark mb-4">
+						Article not found
+					</h1>
+					<p className="text-sage-dark/70 mb-8">
+						The news article you are looking for could not be found.
+					</p>
+					<Link
+						href="/news"
+						className="inline-flex items-center gap-2 bg-sage text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-sage-dark transition-colors"
+					>
+						&larr; Back to News
+					</Link>
+				</div>
+			</section>
+		);
+	}
+
+	const publishedDate = new Date(article.publishedAt).toLocaleDateString(
+		"en-US",
+		{
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		},
+	);
+
+	return (
+		<section className="bg-warm-white py-12">
+			<div className="container mx-auto px-4 max-w-3xl">
+				{/* Back link */}
+				<Link
+					href="/news"
+					className="inline-flex items-center gap-2 text-sage hover:text-sage-dark text-sm font-medium mb-8 transition-colors"
+				>
+					&larr; Back to News
+				</Link>
+
+				{/* Categories */}
+				{article.categories.length > 0 && (
+					<div className="flex flex-wrap gap-2 mb-4">
+						{article.categories.map((category) => (
+							<span
+								key={category}
+								className="inline-block bg-wheat/30 text-sage-dark px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
+							>
+								{category}
+							</span>
+						))}
+					</div>
+				)}
+
+				{/* Title */}
+				<h1 className="text-3xl md:text-4xl font-serif font-bold text-sage-dark leading-tight mb-4">
+					{article.title}
+				</h1>
+
+				{/* Meta */}
+				<div className="flex flex-wrap items-center gap-4 text-sm text-sage-dark/60 mb-8 border-b border-stone pb-6">
+					<time dateTime={article.publishedAt}>{publishedDate}</time>
+					{article.author && (
+						<>
+							<span className="text-stone">&middot;</span>
+							<span>By {article.author}</span>
+						</>
+					)}
+				</div>
+
+				{/* Featured image */}
+				{article.featuredImage && (
+					<div className="mb-8 rounded-xl overflow-hidden">
+						<img
+							src={article.featuredImage}
+							alt={article.title}
+							className="w-full h-auto object-cover max-h-[400px]"
+						/>
+					</div>
+				)}
+
+				{/* Content */}
+				<div
+					className="prose prose-lg max-w-none text-sage-dark/85 leading-relaxed
+						prose-headings:text-sage-dark prose-headings:font-serif
+						prose-a:text-sage prose-a:hover:text-sage-dark
+						prose-strong:text-sage-dark"
+					dangerouslySetInnerHTML={{ __html: article.content }}
+				/>
+
+				{/* Tags */}
+				{article.tags.length > 0 && (
+					<div className="mt-10 pt-6 border-t border-stone">
+						<h3 className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-3">
+							Tags
+						</h3>
+						<div className="flex flex-wrap gap-2">
+							{article.tags.map((tag) => (
+								<span
+									key={tag}
+									className="inline-block bg-cream text-sage-dark/70 border border-stone px-3 py-1 rounded-md text-xs"
+								>
+									{tag}
+								</span>
+							))}
+						</div>
+					</div>
+				)}
+			</div>
+		</section>
+	);
+};

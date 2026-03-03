@@ -5,8 +5,45 @@ import { LatestNews } from "@/components/town/latest-news";
 import { NewsletterSignup } from "@/components/town/newsletter-signup";
 import { QuickLinks } from "@/components/town/quick-links";
 import { UpcomingEvents } from "@/components/town/upcoming-events";
+import { env } from "@/env";
+import { RenderBuilderContent } from "@/lib/builder-io/builder-io";
+import type { BuilderContent } from "@builder.io/sdk";
 
-export default function HomePage() {
+async function getBuilderHomepage(): Promise<BuilderContent | null> {
+	if (!env.NEXT_PUBLIC_FEATURE_BUILDER_ENABLED || !env.NEXT_PUBLIC_BUILDER_API_KEY) {
+		return null;
+	}
+
+	try {
+		const url = new URL("https://cdn.builder.io/api/v3/content/page");
+		url.searchParams.set("apiKey", env.NEXT_PUBLIC_BUILDER_API_KEY);
+		url.searchParams.set("userAttributes.urlPath", "/");
+		url.searchParams.set("limit", "1");
+		url.searchParams.set("noCache", "true");
+
+		const res = await fetch(url.toString(), {
+			next: { revalidate: 0 },
+		});
+
+		if (!res.ok) return null;
+
+		const data = await res.json();
+		const results = data?.results;
+		if (!results || results.length === 0) return null;
+
+		return results[0] as BuilderContent;
+	} catch {
+		return null;
+	}
+}
+
+export default async function HomePage() {
+	const builderContent = await getBuilderHomepage();
+
+	if (builderContent) {
+		return <RenderBuilderContent content={builderContent} model="page" />;
+	}
+
 	return (
 		<>
 			<HeroSection />

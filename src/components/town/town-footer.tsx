@@ -4,19 +4,19 @@ import Link from "next/link";
 const footerLinks = {
 	"Agenda & Minutes": [
 		{ name: "Town Meetings", href: "/meetings" },
-		{ name: "Meeting Archives", href: "/meetings/archives" },
-		{ name: "Public Records", href: "/meetings/records" },
+		{ name: "Agendas & Minutes", href: "/agenda-minutes" },
 	],
 	Explore: [
 		{ name: "Points of Interest", href: "/points-of-interest" },
 		{ name: "Events", href: "/events" },
 		{ name: "News", href: "/news" },
-		{ name: "Photo Gallery", href: "/gallery" },
+		{ name: "Business Directory", href: "/business" },
 	],
 	Town: [
 		{ name: "Our Team", href: "/our-team" },
 		{ name: "History", href: "/history" },
 		{ name: "Resources", href: "/resources" },
+		{ name: "Emergency Services", href: "/emergency" },
 		{ name: "Contact Us", href: "/contact" },
 	],
 };
@@ -97,14 +97,11 @@ export function TownFooter() {
 					<div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[13px]">
 						<span>&copy; {new Date().getFullYear()} Town of Harmony. All rights reserved.</span>
 						<div className="flex gap-5">
-							<Link href="/privacy-policy" className="text-white/65 hover:text-wheat transition-colors">
+							<Link href="/contact" className="text-white/65 hover:text-wheat transition-colors">
 								Privacy
 							</Link>
-							<Link href="/accessibility" className="text-white/65 hover:text-wheat transition-colors">
+							<Link href="/contact" className="text-white/65 hover:text-wheat transition-colors">
 								Accessibility
-							</Link>
-							<Link href="/sitemap" className="text-white/65 hover:text-wheat transition-colors">
-								Sitemap
 							</Link>
 						</div>
 					</div>

@@ -219,7 +219,7 @@
     "@eslint/eslintrc": "^3.3.4",
     "@next/bundle-analyzer": "16.1.6",
     "@next/eslint-plugin-next": "16.1.6",
-    "@next/mdx": "16.1.6",
+    "@next/mdx": "15.5.12",
     "@playwright/test": "^1.58.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -280,6 +280,7 @@
     },
     "onlyBuiltDependencies": [
       "@clerk/shared",
+      "@prisma/engines",
       "@tsparticles/engine",
       "@vercel/speed-insights",
       "@vscode/ripgrep",
@@ -293,6 +294,8 @@
       "geckodriver",
       "isolated-vm",
       "msw",
+      "onnxruntime-node",
+      "prisma",
       "protobufjs",
       "puppeteer",
       "sharp",
@@ -302,13 +305,21 @@
   },
   "trustedDependencies": [
     "@clerk/shared",
+    "@prisma/engines",
     "@tsparticles/engine",
     "@vercel/speed-insights",
+    "bufferutil",
     "core-js",
     "edgedriver",
+    "esbuild",
+    "geckodriver",
+    "isolated-vm",
     "onnxruntime-node",
+    "prisma",
     "protobufjs",
-    "unrs-resolver"
+    "sharp",
+    "unrs-resolver",
+    "utf-8-validate"
   ],
   "engines": {
     "node": ">=18 <23"

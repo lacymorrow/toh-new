@@ -4,6 +4,9 @@ import { CTA } from "./components/modules/builder/cta";
 import { Hero } from "./components/modules/builder/hero";
 import { Stats } from "./components/modules/builder/stats";
 
+// Register all town components
+import "./builder-registry-town";
+
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 Builder.registerComponent(CTA, {

@@ -24,7 +24,7 @@ const navigation = [
 		href: "/meetings",
 		children: [
 			{ name: "Town Meetings", href: "/meetings" },
-			{ name: "Meeting Archives", href: "/meetings/archives" },
+			{ name: "Agendas & Minutes", href: "/agenda-minutes" },
 		],
 	},
 	{

@@ -1,0 +1,200 @@
+"use client";
+
+import { getEventBySlugSync } from "@/lib/town-data-client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+interface TownEventDetailProps {
+	slug?: string;
+}
+
+const statusColors: Record<string, string> = {
+	upcoming: "bg-sage/15 text-sage-dark border-sage/30",
+	past: "bg-stone/50 text-sage-dark/60 border-stone",
+	cancelled: "bg-barn-red/15 text-barn-red border-barn-red/30",
+};
+
+export const TownEventDetail = ({ slug: slugProp }: TownEventDetailProps) => {
+	const pathname = usePathname();
+	const slug =
+		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
+
+	const event = getEventBySlugSync(slug);
+
+	if (!event) {
+		return (
+			<section className="bg-warm-white py-16">
+				<div className="container mx-auto px-4 text-center">
+					<h1 className="text-3xl font-serif font-bold text-sage-dark mb-4">
+						Event not found
+					</h1>
+					<p className="text-sage-dark/70 mb-8">
+						The event you are looking for could not be found.
+					</p>
+					<Link
+						href="/events"
+						className="inline-flex items-center gap-2 bg-sage text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-sage-dark transition-colors"
+					>
+						&larr; Back to Events
+					</Link>
+				</div>
+			</section>
+		);
+	}
+
+	const eventDate = new Date(event.eventDate).toLocaleDateString("en-US", {
+		weekday: "long",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+
+	return (
+		<section className="bg-warm-white py-12">
+			<div className="container mx-auto px-4 max-w-3xl">
+				{/* Back link */}
+				<Link
+					href="/events"
+					className="inline-flex items-center gap-2 text-sage hover:text-sage-dark text-sm font-medium mb-8 transition-colors"
+				>
+					&larr; Back to Events
+				</Link>
+
+				{/* Status badge and categories */}
+				<div className="flex flex-wrap items-center gap-2 mb-4">
+					<span
+						className={`inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide border ${statusColors[event.status] || statusColors.upcoming}`}
+					>
+						{event.status}
+					</span>
+					{event.categories.map((category) => (
+						<span
+							key={category}
+							className="inline-block bg-wheat/30 text-sage-dark px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide"
+						>
+							{category}
+						</span>
+					))}
+				</div>
+
+				{/* Title */}
+				<h1 className="text-3xl md:text-4xl font-serif font-bold text-sage-dark leading-tight mb-6">
+					{event.title}
+				</h1>
+
+				{/* Featured image */}
+				{event.featuredImage && (
+					<div className="mb-8 rounded-xl overflow-hidden">
+						<img
+							src={event.featuredImage}
+							alt={event.title}
+							className="w-full h-auto object-cover max-h-[400px]"
+						/>
+					</div>
+				)}
+
+				{/* Event details card */}
+				<div className="bg-cream border border-stone rounded-xl p-6 mb-8">
+					<h2 className="text-sm font-semibold uppercase tracking-wide text-sage-dark/50 mb-4">
+						Event Details
+					</h2>
+					<dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+						<div>
+							<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+								Date
+							</dt>
+							<dd className="text-sage-dark font-medium">
+								{eventDate}
+							</dd>
+						</div>
+						<div>
+							<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+								Time
+							</dt>
+							<dd className="text-sage-dark font-medium">
+								{event.eventTime}
+								{event.endTime && ` - ${event.endTime}`}
+							</dd>
+						</div>
+						<div>
+							<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+								Location
+							</dt>
+							<dd className="text-sage-dark font-medium">
+								{event.location}
+							</dd>
+						</div>
+						{event.locationAddress && (
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+									Address
+								</dt>
+								<dd className="text-sage-dark font-medium">
+									{event.locationAddress}
+								</dd>
+							</div>
+						)}
+						{event.organizer && (
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+									Organizer
+								</dt>
+								<dd className="text-sage-dark font-medium">
+									{event.organizer}
+								</dd>
+							</div>
+						)}
+						{event.contactEmail && (
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+									Email
+								</dt>
+								<dd>
+									<a
+										href={`mailto:${event.contactEmail}`}
+										className="text-sage hover:text-sage-dark font-medium transition-colors"
+									>
+										{event.contactEmail}
+									</a>
+								</dd>
+							</div>
+						)}
+						{event.contactPhone && (
+							<div>
+								<dt className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-1">
+									Phone
+								</dt>
+								<dd>
+									<a
+										href={`tel:${event.contactPhone}`}
+										className="text-sage hover:text-sage-dark font-medium transition-colors"
+									>
+										{event.contactPhone}
+									</a>
+								</dd>
+							</div>
+						)}
+					</dl>
+				</div>
+
+				{/* Description */}
+				{event.description && (
+					<p className="text-lg text-sage-dark/80 leading-relaxed mb-6 italic">
+						{event.description}
+					</p>
+				)}
+
+				{/* Content */}
+				{event.content && (
+					<div
+						className="prose prose-lg max-w-none text-sage-dark/85 leading-relaxed
+							prose-headings:text-sage-dark prose-headings:font-serif
+							prose-a:text-sage prose-a:hover:text-sage-dark
+							prose-strong:text-sage-dark"
+						dangerouslySetInnerHTML={{ __html: event.content }}
+					/>
+				)}
+			</div>
+		</section>
+	);
+};

@@ -11,7 +11,7 @@ export const navigation: TownNavigation = {
 			href: "/meetings",
 			children: [
 				{ name: "Town Meetings", href: "/meetings" },
-				{ name: "Meeting Archives", href: "/meetings/archives" },
+				{ name: "Agendas & Minutes", href: "/agenda-minutes" },
 			],
 		},
 		{
@@ -48,7 +48,7 @@ export const navigation: TownNavigation = {
 		{
 			title: "Permits & Forms",
 			description: "Apply for permits and download forms",
-			href: "/services/permits",
+			href: "/permits",
 			icon: "FileText",
 			color: "bg-blue-500",
 		},
@@ -62,14 +62,14 @@ export const navigation: TownNavigation = {
 		{
 			title: "Report an Issue",
 			description: "Report problems or concerns",
-			href: "/services/report",
+			href: "/contact",
 			icon: "AlertCircle",
 			color: "bg-red-500",
 		},
 		{
 			title: "Town Council",
 			description: "Meeting schedules and agendas",
-			href: "/government/council",
+			href: "/meetings",
 			icon: "Users",
 			color: "bg-indigo-500",
 		},
@@ -83,7 +83,7 @@ export const navigation: TownNavigation = {
 		{
 			title: "Resident Resources",
 			description: "Information for residents",
-			href: "/residents",
+			href: "/resources",
 			icon: "Home",
 			color: "bg-teal-500",
 		},
@@ -100,8 +100,7 @@ export const navigation: TownNavigation = {
 			category: "Agenda & Minutes",
 			links: [
 				{ name: "Town Meetings", href: "/meetings" },
-				{ name: "Meeting Archives", href: "/meetings/archives" },
-				{ name: "Public Records", href: "/meetings/records" },
+				{ name: "Agendas & Minutes", href: "/agenda-minutes" },
 			],
 		},
 		{
@@ -110,7 +109,7 @@ export const navigation: TownNavigation = {
 				{ name: "Points of Interest", href: "/points-of-interest" },
 				{ name: "Events", href: "/events" },
 				{ name: "News", href: "/news" },
-				{ name: "Photo Gallery", href: "/gallery" },
+				{ name: "Business Directory", href: "/business" },
 			],
 		},
 		{
@@ -119,8 +118,8 @@ export const navigation: TownNavigation = {
 				{ name: "Our Team", href: "/our-team" },
 				{ name: "History", href: "/history" },
 				{ name: "Resources", href: "/resources" },
-				{ name: "Contact Us", href: "/contact" },
 				{ name: "Emergency Services", href: "/emergency" },
+				{ name: "Contact Us", href: "/contact" },
 			],
 		},
 	],

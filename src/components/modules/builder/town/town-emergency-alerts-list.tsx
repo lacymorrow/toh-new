@@ -1,0 +1,228 @@
+"use client";
+
+import { AlertCircle, AlertTriangle, Info } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+	getActiveAnnouncementsSync,
+	getAnnouncementsSync,
+} from "@/lib/town-data-client";
+
+interface TownEmergencyAlertsListProps {
+	showAll?: boolean;
+	limit?: number;
+}
+
+const levelConfig: Record<
+	string,
+	{
+		icon: LucideIcon;
+		bg: string;
+		border: string;
+		badge: string;
+		badgeText: string;
+		text: string;
+	}
+> = {
+	critical: {
+		icon: AlertCircle,
+		bg: "bg-red-50",
+		border: "border-red-300",
+		badge: "bg-red-600",
+		badgeText: "text-white",
+		text: "text-red-800",
+	},
+	warning: {
+		icon: AlertTriangle,
+		bg: "bg-amber-50",
+		border: "border-amber-300",
+		badge: "bg-amber-500",
+		badgeText: "text-white",
+		text: "text-amber-800",
+	},
+	info: {
+		icon: Info,
+		bg: "bg-blue-50",
+		border: "border-blue-300",
+		badge: "bg-blue-600",
+		badgeText: "text-white",
+		text: "text-blue-800",
+	},
+};
+
+export const TownEmergencyAlertsList = ({
+	showAll = false,
+	limit = 10,
+}: TownEmergencyAlertsListProps) => {
+	const alerts = showAll
+		? getAnnouncementsSync({ limit }).docs
+		: getActiveAnnouncementsSync();
+
+	const displayAlerts = alerts.slice(0, limit);
+
+	if (displayAlerts.length === 0) {
+		return (
+			<section className="py-16">
+				<div className="container mx-auto px-4">
+					<div className="text-center mb-10">
+						<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
+							Emergency Alerts
+						</h2>
+						<p className="text-[#4A4640] text-base">
+							Community notifications and alerts
+						</p>
+					</div>
+					<div className="bg-cream rounded-xl p-8 text-center text-[#4A4640]">
+						No active alerts at this time.
+					</div>
+				</div>
+			</section>
+		);
+	}
+
+	return (
+		<section className="py-16">
+			<div className="container mx-auto px-4">
+				<div className="text-center mb-10">
+					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
+						Emergency Alerts
+					</h2>
+					<p className="text-[#4A4640] text-base">
+						{showAll
+							? "All community notifications"
+							: "Active community notifications and alerts"}
+					</p>
+				</div>
+
+				<div className="space-y-4">
+					{displayAlerts.map((alert) => {
+						const config = levelConfig[alert.level] ?? levelConfig.info;
+						const Icon = config.icon;
+						const createdDate = new Date(
+							alert.createdAt,
+						).toLocaleDateString("en-US", {
+							month: "long",
+							day: "numeric",
+							year: "numeric",
+						});
+						const endsDate = alert.endsAt
+							? new Date(alert.endsAt).toLocaleDateString(
+									"en-US",
+									{
+										month: "long",
+										day: "numeric",
+										year: "numeric",
+									},
+								)
+							: null;
+
+						return (
+							<div
+								key={alert.id}
+								className={`${config.bg} ${config.border} border rounded-xl p-6`}
+							>
+								<div className="flex items-start gap-4">
+									<div className="flex-shrink-0 mt-0.5">
+										<Icon
+											className={`h-5 w-5 ${config.text}`}
+										/>
+									</div>
+
+									<div className="flex-1 min-w-0">
+										<div className="flex items-center gap-3 mb-2 flex-wrap">
+											<span
+												className={`${config.badge} ${config.badgeText} text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full`}
+											>
+												{alert.level}
+											</span>
+											<span className="text-xs text-[#4A4640]">
+												Posted {createdDate}
+											</span>
+											{endsDate && (
+												<span className="text-xs text-[#4A4640]">
+													Expires {endsDate}
+												</span>
+											)}
+											{!alert.isActive && (
+												<span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full font-medium">
+													Inactive
+												</span>
+											)}
+										</div>
+
+										<h3
+											className={`font-semibold text-[17px] mb-2 ${config.text}`}
+										>
+											{alert.title}
+										</h3>
+
+										<p className="text-sm text-[#4A4640] leading-relaxed mb-3">
+											{alert.content}
+										</p>
+
+										{alert.affectedAreas &&
+											alert.affectedAreas.length > 0 && (
+												<div className="mb-3">
+													<p className="text-xs font-semibold text-[#4A4640] uppercase tracking-wider mb-1">
+														Affected Areas
+													</p>
+													<div className="flex flex-wrap gap-1.5">
+														{alert.affectedAreas.map(
+															(area) => (
+																<span
+																	key={area}
+																	className="bg-white/70 text-[#4A4640] text-xs px-2.5 py-0.5 rounded-full border border-[#DDD7CC]"
+																>
+																	{area}
+																</span>
+															),
+														)}
+													</div>
+												</div>
+											)}
+
+										{alert.instructions &&
+											alert.instructions.length > 0 && (
+												<div className="mt-3 pt-3 border-t border-[#DDD7CC]/50">
+													<p className="text-xs font-semibold text-[#4A4640] uppercase tracking-wider mb-2">
+														Instructions
+													</p>
+													<ol className="space-y-1 list-decimal list-inside">
+														{alert.instructions.map(
+															(
+																instruction,
+																i,
+															) => (
+																<li
+																	key={i}
+																	className="text-sm text-[#4A4640]"
+																>
+																	{
+																		instruction
+																	}
+																</li>
+															),
+														)}
+													</ol>
+												</div>
+											)}
+
+										{alert.externalUrl && (
+											<a
+												href={alert.externalUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-sage hover:text-sage-dark transition-colors"
+											>
+												More Information &rarr;
+											</a>
+										)}
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+	);
+};
