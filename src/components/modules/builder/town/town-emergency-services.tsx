@@ -143,7 +143,7 @@ export const TownEmergencyServices = () => {
 
 										return (
 											<div
-												key={service.id}
+												key={service.title}
 												className={`bg-warm-white rounded-xl border ${meta.border} p-6 hover:shadow-md transition-shadow`}
 											>
 												<div className="flex items-start gap-4">

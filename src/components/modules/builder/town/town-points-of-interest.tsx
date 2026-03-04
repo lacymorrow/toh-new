@@ -88,7 +88,7 @@ export const TownPointsOfInterest = ({
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{pois.map((poi) => (
 							<div
-								key={poi.id}
+								key={poi.slug}
 								className="bg-white rounded-lg border border-stone overflow-hidden"
 							>
 								{/* Image */}

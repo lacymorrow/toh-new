@@ -243,7 +243,7 @@ export const TownMeetingsList = ({
 
 							return (
 								<Link
-									key={meeting.id}
+									key={meeting.slug}
 									href={`/meetings/${meeting.slug}`}
 									className="group block bg-white rounded-lg border border-stone overflow-hidden hover:shadow-lg transition-shadow"
 								>

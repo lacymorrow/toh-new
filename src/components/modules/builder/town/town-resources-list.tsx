@@ -280,7 +280,7 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 											if (resource.externalUrl) {
 												return (
 													<a
-														key={resource.id}
+														key={resource.slug}
 														href={resource.externalUrl}
 														target="_blank"
 														rel="noopener noreferrer"
@@ -291,7 +291,7 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 											}
 
 											return (
-												<div key={resource.id}>
+												<div key={resource.slug}>
 													{content}
 												</div>
 											);

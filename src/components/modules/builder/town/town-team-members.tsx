@@ -79,7 +79,7 @@ export const TownTeamMembers = () => {
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 							{section.members.map((member) => (
 								<div
-									key={member.id}
+									key={member.name}
 									className="bg-white rounded-lg border border-stone overflow-hidden hover:shadow-md transition-shadow"
 								>
 									<div className="p-5">

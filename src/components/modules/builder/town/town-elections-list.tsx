@@ -196,7 +196,7 @@ export const TownElectionsList = ({
 
 							return (
 								<Link
-									key={election.id}
+									key={election.slug}
 									href={`/elections/${election.slug}`}
 									className="group bg-white rounded-lg border border-stone overflow-hidden hover:shadow-lg transition-shadow"
 								>

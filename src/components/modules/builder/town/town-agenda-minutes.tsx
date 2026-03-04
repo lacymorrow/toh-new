@@ -107,7 +107,7 @@ export const TownAgendaMinutes = () => {
 						) : (
 							upcomingMeetings.map((meeting) => (
 								<div
-									key={meeting.id}
+									key={meeting.slug}
 									className="bg-warm-white rounded-xl border border-[#DDD7CC] overflow-hidden"
 								>
 									{/* Meeting header */}
@@ -179,7 +179,7 @@ export const TownAgendaMinutes = () => {
 						) : (
 							pastMeetings.map((meeting) => (
 								<div
-									key={meeting.id}
+									key={meeting.slug}
 									className="bg-warm-white rounded-xl border border-[#DDD7CC] overflow-hidden"
 								>
 									{/* Meeting header */}

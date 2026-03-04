@@ -197,7 +197,7 @@ export const TownEventsList = ({
 							const eventDate = new Date(event.eventDate);
 							return (
 								<Link
-									key={event.id}
+									key={event.slug}
 									href={`/events/${event.slug}`}
 									className="group flex flex-col md:flex-row gap-4 bg-white rounded-lg border border-stone overflow-hidden hover:shadow-lg transition-shadow"
 								>

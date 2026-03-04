@@ -131,7 +131,7 @@ export const TownEmergencyAlertsList = ({
 
 						return (
 							<div
-								key={alert.id}
+								key={alert.title}
 								className={`${config.bg} ${config.border} border rounded-xl p-6`}
 							>
 								<div className="flex items-start gap-4">

@@ -57,7 +57,7 @@ export const TownUpcomingEvents = ({ limit = 5 }: TownUpcomingEventsProps) => {
 
 						return (
 							<Link
-								key={event.id}
+								key={event.slug}
 								href={`/events/${event.slug}`}
 								className="flex items-center gap-4 p-4 bg-cream rounded-[10px] border border-transparent hover:border-[#DDD7CC] transition-colors cursor-pointer group"
 							>

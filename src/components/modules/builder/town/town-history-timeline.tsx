@@ -67,7 +67,7 @@ export const TownHistoryTimeline = ({
 
 							return (
 								<div
-									key={article.id}
+									key={article.slug}
 									className="relative flex flex-col md:flex-row items-start"
 								>
 									{/* Timeline Dot */}
