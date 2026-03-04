@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getMeetingsSync } from "@/lib/town-data-client";
+import { useBuilderPaginatedData } from "@/lib/builder-data";
+import { meetings as staticMeetings } from "@/data/town/meetings";
+import type { TownMeeting } from "@/data/town/types";
 
 interface TownMeetingsListProps {
 	itemsPerPage?: number;
@@ -104,13 +106,28 @@ export const TownMeetingsList = ({
 	const year = searchParams?.get("year") || undefined;
 	const status = searchParams?.get("status") || undefined;
 
-	const { docs, totalPages } = getMeetingsSync({
-		limit: itemsPerPage,
+	const { docs, totalPages } = useBuilderPaginatedData<TownMeeting>("town-meeting", {
 		page,
-		type,
-		month,
-		year,
-		status,
+		limit: itemsPerPage,
+		fallbackData: staticMeetings,
+		filter: (meeting) => {
+			if (type && meeting.type !== type) return false;
+			if (month || year) {
+				const d = new Date(meeting.meetingDate);
+				if (month && String(d.getMonth() + 1) !== month) return false;
+				if (year && String(d.getFullYear()) !== year) return false;
+			}
+			if (status) {
+				const today = new Date().toISOString().split("T")[0];
+				const meetingDay = meeting.meetingDate.split("T")[0];
+				if (status === "upcoming" && meetingDay! < today!) return false;
+				if (status === "past" && meetingDay! >= today!) return false;
+				if (status === "has-recordings" && !meeting.videoUrl && !meeting.audioUrl) return false;
+				if (status === "has-minutes" && !meeting.minutes && !meeting.minutesUrl) return false;
+			}
+			return true;
+		},
+		clientSort: (a, b) => new Date(b.meetingDate).getTime() - new Date(a.meetingDate).getTime(),
 	});
 
 	const updateParams = (updates: Record<string, string | undefined>) => {

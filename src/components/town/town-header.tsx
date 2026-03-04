@@ -14,44 +14,16 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
-const navigation = [
-	{
-		name: "Home",
-		href: "/",
-	},
-	{
-		name: "Agenda & Minutes",
-		href: "/meetings",
-		children: [
-			{ name: "Town Meetings", href: "/meetings" },
-			{ name: "Agendas & Minutes", href: "/agenda-minutes" },
-		],
-	},
-	{
-		name: "Explore",
-		href: "/explore",
-		children: [
-			{ name: "Points of Interest", href: "/points-of-interest" },
-			{ name: "Events", href: "/events" },
-			{ name: "News", href: "/news" },
-		],
-	},
-	{
-		name: "Town",
-		href: "/town",
-		children: [
-			{ name: "Our Team", href: "/our-team" },
-			{ name: "History", href: "/history" },
-			{ name: "Resources", href: "/resources" },
-		],
-	},
-	{
-		name: "Contact",
-		href: "/contact",
-	},
-];
+import { navigation as navData } from "@/data/town/navigation";
+import type { TownSettings } from "@/data/town/types";
 
-export function TownHeader() {
+const navigation = navData.mainNav;
+
+interface TownHeaderProps {
+	settings: TownSettings;
+}
+
+export function TownHeader({ settings }: TownHeaderProps) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
@@ -62,13 +34,13 @@ export function TownHeader() {
 					<div className="flex items-center justify-between py-2 text-[13px]">
 						<div className="flex items-center gap-6">
 							<a
-								href="tel:704-546-2339"
+								href={`tel:${settings.contactInfo.phone.replace(/[^\d+]/g, "")}`}
 								className="flex items-center gap-1 hover:text-white transition-colors"
 							>
 								<Phone className="h-3 w-3" />
-								(704) 546-2339
+								{settings.contactInfo.phone}
 							</a>
-							<span className="hidden md:inline">3389 Harmony Hwy, Harmony, NC 28634</span>
+							<span className="hidden md:inline">{settings.contactInfo.address}</span>
 						</div>
 						<div className="flex items-center gap-4">
 							<Link
@@ -101,9 +73,9 @@ export function TownHeader() {
 								TH
 							</div>
 							<div>
-								<h1 className="text-2xl font-serif font-bold text-sage-dark">Town of Harmony</h1>
+								<h1 className="text-2xl font-serif font-bold text-sage-dark">{settings.siteTitle}</h1>
 								<p className="text-xs text-[#7A756C] uppercase tracking-[1.5px] font-semibold">
-									Iredell County, North Carolina
+									{settings.branding.county}, {settings.branding.state}
 								</p>
 							</div>
 						</Link>

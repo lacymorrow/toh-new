@@ -34,12 +34,15 @@ export const routes = {
 		emergency: "/emergency",
 		events: "/events",
 		history: "/history",
+		map: "/map",
 		meetings: "/meetings",
 		news: "/news",
 		ourTeam: "/our-team",
 		permits: "/permits",
 		pointsOfInterest: "/points-of-interest",
 		resources: "/resources",
+		sewer: "/sewer",
+		sewerPayment: "/pay/sewer",
 	},
 
 	// Auth routes

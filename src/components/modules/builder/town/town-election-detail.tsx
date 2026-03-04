@@ -1,8 +1,10 @@
 "use client";
 
-import { getElectionBySlugSync } from "@/lib/town-data-client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useBuilderEntry } from "@/lib/builder-data";
+import { elections as staticElections } from "@/data/town/elections";
+import type { TownElection } from "@/data/town/types";
 
 interface TownElectionDetailProps {
 	slug?: string;
@@ -30,7 +32,26 @@ export const TownElectionDetail = ({
 	const slug =
 		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
 
-	const election = getElectionBySlugSync(slug);
+	const staticFallback = staticElections.find((e) => e.slug === slug) ?? null;
+	const { data: election, loading } = useBuilderEntry<TownElection>(
+		"town-election",
+		{ "data.slug": slug },
+		{ fallback: staticFallback },
+	);
+
+	if (loading) {
+		return (
+			<section className="bg-warm-white py-12">
+				<div className="container mx-auto px-4 max-w-4xl">
+					<div className="animate-pulse space-y-4">
+						<div className="h-4 w-32 bg-stone/40 rounded" />
+						<div className="h-8 w-3/4 bg-stone/40 rounded" />
+						<div className="h-48 bg-stone/20 rounded-xl" />
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	if (!election) {
 		return (

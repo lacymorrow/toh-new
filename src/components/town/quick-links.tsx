@@ -2,64 +2,31 @@ import {
 	AlertCircle,
 	Briefcase,
 	Calendar,
+	CreditCard,
 	FileText,
 	Home,
+	Map,
 	Phone,
 	Star,
 	Users,
+	type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 
-const quickLinks = [
-	{
-		icon: FileText,
-		title: "Permits & Forms",
-		description: "Apply for permits and download forms",
-		href: "/permits",
-	},
-	{
-		icon: Calendar,
-		title: "Events",
-		description: "Community events and activities",
-		href: "/events",
-	},
-	{
-		icon: Users,
-		title: "Town Council",
-		description: "Meeting schedules and agendas",
-		href: "/meetings",
-	},
-	{
-		icon: AlertCircle,
-		title: "Report an Issue",
-		description: "Report problems or concerns",
-		href: "/contact",
-	},
-	{
-		icon: Briefcase,
-		title: "Business Directory",
-		description: "Find local businesses",
-		href: "/business",
-	},
-	{
-		icon: Home,
-		title: "Resident Resources",
-		description: "Information for residents",
-		href: "/resources",
-	},
-	{
-		icon: Phone,
-		title: "Contact Us",
-		description: "Get in touch with town offices",
-		href: "/contact",
-	},
-	{
-		icon: Star,
-		title: "Points of Interest",
-		description: "Explore local landmarks",
-		href: "/points-of-interest",
-	},
-];
+import { navigation } from "@/data/town/navigation";
+
+const iconMap: Record<string, LucideIcon> = {
+	FileText,
+	Calendar,
+	AlertCircle,
+	Users,
+	Map,
+	Briefcase,
+	Home,
+	Phone,
+	Star,
+	CreditCard,
+};
 
 export function QuickLinks() {
 	return (
@@ -72,8 +39,8 @@ export function QuickLinks() {
 					<p className="text-[#4A4640] text-base">Find what you need quickly</p>
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-					{quickLinks.map((link) => {
-						const Icon = link.icon;
+					{navigation.quickLinks.map((link) => {
+						const Icon = iconMap[link.icon] ?? FileText;
 						return (
 							<Link
 								key={link.title}

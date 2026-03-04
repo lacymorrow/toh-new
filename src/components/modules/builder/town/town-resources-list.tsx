@@ -2,7 +2,9 @@
 
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getResourcesSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { resources as staticResources } from "@/data/town/resources";
+import type { TownResource } from "@/data/town/types";
 
 interface TownResourcesListProps {
 	type?: "document" | "service" | "link";
@@ -139,10 +141,24 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 
 	const categoryParam = searchParams?.get("category") || undefined;
 
-	const allResources = getResourcesSync({
-		type,
-		category: categoryParam,
-	});
+	const fallback = (() => {
+		let filtered = [...staticResources];
+		if (type) filtered = filtered.filter((r) => r.type === type);
+		if (categoryParam) filtered = filtered.filter((r) => r.category === categoryParam);
+		return filtered.sort((a, b) => a.sortOrder - b.sortOrder);
+	})();
+
+	const { data: rawResources } = useBuilderData<TownResource>(
+		"town-resource",
+		{ sort: { "data.sortOrder": 1 }, limit: 50, fallback: staticResources },
+	);
+
+	const allResources = (() => {
+		let filtered = [...rawResources];
+		if (type) filtered = filtered.filter((r) => r.type === type);
+		if (categoryParam) filtered = filtered.filter((r) => r.category === categoryParam);
+		return filtered.sort((a, b) => a.sortOrder - b.sortOrder);
+	})();
 
 	// Group resources by category
 	const categories = new Map<string, typeof allResources>();

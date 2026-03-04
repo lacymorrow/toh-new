@@ -13,7 +13,9 @@ import {
 	Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { getEmergencyServicesSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { emergencyServices } from "@/data/town/emergency-services";
+import type { TownEmergencyService } from "@/data/town/types";
 
 const iconMap: Record<string, LucideIcon> = {
 	Phone,
@@ -59,7 +61,38 @@ const categoryMeta: Record<
 };
 
 export const TownEmergencyServices = () => {
-	const services = getEmergencyServicesSync();
+	const fallback = [...emergencyServices].sort((a, b) => a.sortOrder - b.sortOrder);
+	const { data: services, loading } = useBuilderData<TownEmergencyService>(
+		"town-emergency-service",
+		{ sort: { "data.sortOrder": 1 }, limit: 50, fallback },
+	);
+
+	if (loading) {
+		return (
+			<section className="py-16">
+				<div className="container mx-auto px-4">
+					<div className="text-center mb-10">
+						<div className="h-8 w-64 bg-stone/50 rounded mx-auto mb-2 animate-pulse" />
+						<div className="h-4 w-96 bg-stone/30 rounded mx-auto animate-pulse" />
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						{Array.from({ length: 4 }).map((_, i) => (
+							<div key={i} className="bg-warm-white rounded-xl border border-stone/30 p-6 animate-pulse">
+								<div className="flex items-start gap-4">
+									<div className="w-11 h-11 bg-stone/30 rounded-lg" />
+									<div className="flex-1">
+										<div className="h-5 w-40 bg-stone/40 rounded mb-2" />
+										<div className="h-3 w-full bg-stone/20 rounded mb-1" />
+										<div className="h-3 w-3/4 bg-stone/20 rounded" />
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	const grouped: Record<string, typeof services> = {};
 	for (const service of services) {

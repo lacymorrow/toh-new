@@ -1,6 +1,7 @@
 "use client";
 import { Builder } from "@builder.io/react";
 import { TownAgendaMinutes } from "./components/modules/builder/town/town-agenda-minutes";
+import { TownInteractiveMap } from "./components/modules/builder/town/town-interactive-map";
 import { TownBusinessDetail } from "./components/modules/builder/town/town-business-detail";
 import { TownBusinessDirectory } from "./components/modules/builder/town/town-business-directory";
 import { TownCommunitySpotlight } from "./components/modules/builder/town/town-community-spotlight";
@@ -252,5 +253,10 @@ Builder.registerComponent(TownContactForm, {
 
 Builder.registerComponent(TownAgendaMinutes, {
 	name: "TownAgendaMinutes",
+	inputs: [],
+});
+
+Builder.registerComponent(TownInteractiveMap, {
+	name: "TownInteractiveMap",
 	inputs: [],
 });

@@ -18,6 +18,7 @@ export const navigation: TownNavigation = {
 			name: "Explore",
 			href: "/explore",
 			children: [
+				{ name: "Interactive Map", href: "/map" },
 				{ name: "Points of Interest", href: "/points-of-interest" },
 				{ name: "Events", href: "/events" },
 				{ name: "News", href: "/news" },
@@ -30,6 +31,7 @@ export const navigation: TownNavigation = {
 				{ name: "Our Team", href: "/our-team" },
 				{ name: "History", href: "/history" },
 				{ name: "Resources", href: "/resources" },
+				{ name: "Sewer Services", href: "/sewer" },
 			],
 		},
 		{
@@ -74,6 +76,13 @@ export const navigation: TownNavigation = {
 			color: "bg-indigo-500",
 		},
 		{
+			title: "Interactive Map",
+			description: "Explore Harmony on the map",
+			href: "/map",
+			icon: "Map",
+			color: "bg-sage",
+		},
+		{
 			title: "Business Directory",
 			description: "Find local businesses",
 			href: "/business",
@@ -86,6 +95,13 @@ export const navigation: TownNavigation = {
 			href: "/resources",
 			icon: "Home",
 			color: "bg-teal-500",
+		},
+		{
+			title: "Pay Sewer Bill",
+			description: "Pay your sewer bill online",
+			href: "/pay/sewer",
+			icon: "CreditCard",
+			color: "bg-emerald-500",
 		},
 		{
 			title: "Contact Us",
@@ -106,6 +122,7 @@ export const navigation: TownNavigation = {
 		{
 			category: "Explore",
 			links: [
+				{ name: "Interactive Map", href: "/map" },
 				{ name: "Points of Interest", href: "/points-of-interest" },
 				{ name: "Events", href: "/events" },
 				{ name: "News", href: "/news" },
@@ -119,6 +136,7 @@ export const navigation: TownNavigation = {
 				{ name: "History", href: "/history" },
 				{ name: "Resources", href: "/resources" },
 				{ name: "Emergency Services", href: "/emergency" },
+				{ name: "Sewer Services", href: "/sewer" },
 				{ name: "Contact Us", href: "/contact" },
 			],
 		},

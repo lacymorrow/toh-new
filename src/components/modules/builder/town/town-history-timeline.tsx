@@ -1,6 +1,8 @@
 "use client";
 
-import { getHistoryArticlesSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { historyArticles as staticHistory } from "@/data/town/history";
+import type { TownHistoryArticle } from "@/data/town/types";
 
 interface TownHistoryTimelineProps {
 	type?: "period" | "landmark" | "all";
@@ -9,9 +11,37 @@ interface TownHistoryTimelineProps {
 export const TownHistoryTimeline = ({
 	type = "all",
 }: TownHistoryTimelineProps) => {
-	const articles = getHistoryArticlesSync(
-		type !== "all" ? type : undefined,
+	const fallback = (() => {
+		let filtered = [...staticHistory];
+		if (type !== "all") filtered = filtered.filter((a) => a.type === type);
+		return filtered.sort((a, b) => a.sortOrder - b.sortOrder);
+	})();
+
+	const query = type !== "all" ? { "data.type": type } : undefined;
+	const { data: rawArticles, loading } = useBuilderData<TownHistoryArticle>(
+		"town-history-article",
+		{ sort: { "data.sortOrder": 1 }, limit: 50, query, fallback },
 	);
+
+	const articles = rawArticles.sort((a, b) => a.sortOrder - b.sortOrder);
+
+	if (loading) {
+		return (
+			<section className="py-12 bg-cream">
+				<div className="container mx-auto px-4">
+					<div className="space-y-12">
+						{Array.from({ length: 4 }).map((_, i) => (
+							<div key={i} className="bg-white rounded-lg border border-stone p-5 animate-pulse">
+								<div className="h-48 bg-stone/20 rounded mb-4" />
+								<div className="h-5 w-48 bg-stone/40 rounded mb-2" />
+								<div className="h-3 w-full bg-stone/20 rounded" />
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	if (articles.length === 0) {
 		return (

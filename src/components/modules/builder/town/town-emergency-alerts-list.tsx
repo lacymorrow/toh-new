@@ -2,10 +2,9 @@
 
 import { AlertCircle, AlertTriangle, Info } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import {
-	getActiveAnnouncementsSync,
-	getAnnouncementsSync,
-} from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { announcements as staticAnnouncements } from "@/data/town/announcements";
+import type { TownAnnouncement } from "@/data/town/types";
 
 interface TownEmergencyAlertsListProps {
 	showAll?: boolean;
@@ -53,9 +52,24 @@ export const TownEmergencyAlertsList = ({
 	showAll = false,
 	limit = 10,
 }: TownEmergencyAlertsListProps) => {
-	const alerts = showAll
-		? getAnnouncementsSync({ limit }).docs
-		: getActiveAnnouncementsSync();
+	const { data: allAnnouncements } = useBuilderData<TownAnnouncement>(
+		"town-announcement",
+		{ limit: 50, fallback: staticAnnouncements },
+	);
+
+	const alerts = (() => {
+		if (showAll) {
+			return [...allAnnouncements]
+				.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+		}
+		const now = new Date().toISOString();
+		return allAnnouncements.filter((a) => {
+			if (!a.isActive) return false;
+			if (a.startsAt && a.startsAt > now) return false;
+			if (a.endsAt && a.endsAt < now) return false;
+			return true;
+		});
+	})();
 
 	const displayAlerts = alerts.slice(0, limit);
 

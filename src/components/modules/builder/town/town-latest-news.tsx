@@ -2,14 +2,24 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getNewsSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { news as staticNews } from "@/data/town/news";
+import type { TownNews } from "@/data/town/types";
 
 interface TownLatestNewsProps {
 	limit?: number;
 }
 
 export const TownLatestNews = ({ limit = 3 }: TownLatestNewsProps) => {
-	const { docs: articles } = getNewsSync({ limit });
+	const { data: allNews } = useBuilderData<TownNews>("town-news", {
+		limit: 50,
+		fallback: staticNews,
+	});
+
+	const articles = [...allNews]
+		.filter((a) => a.status === "published")
+		.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+		.slice(0, limit);
 
 	if (articles.length === 0) {
 		return (
@@ -48,7 +58,7 @@ export const TownLatestNews = ({ limit = 3 }: TownLatestNewsProps) => {
 
 						return (
 							<Link
-								key={article.id}
+								key={article.slug}
 								href={`/news/${article.slug}`}
 								className="group bg-warm-white rounded-xl border border-[#DDD7CC] overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
 							>

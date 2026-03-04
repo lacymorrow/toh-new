@@ -1,22 +1,15 @@
 "use client";
 
-import { getBusinessBySlugSync } from "@/lib/town-data-client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useBuilderEntry } from "@/lib/builder-data";
+import { businesses as staticBusinesses } from "@/data/town/businesses";
+import type { TownBusiness } from "@/data/town/types";
 
 interface TownBusinessDetailProps {
 	slug?: string;
 }
 
-const dayLabels: Record<string, string> = {
-	monday: "Monday",
-	tuesday: "Tuesday",
-	wednesday: "Wednesday",
-	thursday: "Thursday",
-	friday: "Friday",
-	saturday: "Saturday",
-	sunday: "Sunday",
-};
 
 export const TownBusinessDetail = ({
 	slug: slugProp,
@@ -25,7 +18,26 @@ export const TownBusinessDetail = ({
 	const slug =
 		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
 
-	const business = getBusinessBySlugSync(slug);
+	const staticFallback = staticBusinesses.find((b) => b.slug === slug) ?? null;
+	const { data: business, loading } = useBuilderEntry<TownBusiness>(
+		"town-business",
+		{ "data.slug": slug },
+		{ fallback: staticFallback },
+	);
+
+	if (loading) {
+		return (
+			<section className="bg-warm-white py-12">
+				<div className="container mx-auto px-4 max-w-3xl">
+					<div className="animate-pulse space-y-4">
+						<div className="h-4 w-32 bg-stone/40 rounded" />
+						<div className="h-8 w-3/4 bg-stone/40 rounded" />
+						<div className="h-48 bg-stone/20 rounded-xl" />
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	if (!business) {
 		return (
@@ -48,7 +60,7 @@ export const TownBusinessDetail = ({
 		);
 	}
 
-	const fullAddress = `${business.address}, ${business.city}, ${business.state} ${business.zipCode}`;
+	const fullAddress = `${business.address}, ${business.city}, ${business.stateCode} ${business.zipCode}`;
 
 	return (
 		<section className="bg-warm-white py-12">
@@ -173,32 +185,16 @@ export const TownBusinessDetail = ({
 					</dl>
 				</div>
 
-				{/* Hours table */}
-				{business.hours && Object.keys(business.hours).length > 0 && (
+				{/* Hours */}
+				{business.hours && (
 					<div className="mb-8">
 						<h2 className="text-lg font-serif font-bold text-sage-dark mb-3">
 							Business Hours
 						</h2>
-						<div className="bg-cream border border-stone rounded-xl overflow-hidden">
-							<table className="w-full text-sm">
-								<tbody>
-									{Object.entries(business.hours).map(
-										([day, hours]) => (
-											<tr
-												key={day}
-												className="border-b border-stone last:border-b-0"
-											>
-												<td className="px-5 py-3 font-medium text-sage-dark w-1/3">
-													{dayLabels[day] || day}
-												</td>
-												<td className="px-5 py-3 text-sage-dark/80">
-													{hours}
-												</td>
-											</tr>
-										),
-									)}
-								</tbody>
-							</table>
+						<div className="bg-cream border border-stone rounded-xl p-5">
+							<p className="text-sm text-sage-dark/80 whitespace-pre-line">
+								{business.hours}
+							</p>
 						</div>
 					</div>
 				)}

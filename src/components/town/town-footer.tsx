@@ -1,47 +1,41 @@
 import { Facebook, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
-const footerLinks = {
-	"Agenda & Minutes": [
-		{ name: "Town Meetings", href: "/meetings" },
-		{ name: "Agendas & Minutes", href: "/agenda-minutes" },
-	],
-	Explore: [
-		{ name: "Points of Interest", href: "/points-of-interest" },
-		{ name: "Events", href: "/events" },
-		{ name: "News", href: "/news" },
-		{ name: "Business Directory", href: "/business" },
-	],
-	Town: [
-		{ name: "Our Team", href: "/our-team" },
-		{ name: "History", href: "/history" },
-		{ name: "Resources", href: "/resources" },
-		{ name: "Emergency Services", href: "/emergency" },
-		{ name: "Contact Us", href: "/contact" },
-	],
-};
+import { navigation } from "@/data/town/navigation";
+import type { TownSettings } from "@/data/town/types";
 
-export function TownFooter() {
+const footerLinks = Object.fromEntries(
+	navigation.footerLinks.map((section) => [
+		section.category,
+		section.links,
+	]),
+);
+
+interface TownFooterProps {
+	settings: TownSettings;
+}
+
+export function TownFooter({ settings }: TownFooterProps) {
 	return (
 		<footer className="bg-[#1E2118] text-white/80">
 			<div className="container mx-auto px-4 py-12">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
 					{/* Town Info */}
 					<div>
-						<h3 className="text-xl font-serif font-bold text-white mb-2">Town of Harmony</h3>
+						<h3 className="text-xl font-serif font-bold text-white mb-2">{settings.siteTitle}</h3>
 						<p className="text-sm leading-relaxed mb-2">
-							Where Harmony LIVES and SINGS! Serving our community since 1927.
+							{settings.branding.tagline} Serving our community since {settings.branding.established}.
 						</p>
 						<p className="text-sm leading-relaxed">
-							3389 Harmony Hwy, Harmony, NC 28634
+							{settings.contactInfo.address}
 							<br />
-							(704) 546-2339 &middot; info@townofharmony.org
+							{settings.contactInfo.phone} &middot; {settings.contactInfo.email}
 						</p>
 
 						{/* Social Media */}
 						<div className="flex gap-3 mt-4">
 							<a
-								href="https://facebook.com/townofharmony"
+								href={settings.socialMedia.facebook}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
@@ -50,7 +44,7 @@ export function TownFooter() {
 								<Facebook className="h-4 w-4" />
 							</a>
 							<a
-								href="https://twitter.com/harmonytown"
+								href={settings.socialMedia.twitter}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
@@ -59,7 +53,7 @@ export function TownFooter() {
 								<Twitter className="h-4 w-4" />
 							</a>
 							<a
-								href="https://youtube.com/townofharmony"
+								href={settings.socialMedia.youtube}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-colors"
@@ -95,7 +89,7 @@ export function TownFooter() {
 				{/* Bottom Bar */}
 				<div className="border-t border-white/[0.08] pt-6">
 					<div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[13px]">
-						<span>&copy; {new Date().getFullYear()} Town of Harmony. All rights reserved.</span>
+						<span>&copy; {new Date().getFullYear()} {settings.siteTitle}. All rights reserved.</span>
 						<div className="flex gap-5">
 							<Link href="/contact" className="text-white/65 hover:text-wheat transition-colors">
 								Privacy

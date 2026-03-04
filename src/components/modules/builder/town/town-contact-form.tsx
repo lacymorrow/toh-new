@@ -2,10 +2,16 @@
 
 import { useState } from "react";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { getSettingsSync } from "@/lib/town-data-client";
+import { useBuilderEntry } from "@/lib/builder-data";
+import { settings as staticSettings, toTownSettings, type BuilderSettingsFlat } from "@/data/town/settings";
 
 export const TownContactForm = () => {
-	const settings = getSettingsSync();
+	const { data: builderFlat } = useBuilderEntry<BuilderSettingsFlat>(
+		"town-settings",
+		{},
+		{ fallback: undefined },
+	);
+	const settings = builderFlat ? toTownSettings(builderFlat) : staticSettings;
 
 	const [formData, setFormData] = useState({
 		name: "",

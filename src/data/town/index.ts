@@ -1,5 +1,8 @@
 export { announcements } from "./announcements";
+export { sewerRateTiers, sewerContactInfo, SEWER_ACCOUNT_REGEX } from "./sewer-rates";
 export { businesses } from "./businesses";
+export { harmonyBoundary } from "./harmony-boundary";
+export { mapBusinesses } from "./map-businesses";
 export { elections } from "./elections";
 export { emergencyServices } from "./emergency-services";
 export { events } from "./events";
@@ -9,6 +12,7 @@ export { mediaUrls } from "./media";
 export { meetings } from "./meetings";
 export { navigation } from "./navigation";
 export { news } from "./news";
+export { permitTypes } from "./permits";
 export { pointsOfInterest } from "./points-of-interest";
 export { resources } from "./resources";
 export { settings } from "./settings";

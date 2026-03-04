@@ -1,7 +1,9 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { getPointsOfInterestSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { pointsOfInterest as staticPOIs } from "@/data/town/points-of-interest";
+import type { TownPointOfInterest } from "@/data/town/types";
 
 interface TownPointsOfInterestProps {
 	showCategoryFilter?: boolean;
@@ -24,7 +26,16 @@ export const TownPointsOfInterest = ({
 
 	const category = searchParams?.get("category") || undefined;
 
-	const pois = getPointsOfInterestSync(category);
+	const { data: allPOIs, loading } = useBuilderData<TownPointOfInterest>(
+		"town-point-of-interest",
+		{ limit: 50, fallback: staticPOIs },
+	);
+
+	const pois = (() => {
+		let filtered = [...allPOIs];
+		if (category) filtered = filtered.filter((p) => p.category === category);
+		return filtered.sort((a, b) => a.name.localeCompare(b.name));
+	})();
 
 	const updateParams = (updates: Record<string, string | undefined>) => {
 		const params = new URLSearchParams(searchParams?.toString() ?? "");

@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	ArrowRight,
 	Building,
@@ -8,123 +10,26 @@ import {
 	TreePine,
 	Wrench,
 	Zap,
+	type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-interface PermitType {
-	id: string;
-	name: string;
-	description: string;
-	fee: number; // in cents
-	processingTime: string;
-	requirements: string[];
-	category: string;
-	icon: React.ComponentType<{ className?: string }>;
-}
+import { useBuilderData } from "@/lib/builder-data";
+import { permitTypes as staticPermitTypes, type TownPermitType } from "@/data/town/permits";
 
-const permitTypes: PermitType[] = [
-	{
-		id: "building",
-		name: "Building Permit",
-		description: "Required for new construction, additions, and major renovations",
-		fee: 10000, // $100.00
-		processingTime: "2-4 weeks",
-		requirements: [
-			"Construction plans and blueprints",
-			"Site survey",
-			"Engineering reports (if applicable)",
-			"Contractor license verification",
-		],
-		category: "construction",
-		icon: Building,
-	},
-	{
-		id: "residential-renovation",
-		name: "Residential Renovation",
-		description: "For interior and exterior home improvements",
-		fee: 5000, // $50.00
-		processingTime: "1-2 weeks",
-		requirements: [
-			"Project description",
-			"Before/after photos or drawings",
-			"Contractor information",
-		],
-		category: "construction",
-		icon: Home,
-	},
-	{
-		id: "electrical",
-		name: "Electrical Permit",
-		description: "For electrical work and installations",
-		fee: 7500, // $75.00
-		processingTime: "3-5 business days",
-		requirements: ["Electrical plan", "Licensed electrician information", "Load calculations"],
-		category: "utilities",
-		icon: Zap,
-	},
-	{
-		id: "plumbing",
-		name: "Plumbing Permit",
-		description: "For plumbing installations and major repairs",
-		fee: 6000, // $60.00
-		processingTime: "3-5 business days",
-		requirements: ["Plumbing diagram", "Licensed plumber information", "Material specifications"],
-		category: "utilities",
-		icon: Wrench,
-	},
-	{
-		id: "driveway",
-		name: "Driveway Permit",
-		description: "For new driveways and driveway modifications",
-		fee: 2500, // $25.00
-		processingTime: "1 week",
-		requirements: ["Property survey", "Driveway specifications", "Drainage plan"],
-		category: "property",
-		icon: Car,
-	},
-	{
-		id: "tree-removal",
-		name: "Tree Removal Permit",
-		description: "Required for removing trees over 6 inches in diameter",
-		fee: 1500, // $15.00
-		processingTime: "3-5 business days",
-		requirements: [
-			"Tree location map",
-			"Arborist report (for protected species)",
-			"Replacement plan (if required)",
-		],
-		category: "property",
-		icon: TreePine,
-	},
-	{
-		id: "fence",
-		name: "Fence Permit",
-		description: "For installing or replacing fences over 4 feet high",
-		fee: 3000, // $30.00
-		processingTime: "1 week",
-		requirements: ["Property survey", "Fence specifications", "Neighbor notification form"],
-		category: "property",
-		icon: Shield,
-	},
-	{
-		id: "demolition",
-		name: "Demolition Permit",
-		description: "Required for demolishing structures or parts of structures",
-		fee: 15000, // $150.00
-		processingTime: "2-3 weeks",
-		requirements: [
-			"Demolition plan",
-			"Hazmat inspection report",
-			"Utilities disconnection confirmation",
-			"Waste disposal plan",
-		],
-		category: "construction",
-		icon: Hammer,
-	},
-];
+const iconMap: Record<string, LucideIcon> = {
+	Building,
+	Home,
+	Zap,
+	Wrench,
+	Car,
+	TreePine,
+	Shield,
+	Hammer,
+};
 
 const categoryColors: Record<string, string> = {
 	construction: "bg-orange-100 text-orange-800",
@@ -137,6 +42,25 @@ interface PermitTypesProps {
 }
 
 export function PermitTypes({ category }: PermitTypesProps) {
+	// Map Builder.io data shape to local shape (permitId → id)
+	interface BuilderPermitType {
+		permitId: string;
+		name: string;
+		description: string;
+		fee: number;
+		processingTime: string;
+		requirements: string[];
+		category: string;
+		icon: string;
+	}
+
+	const { data: rawPermits } = useBuilderData<BuilderPermitType>(
+		"town-permit-type",
+		{ limit: 50, fallback: staticPermitTypes.map((p) => ({ ...p, permitId: p.id })) },
+	);
+
+	const permitTypes = rawPermits.map((p) => ({ ...p, id: p.permitId }));
+
 	const filteredPermits =
 		category && category !== "all"
 			? permitTypes.filter((permit) => permit.category === category)
@@ -145,7 +69,7 @@ export function PermitTypes({ category }: PermitTypesProps) {
 	return (
 		<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{filteredPermits.map((permit) => {
-				const IconComponent = permit.icon;
+				const IconComponent = iconMap[permit.icon] ?? Building;
 				const formattedFee = permit.fee > 0 ? `$${(permit.fee / 100).toFixed(2)}` : "Free";
 
 				return (

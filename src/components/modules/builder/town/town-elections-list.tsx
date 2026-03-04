@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getElectionsSync } from "@/lib/town-data-client";
+import { useBuilderPaginatedData } from "@/lib/builder-data";
+import { elections as staticElections } from "@/data/town/elections";
+import type { TownElection } from "@/data/town/types";
 
 interface TownElectionsListProps {
 	itemsPerPage?: number;
@@ -101,11 +103,23 @@ export const TownElectionsList = ({
 	const status = (searchParams?.get("status") as "upcoming" | "today" | "past") || undefined;
 	const search = searchParams?.get("search") || undefined;
 
-	const { docs, totalPages } = getElectionsSync({
-		limit: itemsPerPage,
+	const { docs, totalPages } = useBuilderPaginatedData<TownElection>("town-election", {
 		page,
-		status,
+		limit: itemsPerPage,
+		fallbackData: staticElections,
 		search,
+		searchFields: ["title", "description"],
+		filter: status
+			? (election) => {
+					const today = new Date().toISOString().split("T")[0];
+					const electionDay = election.electionDate.split("T")[0];
+					if (status === "today") return electionDay === today;
+					if (status === "upcoming") return electionDay! > today!;
+					if (status === "past") return electionDay! < today!;
+					return true;
+				}
+			: undefined,
+		clientSort: (a, b) => new Date(b.electionDate).getTime() - new Date(a.electionDate).getTime(),
 	});
 
 	const updateParams = (updates: Record<string, string | undefined>) => {

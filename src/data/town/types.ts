@@ -135,9 +135,9 @@ export interface TownBusiness {
 	website?: string;
 	address: string;
 	city: string;
-	state: string;
+	stateCode: string;
 	zipCode: string;
-	hours: Record<string, string>;
+	hours: string;
 	images?: { id?: string; image: string | null }[];
 	isVerified: boolean;
 	isFeatured: boolean;

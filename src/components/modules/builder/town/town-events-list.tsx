@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getEventsSync } from "@/lib/town-data-client";
+import { useBuilderPaginatedData } from "@/lib/builder-data";
+import { events as staticEvents } from "@/data/town/events";
+import type { TownEvent } from "@/data/town/types";
 
 interface TownEventsListProps {
 	itemsPerPage?: number;
@@ -96,12 +98,20 @@ export const TownEventsList = ({
 	const month = searchParams?.get("month") || undefined;
 	const year = searchParams?.get("year") || undefined;
 
-	const { docs, totalPages } = getEventsSync({
-		limit: itemsPerPage,
+	const { docs, totalPages } = useBuilderPaginatedData<TownEvent>("town-event", {
 		page,
-		category,
-		month,
-		year,
+		limit: itemsPerPage,
+		fallbackData: staticEvents,
+		filter: (event) => {
+			if (category && !event.categories.includes(category)) return false;
+			if (month || year) {
+				const d = new Date(event.eventDate);
+				if (month && String(d.getMonth() + 1) !== month) return false;
+				if (year && String(d.getFullYear()) !== year) return false;
+			}
+			return true;
+		},
+		clientSort: (a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime(),
 	});
 
 	const updateParams = (updates: Record<string, string | undefined>) => {

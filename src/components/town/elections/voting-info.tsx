@@ -92,13 +92,15 @@ export function VotingInfo({ election }: VotingInfoProps) {
 						</div>
 					</div>
 
-					<div className="flex items-start gap-3">
-						<Clock className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-						<div>
-							<p className="font-medium">Polling Hours</p>
-							<p className="text-[#4A4640]">6:30 AM - 7:30 PM</p>
+					{pollingLocations.length > 0 && pollingLocations[0].hours && (
+						<div className="flex items-start gap-3">
+							<Clock className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+							<div>
+								<p className="font-medium">Polling Hours</p>
+								<p className="text-[#4A4640]">{pollingLocations[0].hours}</p>
+							</div>
 						</div>
-					</div>
+					)}
 				</CardContent>
 			</Card>
 
@@ -222,7 +224,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 						<h4 className="font-medium text-[#2D2A24] mb-2">General Voter Resources</h4>
 						<div className="space-y-1 text-sm">
 							<a
-								href="https://ovr.sos.wv.gov/Register"
+								href="https://www.ncsbe.gov/registering/how-register"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="block text-sage hover:underline"
@@ -230,7 +232,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								Register to Vote Online
 							</a>
 							<a
-								href="https://apps.sos.wv.gov/elections/voter/amiregisteredtovote"
+								href="https://www.ncsbe.gov/registering/checking-your-registration"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="block text-sage hover:underline"
@@ -238,7 +240,7 @@ export function VotingInfo({ election }: VotingInfoProps) {
 								Check Your Registration Status
 							</a>
 							<a
-								href="https://sos.wv.gov/elections/Pages/AbsenteeBallot.aspx"
+								href="https://www.ncsbe.gov/voting/vote-mail"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="block text-sage hover:underline"

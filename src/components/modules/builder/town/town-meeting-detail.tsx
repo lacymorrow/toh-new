@@ -1,8 +1,10 @@
 "use client";
 
-import { getMeetingBySlugSync } from "@/lib/town-data-client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useBuilderEntry } from "@/lib/builder-data";
+import { meetings as staticMeetings } from "@/data/town/meetings";
+import type { TownMeeting } from "@/data/town/types";
 
 interface TownMeetingDetailProps {
 	slug?: string;
@@ -21,7 +23,26 @@ export const TownMeetingDetail = ({
 	const slug =
 		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
 
-	const meeting = getMeetingBySlugSync(slug);
+	const staticFallback = staticMeetings.find((m) => m.slug === slug) ?? null;
+	const { data: meeting, loading } = useBuilderEntry<TownMeeting>(
+		"town-meeting",
+		{ "data.slug": slug },
+		{ fallback: staticFallback },
+	);
+
+	if (loading) {
+		return (
+			<section className="bg-warm-white py-12">
+				<div className="container mx-auto px-4 max-w-3xl">
+					<div className="animate-pulse space-y-4">
+						<div className="h-4 w-32 bg-stone/40 rounded" />
+						<div className="h-8 w-3/4 bg-stone/40 rounded" />
+						<div className="h-48 bg-stone/20 rounded-xl" />
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	if (!meeting) {
 		return (

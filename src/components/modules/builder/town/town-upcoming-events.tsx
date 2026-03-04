@@ -2,17 +2,25 @@
 
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-import { getEventsSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { events as staticEvents } from "@/data/town/events";
+import type { TownEvent } from "@/data/town/types";
 
 interface TownUpcomingEventsProps {
 	limit?: number;
 }
 
 export const TownUpcomingEvents = ({ limit = 5 }: TownUpcomingEventsProps) => {
-	const { docs: upcomingEvents } = getEventsSync({
-		limit,
-		status: "upcoming",
+	const { data: allEvents } = useBuilderData<TownEvent>("town-event", {
+		limit: 50,
+		fallback: staticEvents,
 	});
+
+	const now = new Date();
+	const upcomingEvents = allEvents
+		.filter((e) => new Date(e.eventDate) >= now && e.status !== "cancelled")
+		.sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime())
+		.slice(0, limit);
 
 	if (upcomingEvents.length === 0) {
 		return (

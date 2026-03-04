@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getNewsSync } from "@/lib/town-data-client";
+import { useBuilderPaginatedData } from "@/lib/builder-data";
+import { news as staticNews } from "@/data/town/news";
+import type { TownNews } from "@/data/town/types";
 
 const NEWS_CATEGORIES = [
 	"announcements",
@@ -83,11 +85,14 @@ export const TownNewsGrid = ({
 	const category = searchParams?.get("category") || undefined;
 	const search = searchParams?.get("search") || undefined;
 
-	const { docs, totalPages } = getNewsSync({
-		limit: itemsPerPage,
+	const { docs, totalPages } = useBuilderPaginatedData<TownNews>("town-news", {
 		page,
-		category,
+		limit: itemsPerPage,
+		fallbackData: staticNews,
 		search,
+		searchFields: ["title", "excerpt", "content"],
+		filter: category ? (item) => item.categories.includes(category) : undefined,
+		clientSort: (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 	});
 
 	const updateParams = (updates: Record<string, string | undefined>) => {

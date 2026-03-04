@@ -1,6 +1,8 @@
 "use client";
 
-import { getTeamMembersSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { teamMembers as staticTeamMembers } from "@/data/town/team-members";
+import type { TownTeamMember } from "@/data/town/types";
 
 const CATEGORY_ORDER = [
 	"Executive",
@@ -18,7 +20,35 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 };
 
 export const TownTeamMembers = () => {
-	const members = getTeamMembersSync();
+	const fallback = staticTeamMembers.filter((m) => m.isActive).sort((a, b) => a.sortOrder - b.sortOrder);
+	const { data: allMembers, loading } = useBuilderData<TownTeamMember>(
+		"town-team-member",
+		{ sort: { "data.sortOrder": 1 }, limit: 50, fallback: staticTeamMembers },
+	);
+
+	const members = allMembers.filter((m) => m.isActive).sort((a, b) => a.sortOrder - b.sortOrder);
+
+	if (loading) {
+		return (
+			<section className="py-12 bg-cream">
+				<div className="container mx-auto px-4">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{Array.from({ length: 6 }).map((_, i) => (
+							<div key={i} className="bg-white rounded-lg border border-stone p-5 animate-pulse">
+								<div className="flex items-start gap-4 mb-4">
+									<div className="w-14 h-14 rounded-full bg-stone/30" />
+									<div className="flex-1">
+										<div className="h-5 w-32 bg-stone/40 rounded mb-2" />
+										<div className="h-3 w-20 bg-stone/20 rounded" />
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	const grouped = CATEGORY_ORDER.map((category) => ({
 		category,

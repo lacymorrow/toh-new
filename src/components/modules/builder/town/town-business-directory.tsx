@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getBusinessesSync } from "@/lib/town-data-client";
+import { useBuilderPaginatedData } from "@/lib/builder-data";
+import { businesses as staticBusinesses } from "@/data/town/businesses";
+import type { TownBusiness } from "@/data/town/types";
 
 interface TownBusinessDirectoryProps {
 	itemsPerPage?: number;
@@ -84,12 +86,18 @@ export const TownBusinessDirectory = ({
 	const search = searchParams?.get("search") || undefined;
 	const featured = searchParams?.get("featured") === "true" || undefined;
 
-	const { docs, totalPages } = getBusinessesSync({
-		limit: itemsPerPage,
+	const { docs, totalPages } = useBuilderPaginatedData<TownBusiness>("town-business", {
 		page,
-		category,
+		limit: itemsPerPage,
+		fallbackData: staticBusinesses,
 		search,
-		featured,
+		searchFields: ["name", "description", "category"],
+		filter: (biz) => {
+			if (category && biz.category !== category) return false;
+			if (featured && !biz.isFeatured) return false;
+			return true;
+		},
+		clientSort: (a, b) => a.name.localeCompare(b.name),
 	});
 
 	const updateParams = (updates: Record<string, string | undefined>) => {
@@ -231,7 +239,7 @@ export const TownBusinessDirectory = ({
 
 									<div className="space-y-1 text-xs text-[#7A756C]">
 										<p>
-											{business.address}, {business.city}, {business.state}{" "}
+											{business.address}, {business.city}, {business.stateCode}{" "}
 											{business.zipCode}
 										</p>
 										<p>{business.phone}</p>

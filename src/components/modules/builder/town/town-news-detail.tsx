@@ -1,8 +1,10 @@
 "use client";
 
-import { getNewsBySlugSync } from "@/lib/town-data-client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useBuilderEntry } from "@/lib/builder-data";
+import { news as staticNews } from "@/data/town/news";
+import type { TownNews } from "@/data/town/types";
 
 interface TownNewsDetailProps {
 	slug?: string;
@@ -13,7 +15,28 @@ export const TownNewsDetail = ({ slug: slugProp }: TownNewsDetailProps) => {
 	const slug =
 		slugProp || pathname?.split("/").filter(Boolean).pop() || "";
 
-	const article = getNewsBySlugSync(slug);
+	const staticFallback = staticNews.find((n) => n.slug === slug) ?? null;
+	const { data: article, loading } = useBuilderEntry<TownNews>(
+		"town-news",
+		{ "data.slug": slug },
+		{ fallback: staticFallback },
+	);
+
+	if (loading) {
+		return (
+			<section className="bg-warm-white py-12">
+				<div className="container mx-auto px-4 max-w-3xl">
+					<div className="animate-pulse space-y-4">
+						<div className="h-4 w-32 bg-stone/40 rounded" />
+						<div className="h-8 w-3/4 bg-stone/40 rounded" />
+						<div className="h-64 bg-stone/20 rounded-xl" />
+						<div className="h-4 w-full bg-stone/20 rounded" />
+						<div className="h-4 w-full bg-stone/20 rounded" />
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	if (!article) {
 		return (

@@ -11,7 +11,9 @@ import {
 	Volume2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getMeetingsSync } from "@/lib/town-data-client";
+import { useBuilderData } from "@/lib/builder-data";
+import { meetings as staticMeetings } from "@/data/town/meetings";
+import type { TownMeeting } from "@/data/town/types";
 
 type Tab = "agenda" | "minutes";
 
@@ -20,7 +22,10 @@ export const TownAgendaMinutes = () => {
 
 	const today = new Date().toISOString().split("T")[0];
 
-	const { docs: allMeetings } = getMeetingsSync({ limit: 50 });
+	const { data: allMeetings } = useBuilderData<TownMeeting>("town-meeting", {
+		limit: 50,
+		fallback: staticMeetings,
+	});
 
 	const upcomingMeetings = allMeetings
 		.filter((m) => m.meetingDate.split("T")[0]! >= today!)
