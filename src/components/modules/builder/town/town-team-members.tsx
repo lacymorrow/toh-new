@@ -6,16 +6,16 @@ import type { TownTeamMember } from "@/data/town/types";
 
 const CATEGORY_ORDER = [
 	"Executive",
-	"Board of Aldermen",
-	"Department Heads",
+	"Town Council",
+	"Staff",
 ] as const;
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 	Executive:
 		"Town leadership responsible for daily operations and civic governance.",
-	"Board of Aldermen":
+	"Town Council":
 		"Elected officials serving the citizens of Harmony through policy and oversight.",
-	"Department Heads":
+	Staff:
 		"Dedicated professionals managing essential town services.",
 };
 
