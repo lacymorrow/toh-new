@@ -4,6 +4,7 @@ import {
 	Calendar,
 	Clock,
 	FileText,
+	Globe,
 	Home,
 	Landmark,
 	MapPin,
@@ -14,7 +15,7 @@ import {
 	Users,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	CommandDialog,
 	CommandEmpty,
@@ -162,6 +163,70 @@ const buildSearchIndex = (): SearchResult[] => {
 	return results;
 };
 
+// Builder.io CMS page fetching
+const BUILDER_PAGES_CACHE_KEY = "toh-builder-pages";
+const BUILDER_PAGES_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+interface BuilderPageEntry {
+	title: string;
+	description: string;
+	urlPath: string;
+}
+
+interface CachedBuilderPages {
+	pages: BuilderPageEntry[];
+	fetchedAt: number;
+}
+
+const fetchBuilderPages = async (apiKey: string): Promise<BuilderPageEntry[]> => {
+	// Check cache first
+	try {
+		const cached = localStorage.getItem(BUILDER_PAGES_CACHE_KEY);
+		if (cached) {
+			const parsed: CachedBuilderPages = JSON.parse(cached);
+			if (Date.now() - parsed.fetchedAt < BUILDER_PAGES_CACHE_TTL) {
+				return parsed.pages;
+			}
+		}
+	} catch {
+		// ignore cache errors
+	}
+
+	try {
+		const url = new URL("https://cdn.builder.io/api/v3/content/page");
+		url.searchParams.set("apiKey", apiKey);
+		url.searchParams.set("limit", "100");
+		url.searchParams.set("fields", "data.title,data.description,data.url");
+		url.searchParams.set("noCache", "false");
+
+		const res = await fetch(url.toString());
+		if (!res.ok) return [];
+
+		const data = await res.json();
+		const pages: BuilderPageEntry[] = (data?.results ?? [])
+			.filter((r: Record<string, unknown>) => r?.data)
+			.map((r: { data: { title?: string; description?: string; url?: string } }) => ({
+				title: r.data.title || "Untitled Page",
+				description: r.data.description || "",
+				urlPath: r.data.url || "/",
+			}));
+
+		// Cache results
+		try {
+			localStorage.setItem(
+				BUILDER_PAGES_CACHE_KEY,
+				JSON.stringify({ pages, fetchedAt: Date.now() } satisfies CachedBuilderPages),
+			);
+		} catch {
+			// ignore storage errors
+		}
+
+		return pages;
+	} catch {
+		return [];
+	}
+};
+
 const SUGGESTED_LINKS = [
 	{ title: "Town Meetings", href: "/meetings", icon: <Landmark className="h-4 w-4" /> },
 	{ title: "Events", href: "/events", icon: <Calendar className="h-4 w-4" /> },
@@ -204,8 +269,16 @@ export const TownSearch = ({ open, onOpenChange }: TownSearchProps) => {
 	const router = useRouter();
 	const [query, setQuery] = useState("");
 	const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
+	const [builderPages, setBuilderPages] = useState<SearchResult[]>([]);
+	const builderFetched = useRef(false);
 
-	const searchIndex = useMemo(() => buildSearchIndex(), []);
+	const staticIndex = useMemo(() => buildSearchIndex(), []);
+
+	// Combine static + Builder.io results
+	const searchIndex = useMemo(
+		() => [...staticIndex, ...builderPages],
+		[staticIndex, builderPages],
+	);
 
 	useEffect(() => {
 		if (open) {
@@ -213,6 +286,34 @@ export const TownSearch = ({ open, onOpenChange }: TownSearchProps) => {
 			setQuery("");
 		}
 	}, [open]);
+
+	// Fetch Builder.io CMS pages on first open
+	useEffect(() => {
+		if (!open || builderFetched.current) return;
+		builderFetched.current = true;
+
+		const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY;
+		if (!apiKey) return;
+
+		// Collect existing static hrefs to deduplicate
+		const staticHrefs = new Set(staticIndex.map((r) => r.href));
+
+		fetchBuilderPages(apiKey).then((pages) => {
+			const results: SearchResult[] = pages
+				.filter((p) => !staticHrefs.has(p.urlPath))
+				.map((p, i) => ({
+					id: `builder-${i}`,
+					title: p.title,
+					subtitle: p.description || "CMS Page",
+					href: p.urlPath,
+					category: "Pages",
+					icon: <Globe className="h-4 w-4" />,
+				}));
+			if (results.length > 0) {
+				setBuilderPages(results);
+			}
+		});
+	}, [open, staticIndex]);
 
 	// Cmd+K / Ctrl+K
 	useEffect(() => {
