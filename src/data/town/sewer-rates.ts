@@ -56,8 +56,8 @@ export const SEWER_ACCOUNT_REGEX = /^SEW-\d{5}$/;
 
 export const sewerContactInfo = {
 	department: "Public Works Department",
-	phone: "(704) 546-2930",
-	email: "publicworks@townofharmony.com",
+	phone: "(704) 546-2339",
+	email: "",
 	hours: "Monday - Friday, 8:00 AM - 5:00 PM",
 	address: "Town of Harmony, PO Box 428, Harmony, NC 28634",
 };

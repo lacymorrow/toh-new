@@ -60,9 +60,10 @@ export interface TownTeamMember {
 	id: number;
 	name: string;
 	title: string;
-	category: "Executive" | "Board of Aldermen" | "Department Heads";
+	category: "Executive" | "Town Council" | "Staff";
 	email: string;
 	phone: string;
+	image?: string;
 	termExpires?: string;
 	department?: string;
 	sortOrder: number;
