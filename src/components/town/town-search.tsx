@@ -355,9 +355,11 @@ export const TownSearch = ({ open, onOpenChange }: TownSearchProps) => {
 	}, [query, hasQuery, searchIndex]);
 
 	const categoryOrder = ["Pages", "People", "Events", "History", "Resources", "Places", "Businesses"];
-	const sortedCategories = Object.keys(groupedResults).sort(
-		(a, b) => (categoryOrder.indexOf(a) ?? 99) - (categoryOrder.indexOf(b) ?? 99),
-	);
+	const sortedCategories = Object.keys(groupedResults).sort((a, b) => {
+		const indexA = categoryOrder.indexOf(a);
+		const indexB = categoryOrder.indexOf(b);
+		return (indexA === -1 ? Infinity : indexA) - (indexB === -1 ? Infinity : indexB);
+	});
 	const totalResults = Object.values(groupedResults).reduce((sum, arr) => sum + arr.length, 0);
 
 	return (
