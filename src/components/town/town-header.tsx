@@ -3,6 +3,7 @@
 import { Calendar, Menu, Phone, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { TownSearch } from "@/components/town/town-search";
 import { Button } from "@/components/ui/button";
 import {
 	NavigationMenu,
@@ -25,6 +26,7 @@ interface TownHeaderProps {
 
 export function TownHeader({ settings }: TownHeaderProps) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [searchOpen, setSearchOpen] = useState(false);
 
 	return (
 		<header>
@@ -137,6 +139,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								variant="ghost"
 								size="icon"
 								className="hidden md:flex hover:bg-stone hover:text-sage-dark"
+								onClick={() => setSearchOpen(true)}
 							>
 								<Search className="h-5 w-5" />
 							</Button>
@@ -158,6 +161,17 @@ export function TownHeader({ settings }: TownHeaderProps) {
 			{mobileMenuOpen && (
 				<div className="lg:hidden border-t border-[#DDD7CC] bg-warm-white">
 					<div className="container mx-auto px-4 py-2">
+						<button
+							type="button"
+							className="flex w-full items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-2 text-sm text-[#7A756C] mb-2"
+							onClick={() => {
+								setMobileMenuOpen(false);
+								setSearchOpen(true);
+							}}
+						>
+							<Search className="h-4 w-4" />
+							Search...
+						</button>
 						{navigation.map((item) => (
 							<div key={item.name}>
 								<Link
@@ -186,6 +200,8 @@ export function TownHeader({ settings }: TownHeaderProps) {
 					</div>
 				</div>
 			)}
+
+			<TownSearch open={searchOpen} onOpenChange={setSearchOpen} />
 		</header>
 	);
 }
