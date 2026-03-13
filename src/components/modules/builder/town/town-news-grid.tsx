@@ -131,7 +131,7 @@ export const TownNewsGrid = ({
 											});
 										}
 									}}
-									className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#7A756C] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
+									className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#635E56] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
 								/>
 							</div>
 						)}
@@ -205,7 +205,7 @@ export const TownNewsGrid = ({
 									<p className="text-sm text-[#4A4640] mb-3 line-clamp-3">
 										{article.excerpt}
 									</p>
-									<time className="text-xs text-[#7A756C]">
+									<time className="text-xs text-[#635E56]">
 										{new Date(article.publishedAt).toLocaleDateString("en-US", {
 											month: "long",
 											day: "numeric",
@@ -218,7 +218,7 @@ export const TownNewsGrid = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No news articles found.</p>
+						<p className="text-[#635E56] text-lg">No news articles found.</p>
 					</div>
 				)}
 

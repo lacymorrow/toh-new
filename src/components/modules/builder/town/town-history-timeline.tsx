@@ -47,7 +47,7 @@ export const TownHistoryTimeline = ({
 		return (
 			<section className="py-12 bg-cream">
 				<div className="container mx-auto px-4 text-center">
-					<p className="text-[#7A756C] text-lg">No history articles found.</p>
+					<p className="text-[#635E56] text-lg">No history articles found.</p>
 				</div>
 			</section>
 		);
@@ -102,11 +102,11 @@ export const TownHistoryTimeline = ({
 														</span>
 													)}
 													{article.year && (
-														<span className="bg-wheat/30 text-[#7A6520] px-2.5 py-0.5 rounded-full text-xs font-medium">
+														<span className="bg-wheat/30 text-[#5C4E1A] px-2.5 py-0.5 rounded-full text-xs font-medium">
 															{article.year}
 														</span>
 													)}
-													<span className="bg-stone text-[#7A756C] px-2 py-0.5 rounded-full text-xs capitalize">
+													<span className="bg-stone text-[#4A4640] px-2 py-0.5 rounded-full text-xs capitalize">
 														{article.type}
 													</span>
 												</div>
@@ -128,7 +128,7 @@ export const TownHistoryTimeline = ({
 																.map((highlight, idx) => (
 																	<li
 																		key={idx}
-																		className="flex items-start gap-1.5 text-xs text-[#7A756C]"
+																		className="flex items-start gap-1.5 text-xs text-[#635E56]"
 																	>
 																		<svg
 																			className="w-3 h-3 mt-0.5 text-sage flex-shrink-0"
@@ -149,7 +149,7 @@ export const TownHistoryTimeline = ({
 
 												{/* Address for landmarks */}
 												{article.address && (
-													<p className="text-xs text-[#7A756C] mt-3 pt-3 border-t border-stone">
+													<p className="text-xs text-[#635E56] mt-3 pt-3 border-t border-stone">
 														{article.address}
 													</p>
 												)}

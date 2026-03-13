@@ -135,7 +135,7 @@ export const TownBusinessDirectory = ({
 											});
 										}
 									}}
-									className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#7A756C] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
+									className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#635E56] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
 								/>
 							</div>
 							<button
@@ -213,7 +213,7 @@ export const TownBusinessDirectory = ({
 											<h3 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors truncate">
 												{business.name}
 											</h3>
-											<span className="text-sm text-[#7A756C] capitalize">
+											<span className="text-sm text-[#635E56] capitalize">
 												{business.category}
 											</span>
 										</div>
@@ -237,7 +237,7 @@ export const TownBusinessDirectory = ({
 										{business.description}
 									</p>
 
-									<div className="space-y-1 text-xs text-[#7A756C]">
+									<div className="space-y-1 text-xs text-[#635E56]">
 										<p>
 											{business.address}, {business.city}, {business.stateCode}{" "}
 											{business.zipCode}
@@ -250,7 +250,7 @@ export const TownBusinessDirectory = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No businesses found.</p>
+						<p className="text-[#635E56] text-lg">No businesses found.</p>
 					</div>
 				)}
 

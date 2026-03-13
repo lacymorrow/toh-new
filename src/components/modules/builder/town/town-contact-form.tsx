@@ -60,13 +60,13 @@ export const TownContactForm = () => {
 	];
 
 	return (
-		<section className="py-16">
+		<section className="py-16 bg-warm-white">
 			<div className="container mx-auto px-4">
 				<div className="text-center mb-10">
 					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
 						Contact Us
 					</h2>
-					<p className="text-[#4A4640] text-base">
+					<p className="text-[#635E56] text-base">
 						Get in touch with the Town of Harmony
 					</p>
 				</div>
