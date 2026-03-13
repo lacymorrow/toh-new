@@ -63,13 +63,13 @@ interface SeedEntry {
 	data: Record<string, unknown>;
 }
 
-function toSeedEntries<T extends Record<string, unknown>>(
+function toSeedEntries<T extends Record<string, any>>(
 	items: T[],
 	nameKey: keyof T,
 ): SeedEntry[] {
 	return items.map((item) => ({
 		name: String(item[nameKey]),
-		data: { ...item },
+		data: { ...item } as Record<string, unknown>,
 	}));
 }
 

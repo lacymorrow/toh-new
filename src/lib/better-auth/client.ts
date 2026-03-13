@@ -58,10 +58,11 @@ export const emailAuth = {
 			name,
 		}),
 
-	forgotPassword: (email: string) => authClient.forgetPassword({ email }),
+	forgotPassword: (email: string) =>
+		(authClient as any).forgetPassword({ email, redirectTo: "/auth/reset-password" }),
 
 	resetPassword: (token: string, newPassword: string) =>
-		authClient.resetPassword({ token, newPassword }),
+		authClient.resetPassword({ newPassword, token }),
 };
 
 /**

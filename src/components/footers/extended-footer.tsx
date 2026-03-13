@@ -40,23 +40,23 @@ const defaultGroups: FooterElement[] = [
 	{
 		type: "group",
 		content: {
-			header: { label: "Product" },
+			header: { label: "Town" },
 			items: [
 				{ href: routes.home, label: "Home" },
-				{ href: routes.features, label: "Features" },
-				{ href: routes.pricing, label: "Pricing" },
-				{ href: routes.external.bones, label: "Bones" },
+				{ href: routes.town.news, label: "News" },
+				{ href: routes.town.events, label: "Events" },
+				{ href: routes.town.meetings, label: "Meetings" },
 			],
 		},
 	},
 	{
 		type: "group",
 		content: {
-			header: { label: "Resources", href: "#" },
+			header: { label: "Resources" },
 			items: [
-				{ href: routes.docs, label: "Documentation" },
-				{ href: routes.blog, label: "Blog" },
-				{ href: routes.contact, label: "Support" },
+				{ href: routes.town.resources, label: "Resources" },
+				{ href: routes.town.business, label: "Business Directory" },
+				{ href: routes.contact, label: "Contact" },
 				{ href: routes.auth.signIn, label: "Sign in" },
 			],
 		},

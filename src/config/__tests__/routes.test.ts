@@ -6,6 +6,9 @@ describe("Routes Configuration", () => {
 		const validateRoutes = (obj: Record<string, any>, parentPath = "") => {
 			for (const [key, value] of Object.entries(obj)) {
 				if (typeof value === "string") {
+					// Skip external URLs and mailto links
+					if (value.startsWith("http") || value.startsWith("mailto:")) continue;
+
 					it(`${parentPath}${key} should be a valid route format`, () => {
 						// Check if route starts with /
 						expect(value).toMatch(/^\//);
@@ -33,54 +36,15 @@ describe("Routes Configuration", () => {
 		validateRoutes(routes);
 	});
 
-	describe("AI Routes Validation", () => {
-		it("should have all required AI route properties", () => {
-			expect(routes.ai).toBeDefined();
-			expect(routes.ai.index).toBe("/ai");
-
-			// Test specific AI routes
-			const requiredAiRoutes = [
-				"codeCompletion",
-				"crossEncoder",
-				"spam",
-				"reportGen",
-				"moonshineWeb",
-				"zeroShotClassification",
-				"whisper",
-				"wwjhd",
-				"whisperTimestamped",
-				"webgpuNomicEmbed",
-				"webgpuEmbeddingBenchmark",
-				"webgpuClip",
-				"videoObjectDetection",
-				"videoBackgroundRemoval",
-				"typeAhead",
-				"textToSpeechWebgpu",
-				"speecht5Web",
-				"smolvmWeb",
-				"smollmWeb",
-				"semanticSearch",
-				"semanticImageSearchWeb",
-				"removeBackground",
-				"removeBackgroundWeb",
-				"phi35Webgpu",
-				"musicgenWeb",
-				"llama32Webgpu",
-				"llama32ReasoningWebgpu",
-				"janusWebgpu",
-				"janusProWebgpu",
-				"isSpam",
-				"gemma22bJpnWebgpu",
-				"florence2Web",
-				"deepseekWeb",
-			] as const;
-
-			type AiRouteKey = (typeof requiredAiRoutes)[number];
-
-			for (const route of requiredAiRoutes) {
-				expect(routes.ai[route as AiRouteKey]).toBeDefined();
-				expect(routes.ai[route as AiRouteKey]).toMatch(/^\/ai\//);
-			}
+	describe("Town Routes Validation", () => {
+		it("should have all required town route properties", () => {
+			expect(routes.town).toBeDefined();
+			expect(routes.town.news).toBe("/news");
+			expect(routes.town.events).toBe("/events");
+			expect(routes.town.meetings).toBe("/meetings");
+			expect(routes.town.business).toBe("/business");
+			expect(routes.town.emergency).toBe("/emergency");
+			expect(routes.town.history).toBe("/history");
 		});
 	});
 

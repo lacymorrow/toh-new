@@ -55,7 +55,7 @@ export function PricingSectionSingle() {
 
 						<div className="pt-4">
 							<Link
-								href={routes.external.buy}
+								href={routes.external.github}
 								className={cn(
 									buttonVariants({ variant: "default" }),
 									"w-full bg-purple-500 text-lg text-white hover:bg-purple-600"
@@ -69,7 +69,7 @@ export function PricingSectionSingle() {
 							<p>
 								Want to see what Shipkit can do?{" "}
 								<a
-									href={routes.external.bones}
+									href={routes.external.github}
 									className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300"
 								>
 									Start with Shipkit Bones

@@ -93,7 +93,7 @@ async function updateModelSchema(definition: (typeof modelDefinitions)[0]) {
 
 		const result = await adminClient.mutation({
 			updateModel: [
-				{ body: { name: definition.name, fields } },
+				{ body: { fields } as Record<string, unknown> },
 				{ id: true, name: true },
 			],
 		});

@@ -18,9 +18,9 @@ const data = [
 		component: FeedbackDialog,
 	},
 	{
-		title: "Documentation",
+		title: "Help",
 		Icon: LifeBuoy,
-		href: routes.docs,
+		href: routes.contact,
 	},
 	{
 		title: "Settings",
