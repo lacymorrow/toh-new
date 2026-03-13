@@ -2,7 +2,6 @@
 
 import { siteConfig } from "@/config/site-config";
 import { resend } from "@/lib/resend";
-import { addContactToAudience } from "@/server/actions/subscribe";
 import { contactFormSchema } from "@/types/contact";
 
 export async function submitContactForm(formData: FormData) {
@@ -12,7 +11,7 @@ export async function submitContactForm(formData: FormData) {
 			name: formData.get("name"),
 			contactInfo: formData.get("contactInfo"),
 			message: formData.get("message"),
-			newsletter: formData.get("newsletter") === "true",
+
 		};
 
 		// Validate form data
@@ -35,19 +34,8 @@ export async function submitContactForm(formData: FormData) {
                 ${validatedData.contactInfo ? `<p><strong>Contact:</strong> ${validatedData.contactInfo}</p>` : ""}
                 <p><strong>Message:</strong></p>
                 <p>${validatedData.message.replace(/\n/g, "<br>")}</p>
-                <p><strong>Newsletter:</strong> ${validatedData.newsletter ? "Yes" : "No"}</p>
             `,
 		});
-
-		// Handle newsletter subscription if requested
-		if (validatedData.newsletter && validatedData.contactInfo?.includes("@")) {
-			try {
-				await addContactToAudience(validatedData.contactInfo);
-			} catch (error) {
-				console.error("Error subscribing to newsletter:", error);
-				// Don't fail the whole request if newsletter subscription fails
-			}
-		}
 
 		return {
 			success: true,

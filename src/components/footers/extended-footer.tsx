@@ -2,7 +2,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 import { v4 as uuid } from "uuid";
 import { FeedbackPopover } from "@/components/forms/feedback-popover";
-import { SubscribeForm } from "@/components/forms/subscribe-form";
 import { Link } from "@/components/primitives/link";
 import {
 	Accordion,
@@ -148,7 +147,6 @@ export const Footer: React.FC<FooterProps> = ({
 								colors={{ first: "#76676e", second: "#FA00FF" }}
 							/>
 						</Link>
-						<SubscribeForm />
 					</div>
 					{/* Desktop Layout */}
 					<div className="hidden md:flex flex-col md:flex-row flex-wrap lg:gap-20">

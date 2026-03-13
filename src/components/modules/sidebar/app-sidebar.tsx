@@ -65,11 +65,6 @@ export const AppSidebar = React.forwardRef<HTMLDivElement, AppSidebarProps>(
 					<div>
 						<NavSecondary />
 
-						{/*
-						<div className="overflow-hidden group-data-[collapsible=icon]:hidden flex flex-col gap-2">
-							<SidebarOptInForm />
-							<CardUpgrade />
-							</div> */}
 						<NavUser />
 					</div>
 				</SidebarFooter>
