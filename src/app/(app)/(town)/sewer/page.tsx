@@ -1,6 +1,7 @@
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { env } from "@/env";
 import { sewerRateTiers, sewerContactInfo } from "@/data/town/sewer-rates";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function SewerPage() {
+	const stripeEnabled = !!env.NEXT_PUBLIC_FEATURE_STRIPE_ENABLED;
 	return (
 		<div className="container mx-auto max-w-4xl px-4 py-12">
 			<div className="mb-8">
@@ -45,13 +47,29 @@ export default function SewerPage() {
 
 			<section className="mb-12">
 				<h2 className="mb-4 text-2xl font-semibold">Pay Your Bill</h2>
-				<p className="mb-4 text-muted-foreground">
-					Pay your sewer bill online with a credit or debit card. You can make a one-time payment
-					or set up automatic monthly payments.
-				</p>
-				<Link href="/pay/sewer" className={cn(buttonVariants({ size: "lg" }))}>
-					Pay Sewer Bill Online
-				</Link>
+				{stripeEnabled ? (
+					<>
+						<p className="mb-4 text-muted-foreground">
+							Pay your sewer bill online with a credit or debit card. You can make a one-time payment
+							or set up automatic monthly payments.
+						</p>
+						<Link href="/pay/sewer" className={cn(buttonVariants({ size: "lg" }))}>
+							Pay Sewer Bill Online
+						</Link>
+					</>
+				) : (
+					<p className="text-muted-foreground">
+						To pay your sewer bill, please visit Town Hall or contact the{" "}
+						{sewerContactInfo.department} at{" "}
+						<a href={`tel:${sewerContactInfo.phone.replace(/[^0-9+]/g, "")}`} className="font-medium underline">
+							{sewerContactInfo.phone}
+						</a>{" "}
+						or email{" "}
+						<a href={`mailto:${sewerContactInfo.email}`} className="font-medium underline">
+							{sewerContactInfo.email}
+						</a>.
+					</p>
+				)}
 			</section>
 
 			<section>

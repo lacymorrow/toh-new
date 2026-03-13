@@ -1,50 +1,54 @@
 /**
  * Media URL map for town content images.
- * Uses picsum.photos with deterministic seeds for consistent placeholder images.
+ * Uses real photos from the Town of Harmony where available.
+ * Remaining entries use the town logo as a generic placeholder.
  */
+
+const TOWN_IMG = "/images/town";
+
 export const mediaUrls = {
 	// Homepage hero slides
-	"hero-welcome": "https://picsum.photos/seed/harmony-welcome/1920/1080",
-	"hero-events": "https://picsum.photos/seed/harmony-events/1920/1080",
-	"hero-meetings": "https://picsum.photos/seed/harmony-meetings/1920/1080",
-	"hero-explore": "https://picsum.photos/seed/harmony-explore/1920/1080",
+	"hero-welcome": `${TOWN_IMG}/family-park-1.png`,
+	"hero-events": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"hero-meetings": `${TOWN_IMG}/community-center.png`,
+	"hero-explore": `${TOWN_IMG}/family-park-2.png`,
 
 	// News articles
-	"news-spring-cleanup": "https://picsum.photos/seed/harmony-cleanup/1200/800",
-	"news-park-improvements": "https://picsum.photos/seed/harmony-park/1200/800",
-	"news-farmers-market": "https://picsum.photos/seed/harmony-market/1200/800",
+	"news-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.png`,
+	"news-park-improvements": `${TOWN_IMG}/family-park-3.png`,
+	"news-farmers-market": `${TOWN_IMG}/family-park-1.png`,
 
 	// Events
-	"event-farmers-market": "https://picsum.photos/seed/harmony-sat-market/1200/800",
-	"event-fall-festival": "https://picsum.photos/seed/harmony-fall/1200/800",
-	"event-christmas-parade": "https://picsum.photos/seed/harmony-christmas/1200/800",
-	"event-spring-cleanup": "https://picsum.photos/seed/harmony-spring-cleanup/1200/800",
+	"event-farmers-market": `${TOWN_IMG}/family-park-2.png`,
+	"event-fall-festival": `${TOWN_IMG}/family-park-3.png`,
+	"event-christmas-parade": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"event-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.png`,
 
 	// Points of Interest
-	"poi-park": "https://picsum.photos/seed/harmony-poi-park/1200/800",
-	"poi-town-hall": "https://picsum.photos/seed/harmony-poi-hall/1200/800",
-	"poi-camp-grounds": "https://picsum.photos/seed/harmony-poi-camp/1200/800",
-	"poi-memorial": "https://picsum.photos/seed/harmony-poi-memorial/1200/800",
-	"poi-community-center": "https://picsum.photos/seed/harmony-poi-cc/1200/800",
-	"poi-school": "https://picsum.photos/seed/harmony-poi-school/1200/800",
+	"poi-park": `${TOWN_IMG}/family-park-1.png`,
+	"poi-town-hall": `${TOWN_IMG}/community-center.png`,
+	"poi-camp-grounds": `${TOWN_IMG}/family-park-3.png`,
+	"poi-memorial": `${TOWN_IMG}/family-park-2.png`,
+	"poi-community-center": `${TOWN_IMG}/community-center.png`,
+	"poi-school": `${TOWN_IMG}/logo.png`,
 
-	// History
-	"history-early": "https://picsum.photos/seed/harmony-hist-early/1200/800",
-	"history-founding": "https://picsum.photos/seed/harmony-hist-founding/1200/800",
-	"history-growth": "https://picsum.photos/seed/harmony-hist-growth/1200/800",
-	"history-modern": "https://picsum.photos/seed/harmony-hist-modern/1200/800",
-	"landmark-camp-grounds": "https://picsum.photos/seed/harmony-lm-camp/1200/800",
-	"landmark-town-hall": "https://picsum.photos/seed/harmony-lm-hall/1200/800",
-	"landmark-church": "https://picsum.photos/seed/harmony-lm-church/1200/800",
-	"landmark-community-center": "https://picsum.photos/seed/harmony-lm-cc/1200/800",
+	// History — no historical photos available from legacy site
+	"history-early": `${TOWN_IMG}/family-park-1.png`,
+	"history-founding": `${TOWN_IMG}/community-center.png`,
+	"history-growth": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"history-modern": `${TOWN_IMG}/family-park-2.png`,
+	"landmark-camp-grounds": `${TOWN_IMG}/family-park-3.png`,
+	"landmark-town-hall": `${TOWN_IMG}/community-center.png`,
+	"landmark-church": `${TOWN_IMG}/logo.png`,
+	"landmark-community-center": `${TOWN_IMG}/community-center.png`,
 
-	// Businesses
-	"biz-general-store": "https://picsum.photos/seed/harmony-biz-store/800/600",
-	"biz-diner": "https://picsum.photos/seed/harmony-biz-diner/800/600",
-	"biz-medical": "https://picsum.photos/seed/harmony-biz-med/800/600",
-	"biz-hardware": "https://picsum.photos/seed/harmony-biz-hw/800/600",
-	"biz-auto": "https://picsum.photos/seed/harmony-biz-auto/800/600",
-	"biz-thrift": "https://picsum.photos/seed/harmony-biz-thrift/800/600",
+	// Businesses (civic institutions) — no specific photos available
+	"biz-general-store": `${TOWN_IMG}/logo.png`,
+	"biz-diner": `${TOWN_IMG}/logo.png`,
+	"biz-medical": `${TOWN_IMG}/logo.png`,
+	"biz-hardware": `${TOWN_IMG}/logo.png`,
+	"biz-auto": `${TOWN_IMG}/logo.png`,
+	"biz-thrift": `${TOWN_IMG}/logo.png`,
 } as const;
 
 export type MediaKey = keyof typeof mediaUrls;
