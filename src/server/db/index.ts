@@ -6,10 +6,9 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { env } from "@/env";
 import * as schema from "./schema";
-import * as townSchema from "./schema-town";
 
-// Combine all schemas
-const combinedSchema = { ...schema, ...townSchema };
+// Combined schema (town schema removed — all town data served via Builder.io)
+const combinedSchema = { ...schema };
 
 // Configure postgres with proper options for production workloads
 const client = env.DATABASE_URL
@@ -75,6 +74,5 @@ export const safeDbExecute = async <T>(
 
 // Export schema for direct usage
 export * from "./schema";
-export * from "./schema-town";
 
-export { schema, townSchema, combinedSchema };
+export { schema, combinedSchema };

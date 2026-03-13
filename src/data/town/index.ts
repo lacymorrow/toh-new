@@ -12,7 +12,6 @@ export { mediaUrls } from "./media";
 export { meetings } from "./meetings";
 export { navigation } from "./navigation";
 export { news } from "./news";
-export { permitTypes } from "./permits";
 export { pointsOfInterest } from "./points-of-interest";
 export { resources } from "./resources";
 export { settings } from "./settings";

@@ -38,7 +38,6 @@ export const routes = {
 		meetings: "/meetings",
 		news: "/news",
 		ourTeam: "/our-team",
-		permits: "/permits",
 		pointsOfInterest: "/points-of-interest",
 		resources: "/resources",
 		sewer: "/sewer",

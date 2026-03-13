@@ -1,28 +1,40 @@
-import { and, desc, eq, gte } from "drizzle-orm";
+"use client";
+
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { formatDate, formatTime } from "@/lib/utils";
-import { db, safeDbExecute } from "@/server/db";
-import { meetings } from "@/server/db/schema-town";
+import { useBuilderData } from "@/lib/builder-data";
+import { meetings as staticMeetings } from "@/data/town/meetings";
+import type { TownMeeting } from "@/data/town/types";
 
 interface UpcomingMeetingsProps {
 	limit?: number;
 	className?: string;
 }
 
-export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeetingsProps) {
+const formatDate = (date: Date) =>
+	date.toLocaleDateString("en-US", {
+		weekday: "short",
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	});
+
+const formatTime = (time: string) => time;
+
+export function UpcomingMeetings({ limit = 5, className }: UpcomingMeetingsProps) {
 	const today = new Date().toISOString().split("T")[0];
 
-	const upcomingMeetings = await safeDbExecute(async (database) => {
-		return database
-			.select()
-			.from(meetings)
-			.where(and(eq(meetings.isPublic, true), gte(meetings.meetingDate, today)))
-			.orderBy(meetings.meetingDate)
-			.limit(limit);
-	}, []);
+	const { data: allMeetings } = useBuilderData<TownMeeting>("town-meeting", {
+		limit: 50,
+		fallback: staticMeetings,
+	});
+
+	const upcomingMeetings = allMeetings
+		.filter((m) => m.meetingDate.split("T")[0]! >= today!)
+		.sort((a, b) => new Date(a.meetingDate).getTime() - new Date(b.meetingDate).getTime())
+		.slice(0, limit);
 
 	if (upcomingMeetings.length === 0) {
 		return (
@@ -62,7 +74,7 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 						const meetingDate = new Date(meeting.meetingDate);
 						return (
 							<Link
-								key={meeting.id}
+								key={meeting.slug}
 								href={`/meetings/${meeting.slug}`}
 								className="block p-4 border rounded-lg hover:shadow-md transition-all hover:border-[#DDD7CC]"
 							>
@@ -96,19 +108,17 @@ export async function UpcomingMeetings({ limit = 5, className }: UpcomingMeeting
 												</div>
 											)}
 
-											{!!meeting.attendees &&
-												Array.isArray(meeting.attendees) &&
-												meeting.attendees.length > 0 && (
-													<div className="flex items-center gap-2">
-														<Users className="h-3 w-3" />
-														<span>{meeting.attendees.length.toString()} attendees expected</span>
-													</div>
-												)}
+											{meeting.attendees.length > 0 && (
+												<div className="flex items-center gap-2">
+													<Users className="h-3 w-3" />
+													<span>{meeting.attendees.length.toString()} attendees expected</span>
+												</div>
+											)}
 										</div>
 									</div>
 
 									<div className="text-xs text-muted-foreground text-right">
-										{meeting.agendaUrl && <div className="mb-1">Agenda available</div>}
+										{meeting.agenda && <div className="mb-1">Agenda available</div>}
 										{(meeting.videoUrl || meeting.audioUrl) && <div>Recording planned</div>}
 									</div>
 								</div>

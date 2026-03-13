@@ -19,7 +19,6 @@ import { TownMeetingDetail } from "./components/modules/builder/town/town-meetin
 import { TownMeetingsList } from "./components/modules/builder/town/town-meetings-list";
 import { TownNewsDetail } from "./components/modules/builder/town/town-news-detail";
 import { TownNewsGrid } from "./components/modules/builder/town/town-news-grid";
-import { TownNewsletterSignup } from "./components/modules/builder/town/town-newsletter-signup";
 import { TownPageHeader } from "./components/modules/builder/town/town-page-header";
 import { TownPointsOfInterest } from "./components/modules/builder/town/town-points-of-interest";
 import { TownQuickLinks } from "./components/modules/builder/town/town-quick-links";
@@ -78,15 +77,6 @@ Builder.registerComponent(TownCommunitySpotlight, {
 		{ name: "description", type: "longText" },
 		{ name: "linkHref", type: "string", defaultValue: "/history" },
 		{ name: "image", type: "file", allowedFileTypes: ["jpeg", "png", "webp"] },
-	],
-});
-
-Builder.registerComponent(TownNewsletterSignup, {
-	name: "TownNewsletterSignup",
-	inputs: [
-		{ name: "title", type: "string", defaultValue: "Stay Connected with Harmony" },
-		{ name: "subtitle", type: "string", defaultValue: "Get the latest news and updates delivered to your inbox" },
-		{ name: "buttonText", type: "string", defaultValue: "Subscribe" },
 	],
 });
 
