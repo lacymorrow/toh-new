@@ -102,33 +102,37 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 
 			<div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
 				<div className="space-y-6">
-					{business.hours && typeof business.hours === "object" && !Array.isArray(business.hours) && (
+					{business.hours && (
 						<Card>
 							<CardHeader>
 								<CardTitle>Business Hours</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<div className="space-y-2">
-									{dayOrder.map((day) => {
-										const hoursObj = business.hours as Record<string, unknown>;
-										const hours = hoursObj[day];
-										if (!hours) return null;
+									{typeof business.hours === "string" ? (
+										<p>{business.hours}</p>
+									) : (
+										dayOrder.map((day) => {
+											const hoursObj = business.hours as unknown as Record<string, unknown>;
+											const hours = hoursObj[day];
+											if (!hours) return null;
 
-										const today = new Date()
-											.toLocaleDateString("en-US", { weekday: "long" })
-											.toLowerCase();
-										const isToday = day === today;
+											const today = new Date()
+												.toLocaleDateString("en-US", { weekday: "long" })
+												.toLowerCase();
+											const isToday = day === today;
 
-										return (
-											<div
-												key={day}
-												className={`flex justify-between py-2 ${isToday ? "font-semibold text-sage" : ""}`}
-											>
-												<span>{dayLabels[day]}</span>
-												<span>{hours === "Closed" ? "Closed" : String(hours)}</span>
-											</div>
-										);
-									})}
+											return (
+												<div
+													key={day}
+													className={`flex justify-between py-2 ${isToday ? "font-semibold text-sage" : ""}`}
+												>
+													<span>{dayLabels[day]}</span>
+													<span>{hours === "Closed" ? "Closed" : String(hours)}</span>
+												</div>
+											);
+										})
+									)}
 								</div>
 							</CardContent>
 						</Card>

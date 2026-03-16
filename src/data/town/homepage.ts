@@ -75,7 +75,7 @@ export const homepage: TownHomepage = {
 			label: "Population",
 		},
 		{
-			value: "1832",
+			value: "1927",
 			label: "Established",
 		},
 		{

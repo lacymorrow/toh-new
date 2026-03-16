@@ -1,4 +1,140 @@
 import type { TownMeeting } from "./types";
 
-// Meeting data — to be populated with real meeting schedules and agendas
-export const meetings: TownMeeting[] = [];
+export const meetings: TownMeeting[] = [
+	{
+		id: 1,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-january-2025",
+		type: "Council",
+		meetingDate: "2025-01-07",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of December minutes; FY2024-25 mid-year budget review; sewer system maintenance update; public comment period.",
+		attendees: [
+			"Sean Turner",
+			"Scotty Harris",
+			"Chris Pierce",
+			"Brandon Angell",
+			"Jared Clark",
+		],
+		isPublic: true,
+		minutes: "Minutes approved at February meeting.",
+	},
+	{
+		id: 2,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-february-2025",
+		type: "Council",
+		meetingDate: "2025-02-04",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of January minutes; Spring Cleanup planning; community center rental policy update; road repair schedule for Harmony Hwy.",
+		attendees: [
+			"Sean Turner",
+			"Scotty Harris",
+			"Chris Pierce",
+			"Brandon Angell",
+			"Jared Clark",
+		],
+		isPublic: true,
+		minutes: "Minutes approved at March meeting.",
+	},
+	{
+		id: 3,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-march-2025",
+		type: "Council",
+		meetingDate: "2025-03-04",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of February minutes; Farmers Market 2025 season planning; park restroom renovation bid review; NCDOT Hwy 21 update.",
+		attendees: [
+			"Sean Turner",
+			"Scotty Harris",
+			"Chris Pierce",
+			"Brandon Angell",
+			"Jared Clark",
+		],
+		isPublic: true,
+	},
+	{
+		id: 4,
+		title: "Public Hearing: FY2025-26 Budget",
+		slug: "public-hearing-budget-2025-26",
+		type: "Public Hearing",
+		meetingDate: "2025-04-01",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Public hearing on proposed FY2025-26 municipal budget. Residents may comment on proposed expenditures for sewer infrastructure, road maintenance, and park improvements.",
+		attendees: [
+			"Sean Turner",
+			"Scotty Harris",
+			"Chris Pierce",
+			"Brandon Angell",
+			"Jared Clark",
+		],
+		isPublic: true,
+	},
+	{
+		id: 5,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-april-2025",
+		type: "Council",
+		meetingDate: "2025-04-01",
+		meetingTime: "7:30 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of March minutes; FY2025-26 budget adoption vote; Spring Cleanup date confirmation; mowing contract renewal.",
+		attendees: [
+			"Sean Turner",
+			"Scotty Harris",
+			"Chris Pierce",
+			"Brandon Angell",
+			"Jared Clark",
+		],
+		isPublic: true,
+	},
+	{
+		id: 6,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-may-2025",
+		type: "Council",
+		meetingDate: "2025-05-06",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of April minutes; Tomlinson-Moore Family Park summer hours; sewer line inspection report; election preparation discussion.",
+		attendees: [],
+		isPublic: true,
+	},
+	{
+		id: 7,
+		title: "Town Council Regular Meeting",
+		slug: "council-meeting-june-2025",
+		type: "Council",
+		meetingDate: "2025-06-03",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Approval of May minutes; community center AC replacement update; Fall Festival planning committee formation; stormwater drainage report.",
+		attendees: [],
+		isPublic: true,
+	},
+	{
+		id: 8,
+		title: "Planning Meeting: Zoning Review",
+		slug: "planning-meeting-july-2025",
+		type: "Planning",
+		meetingDate: "2025-07-01",
+		meetingTime: "7:00 PM",
+		location: "Town Hall",
+		agenda:
+			"Review of current zoning map; discussion of available parcels along Hwy 21 corridor; setback requirements for new construction.",
+		attendees: [],
+		isPublic: true,
+	},
+];

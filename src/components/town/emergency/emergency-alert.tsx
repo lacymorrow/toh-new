@@ -1,10 +1,21 @@
 import { AlertOctagon, AlertTriangle, Info, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import type { EmergencyAlert as EmergencyAlertType } from "@/server/db/schema-town";
+interface EmergencyAlertData {
+	title: string;
+	message: string;
+	level: "info" | "warning" | "critical";
+	isActive: boolean;
+	startsAt: Date | null;
+	endsAt: Date | null;
+	affectedAreas: string[] | null;
+	instructions: string | null;
+	contactInfo: unknown;
+	externalUrl: string | null;
+}
 
 interface EmergencyAlertProps {
-	alert: EmergencyAlertType;
+	alert: EmergencyAlertData;
 	showDismiss?: boolean;
 	onDismiss?: () => void;
 	compact?: boolean;

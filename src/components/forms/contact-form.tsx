@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
 	Form,
 	FormControl,
@@ -39,7 +38,6 @@ export function ContactForm({ defaultValues, onSuccess, className }: ContactForm
 			name: "",
 			contactInfo: "",
 			message: "",
-			newsletter: false,
 			...defaultValues,
 		},
 	});
@@ -148,28 +146,6 @@ export function ContactForm({ defaultValues, onSuccess, className }: ContactForm
 						)}
 					/>
 
-					{/* Newsletter Opt-in */}
-					<FormField
-						control={form.control}
-						name="newsletter"
-						render={({ field }) => (
-							<FormItem className="flex flex-row items-start space-x-3 space-y-0">
-								<FormControl>
-									<Checkbox
-										checked={field.value}
-										onCheckedChange={field.onChange}
-										disabled={form.formState.isSubmitting}
-									/>
-								</FormControl>
-								<div className="space-y-1 leading-none">
-									<FormLabel>Stay Updated</FormLabel>
-									<FormDescription>
-										Receive occasional updates about new features and announcements.
-									</FormDescription>
-								</div>
-							</FormItem>
-						)}
-					/>
 				</div>
 
 				<Button type="submit" className="mt-8 w-full" disabled={form.formState.isSubmitting}>

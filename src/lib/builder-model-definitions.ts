@@ -147,20 +147,6 @@ export const modelDefinitions: BuilderModelDefinition[] = [
 		],
 	},
 	{
-		name: "town-permit-type",
-		kind: "data",
-		fields: [
-			text("permitId", true),
-			text("name", true),
-			longText("description"),
-			num("fee"),
-			text("processingTime"),
-			tags("requirements"),
-			text("category"),
-			text("icon"),
-		],
-	},
-	{
 		name: "town-announcement",
 		kind: "data",
 		fields: [

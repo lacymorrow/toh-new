@@ -48,13 +48,6 @@ export const navigation: TownNavigation = {
 	],
 	quickLinks: [
 		{
-			title: "Permits & Forms",
-			description: "Apply for permits and download forms",
-			href: "/permits",
-			icon: "FileText",
-			color: "bg-blue-500",
-		},
-		{
 			title: "Events",
 			description: "Community events and activities",
 			href: "/events",

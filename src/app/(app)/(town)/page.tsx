@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { CommunitySpotlight } from "@/components/town/community-spotlight";
 import { HeroSection } from "@/components/town/hero-section";
 import { LatestNews } from "@/components/town/latest-news";
-import { NewsletterSignup } from "@/components/town/newsletter-signup";
 import { QuickLinks } from "@/components/town/quick-links";
 import { UpcomingEvents } from "@/components/town/upcoming-events";
 import { env } from "@/env";
@@ -76,7 +75,6 @@ export default async function HomePage() {
 			</section>
 
 			<CommunitySpotlight />
-			<NewsletterSignup />
 		</>
 	);
 }

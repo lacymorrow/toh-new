@@ -3,7 +3,6 @@ export { TownQuickLinks } from "./town-quick-links";
 export { TownLatestNews } from "./town-latest-news";
 export { TownUpcomingEvents } from "./town-upcoming-events";
 export { TownCommunitySpotlight } from "./town-community-spotlight";
-export { TownNewsletterSignup } from "./town-newsletter-signup";
 export { TownNewsGrid } from "./town-news-grid";
 export { TownEventsList } from "./town-events-list";
 export { TownMeetingsList } from "./town-meetings-list";
