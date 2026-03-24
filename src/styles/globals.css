@@ -15,10 +15,10 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-/* Custom text highlight styles - sage/wheat palette */
+/* Custom text highlight styles - wheat/sage palette */
 ::selection {
-	color: rgba(255, 255, 255, 0.9);
-	background-color: rgba(61, 80, 56, 0.75);
+	color: #2D2A24;
+	background-color: rgba(201, 181, 126, 0.55);
 }
 
 /* Fix Leaflet popup close button sizing */
