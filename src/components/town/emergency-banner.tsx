@@ -1,4 +1,4 @@
-import { getActiveAnnouncements } from "@/lib/payload/town-data";
+import { getActiveAnnouncements } from "@/lib/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import Link from "next/link";
 

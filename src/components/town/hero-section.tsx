@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getMediaUrl } from "@/lib/utils/get-media-url";
-import { getHomepage } from "@/lib/payload/town-data";
+import { getHomepage } from "@/lib/town-data";
 
 export async function HeroSection() {
 	const homepage = await getHomepage();

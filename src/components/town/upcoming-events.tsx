@@ -1,6 +1,6 @@
 import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { getEvents } from "@/lib/payload/town-data";
+import { getEvents } from "@/lib/town-data";
 
 export async function UpcomingEvents() {
 	const { docs: upcomingEvents } = await getEvents({ limit: 5, status: "upcoming" });

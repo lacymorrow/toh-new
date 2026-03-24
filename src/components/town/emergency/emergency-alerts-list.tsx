@@ -2,7 +2,7 @@ import { AlertOctagon, AlertTriangle, Calendar, Info, MapPin } from "lucide-reac
 import Link from "next/link";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAnnouncements } from "@/lib/payload/town-data";
+import { getAnnouncements } from "@/lib/town-data";
 
 interface EmergencyAlertsListProps {
 	showAll?: boolean;

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { getElections } from "@/lib/payload/town-data";
+import { getElections } from "@/lib/town-data";
 import { ElectionCard } from "./election-card";
 
 const ITEMS_PER_PAGE = 6;

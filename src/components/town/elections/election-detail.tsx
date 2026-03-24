@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { PayloadRichText, extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getElectionBySlug } from "@/lib/payload/town-data";
+import { getElectionBySlug } from "@/lib/town-data";
 import { CandidateCard } from "./candidate-card";
 import { VotingInfo } from "./voting-info";
 
