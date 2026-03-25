@@ -75,7 +75,7 @@ export const TownEmergencyAlertsList = ({
 
 	if (displayAlerts.length === 0) {
 		return (
-			<section className="py-16">
+			<section className="py-16 bg-warm-white">
 				<div className="container mx-auto px-4">
 					<div className="text-center mb-10">
 						<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">
@@ -94,7 +94,7 @@ export const TownEmergencyAlertsList = ({
 	}
 
 	return (
-		<section className="py-16">
+		<section className="py-16 bg-warm-white">
 			<div className="container mx-auto px-4">
 				<div className="text-center mb-10">
 					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">

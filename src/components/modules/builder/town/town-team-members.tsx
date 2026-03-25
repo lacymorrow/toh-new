@@ -110,7 +110,7 @@ export const TownTeamMembers = () => {
 											{member.email && (
 												<div className="flex items-center gap-2 text-sm">
 													<svg
-														className="w-4 h-4 text-[#7A756C] flex-shrink-0"
+														className="w-4 h-4 text-[#635E56] flex-shrink-0"
 														fill="none"
 														stroke="currentColor"
 														viewBox="0 0 24 24"
@@ -133,7 +133,7 @@ export const TownTeamMembers = () => {
 											{member.phone && (
 												<div className="flex items-center gap-2 text-sm">
 													<svg
-														className="w-4 h-4 text-[#7A756C] flex-shrink-0"
+														className="w-4 h-4 text-[#635E56] flex-shrink-0"
 														fill="none"
 														stroke="currentColor"
 														viewBox="0 0 24 24"
@@ -154,7 +154,7 @@ export const TownTeamMembers = () => {
 												</div>
 											)}
 											{member.termExpires && (
-												<p className="text-xs text-[#7A756C] pt-1">
+												<p className="text-xs text-[#635E56] pt-1">
 													Term expires: {member.termExpires}
 												</p>
 											)}

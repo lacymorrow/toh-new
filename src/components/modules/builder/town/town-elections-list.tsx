@@ -87,7 +87,7 @@ const getStatusBadge = (electionDate: string) => {
 		);
 	}
 	return (
-		<span className="bg-stone text-[#7A756C] border border-stone px-2.5 py-0.5 rounded-full text-xs font-medium">
+		<span className="bg-stone text-[#635E56] border border-stone px-2.5 py-0.5 rounded-full text-xs font-medium">
 			Completed
 		</span>
 	);
@@ -155,7 +155,7 @@ export const TownElectionsList = ({
 									});
 								}
 							}}
-							className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#7A756C] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
+							className="w-full px-4 py-2.5 rounded-lg border border-stone bg-white text-[#2D2A24] placeholder:text-[#635E56] focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage"
 						/>
 					</div>
 
@@ -222,7 +222,7 @@ export const TownElectionsList = ({
 
 										<div className="space-y-2 text-sm">
 											<div className="flex justify-between">
-												<span className="text-[#7A756C]">Election Date</span>
+												<span className="text-[#635E56]">Election Date</span>
 												<span className="font-medium text-[#2D2A24]">
 													{electionDate.toLocaleDateString("en-US", {
 														month: "long",
@@ -232,7 +232,7 @@ export const TownElectionsList = ({
 												</span>
 											</div>
 											<div className="flex justify-between">
-												<span className="text-[#7A756C]">
+												<span className="text-[#635E56]">
 													Registration Deadline
 												</span>
 												<span className="font-medium text-[#2D2A24]">
@@ -245,7 +245,7 @@ export const TownElectionsList = ({
 												</span>
 											</div>
 											<div className="flex justify-between">
-												<span className="text-[#7A756C]">Early Voting</span>
+												<span className="text-[#635E56]">Early Voting</span>
 												<span className="font-medium text-[#2D2A24]">
 													{new Date(
 														election.earlyVotingStart,
@@ -266,7 +266,7 @@ export const TownElectionsList = ({
 
 										{/* Polling Locations Count */}
 										{election.pollingLocations.length > 0 && (
-											<p className="mt-3 text-xs text-[#7A756C]">
+											<p className="mt-3 text-xs text-[#635E56]">
 												{election.pollingLocations.length} polling location
 												{election.pollingLocations.length !== 1 ? "s" : ""}
 											</p>
@@ -278,7 +278,7 @@ export const TownElectionsList = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No elections found.</p>
+						<p className="text-[#635E56] text-lg">No elections found.</p>
 					</div>
 				)}
 

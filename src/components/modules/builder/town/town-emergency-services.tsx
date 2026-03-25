@@ -69,7 +69,7 @@ export const TownEmergencyServices = () => {
 
 	if (loading) {
 		return (
-			<section className="py-16">
+			<section className="py-16 bg-warm-white">
 				<div className="container mx-auto px-4">
 					<div className="text-center mb-10">
 						<div className="h-8 w-64 bg-stone/50 rounded mx-auto mb-2 animate-pulse" />
@@ -105,7 +105,7 @@ export const TownEmergencyServices = () => {
 	const categoryOrder = ["immediate", "public-safety", "utility", "health"];
 
 	return (
-		<section className="py-16">
+		<section className="py-16 bg-warm-white">
 			<div className="container mx-auto px-4">
 				<div className="text-center mb-10">
 					<h2 className="text-[32px] font-serif font-bold text-sage-dark mb-2">

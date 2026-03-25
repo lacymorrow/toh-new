@@ -103,7 +103,7 @@ export const TownPointsOfInterest = ({
 								) : (
 									<div className="h-48 bg-stone flex items-center justify-center">
 										<svg
-											className="w-12 h-12 text-[#7A756C]"
+											className="w-12 h-12 text-[#635E56]"
 											fill="none"
 											stroke="currentColor"
 											viewBox="0 0 24 24"
@@ -136,7 +136,7 @@ export const TownPointsOfInterest = ({
 										{poi.description}
 									</p>
 
-									<div className="space-y-1.5 text-xs text-[#7A756C]">
+									<div className="space-y-1.5 text-xs text-[#635E56]">
 										<div className="flex items-start gap-1.5">
 											<svg
 												className="w-3.5 h-3.5 mt-0.5 flex-shrink-0"
@@ -183,13 +183,13 @@ export const TownPointsOfInterest = ({
 											{poi.amenities.slice(0, 3).map((amenity) => (
 												<span
 													key={amenity}
-													className="bg-cream text-[#7A756C] px-1.5 py-0.5 rounded text-[10px]"
+													className="bg-cream text-[#635E56] px-1.5 py-0.5 rounded text-[10px]"
 												>
 													{amenity}
 												</span>
 											))}
 											{poi.amenities.length > 3 && (
-												<span className="text-[10px] text-[#7A756C] py-0.5">
+												<span className="text-[10px] text-[#635E56] py-0.5">
 													+{poi.amenities.length - 3} more
 												</span>
 											)}
@@ -201,7 +201,7 @@ export const TownPointsOfInterest = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">
+						<p className="text-[#635E56] text-lg">
 							No points of interest found.
 						</p>
 					</div>
