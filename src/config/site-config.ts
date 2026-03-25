@@ -224,9 +224,9 @@ export const siteConfig: SiteConfig = {
 	},
 
 	creator: {
-		name: "lacymorrow",
+		name: "Town of Harmony",
 		email: "admin@townofharmony.org",
-		url: "https://lacymorrow.com",
+		url: "https://townofharmony.org",
 		twitter: "",
 		twitter_handle: "",
 		domain: "townofharmony.org",
