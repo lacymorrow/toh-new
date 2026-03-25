@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site-config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const baseUrl = siteConfig.url;
 
-	return [
+	// Static pages with known URLs
+	const staticPages: MetadataRoute.Sitemap = [
 		{
 			url: baseUrl,
 			lastModified: new Date(),
@@ -79,22 +79,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			priority: 0.6,
 		},
 		{
-			url: `${baseUrl}${routes.contact}`,
+			url: `${baseUrl}/sewer`,
 			lastModified: new Date(),
 			changeFrequency: "monthly",
 			priority: 0.7,
 		},
 		{
-			url: `${baseUrl}${routes.terms}`,
+			url: `${baseUrl}/map`,
 			lastModified: new Date(),
 			changeFrequency: "monthly",
-			priority: 0.4,
+			priority: 0.6,
 		},
 		{
-			url: `${baseUrl}${routes.privacy}`,
+			url: `${baseUrl}/contact`,
 			lastModified: new Date(),
 			changeFrequency: "monthly",
-			priority: 0.4,
+			priority: 0.7,
+		},
+		{
+			url: `${baseUrl}/terms-of-service`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.3,
+		},
+		{
+			url: `${baseUrl}/privacy`,
+			lastModified: new Date(),
+			changeFrequency: "monthly",
+			priority: 0.3,
 		},
 	];
+
+	return staticPages;
 }

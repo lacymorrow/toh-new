@@ -8,39 +8,39 @@ const TOWN_IMG = "/images/town";
 
 export const mediaUrls = {
 	// Homepage hero slides
-	"hero-welcome": `${TOWN_IMG}/family-park-1.png`,
+	"hero-welcome": `${TOWN_IMG}/family-park-1.webp`,
 	"hero-events": `${TOWN_IMG}/christmas-parade-float.jpg`,
-	"hero-meetings": `${TOWN_IMG}/community-center.png`,
-	"hero-explore": `${TOWN_IMG}/family-park-2.png`,
+	"hero-meetings": `${TOWN_IMG}/community-center.webp`,
+	"hero-explore": `${TOWN_IMG}/family-park-2.webp`,
 
 	// News articles
-	"news-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.png`,
-	"news-park-improvements": `${TOWN_IMG}/family-park-3.png`,
-	"news-farmers-market": `${TOWN_IMG}/family-park-1.png`,
+	"news-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.webp`,
+	"news-park-improvements": `${TOWN_IMG}/family-park-3.webp`,
+	"news-farmers-market": `${TOWN_IMG}/family-park-1.webp`,
 
 	// Events
-	"event-farmers-market": `${TOWN_IMG}/family-park-2.png`,
-	"event-fall-festival": `${TOWN_IMG}/family-park-3.png`,
+	"event-farmers-market": `${TOWN_IMG}/family-park-2.webp`,
+	"event-fall-festival": `${TOWN_IMG}/family-park-3.webp`,
 	"event-christmas-parade": `${TOWN_IMG}/christmas-parade-float.jpg`,
-	"event-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.png`,
+	"event-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.webp`,
 
 	// Points of Interest
-	"poi-park": `${TOWN_IMG}/family-park-1.png`,
-	"poi-town-hall": `${TOWN_IMG}/community-center.png`,
-	"poi-camp-grounds": `${TOWN_IMG}/family-park-3.png`,
-	"poi-memorial": `${TOWN_IMG}/family-park-2.png`,
-	"poi-community-center": `${TOWN_IMG}/community-center.png`,
+	"poi-park": `${TOWN_IMG}/family-park-1.webp`,
+	"poi-town-hall": `${TOWN_IMG}/community-center.webp`,
+	"poi-camp-grounds": `${TOWN_IMG}/family-park-3.webp`,
+	"poi-memorial": `${TOWN_IMG}/family-park-2.webp`,
+	"poi-community-center": `${TOWN_IMG}/community-center.webp`,
 	"poi-school": `${TOWN_IMG}/logo.png`,
 
 	// History — no historical photos available from legacy site
-	"history-early": `${TOWN_IMG}/family-park-1.png`,
-	"history-founding": `${TOWN_IMG}/community-center.png`,
+	"history-early": `${TOWN_IMG}/family-park-1.webp`,
+	"history-founding": `${TOWN_IMG}/community-center.webp`,
 	"history-growth": `${TOWN_IMG}/christmas-parade-float.jpg`,
-	"history-modern": `${TOWN_IMG}/family-park-2.png`,
-	"landmark-camp-grounds": `${TOWN_IMG}/family-park-3.png`,
-	"landmark-town-hall": `${TOWN_IMG}/community-center.png`,
+	"history-modern": `${TOWN_IMG}/family-park-2.webp`,
+	"landmark-camp-grounds": `${TOWN_IMG}/family-park-3.webp`,
+	"landmark-town-hall": `${TOWN_IMG}/community-center.webp`,
 	"landmark-church": `${TOWN_IMG}/logo.png`,
-	"landmark-community-center": `${TOWN_IMG}/community-center.png`,
+	"landmark-community-center": `${TOWN_IMG}/community-center.webp`,
 
 	// Businesses (civic institutions) — no specific photos available
 	"biz-general-store": `${TOWN_IMG}/logo.png`,

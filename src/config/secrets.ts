@@ -17,7 +17,7 @@ export function getMasterAppSecret(): string {
 		return provided;
 	}
 
-	const input = `${BASE_URL}|shipkit|app-secret|v1`;
+	const input = `${BASE_URL}|toh|app-secret|v1`;
 	return crypto.createHash("sha256").update(input).digest("hex");
 }
 

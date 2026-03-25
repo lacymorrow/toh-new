@@ -140,6 +140,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								size="icon"
 								className="hidden md:flex hover:bg-stone hover:text-sage-dark"
 								onClick={() => setSearchOpen(true)}
+								aria-label="Search"
 							>
 								<Search className="h-5 w-5" />
 							</Button>
@@ -149,6 +150,8 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								size="icon"
 								className="lg:hidden hover:bg-stone"
 								onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+								aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+								aria-expanded={mobileMenuOpen}
 							>
 								{mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
 							</Button>
