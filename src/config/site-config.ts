@@ -169,13 +169,13 @@ export const siteConfig: SiteConfig = {
 		pageTransitions: true,
 	},
 
-	name: "Shipkit",
-	title: "Shipkit",
-	tagline: "Launch your app at light speed.",
-	url: "https://shipkit.io",
-	ogImage: "https://shipkit.io/app/og-image.png",
+	name: "Town of Harmony",
+	title: "Town of Harmony",
+	tagline: "Where Harmony LIVES and SINGS!",
+	url: "https://townofharmony.org",
+	ogImage: "https://townofharmony.org/app/og-image.png",
 	description:
-		"Launch your app at light speed. Fast, flexible, and feature-packed for the modern web.",
+		"Official website of the Town of Harmony, North Carolina. Find local news, events, services, and community information.",
 
 	branding: {
 		projectName: "Shipkit",

@@ -22,7 +22,7 @@ export function TownFooter({ settings }: TownFooterProps) {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
 					{/* Town Info */}
 					<div>
-						<h3 className="text-xl font-serif font-bold text-white mb-2">{settings.siteTitle}</h3>
+						<p className="text-xl font-serif font-bold text-white mb-2">{settings.siteTitle}</p>
 						<p className="text-sm leading-relaxed mb-2">
 							{settings.branding.tagline} Serving our community since {settings.branding.established}.
 						</p>
@@ -67,9 +67,9 @@ export function TownFooter({ settings }: TownFooterProps) {
 					{/* Footer Links */}
 					{Object.entries(footerLinks).map(([category, links]) => (
 						<div key={category}>
-							<h4 className="text-[13px] text-white/85 uppercase tracking-[1.5px] font-bold mb-4">
+							<p className="text-[13px] text-white/85 uppercase tracking-[1.5px] font-bold mb-4">
 								{category}
-							</h4>
+							</p>
 							<ul className="space-y-2">
 								{links.map((link) => (
 									<li key={link.name}>

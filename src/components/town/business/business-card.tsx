@@ -1,4 +1,5 @@
 import { CheckCircle, Clock, Globe, MapPin, Phone, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -59,10 +60,13 @@ export function BusinessCard({ business }: BusinessCardProps) {
 						</div>
 					</div>
 					{business.logo && (
-						<img
+						<Image
 							src={business.logo}
 							alt={`${business.name} logo`}
-							className="w-12 h-12 object-contain rounded"
+							className="object-contain rounded"
+							width={48}
+							height={48}
+							loading="lazy"
 						/>
 					)}
 				</div>

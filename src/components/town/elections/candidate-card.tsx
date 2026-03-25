@@ -1,4 +1,5 @@
 import { ExternalLink, User } from "lucide-react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -27,10 +28,13 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
 			<CardHeader>
 				<div className="flex items-start gap-4">
 					{photoUrl ? (
-						<img
+						<Image
 							src={photoUrl}
 							alt={candidate.name}
-							className="w-16 h-16 rounded-full object-cover border-2 border-[#DDD7CC]"
+							className="rounded-full object-cover border-2 border-[#DDD7CC]"
+							width={64}
+							height={64}
+							loading="lazy"
 						/>
 					) : (
 						<div className="w-16 h-16 rounded-full bg-stone flex items-center justify-center">

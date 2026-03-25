@@ -8,6 +8,7 @@ import {
 	Share2,
 	Users,
 } from "lucide-react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,11 +83,16 @@ export function EventDetail({ event }: EventDetailProps) {
 				</div>
 
 				{getMediaUrl(event.featuredImage) && (
-					<img
-						src={getMediaUrl(event.featuredImage)!}
-						alt={event.title}
-						className="w-full h-96 object-cover rounded-lg mb-6"
-					/>
+					<div className="relative w-full h-96 rounded-lg overflow-hidden mb-6">
+						<Image
+							src={getMediaUrl(event.featuredImage)!}
+							alt={event.title}
+							className="object-cover"
+							fill
+							sizes="(max-width: 1024px) 100vw, 66vw"
+							priority
+						/>
+					</div>
 				)}
 			</header>
 

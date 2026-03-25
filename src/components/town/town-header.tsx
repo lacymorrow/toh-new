@@ -30,6 +30,12 @@ export function TownHeader({ settings }: TownHeaderProps) {
 
 	return (
 		<header>
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-sage-deep focus:text-white focus:px-4 focus:py-2 focus:top-2 focus:left-2 focus:rounded"
+			>
+				Skip to main content
+			</a>
 			{/* Top bar - sage deep */}
 			<div className="bg-sage-deep text-white/90">
 				<div className="container mx-auto px-4">
@@ -75,7 +81,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								TH
 							</div>
 							<div>
-								<h1 className="text-2xl font-serif font-bold text-sage-dark">{settings.siteTitle}</h1>
+								<span className="text-2xl font-serif font-bold text-sage-dark block">{settings.siteTitle}</span>
 								<p className="text-xs text-[#7A756C] uppercase tracking-[1.5px] font-semibold">
 									{settings.branding.county}, {settings.branding.state}
 								</p>
@@ -140,6 +146,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								size="icon"
 								className="hidden md:flex hover:bg-stone hover:text-sage-dark"
 								onClick={() => setSearchOpen(true)}
+								aria-label="Search"
 							>
 								<Search className="h-5 w-5" />
 							</Button>
@@ -149,6 +156,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 								size="icon"
 								className="lg:hidden hover:bg-stone"
 								onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+								aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
 							>
 								{mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
 							</Button>

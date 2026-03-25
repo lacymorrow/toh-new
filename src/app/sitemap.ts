@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routes } from "@/config/routes";
-import { siteConfig } from "@/config/site-config";
+import { BASE_URL } from "@/config/base-url";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const baseUrl = siteConfig.url;
+	const baseUrl = BASE_URL;
 
 	return [
 		{

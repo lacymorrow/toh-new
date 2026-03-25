@@ -9,6 +9,7 @@ import {
 	Share2,
 	Star,
 } from "lucide-react";
+import Image from "next/image";
 import { PayloadRichText } from "@/components/town/payload-rich-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -70,10 +71,13 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 						</div>
 					</div>
 					{logoUrl && (
-						<img
+						<Image
 							src={logoUrl}
 							alt={`${business.name} logo`}
-							className="w-24 h-24 object-contain rounded-lg border"
+							className="object-contain rounded-lg border"
+							width={96}
+							height={96}
+							loading="lazy"
 						/>
 					)}
 				</div>
@@ -89,12 +93,16 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
 						const imageUrl = getMediaUrl(item.image);
 						if (!imageUrl) return null;
 						return (
-							<img
-								key={item.id ?? index}
-								src={imageUrl}
-								alt={`${business.name} image ${index + 1}`}
-								className="w-full h-48 object-cover rounded-lg"
-							/>
+							<div key={item.id ?? index} className="relative h-48 rounded-lg overflow-hidden">
+								<Image
+									src={imageUrl}
+									alt={`${business.name} image ${index + 1}`}
+									className="object-cover"
+									fill
+									sizes="(max-width: 768px) 50vw, 33vw"
+									loading="lazy"
+								/>
+							</div>
 						);
 					})}
 				</div>
