@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { getNews } from "@/lib/payload/town-data";
+import { getNews } from "@/lib/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 
 export async function LatestNews() {

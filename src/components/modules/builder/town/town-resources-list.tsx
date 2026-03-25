@@ -263,7 +263,7 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 															{/* Contact Info */}
 															{(resource.contactPhone ||
 																resource.contactEmail) && (
-																<div className="mt-2 space-y-0.5 text-xs text-[#7A756C]">
+																<div className="mt-2 space-y-0.5 text-xs text-[#635E56]">
 																	{resource.contactPhone && (
 																		<p>Phone: {resource.contactPhone}</p>
 																	)}
@@ -303,7 +303,7 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No resources found.</p>
+						<p className="text-[#635E56] text-lg">No resources found.</p>
 					</div>
 				)}
 			</div>

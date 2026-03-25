@@ -225,7 +225,7 @@ export const TownMeetingsList = ({
 
 				{/* Calendar View Placeholder */}
 				{showCalendar && (
-					<div className="mb-8 p-6 bg-white border border-stone rounded-lg text-center text-[#7A756C]">
+					<div className="mb-8 p-6 bg-white border border-stone rounded-lg text-center text-[#635E56]">
 						<p className="text-sm">
 							Calendar view - meeting dates are highlighted below
 						</p>
@@ -285,12 +285,12 @@ export const TownMeetingsList = ({
 											<h3 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors mb-1">
 												{meeting.title}
 											</h3>
-											<div className="flex flex-wrap gap-4 text-sm text-[#7A756C] mb-2">
+											<div className="flex flex-wrap gap-4 text-sm text-[#635E56] mb-2">
 												<span>{meeting.meetingTime}</span>
 												<span>{meeting.location}</span>
 											</div>
 											{meeting.attendees.length > 0 && (
-												<p className="text-xs text-[#7A756C]">
+												<p className="text-xs text-[#635E56]">
 													Attendees: {meeting.attendees.slice(0, 3).join(", ")}
 													{meeting.attendees.length > 3 &&
 														` +${meeting.attendees.length - 3} more`}
@@ -304,7 +304,7 @@ export const TownMeetingsList = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No meetings found.</p>
+						<p className="text-[#635E56] text-lg">No meetings found.</p>
 					</div>
 				)}
 

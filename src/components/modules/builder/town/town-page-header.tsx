@@ -33,7 +33,7 @@ export const TownPageHeader = ({
 						className={cn(
 							"text-lg max-w-2xl",
 							variant === "wheat"
-								? "text-sage-dark/80"
+								? "text-sage-deep"
 								: "text-white/90",
 						)}
 					>

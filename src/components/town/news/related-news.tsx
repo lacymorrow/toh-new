@@ -1,7 +1,7 @@
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getNews } from "@/lib/payload/town-data";
+import { getNews } from "@/lib/town-data";
 
 interface RelatedNewsProps {
 	currentArticleId: number;

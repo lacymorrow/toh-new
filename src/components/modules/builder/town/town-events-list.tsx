@@ -241,7 +241,7 @@ export const TownEventsList = ({
 										<p className="text-sm text-[#4A4640] mb-2 line-clamp-2">
 											{event.description}
 										</p>
-										<div className="flex flex-wrap gap-4 text-xs text-[#7A756C]">
+										<div className="flex flex-wrap gap-4 text-xs text-[#635E56]">
 											<span>
 												{event.eventTime}
 												{event.endTime ? ` - ${event.endTime}` : ""}
@@ -269,7 +269,7 @@ export const TownEventsList = ({
 					</div>
 				) : (
 					<div className="text-center py-12">
-						<p className="text-[#7A756C] text-lg">No events found.</p>
+						<p className="text-[#635E56] text-lg">No events found.</p>
 					</div>
 				)}
 

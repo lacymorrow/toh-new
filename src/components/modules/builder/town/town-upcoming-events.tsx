@@ -24,7 +24,7 @@ export const TownUpcomingEvents = ({ limit = 5 }: TownUpcomingEventsProps) => {
 
 	if (upcomingEvents.length === 0) {
 		return (
-			<section className="py-16">
+			<section className="py-16 bg-warm-white">
 				<div className="container mx-auto px-4">
 					<div className="bg-cream rounded-xl p-8 text-center text-[#4A4640]">
 						No upcoming events scheduled.

@@ -2,7 +2,7 @@ import { Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate, formatTime } from "@/lib/utils";
-import { getEvents } from "@/lib/payload/town-data";
+import { getEvents } from "@/lib/town-data";
 
 interface RelatedEventsProps {
 	currentEventId: number;

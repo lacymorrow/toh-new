@@ -1,4 +1,4 @@
-import { getBusinesses } from "@/lib/payload/town-data";
+import { getBusinesses } from "@/lib/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { BusinessCard } from "./business-card";
 import { BusinessPagination } from "./business-pagination";

@@ -83,7 +83,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 							</div>
 							<div>
 								<h1 className="text-2xl font-serif font-bold text-sage-dark">{settings.siteTitle}</h1>
-								<p className="text-xs text-[#7A756C] uppercase tracking-[1.5px] font-semibold">
+								<p className="text-xs text-[#635E56] uppercase tracking-[1.5px] font-semibold">
 									{settings.branding.county}, {settings.branding.state}
 								</p>
 							</div>
@@ -142,10 +142,24 @@ export function TownHeader({ settings }: TownHeaderProps) {
 
 						{/* Search and Mobile Menu */}
 						<div className="flex items-center gap-2">
+							{/* Desktop: clickable search input */}
+							<button
+								type="button"
+								className="hidden md:flex items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-1.5 text-sm text-[#7A756C] hover:bg-stone hover:text-sage-dark transition-colors w-48 lg:w-64"
+								onClick={() => setSearchOpen(true)}
+							>
+								<Search className="h-4 w-4 shrink-0" />
+								<span className="truncate">Search...</span>
+								<kbd className="ml-auto hidden lg:inline-block rounded border border-[#DDD7CC] bg-warm-white px-1.5 py-0.5 font-mono text-[10px] text-[#7A756C]">
+									⌘K
+								</kbd>
+							</button>
+
+							{/* Mobile: magnifying glass always visible */}
 							<Button
 								variant="ghost"
 								size="icon"
-								className="hidden md:flex hover:bg-stone hover:text-sage-dark"
+								className="md:hidden text-sage-dark hover:bg-stone hover:text-sage-dark"
 								onClick={() => setSearchOpen(true)}
 								aria-label="Search"
 							>
@@ -155,7 +169,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 							<Button
 								variant="ghost"
 								size="icon"
-								className="lg:hidden hover:bg-stone"
+								className="lg:hidden text-sage-dark hover:bg-stone hover:text-sage-dark"
 								onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 								aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
 								aria-expanded={mobileMenuOpen}
