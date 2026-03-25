@@ -111,6 +111,8 @@ export const TownEventDetail = ({ slug: slugProp }: TownEventDetailProps) => {
 							src={event.featuredImage}
 							alt={event.title}
 							className="w-full h-auto object-cover max-h-[400px]"
+							width={800}
+							height={600}
 						/>
 					</div>
 				)}

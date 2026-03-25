@@ -98,6 +98,8 @@ export const TownPointsOfInterest = ({
 											src={poi.image}
 											alt={poi.name}
 											className="w-full h-full object-cover"
+											width={800}
+											height={600}
 										/>
 									</div>
 								) : (
@@ -129,9 +131,9 @@ export const TownPointsOfInterest = ({
 									<span className="inline-block bg-stone text-sage-dark px-2 py-0.5 rounded-full text-xs font-medium mb-2">
 										{poi.category}
 									</span>
-									<h3 className="text-lg font-semibold text-[#2D2A24] mb-2">
+									<h2 className="text-lg font-semibold text-[#2D2A24] mb-2">
 										{poi.name}
-									</h3>
+									</h2>
 									<p className="text-sm text-[#4A4640] mb-3 line-clamp-2">
 										{poi.description}
 									</p>

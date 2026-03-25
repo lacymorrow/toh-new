@@ -81,6 +81,8 @@ export const TownBusinessDetail = ({
 								src={business.logo}
 								alt={business.name}
 								className="w-full h-full object-cover"
+								width={800}
+								height={600}
 							/>
 						</div>
 					)}

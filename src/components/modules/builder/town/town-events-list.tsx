@@ -235,9 +235,9 @@ export const TownEventsList = ({
 												</span>
 											)}
 										</div>
-										<h3 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors mb-1">
+										<h2 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors mb-1">
 											{event.title}
-										</h3>
+										</h2>
 										<p className="text-sm text-[#4A4640] mb-2 line-clamp-2">
 											{event.description}
 										</p>
@@ -260,6 +260,8 @@ export const TownEventsList = ({
 												src={event.featuredImage}
 												alt={event.title}
 												className="w-full h-full object-cover"
+												width={800}
+												height={600}
 											/>
 										</div>
 									)}

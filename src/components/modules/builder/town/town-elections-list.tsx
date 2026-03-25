@@ -209,9 +209,9 @@ export const TownElectionsList = ({
 												{election.candidates.length !== 1 ? "s" : ""}
 											</span>
 										</div>
-										<h3 className="text-lg font-semibold">
+										<h2 className="text-lg font-semibold">
 											{election.title}
-										</h3>
+										</h2>
 									</div>
 
 									{/* Body */}

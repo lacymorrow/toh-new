@@ -282,9 +282,9 @@ export const TownMeetingsList = ({
 													</span>
 												)}
 											</div>
-											<h3 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors mb-1">
+											<h2 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors mb-1">
 												{meeting.title}
-											</h3>
+											</h2>
 											<div className="flex flex-wrap gap-4 text-sm text-[#635E56] mb-2">
 												<span>{meeting.meetingTime}</span>
 												<span>{meeting.location}</span>

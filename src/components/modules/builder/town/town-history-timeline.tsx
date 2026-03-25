@@ -89,6 +89,8 @@ export const TownHistoryTimeline = ({
 														src={article.image}
 														alt={article.title}
 														className="w-full h-full object-cover"
+														width={800}
+														height={600}
 													/>
 												</div>
 											)}
@@ -111,9 +113,9 @@ export const TownHistoryTimeline = ({
 													</span>
 												</div>
 
-												<h3 className="text-lg font-semibold text-[#2D2A24] mb-2">
+												<h2 className="text-lg font-semibold text-[#2D2A24] mb-2">
 													{article.title}
-												</h3>
+												</h2>
 
 												<p className="text-sm text-[#4A4640] mb-3">
 													{article.description}

@@ -116,6 +116,8 @@ export const TownNewsDetail = ({ slug: slugProp }: TownNewsDetailProps) => {
 							src={article.featuredImage}
 							alt={article.title}
 							className="w-full h-auto object-cover max-h-[400px]"
+							width={800}
+							height={600}
 						/>
 					</div>
 				)}
@@ -132,9 +134,9 @@ export const TownNewsDetail = ({ slug: slugProp }: TownNewsDetailProps) => {
 				{/* Tags */}
 				{article.tags.length > 0 && (
 					<div className="mt-10 pt-6 border-t border-stone">
-						<h3 className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-3">
+						<h2 className="text-xs font-semibold uppercase tracking-wide text-sage-dark/50 mb-3">
 							Tags
-						</h3>
+						</h2>
 						<div className="flex flex-wrap gap-2">
 							{article.tags.map((tag) => (
 								<span
