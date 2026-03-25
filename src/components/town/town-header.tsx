@@ -30,6 +30,13 @@ export function TownHeader({ settings }: TownHeaderProps) {
 
 	return (
 		<header>
+			{/* Skip navigation link for keyboard/screen reader users */}
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-sage-dark focus:text-white focus:px-4 focus:py-2 focus:rounded-md"
+			>
+				Skip to main content
+			</a>
 			{/* Top bar - sage deep */}
 			<div className="bg-sage-deep text-white/90">
 				<div className="container mx-auto px-4">

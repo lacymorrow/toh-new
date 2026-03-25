@@ -58,7 +58,7 @@ export function ElectionsFilters({ currentStatus, currentSearch }: ElectionsFilt
 								defaultValue={currentSearch}
 								className="flex-1"
 							/>
-							<Button type="submit" size="icon">
+							<Button type="submit" size="icon" aria-label="Search elections">
 								<Search className="h-4 w-4" />
 							</Button>
 						</div>

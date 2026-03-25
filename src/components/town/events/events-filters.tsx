@@ -68,7 +68,7 @@ export function EventsFilters() {
 						value={currentCategory}
 						onValueChange={(value) => updateFilters("category", value)}
 					>
-						<SelectTrigger id="category">
+						<SelectTrigger id="category" aria-label="Filter by category">
 							<SelectValue placeholder="All categories" />
 						</SelectTrigger>
 						<SelectContent>
@@ -85,7 +85,7 @@ export function EventsFilters() {
 				<div className="space-y-2">
 					<Label htmlFor="month">Month</Label>
 					<Select value={currentMonth} onValueChange={(value) => updateFilters("month", value)}>
-						<SelectTrigger id="month">
+						<SelectTrigger id="month" aria-label="Filter by month">
 							<SelectValue placeholder="All months" />
 						</SelectTrigger>
 						<SelectContent>

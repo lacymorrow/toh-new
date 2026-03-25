@@ -51,7 +51,7 @@ export function QuickLinks() {
 									<Icon className="h-5 w-5" />
 								</div>
 								<div>
-									<h3 className="font-semibold text-base text-[#2D2A24] mb-1">{link.title}</h3>
+									<p className="font-semibold text-base text-[#2D2A24] mb-1">{link.title}</p>
 									<p className="text-[13px] text-[#4A4640]">{link.description}</p>
 								</div>
 							</Link>
