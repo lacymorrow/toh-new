@@ -1,7 +1,7 @@
 import { ArrowRight, Calendar, Eye, User } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getNews } from "@/lib/payload/town-data";
+import { getNews } from "@/lib/town-data";
 import { extractTextFromRichText } from "@/components/town/payload-rich-text";
 import { getMediaUrl } from "@/lib/utils/get-media-url";
 

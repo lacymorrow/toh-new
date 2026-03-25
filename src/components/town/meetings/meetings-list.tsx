@@ -1,4 +1,4 @@
-import { getMeetings } from "@/lib/payload/town-data";
+import { getMeetings } from "@/lib/town-data";
 import { MeetingCard } from "./meeting-card";
 import { MeetingsPagination } from "./meetings-pagination";
 

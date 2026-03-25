@@ -1,4 +1,4 @@
-import { getEvents } from "@/lib/payload/town-data";
+import { getEvents } from "@/lib/town-data";
 import { EventCard } from "./event-card";
 import { EventsPagination } from "./events-pagination";
 

@@ -1,7 +1,7 @@
 /**
  * Client-side synchronous data access layer for town content.
  * Used by Builder.io "use client" components that cannot call async functions.
- * Mirrors src/lib/payload/town-data.ts with synchronous equivalents.
+ * Mirrors src/lib/town-data.ts with synchronous equivalents.
  */
 
 import { announcements } from "@/data/town/announcements";

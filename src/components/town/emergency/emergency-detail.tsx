@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 import { PayloadRichText } from "@/components/town/payload-rich-text";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAnnouncementById } from "@/lib/payload/town-data";
+import { getAnnouncementById } from "@/lib/town-data";
 
 interface EmergencyDetailProps {
 	alertId: number;

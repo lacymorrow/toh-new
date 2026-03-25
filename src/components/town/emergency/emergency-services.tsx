@@ -1,6 +1,6 @@
 import { Info } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getEmergencyServices } from "@/lib/payload/town-data";
+import { getEmergencyServices } from "@/lib/town-data";
 import { resolveIcon } from "@/lib/utils/icon-resolver";
 
 const categoryColors: Record<string, string> = {
