@@ -3,7 +3,7 @@ import type { TownMeeting } from "./types";
 export const meetings: TownMeeting[] = [
 	{
 		id: 1,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - January 2025",
 		slug: "council-meeting-january-2025",
 		type: "Council",
 		meetingDate: "2025-01-07",
@@ -23,7 +23,7 @@ export const meetings: TownMeeting[] = [
 	},
 	{
 		id: 2,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - February 2025",
 		slug: "council-meeting-february-2025",
 		type: "Council",
 		meetingDate: "2025-02-04",
@@ -43,7 +43,7 @@ export const meetings: TownMeeting[] = [
 	},
 	{
 		id: 3,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - March 2025",
 		slug: "council-meeting-march-2025",
 		type: "Council",
 		meetingDate: "2025-03-04",
@@ -81,7 +81,7 @@ export const meetings: TownMeeting[] = [
 	},
 	{
 		id: 5,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - April 2025",
 		slug: "council-meeting-april-2025",
 		type: "Council",
 		meetingDate: "2025-04-01",
@@ -100,7 +100,7 @@ export const meetings: TownMeeting[] = [
 	},
 	{
 		id: 6,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - May 2025",
 		slug: "council-meeting-may-2025",
 		type: "Council",
 		meetingDate: "2025-05-06",
@@ -113,7 +113,7 @@ export const meetings: TownMeeting[] = [
 	},
 	{
 		id: 7,
-		title: "Town Council Regular Meeting",
+		title: "Town Council Regular Meeting - June 2025",
 		slug: "council-meeting-june-2025",
 		type: "Council",
 		meetingDate: "2025-06-03",

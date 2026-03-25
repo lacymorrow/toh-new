@@ -6,12 +6,16 @@ import { Body } from "@/components/primitives/body";
 import { initializePaymentProviders } from "@/server/providers";
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://www.townofharmony.org"),
 	title: {
 		template: "%s | Town of Harmony",
 		default: "Town of Harmony - Your Community, Your Home",
 	},
 	description:
 		"Welcome to the Town of Harmony official website. Find local news, events, services, and community information.",
+	alternates: {
+		canonical: "./",
+	},
 };
 
 export const fetchCache = "default-cache";

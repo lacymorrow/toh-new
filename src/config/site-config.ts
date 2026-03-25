@@ -169,42 +169,42 @@ export const siteConfig: SiteConfig = {
 		pageTransitions: true,
 	},
 
-	name: "Shipkit",
-	title: "Shipkit",
-	tagline: "Launch your app at light speed.",
-	url: "https://shipkit.io",
-	ogImage: "https://shipkit.io/app/og-image.png",
+	name: "Town of Harmony",
+	title: "Town of Harmony",
+	tagline: "Your Community, Your Home.",
+	url: "https://www.townofharmony.org",
+	ogImage: "https://www.townofharmony.org/app/og-image.png",
 	description:
-		"Launch your app at light speed. Fast, flexible, and feature-packed for the modern web.",
+		"Official website of the Town of Harmony, NC. Find local news, events, meetings, sewer services, and community information.",
 
 	branding: {
-		projectName: "Shipkit",
-		projectSlug: "shipkit",
+		projectName: "Town of Harmony",
+		projectSlug: "toh",
 		productNames: {
 			bones: "Bones",
 			brains: "Brains",
-			main: "Shipkit",
+			main: "Town of Harmony",
 		},
-		domain: "shipkit.io",
-		protocol: "web+shipkit",
-		githubOrg: "shipkit-io",
-		githubRepo: "shipkit",
-		vercelProjectName: "shipkit-app",
-		databaseName: "shipkit",
+		domain: "townofharmony.org",
+		protocol: "web+toh",
+		githubOrg: "lacymorrow",
+		githubRepo: "toh-new",
+		vercelProjectName: "townofharmony-org",
+		databaseName: "toh",
 	},
 
 	links: {
-		twitter: "https://twitter.com/lacybuilds",
-		twitter_follow: "https://twitter.com/intent/follow?screen_name=lacybuilds",
-		x: "https://x.com/lacybuilds",
-		x_follow: "https://x.com/intent/follow?screen_name=lacybuilds",
-		github: "https://github.com/lacymorrow/shipkit",
+		twitter: "",
+		twitter_follow: "",
+		x: "",
+		x_follow: "",
+		github: "https://github.com/lacymorrow/toh-new",
 	},
 
 	repo: {
 		owner: "lacymorrow",
-		name: "shipkit",
-		url: "https://github.com/lacymorrow/shipkit",
+		name: "toh-new",
+		url: "https://github.com/lacymorrow/toh-new",
 		format: {
 			// Placeholder format functions - assigned below
 			clone: () => "",
@@ -213,32 +213,32 @@ export const siteConfig: SiteConfig = {
 	},
 
 	email: {
-		support: "feedback@shipkit.io",
-		team: "team@shipkit.io",
-		noreply: "noreply@shipkit.io",
-		domain: "shipkit.io",
-		legal: "legal@shipkit.io",
-		privacy: "privacy@shipkit.io",
+		support: "admin@townofharmony.org",
+		team: "admin@townofharmony.org",
+		noreply: "noreply@townofharmony.org",
+		domain: "townofharmony.org",
+		legal: "admin@townofharmony.org",
+		privacy: "admin@townofharmony.org",
 		// Placeholder format function - assigned below
 		format: (type) => "",
 	},
 
 	creator: {
-		name: "lacymorrow",
-		email: "lacy@shipkit.io",
-		url: "https://lacymorrow.com",
-		twitter: "@lacybuilds",
-		twitter_handle: "lacybuilds",
-		domain: "lacymorrow.com",
-		fullName: "Lacy Morrow",
-		role: "Engineer",
-		avatar: "https://avatars.githubusercontent.com/u/1311301?v=4",
-		location: "San Francisco, CA",
-		bio: "Founder, developer, and product designer.",
+		name: "Town of Harmony",
+		email: "admin@townofharmony.org",
+		url: "https://townofharmony.org",
+		twitter: "",
+		twitter_handle: "",
+		domain: "townofharmony.org",
+		fullName: "Town of Harmony",
+		role: "Municipal Government",
+		avatar: "",
+		location: "Harmony, NC",
+		bio: "Official website of the Town of Harmony, North Carolina.",
 	},
 
 	store: {
-		id: "shipkit",
+		id: "toh",
 		products: {
 			// LemonSqueezy Checkout URLs use Variant IDs (not Product IDs)
 			// Format: variant UUID from LemonSqueezy dashboard
@@ -251,13 +251,13 @@ export const siteConfig: SiteConfig = {
 
 	metadata: {
 		keywords: [
-			"Next.js",
-			"React",
-			"Tailwind CSS",
-			"Server Components",
-			"Shipkit",
-			"Shadcn",
-			"UI Components",
+			"Town of Harmony",
+			"Harmony NC",
+			"North Carolina",
+			"local government",
+			"community",
+			"sewer services",
+			"town meetings",
 		],
 		themeColor: {
 			light: "white",

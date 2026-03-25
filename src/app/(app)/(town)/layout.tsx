@@ -15,7 +15,7 @@ export default async function TownLayout({ children }: { children: React.ReactNo
 		<div className="min-h-screen flex flex-col">
 			<TownHeader settings={settings} />
 			<EmergencyBanner />
-			<main className="flex-grow">{children}</main>
+			<main id="main-content" className="flex-grow">{children}</main>
 			<TownFooter settings={settings} />
 		</div>
 	);

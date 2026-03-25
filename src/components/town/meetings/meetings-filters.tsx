@@ -85,7 +85,7 @@ export function MeetingsFilters() {
 						value={currentType || "all"}
 						onValueChange={(value) => updateFilter("type", value === "all" ? null : value)}
 					>
-						<SelectTrigger id="type-select">
+						<SelectTrigger id="type-select" aria-label="Filter by meeting type">
 							<SelectValue placeholder="All types" />
 						</SelectTrigger>
 						<SelectContent>
@@ -105,7 +105,7 @@ export function MeetingsFilters() {
 						value={currentStatus || "all"}
 						onValueChange={(value) => updateFilter("status", value === "all" ? null : value)}
 					>
-						<SelectTrigger id="status-select">
+						<SelectTrigger id="status-select" aria-label="Filter by status">
 							<SelectValue placeholder="All meetings" />
 						</SelectTrigger>
 						<SelectContent>
@@ -125,7 +125,7 @@ export function MeetingsFilters() {
 							value={currentMonth || "all"}
 							onValueChange={(value) => updateFilter("month", value === "all" ? null : value)}
 						>
-							<SelectTrigger id="month-select">
+							<SelectTrigger id="month-select" aria-label="Filter by month">
 								<SelectValue placeholder="Month" />
 							</SelectTrigger>
 							<SelectContent>
@@ -145,7 +145,7 @@ export function MeetingsFilters() {
 							value={currentYear || "all"}
 							onValueChange={(value) => updateFilter("year", value === "all" ? null : value)}
 						>
-							<SelectTrigger id="year-select">
+							<SelectTrigger id="year-select" aria-label="Filter by year">
 								<SelectValue placeholder="Year" />
 							</SelectTrigger>
 							<SelectContent>

@@ -57,8 +57,9 @@ export function NewsFilters({ currentCategory, currentSearch }: NewsFiltersProps
 								placeholder="Search news..."
 								defaultValue={currentSearch}
 								className="flex-1"
+								aria-label="Search news"
 							/>
-							<Button type="submit" size="icon">
+							<Button type="submit" size="icon" aria-label="Search news">
 								<Search className="h-4 w-4" />
 							</Button>
 						</div>

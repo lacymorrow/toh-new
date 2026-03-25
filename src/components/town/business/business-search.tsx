@@ -44,6 +44,7 @@ export function BusinessSearch() {
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 						className="pl-10 pr-10"
+						aria-label="Search businesses"
 					/>
 					{searchQuery && (
 						<button
