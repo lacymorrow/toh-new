@@ -9,7 +9,7 @@ const TOWN_IMG = "/images/town";
 export const mediaUrls = {
 	// Homepage hero slides
 	"hero-welcome": `${TOWN_IMG}/family-park-1.webp`,
-	"hero-events": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"hero-events": `${TOWN_IMG}/christmas-parade-float.webp`,
 	"hero-meetings": `${TOWN_IMG}/community-center.webp`,
 	"hero-explore": `${TOWN_IMG}/family-park-2.webp`,
 
@@ -21,7 +21,7 @@ export const mediaUrls = {
 	// Events
 	"event-farmers-market": `${TOWN_IMG}/family-park-2.webp`,
 	"event-fall-festival": `${TOWN_IMG}/family-park-3.webp`,
-	"event-christmas-parade": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"event-christmas-parade": `${TOWN_IMG}/christmas-parade-float.webp`,
 	"event-spring-cleanup": `${TOWN_IMG}/spring-in-the-park.webp`,
 
 	// Points of Interest
@@ -35,7 +35,7 @@ export const mediaUrls = {
 	// History — no historical photos available from legacy site
 	"history-early": `${TOWN_IMG}/family-park-1.webp`,
 	"history-founding": `${TOWN_IMG}/community-center.webp`,
-	"history-growth": `${TOWN_IMG}/christmas-parade-float.jpg`,
+	"history-growth": `${TOWN_IMG}/christmas-parade-float.webp`,
 	"history-modern": `${TOWN_IMG}/family-park-2.webp`,
 	"landmark-camp-grounds": `${TOWN_IMG}/family-park-3.webp`,
 	"landmark-town-hall": `${TOWN_IMG}/community-center.webp`,
