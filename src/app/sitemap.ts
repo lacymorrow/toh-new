@@ -111,6 +111,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "monthly",
 			priority: 0.3,
 		},
+		{
+			url: `${baseUrl}/accessibility`,
+			lastModified: buildDate,
+			changeFrequency: "monthly",
+			priority: 0.3,
+		},
 	];
 
 	return staticPages;

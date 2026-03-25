@@ -118,6 +118,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 								<Link
 									href={`/news/${article.slug}`}
 									className="inline-flex items-center gap-1 text-sage font-semibold hover:text-sage-dark text-sm font-medium"
+									aria-label={`Read more about ${article.title}`}
 								>
 									Read more
 									<ArrowRight className="h-3 w-3" />

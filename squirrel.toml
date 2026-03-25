@@ -1,6 +1,6 @@
 [project]
 domains = []
-name = "toh"
+name = "toh-new"
 
 [crawler]
 max_pages = 100
