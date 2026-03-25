@@ -28,6 +28,8 @@ export const TownCommunitySpotlight = ({
 								src={image}
 								alt={title}
 								className="absolute inset-0 w-full h-full object-cover"
+								width={800}
+								height={600}
 							/>
 						) : (
 							<span className="font-serif text-[56px] text-wheat italic opacity-50">
@@ -41,9 +43,9 @@ export const TownCommunitySpotlight = ({
 						<div className="bg-sage/10 text-sage-dark px-3 py-1 rounded text-xs font-bold uppercase tracking-wider w-fit mb-4">
 							{badge}
 						</div>
-						<h3 className="text-2xl font-serif font-bold text-sage-dark mb-3">
+						<h2 className="text-2xl font-serif font-bold text-sage-dark mb-3">
 							{title}
-						</h3>
+						</h2>
 						<p className="text-base text-[#4A4640] leading-relaxed mb-5">
 							{description}
 						</p>

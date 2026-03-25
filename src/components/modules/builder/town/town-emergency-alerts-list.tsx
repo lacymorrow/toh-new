@@ -141,7 +141,7 @@ export const TownEmergencyAlertsList = ({
 											className={`font-semibold text-[17px] mb-2 ${config.text}`}
 										>
 											{alert.title}
-										</h3>
+										</h2>
 
 										<p className="text-sm text-[#4A4640] leading-relaxed mb-3">
 											{alert.content}

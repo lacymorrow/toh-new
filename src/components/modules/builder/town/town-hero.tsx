@@ -68,6 +68,8 @@ export const TownHero = ({
 								src={heroImage}
 								alt={heroTitle}
 								className="absolute inset-0 w-full h-full object-cover"
+								width={800}
+								height={600}
 							/>
 						) : (
 							<div className="absolute inset-0 bg-gradient-to-br from-wheat/[0.08] to-wheat/[0.04]" />

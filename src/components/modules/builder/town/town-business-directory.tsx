@@ -201,6 +201,8 @@ export const TownBusinessDirectory = ({
 												src={business.logo}
 												alt={business.name}
 												className="w-14 h-14 rounded-lg object-cover flex-shrink-0 border border-stone"
+												width={800}
+												height={600}
 											/>
 										) : (
 											<div className="w-14 h-14 rounded-lg bg-stone flex items-center justify-center flex-shrink-0">
@@ -210,9 +212,9 @@ export const TownBusinessDirectory = ({
 											</div>
 										)}
 										<div className="flex-1 min-w-0">
-											<h3 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors truncate">
+											<h2 className="text-lg font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors truncate">
 												{business.name}
-											</h3>
+											</h2>
 											<span className="text-sm text-[#635E56] capitalize">
 												{business.category}
 											</span>

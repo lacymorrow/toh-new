@@ -183,6 +183,8 @@ export const TownNewsGrid = ({
 											src={article.featuredImage}
 											alt={article.title}
 											className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+											width={800}
+											height={600}
 										/>
 									</div>
 								)}
@@ -199,9 +201,9 @@ export const TownNewsGrid = ({
 											))}
 										</div>
 									)}
-									<h3 className="text-lg font-semibold text-[#2D2A24] mb-2 group-hover:text-sage-dark transition-colors line-clamp-2">
+									<h2 className="text-lg font-semibold text-[#2D2A24] mb-2 group-hover:text-sage-dark transition-colors line-clamp-2">
 										{article.title}
-									</h3>
+									</h2>
 									<p className="text-sm text-[#4A4640] mb-3 line-clamp-3">
 										{article.excerpt}
 									</p>

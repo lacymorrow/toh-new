@@ -227,9 +227,9 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 						{Array.from(categories.entries()).map(
 							([categoryName, resources]) => (
 								<div key={categoryName}>
-									<h3 className="text-xl font-bold text-[#2D2A24] mb-4 pb-2 border-b border-stone">
+									<h2 className="text-xl font-bold text-[#2D2A24] mb-4 pb-2 border-b border-stone">
 										{categoryName}
-									</h3>
+									</h2>
 									<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 										{resources.map((resource) => {
 											const typeColor =
