@@ -1,10 +1,27 @@
+// import "../scripts/env-config.js";
+import { seed as seedCMS } from "@/lib/payload/seed";
+
 async function main() {
-	console.log("Payload CMS has been removed. Content is now served from static data files.");
-	console.log("No database seeding needed.");
+  console.log("🌱 Starting database seeding...");
+
+  try {
+    // Seed CMS collections (RBAC, Features, FAQs, Testimonials)
+    await seedCMS();
+
+    console.log("✅ Database seeded successfully");
+  } catch (error) {
+    console.error("❌ Error seeding database:", error);
+    throw error;
+  }
 }
 
 export { main as seed };
 
 main()
-	.catch(console.error)
-	.then(() => process.exit(0));
+  .catch((err) => {
+    console.error("❌ Error seeding database:", err);
+    process.exit(1);
+  })
+  .then(() => {
+    process.exit(0);
+  });

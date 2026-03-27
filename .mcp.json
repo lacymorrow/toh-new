@@ -1,8 +1,8 @@
 {
-  "mcpServers": {
-    "stripe": {
-      "command": "npx",
-      "args": ["-y", "@stripe/mcp", "--api-key", "${STRIPE_SECRET_KEY}"]
-    }
-  }
+	"mcpServers": {
+		"dns-analytics": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://dns-analytics.mcp.cloudflare.com/mcp"]
+		}
+	}
 }

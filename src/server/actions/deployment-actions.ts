@@ -1,282 +1,188 @@
 "use server";
 
-import { and, desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { siteConfig } from "@/config/site-config";
-import { deploymentSchema, validateProjectName } from "@/lib/schemas/deployment";
+import { routes } from "@/config/routes";
+import { validateProjectName } from "@/lib/schemas/deployment";
 import { auth } from "@/server/auth";
-import { db } from "@/server/db";
-import { type Deployment, deployments, type NewDeployment } from "@/server/db/schema";
-import { type DeploymentResult, deployPrivateRepository } from "./deploy-private-repo";
+import type { Deployment } from "@/server/db/schema";
+import { type DeploymentResult, deploymentService } from "@/server/services/deployment-service";
 
-const SHIPKIT_REPO = `${siteConfig.repo.owner}/${siteConfig.repo.name}`;
+/**
+ * Server Actions for Deployments
+ *
+ * These are thin wrappers around the deployment service that handle:
+ * - Authentication
+ * - Input validation
+ * - Cache revalidation
+ * - Error formatting for the client
+ */
 
 /**
  * Initiates a deployment process by creating a deployment record and
  * then calling the main deployment action.
  */
 export async function initiateDeployment(formData: FormData): Promise<DeploymentResult> {
-	const projectName = formData.get("projectName") as string;
+  const session = await auth();
+  if (!session?.user?.id) {
+    return {
+      success: false,
+      error: "Authentication required. Please log in to continue.",
+    };
+  }
 
-	// Validate project name with comprehensive server-side validation using shared schema
-	const validation = validateProjectName(projectName);
-	if (!validation.isValid) {
-		return {
-			success: false,
-			error: validation.error,
-		};
-	}
+  const projectName = formData.get("projectName") as string;
 
-	// Sanitize the project name (trim whitespace)
-	const sanitizedProjectName = projectName.trim();
+  // Validate project name
+  const validation = validateProjectName(projectName);
+  if (!validation.isValid) {
+    return { success: false, error: validation.error };
+  }
 
-	const description = `Deployment of ${sanitizedProjectName}`;
+  const sanitizedProjectName = projectName.trim();
+  const userId = session.user.id;
 
-	try {
-		// Create a new deployment record first
-		// This will throw an error if the database operation fails
-		const newDeployment = await createDeployment({
-			projectName: sanitizedProjectName,
-			description,
-			status: "deploying",
-		});
+  // Pre-check repository name availability
+  try {
+    const availability = await deploymentService.checkRepositoryNameAvailable(
+      userId,
+      sanitizedProjectName
+    );
+    if (availability.checked && !availability.available) {
+      return {
+        success: false,
+        error: `A repository named "${sanitizedProjectName}" already exists on your GitHub account. Please choose a different project name.`,
+      };
+    }
+  } catch (preCheckError) {
+    console.warn("Pre-check for repository name failed, continuing:", preCheckError);
+  }
 
-		// Only trigger the deployment after the database record is successfully created
-		// Use setTimeout to ensure the database transaction has fully committed
-		// This prevents race conditions where the deployment starts before the DB commit
-		setTimeout(() => {
-			// Trigger the actual deployment in the background
-			// Do not await this, as it can be a long-running process
-			deployPrivateRepository({
-				templateRepo: SHIPKIT_REPO,
-				projectName: sanitizedProjectName,
-				newRepoName: sanitizedProjectName,
-				description,
-				deploymentId: newDeployment.id,
-			}).catch((error) => {
-				console.error(`Deployment failed for ${sanitizedProjectName}:`, error);
-				// Update the deployment status to failed if deployment errors occur
-				updateDeployment(newDeployment.id, {
-					status: "failed",
-					error: error instanceof Error ? error.message : "An unknown error occurred",
-				}).catch((updateError) => {
-					console.error(
-						`Failed to update deployment status for ${sanitizedProjectName}:`,
-						updateError
-					);
-				});
-			});
-		}, 100); // Small delay to ensure DB transaction commits
+  try {
+    // Create deployment record
+    const newDeployment = await deploymentService.createDeployment(userId, {
+      projectName: sanitizedProjectName,
+      description: `Deployment of ${sanitizedProjectName}`,
+      status: "deploying",
+    });
 
-		// Return a success response immediately
-		return {
-			success: true,
-			message: "Deployment initiated successfully! You can monitor the progress on this page.",
-			data: {
-				githubRepo: undefined,
-				vercelProject: undefined,
-			},
-		};
-	} catch (error) {
-		console.error(`Failed to create deployment record for ${sanitizedProjectName}:`, error);
-		return {
-			success: false,
-			error: error instanceof Error ? error.message : "Failed to create deployment record",
-		};
-	}
-}
+    revalidatePath(routes.app.deployments);
 
-/**
- * Get all deployments for the current user
- */
-export async function getUserDeployments(): Promise<Deployment[]> {
-	const session = await auth();
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
-	}
+    // Trigger deployment in background
+    void (async () => {
+      try {
+        const result = await deploymentService.deployPrivateRepository({
+          templateRepo: deploymentService.getDefaultTemplateRepo(),
+          projectName: sanitizedProjectName,
+          description: `Deployment of ${sanitizedProjectName}`,
+          deploymentId: newDeployment.id,
+          userId,
+        });
+        if (!result.success) {
+          await deploymentService.updateDeployment(newDeployment.id, userId, {
+            status: "failed",
+            error: result.error || "Deployment failed",
+          });
+        }
+      } catch (error) {
+        console.error(`Deployment failed for ${sanitizedProjectName}:`, error);
+        try {
+          await deploymentService.updateDeployment(newDeployment.id, userId, {
+            status: "failed",
+            error: error instanceof Error ? error.message : "An unknown error occurred",
+          });
+        } catch (updateError) {
+          console.error("Failed to update deployment status:", updateError);
+        }
+      }
+    })();
 
-	if (!db) {
-		throw new Error("Database not available");
-	}
-
-	try {
-		const userDeployments = await db
-			.select()
-			.from(deployments)
-			.where(eq(deployments.userId, session.user.id))
-			.orderBy(desc(deployments.createdAt));
-
-		return userDeployments;
-	} catch (error) {
-		console.error("Failed to fetch deployments:", error);
-		throw new Error("Failed to fetch deployments");
-	}
+    return {
+      success: true,
+      message:
+        "Deployment started! Monitor progress below - you'll be notified when it completes or if any errors occur.",
+      deploymentId: newDeployment.id,
+      data: { githubRepo: undefined, vercelProject: undefined },
+    };
+  } catch (error) {
+    console.error(`Failed to create deployment record for ${sanitizedProjectName}:`, error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to create deployment record",
+    };
+  }
 }
 
 /**
  * Create a new deployment record
  */
 export async function createDeployment(
-	data: Omit<NewDeployment, "id" | "userId" | "createdAt" | "updatedAt">
+  data: Parameters<typeof deploymentService.createDeployment>[1]
 ): Promise<Deployment> {
-	const session = await auth();
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
-	}
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Unauthorized");
+  }
 
-	if (!db) {
-		throw new Error("Database not available");
-	}
-
-	try {
-		// Use a transaction to ensure atomicity
-		const result = await db.transaction(async (tx) => {
-			const [newDeployment] = await tx
-				.insert(deployments)
-				.values({
-					...data,
-					userId: session.user.id,
-				})
-				.returning();
-
-			return newDeployment;
-		});
-
-		// Only revalidate after successful transaction commit
-		revalidatePath("/deployments");
-		return result;
-	} catch (error) {
-		console.error("Failed to create deployment:", error);
-		throw new Error("Failed to create deployment");
-	}
+  const result = await deploymentService.createDeployment(session.user.id, data);
+  revalidatePath(routes.app.deployments);
+  return result;
 }
 
 /**
  * Update an existing deployment
  */
 export async function updateDeployment(
-	id: string,
-	data: Partial<Omit<Deployment, "id" | "userId" | "createdAt">>
+  id: string,
+  data: Parameters<typeof deploymentService.updateDeployment>[2],
+  userId?: string
 ): Promise<Deployment | null> {
-	const session = await auth();
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
-	}
+  // Use provided userId (for background tasks) or get from auth
+  let effectiveUserId = userId;
 
-	if (!db) {
-		throw new Error("Database not available");
-	}
+  if (!effectiveUserId) {
+    const session = await auth();
+    if (!session?.user?.id) {
+      throw new Error("Unauthorized");
+    }
+    effectiveUserId = session.user.id;
+  }
 
-	try {
-		const [updatedDeployment] = await db
-			.update(deployments)
-			.set({
-				...data,
-				updatedAt: new Date(),
-			})
-			.where(and(eq(deployments.id, id), eq(deployments.userId, session.user.id)))
-			.returning();
+  const result = await deploymentService.updateDeployment(id, effectiveUserId, data);
 
-		if (updatedDeployment) {
-			revalidatePath("/deployments");
-		}
+  // Only revalidate when called from a request context (not from background tasks)
+  if (result && !userId) {
+    revalidatePath(routes.app.deployments);
+  }
 
-		return updatedDeployment || null;
-	} catch (error) {
-		console.error("Failed to update deployment:", error);
-		throw new Error("Failed to update deployment");
-	}
+  return result;
 }
 
 /**
  * Delete a deployment record
  */
 export async function deleteDeployment(id: string): Promise<boolean> {
-	const session = await auth();
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
-	}
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Unauthorized");
+  }
 
-	if (!db) {
-		throw new Error("Database not available");
-	}
-
-	try {
-		const result = await db
-			.delete(deployments)
-			.where(and(eq(deployments.id, id), eq(deployments.userId, session.user.id)));
-
-		revalidatePath("/deployments");
-		return true;
-	} catch (error) {
-		console.error("Failed to delete deployment:", error);
-		throw new Error("Failed to delete deployment");
-	}
+  const result = await deploymentService.deleteDeployment(id, session.user.id);
+  revalidatePath(routes.app.deployments);
+  return result;
 }
 
 /**
- * Initialize demo deployments for new users
+ * Cancel a deployment that is stuck in "deploying" state
  */
-export async function initializeDemoDeployments(): Promise<void> {
-	const session = await auth();
-	if (!session?.user?.id) {
-		throw new Error("Unauthorized");
-	}
+export async function cancelDeployment(id: string): Promise<Deployment | null> {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Unauthorized");
+  }
 
-	if (!db) {
-		throw new Error("Database not available");
-	}
-
-	try {
-		// Check if user already has deployments
-		const existingDeployments = await db
-			.select()
-			.from(deployments)
-			.where(eq(deployments.userId, session.user.id))
-			.limit(1);
-
-		if (existingDeployments.length > 0) {
-			return; // User already has deployments
-		}
-
-		// Create demo deployments
-		const demoDeployments: Omit<NewDeployment, "id" | "createdAt" | "updatedAt">[] = [
-			{
-				userId: session.user.id,
-				projectName: "my-shipkit-app",
-				description: "Production deployment",
-				githubRepoUrl: "https://github.com/demo/my-shipkit-app",
-				githubRepoName: "demo/my-shipkit-app",
-				vercelProjectUrl: "https://vercel.com/demo/my-shipkit-app",
-				vercelDeploymentUrl: "https://my-shipkit-app.vercel.app",
-				status: "completed",
-			},
-			{
-				userId: session.user.id,
-				projectName: "shipkit-staging",
-				description: "Staging environment",
-				githubRepoUrl: "https://github.com/demo/shipkit-staging",
-				githubRepoName: "demo/shipkit-staging",
-				vercelProjectUrl: "https://vercel.com/demo/shipkit-staging",
-				vercelDeploymentUrl: "https://shipkit-staging.vercel.app",
-				status: "completed",
-			},
-			{
-				userId: session.user.id,
-				projectName: "shipkit-dev",
-				description: "Development environment",
-				status: "failed",
-				error: "Build failed: Module not found",
-			},
-		];
-
-		await db.insert(deployments).values(demoDeployments);
-		// Avoid calling revalidatePath here because this function can be executed during
-		// a Server Component render (e.g., first-visit demo data). Revalidation during
-		// render is unsupported in Next.js and triggers runtime errors. The page
-		// explicitly refetches deployments after this runs, so no revalidation is needed.
-	} catch (error) {
-		console.error("Failed to initialize demo deployments:", error);
-		// Don't throw - this is not critical
-	}
+  const result = await deploymentService.cancelDeployment(id, session.user.id);
+  if (result) {
+    revalidatePath(routes.app.deployments);
+  }
+  return result;
 }
