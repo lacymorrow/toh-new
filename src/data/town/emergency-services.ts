@@ -50,7 +50,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 4,
 		title: "Power Outages",
 		description: "Report power outages and downed power lines. Stay away from downed lines and report them immediately.",
-		phone: "(704) 555-0100",
+		phone: "1-800-777-9898",
 		category: "utility",
 		icon: "Zap",
 		preparedness: [
@@ -64,7 +64,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 5,
 		title: "Water/Sewer Emergency",
 		description: "Report water main breaks, sewer backups, and other water or sewer emergencies.",
-		phone: "(704) 555-0101",
+		phone: "(704) 546-2339",
 		category: "utility",
 		icon: "Wrench",
 		preparedness: [
@@ -78,7 +78,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 6,
 		title: "Gas Leaks",
 		description: "If you smell gas, leave the area immediately and call from a safe distance. Do not use electrical switches.",
-		phone: "(704) 555-0102",
+		phone: "1-800-752-7504",
 		category: "utility",
 		icon: "AlertTriangle",
 		preparedness: [
@@ -92,7 +92,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 7,
 		title: "Animal Control",
 		description: "Report stray, dangerous, or injured animals. Animal control officers are available to assist with animal-related issues.",
-		phone: "(704) 555-0103",
+		phone: "(704) 878-5424",
 		category: "public-safety",
 		icon: "Shield",
 		preparedness: [
@@ -106,7 +106,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 8,
 		title: "Road Hazards",
 		description: "Report road hazards including fallen trees, potholes, flooding, and debris on roadways.",
-		phone: "(704) 555-0104",
+		phone: "1-877-368-4968",
 		category: "public-safety",
 		icon: "AlertCircle",
 		preparedness: [
@@ -120,7 +120,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 9,
 		title: "Hospital",
 		description: "Iredell Memorial Hospital provides emergency medical care and hospital services to the Harmony area.",
-		phone: "(704) 555-0105",
+		phone: "(704) 873-5661",
 		category: "health",
 		icon: "Stethoscope",
 		preparedness: [
