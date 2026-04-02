@@ -19,6 +19,14 @@ export const routes = {
 	// Public routes
 	home: "/",
 	contact: "/contact",
+	faq: "/faq",
+	pricing: "/pricing",
+	blog: "/blog",
+	docs: "/docs",
+	features: "/features",
+	download: "/download",
+	launch: "/launch",
+	checkoutSuccess: "/checkout/success",
 
 	// Legal routes
 	terms: "/terms-of-service",
@@ -74,10 +82,100 @@ export const routes = {
 		security: "/settings/security",
 	},
 
+	// App routes (authenticated)
+	app: {
+		dashboard: "/",
+		settings: "/settings",
+		billing: "/settings/account",
+		apiKeys: "/settings/api-keys",
+		deployments: "/deployments",
+		projects: "/projects",
+		teams: "/teams",
+		tools: "/tools",
+	},
+
+	// Demo routes (Shipkit feature demos — unused on TOH, stubs kept for build compatibility)
+	demo: {
+		payloadCms: "/cms",
+		builderio: "/builder",
+		trpc: "/trpc",
+		network: "/network",
+	},
+
+	// Examples routes (used by search/demo components)
+	examples: {
+		dashboard: "/",
+		index: "/",
+		authentication: "/sign-in",
+		forms: "/",
+	},
+
+	// CMS routes
+	cms: {
+		index: "/cms",
+	},
+
+	// Pages routes (Pages Router demos — unused on TOH)
+	pages: {
+		index: "/",
+		dynamic: "/",
+		markdown: "/",
+	},
+
+	// AI routes (Shipkit AI demo stubs — unused on TOH)
+	ai: {
+		index: "/",
+		codeCompletion: "/",
+		crossEncoder: "/",
+		deepseekWeb: "/",
+		florence: "/",
+		gemma: "/",
+		janusProWebgpu: "/",
+		janusWebgpu: "/",
+		llama: "/",
+		moonshineWeb: "/",
+		musicgenWeb: "/",
+		phi: "/",
+		removeBackground: "/",
+		removeBackgroundWeb: "/",
+		reportGen: "/",
+		semanticImageSearchWeb: "/",
+		semanticSearch: "/",
+		smollmWeb: "/",
+		smolvmWeb: "/",
+		spam: "/",
+		speecht: "/",
+		textToSpeechWebgpu: "/",
+		typeAhead: "/",
+		videoBackgroundRemoval: "/",
+		videoObjectDetection: "/",
+		webgpuClip: "/",
+		webgpuEmbeddingBenchmark: "/",
+		webgpuNomicEmbed: "/",
+		whisper: "/",
+		whisperTimestamped: "/",
+		zeroShotClassification: "/",
+	},
+
+	// API routes
+	api: {
+		docsSearch: "/api/docs/search",
+		github: "/api/github",
+		payments: "/api/payments",
+		projects: "/api/projects",
+		teams: "/api/teams",
+	},
+
 	// External links
 	external: {
 		email: `mailto:${siteConfig.creator.email}`,
 		github: siteConfig.repo.url,
+		bones: "https://github.com/shipkit-io/bones",
+		buy: "https://shipkit.io/buy",
+		discord: "https://discord.gg/shipkit",
+		shipkit: "https://shipkit.io",
+		x: "https://x.com/shipkit_io",
+		x_follow: "https://x.com/shipkit_io",
 	},
 };
 
