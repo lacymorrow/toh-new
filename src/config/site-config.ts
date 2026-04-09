@@ -266,8 +266,8 @@ export const siteConfig: SiteConfig = {
 		locale: "en-US",
 		generator: "Next.js", // Use Next.js as generator
 		referrer: "origin-when-cross-origin",
-		category: "technology", // Use technology as category
-		classification: "Business Software",
+		category: "government",
+		classification: "Government",
 		openGraph: {
 			imageWidth: 1200,
 			imageHeight: 630,
@@ -313,7 +313,7 @@ export const siteConfig: SiteConfig = {
 		display: "standalone",
 		displayOverride: ["window-controls-overlay"],
 		orientation: "portrait-primary",
-		categories: ["development", "productivity", "utilities"],
+		categories: ["government", "community", "local"],
 		dir: "ltr",
 		lang: "en-US",
 		preferRelatedApplications: false,

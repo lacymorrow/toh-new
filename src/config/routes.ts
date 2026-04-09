@@ -170,12 +170,12 @@ export const routes = {
 	external: {
 		email: `mailto:${siteConfig.creator.email}`,
 		github: siteConfig.repo.url,
-		bones: "https://github.com/shipkit-io/bones",
-		buy: "https://shipkit.io/buy",
-		discord: "https://discord.gg/shipkit",
-		shipkit: "https://shipkit.io",
-		x: "https://x.com/shipkit_io",
-		x_follow: "https://x.com/shipkit_io",
+		bones: "#",
+		buy: "#",
+		discord: "#",
+		shipkit: "#",
+		x: "#",
+		x_follow: "#",
 	},
 };
 

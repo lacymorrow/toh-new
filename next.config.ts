@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
 	 */
 	images: {
 		remotePatterns: [
-			{ hostname: "shipkit.io" }, // @dev: for testing
+			{ hostname: "townofharmony.org" },
 			{ hostname: "picsum.photos" }, // @dev: for testing
 			{ hostname: "avatar.vercel.sh" }, // @dev: for testing
 			{ hostname: "github.com" }, // @dev: for testing
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
 			},
 			{
 				protocol: "https",
-				hostname: "shipkit.s3.**.amazonaws.com",
+				hostname: "**.s3.**.amazonaws.com",
 			},
 			{
 				protocol: "https",

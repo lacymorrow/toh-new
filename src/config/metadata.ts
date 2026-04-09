@@ -171,19 +171,18 @@ export const constructMetadata = ({
 export const routeMetadata = {
   home: {
     title: `${siteConfig.title} - ${siteConfig.tagline}`,
-    description: `Transform your app idea into reality with ${siteConfig.title}'s all-in-one development platform. Built with Next.js, TypeScript, and modern tools for rapid, production-ready deployment.`,
+    description: `Official website of the Town of Harmony, North Carolina. Find town news, meeting agendas, events, emergency services, and community resources.`,
   },
-  features: {
-    title: `Features - Modern App Development Made Simple | ${siteConfig.title}`,
-    description: `Discover how ${siteConfig.title} accelerates app development with Builder.io, Payload CMS, Auth.js, and more. Get enterprise-grade features without the complexity.`,
+  news: {
+    title: `Town News | ${siteConfig.title}`,
+    description: `Stay up to date with the latest news and announcements from the Town of Harmony, North Carolina.`,
   },
-  pricing: {
-    title: `Simple, Transparent Pricing | ${siteConfig.title}`,
-    description:
-      "Choose the perfect plan for your app. Start free, scale as you grow. All plans include core features, world-class support, and automatic updates.",
+  contact: {
+    title: `Contact Us | ${siteConfig.title}`,
+    description: `Get in touch with the Town of Harmony. Find office hours, phone numbers, and contact information for town departments.`,
   },
-  docs: {
-    title: `Documentation - Build Better Apps Faster | ${siteConfig.title}`,
-    description: `Comprehensive guides, API references, and examples to help you build production-ready apps with ${siteConfig.title}. From quick starts to advanced topics.`,
+  meetings: {
+    title: `Town Meetings | ${siteConfig.title}`,
+    description: `View upcoming Town of Harmony board meetings, agendas, and minutes. Stay informed about local government decisions.`,
   },
 };

@@ -9,7 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { buttonVariants } from "@/components/ui/button";
-import { GithubVersionBadge } from "@/components/ui/github-version-badge";
 import { SocialLinks } from "@/components/ui/social-links";
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site-config";
@@ -36,12 +35,12 @@ const defaultGroups: FooterElement[] = [
   {
     type: "group",
     content: {
-      header: { label: "Product" },
+      header: { label: "Town" },
       items: [
         { href: routes.home, label: "Home" },
-        { href: routes.features, label: "Features" },
-        { href: routes.pricing, label: "Pricing" },
-        { href: routes.external.bones, label: "Bones" },
+        { href: routes.town.news, label: "News" },
+        { href: routes.town.events, label: "Events" },
+        { href: routes.town.meetings, label: "Meetings" },
       ],
     },
   },
@@ -50,13 +49,10 @@ const defaultGroups: FooterElement[] = [
     content: {
       header: { label: "Resources" },
       items: [
-        { href: routes.docs, label: "Documentation" },
-        // Only include blog link when blog is enabled
-        ...(process.env.NEXT_PUBLIC_HAS_BLOG === "true"
-          ? [{ href: routes.blog, label: "Blog" }]
-          : []),
-        { href: routes.contact, label: "Support" },
-        { href: routes.auth.signIn, label: "Sign in" },
+        { href: routes.town.ourTeam, label: "Our Team" },
+        { href: routes.town.emergency, label: "Emergency Services" },
+        { href: routes.town.business, label: "Businesses" },
+        { href: routes.contact, label: "Contact Us" },
       ],
     },
   },
@@ -65,8 +61,8 @@ const defaultGroups: FooterElement[] = [
     content: {
       header: { label: "Legal" },
       items: [
-        { href: routes.terms, label: "Terms of Service" },
         { href: routes.privacy, label: "Privacy Policy" },
+        { href: routes.terms, label: "Accessibility" },
       ],
     },
   },
@@ -139,7 +135,7 @@ export const Footer: FC<FooterProps> = ({
             <Link href={routes.home}>
               <h1 className="text-4xl font-bold">{siteConfig.title}</h1>
             </Link>
-            <GithubVersionBadge owner="lacymorrow" repo="shipkit" />
+            <p className="text-sm text-muted-foreground">{siteConfig.tagline}</p>
             <SocialLinks labelled className="" />
           </div>
           {/* Desktop Layout */}
