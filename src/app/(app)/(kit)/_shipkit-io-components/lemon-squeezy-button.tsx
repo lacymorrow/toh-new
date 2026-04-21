@@ -31,7 +31,7 @@ export const LemonSqueezyButton = async ({ userId, email }: LemonSqueezyButtonPr
 
   if (!hasPaid) {
     return (
-      <Link className={buttonVariants()} href={routes.external.buy}>
+      <Link className={buttonVariants()} href={"#" as any}>
         Buy Now
       </Link>
     );

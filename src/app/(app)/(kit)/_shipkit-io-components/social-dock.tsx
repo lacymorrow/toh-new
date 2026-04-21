@@ -27,7 +27,7 @@ const data = {
       },
       Discord: {
         name: "Discord",
-        url: routes.external.discord,
+        url: "#",
         icon: IconBrandDiscordFilled,
       },
       // LinkedIn: {
@@ -37,7 +37,7 @@ const data = {
       // },
       X: {
         name: "X",
-        url: routes.external.x,
+        url: "#",
         icon: Icons.x,
       },
       email: {

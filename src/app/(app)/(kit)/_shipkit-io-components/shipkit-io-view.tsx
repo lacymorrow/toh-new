@@ -193,7 +193,7 @@ export function ShipkitIoView() {
                   <p>
                     Prefer to build it yourself?{" "}
                     <Link
-                      href={routes.external.buy}
+                      href={"#" as any}
                       className={cn(buttonVariants({ variant: "link" }), "px-1")}
                     >
                       Shipkit Bones is always free
@@ -265,7 +265,7 @@ export function ShipkitIoView() {
                 </Link>
                 <Link
                   className={cn(buttonVariants({ variant: "link", size: "lg" }), "px-1")}
-                  href={routes.external.x_follow}
+                  href={"#" as any}
                 >
                   or X
                 </Link>
@@ -334,7 +334,7 @@ export function ShipkitIoView() {
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-4">
-                      <Link href={routes.external.buy}>
+                      <Link href={"#" as any}>
                         <ShinyButton>Start Building Now</ShinyButton>
                       </Link>
                       <div className="flex items-center gap-2 text-sm text-gray-500">
@@ -806,7 +806,7 @@ export function ShipkitIoView() {
                     </p>
                     <div className="flex justify-center gap-4">
                       <Link
-                        href={routes.external.buy}
+                        href={"#" as any}
                         className={buttonVariants({ variant: "default", size: "lg" })}
                       >
                         Start Building Now
@@ -975,7 +975,7 @@ export function ShipkitIoView() {
                         Read More →
                       </Link>
                       <Link
-                        href={routes.external.buy}
+                        href={"#" as any}
                         className={buttonVariants({ variant: "default", size: "lg" })}
                       >
                         Start Building Now

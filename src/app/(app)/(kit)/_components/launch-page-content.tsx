@@ -82,7 +82,7 @@ export async function LaunchPageContent() {
             </p>
 
             <div className="flex gap-4">
-              <Link className={buttonVariants()} href={routes.external.buy}>
+              <Link className={buttonVariants()} href={"#" as any}>
                 Buy Now
               </Link>
               {!user && (
@@ -108,7 +108,7 @@ export async function LaunchPageContent() {
               <p className="mb-8 text-muted-foreground">
                 Join developers who are building production-ready applications with Shipkit.
               </p>
-              <Link className={buttonVariants()} href={routes.external.buy}>
+              <Link className={buttonVariants()} href={"#" as any}>
                 Buy Now
               </Link>
             </div>

@@ -79,4 +79,16 @@ export const pointsOfInterest: TownPointOfInterest[] = [
 		phone: "(704) 546-2340",
 		amenities: ["Playground", "Athletic Fields", "Library", "Parking"],
 	},
+	{
+		id: 7,
+		name: "Carolina Thread Trail",
+		slug: "carolina-thread-trail",
+		category: "Parks",
+		description:
+			"Part of a regional network of greenways and trails linking fifteen counties in North Carolina and South Carolina. The trail provides scenic walking and hiking opportunities through the Harmony countryside.",
+		image: mediaUrls["poi-thread-trail"],
+		address: "Harmony, NC 28634",
+		hours: "Dawn to Dusk",
+		amenities: ["Walking Trail", "Nature Views", "Trail Markers"],
+	},
 ];

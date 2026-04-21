@@ -1,4 +1,3 @@
-import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site-config";
 
 export interface PricingPlan {
@@ -21,7 +20,7 @@ export const singlePlan: PricingPlan = {
   title: "Shipkit",
   description: "Production-ready, for teams that need advanced features",
   price: { oneTime: 249 },
-  href: routes.external.buy,
+  href: "#",
   features: [
     "Next.js 15 App Router",
     "Authentication (NextAuth v5)",
@@ -41,7 +40,7 @@ export const oneTimePlans: PricingPlan[] = [
     title: "Shipkit Bones",
     description: "Perfect for indie developers and small projects",
     price: { oneTime: 0 },
-    href: routes.external.buy,
+    href: "#",
     features: [
       "Next.js 15 App Router Setup",
       "Authentication (NextAuth v5)",
@@ -57,7 +56,7 @@ export const oneTimePlans: PricingPlan[] = [
     title: "Shipkit",
     description: "Production-ready, for teams that need advanced features",
     price: { oneTime: 249 },
-    href: routes.external.buy,
+    href: "#",
     features: [
       "Everything in Bones +",
       "Database Integration (Postgres)",

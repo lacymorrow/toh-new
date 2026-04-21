@@ -42,6 +42,15 @@ export const mediaUrls = {
 	"landmark-church": `${TOWN_IMG}/harmony-road.webp`,
 	"landmark-community-center": `${TOWN_IMG}/community-center-2.webp`,
 
+	// Emergency & civic
+	"emergency-fire-dept": `${TOWN_IMG}/fire-department.png`,
+	"emergency-911": `${TOWN_IMG}/911-building.jpg`,
+
+	// Additional landmarks
+	"poi-thread-trail": `${TOWN_IMG}/thread-trail.jpg`,
+	"poi-about-hero": `${TOWN_IMG}/about-hero.png`,
+	"contact-map": `${TOWN_IMG}/contact-map.png`,
+
 	// Businesses (civic institutions) — no specific photos available
 	"biz-general-store": `${TOWN_IMG}/harmony-town-view.webp`,
 	"biz-diner": `${TOWN_IMG}/logo.png`,
