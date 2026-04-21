@@ -23,7 +23,7 @@ export const events: TownEvent[] = [
 		description:
 			"Shop local at the Harmony Farmers Market featuring fresh produce, baked goods, crafts, and live music every Saturday morning.",
 		content:
-			"The Harmony Farmers Market returns every Saturday morning from 8:00 AM to 12:00 PM at the Town Hall parking lot. Browse fresh, locally grown produce, homemade baked goods, local honey, handmade crafts, and more from over 20 local vendors. Live music is featured each week, and there are special activities for children. The Farmers Market is a beloved Harmony tradition that connects residents with local growers and artisans. Come out and support your neighbors while enjoying the best of what our community has to offer!",
+			"The Harmony Farmers Market is held every Saturday morning from 8:00 AM to 12:00 PM at the Town Hall parking lot. Local produce, baked goods, honey, crafts, and more from local vendors.",
 		featuredImage: mediaUrls["event-farmers-market"],
 		eventDate: getNextSaturday(),
 		eventTime: "8:00 AM",
@@ -45,13 +45,13 @@ export const events: TownEvent[] = [
 		description:
 			"Celebrate autumn at Harmony's annual Fall Festival with hayrides, pumpkin carving, live entertainment, and delicious food.",
 		content:
-			"The annual Harmony Fall Festival is one of the most anticipated events of the year! Join us for a day of fall fun including hayrides, pumpkin carving contests, live music, a craft fair, food vendors, and activities for the whole family. The festival also features a pie baking contest, scarecrow building competition, and a corn maze. Local businesses and organizations set up booths throughout the grounds. Admission is free, and there is ample parking available. Don't miss this wonderful celebration of the autumn season in Harmony!",
+			"The annual Harmony Fall Festival features fall activities, food, and entertainment for the whole family.",
 		featuredImage: mediaUrls["event-fall-festival"],
 		eventDate: getNextDate(9, 18),
 		eventTime: "10:00 AM",
 		endTime: "6:00 PM",
-		location: "Harmony Park",
-		locationAddress: "100 Park Drive, Harmony, NC 28634",
+		location: "Tomlinson-Moore Family Park",
+		locationAddress: "Harmony, NC 28634",
 		organizer: "Town of Harmony",
 		contactEmail: "info@townofharmony.org",
 		contactPhone: "(704) 546-2339",
@@ -67,7 +67,7 @@ export const events: TownEvent[] = [
 		description:
 			"Ring in the holiday season at the annual Harmony Christmas Parade featuring floats, bands, and a visit from Santa Claus.",
 		content:
-			"The Harmony Christmas Parade is a beloved holiday tradition that brings the entire community together to celebrate the season. The parade route runs along Harmony Highway, featuring decorated floats, marching bands, local organizations, classic cars, and of course, Santa Claus! Following the parade, enjoy hot chocolate and cookies at the Community Center, along with caroling and a tree lighting ceremony. Businesses and organizations interested in entering a float should contact Town Hall. The parade begins promptly at 2:00 PM — arrive early for the best viewing spots along the route!",
+			"The annual Harmony Christmas Parade along Harmony Highway features floats, local organizations, and holiday celebrations. Contact Town Hall for details.",
 		featuredImage: mediaUrls["event-christmas-parade"],
 		eventDate: getNextDate(11, 6),
 		eventTime: "2:00 PM",
@@ -89,7 +89,7 @@ export const events: TownEvent[] = [
 		description:
 			"Volunteer to help beautify our community during the annual Spring Cleanup Day. Supplies and refreshments provided.",
 		content:
-			"Join your neighbors for the annual Spring Cleanup Day! Volunteers will meet at Town Hall at 8:00 AM where supplies, refreshments, and area assignments will be provided. Together, we'll clean up our parks, roadsides, and public spaces to keep Harmony beautiful. Trash bags, gloves, and safety vests will be provided. This is a great opportunity to get outside, meet your neighbors, and make a visible difference in our community. Last year, over 100 volunteers participated and collected more than 200 bags of litter. Bring the whole family — there are tasks for all ages and abilities!",
+			"Annual Spring Cleanup Day. Volunteers meet at Town Hall. Supplies provided. Help keep Harmony's parks, roadsides, and public spaces clean.",
 		featuredImage: mediaUrls["event-spring-cleanup"],
 		eventDate: getNextDate(3, 19),
 		eventTime: "8:00 AM",

@@ -4,16 +4,16 @@ import { mediaUrls } from "./media";
 export const pointsOfInterest: TownPointOfInterest[] = [
 	{
 		id: 1,
-		name: "Harmony Park",
-		slug: "harmony-park",
+		name: "Tomlinson-Moore Family Park",
+		slug: "tomlinson-moore-family-park",
 		category: "Parks",
 		description:
-			"A beautiful community park offering recreational facilities for all ages. Features include a playground, walking trails, picnic shelters, and open green spaces perfect for family gatherings and community events.",
+			"Community park offering recreational facilities for all ages.",
 		image: mediaUrls["poi-park"],
-		address: "100 Park Drive, Harmony, NC 28634",
+		address: "Harmony, NC 28634",
 		hours: "Dawn to Dusk",
-		phone: "(704) 546-2342",
-		amenities: ["Playground", "Walking Trails", "Picnic Shelters", "Open Fields", "Restrooms"],
+		phone: "(704) 546-2339",
+		amenities: ["Playground", "Picnic Shelters", "Restrooms"],
 	},
 	{
 		id: 2,

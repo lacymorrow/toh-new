@@ -33,7 +33,9 @@ export function TownFooter({ settings }: TownFooterProps) {
 						</p>
 
 						{/* Social Media */}
+						{(settings.socialMedia.facebook || settings.socialMedia.twitter || settings.socialMedia.youtube) && (
 						<div className="flex gap-3 mt-4">
+							{settings.socialMedia.facebook && (
 							<a
 								href={settings.socialMedia.facebook}
 								target="_blank"
@@ -43,6 +45,8 @@ export function TownFooter({ settings }: TownFooterProps) {
 							>
 								<Facebook className="h-4 w-4" />
 							</a>
+							)}
+							{settings.socialMedia.twitter && (
 							<a
 								href={settings.socialMedia.twitter}
 								target="_blank"
@@ -52,6 +56,8 @@ export function TownFooter({ settings }: TownFooterProps) {
 							>
 								<Twitter className="h-4 w-4" />
 							</a>
+							)}
+							{settings.socialMedia.youtube && (
 							<a
 								href={settings.socialMedia.youtube}
 								target="_blank"
@@ -61,7 +67,9 @@ export function TownFooter({ settings }: TownFooterProps) {
 							>
 								<Youtube className="h-4 w-4" />
 							</a>
+							)}
 						</div>
+						)}
 					</div>
 
 					{/* Footer Links */}

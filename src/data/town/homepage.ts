@@ -71,20 +71,12 @@ export const homepage: TownHomepage = {
 	],
 	stats: [
 		{
-			value: "5,234",
-			label: "Population",
+			value: "543",
+			label: "Population (2020)",
 		},
 		{
 			value: "1927",
 			label: "Established",
-		},
-		{
-			value: "150+",
-			label: "Local Businesses",
-		},
-		{
-			value: "12",
-			label: "Parks & Recreation",
 		},
 	],
 };
