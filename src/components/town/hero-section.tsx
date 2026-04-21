@@ -16,7 +16,7 @@ export async function HeroSection() {
 						<div className="inline-flex items-center gap-2 bg-wheat/15 border border-wheat/30 text-wheat-light px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wide w-fit mb-5">
 							Est. 1927 &middot; Iredell County
 						</div>
-						<h1 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4">
+						<h1 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4 text-balance">
 							{firstSlide?.title ?? "Welcome to the Town of Harmony"}
 						</h1>
 						<p className="text-lg text-white/90 mb-8 max-w-[480px] leading-relaxed">
