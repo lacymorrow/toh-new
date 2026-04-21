@@ -34,9 +34,9 @@ export const emergencyServices: TownEmergencyService[] = [
 	},
 	{
 		id: 3,
-		title: "Police Department",
-		description: "The Harmony Police Department serves and protects the community with professional law enforcement services.",
-		phone: "(704) 546-2340",
+		title: "Iredell County Sheriff's Office",
+		description: "Law enforcement services for the Harmony community are provided by the Iredell County Sheriff's Office.",
+		phone: "(704) 878-3100",
 		category: "public-safety",
 		icon: "Shield",
 		preparedness: [

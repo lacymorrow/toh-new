@@ -13,9 +13,9 @@ export const settings: TownSettings = {
 		weekend: "Saturday - Sunday: Closed",
 	},
 	socialMedia: {
-		facebook: "https://facebook.com/townofharmony",
-		twitter: "https://twitter.com/harmonytown",
-		youtube: "https://youtube.com/townofharmony",
+		facebook: "",
+		twitter: "",
+		youtube: "",
 	},
 	branding: {
 		tagline: "Where Harmony LIVES and SINGS!",
