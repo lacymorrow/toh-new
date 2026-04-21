@@ -6,15 +6,15 @@ import { routes } from "@/config/routes";
 import { singlePlan } from "@/content/pricing/pricing-content";
 import { FAQ } from "../_shipkit-io-components/faq";
 export const metadata: Metadata = constructMetadata({
-  title: "Pricing & Plans - Start Building Today | Shipkit",
+  title: "Pricing & Plans | Town of Harmony",
   description:
-    "Transparent, flexible pricing for teams of all sizes. Launch your app with confidence using Shipkit's powerful features. Free tier available, no credit card required.",
+    "View pricing and plans for Town of Harmony services.",
   openGraph: {
-    title: "Pricing & Plans - Start Building Today | Shipkit",
+    title: "Pricing & Plans | Town of Harmony",
     description:
-      "Transparent, flexible pricing for teams of all sizes. Launch your app with confidence using Shipkit's powerful features. Free tier available, no credit card required.",
+      "View pricing and plans for Town of Harmony services.",
     type: "website",
-    siteName: "Shipkit",
+    siteName: "Town of Harmony",
     locale: "en_US",
   },
 });

@@ -14,7 +14,7 @@ export default function AdminWaitlistPage() {
     <div className="container mx-auto py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Waitlist Management</h1>
-        <p className="text-muted-foreground">View and manage waitlist entries for Shipkit</p>
+        <p className="text-muted-foreground">View and manage waitlist entries</p>
       </div>
 
       <Suspense fallback={<div>Loading waitlist data...</div>}>
