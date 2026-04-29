@@ -121,7 +121,7 @@ export const EmergencyAlert = ({
 							</div>
 						)}
 
-						<div className="mt-2 text-xs text-[#7A756C]">
+						<div className="mt-2 text-xs text-[#635E56]">
 							{alert.startsAt && (
 								<span>Active from {new Date(alert.startsAt).toLocaleString()}</span>
 							)}

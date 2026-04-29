@@ -28,7 +28,7 @@ export const CategoryFilter = ({
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center justify-between">
-				<span className="text-xs font-medium text-[#7A756C] uppercase tracking-wide">
+				<span className="text-xs font-medium text-[#635E56] uppercase tracking-wide">
 					Categories
 				</span>
 				<button
@@ -54,7 +54,7 @@ export const CategoryFilter = ({
 								"inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-all border",
 								isActive
 									? "border-transparent text-white shadow-sm"
-									: "border-stone text-[#7A756C] bg-cream hover:bg-stone/30",
+									: "border-stone text-[#635E56] bg-cream hover:bg-stone/30",
 							)}
 							style={isActive ? { backgroundColor: color } : undefined}
 						>
@@ -70,7 +70,7 @@ export const CategoryFilter = ({
 							<span
 								className={cn(
 									"text-[10px] tabular-nums",
-									isActive ? "text-white/80" : "text-[#7A756C]",
+									isActive ? "text-white/80" : "text-[#635E56]",
 								)}
 							>
 								{count}

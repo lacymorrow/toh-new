@@ -28,7 +28,7 @@ export async function ElectionsList({ page, status, search }: ElectionsListProps
 		return (
 			<Card>
 				<CardContent className="py-12 text-center">
-					<p className="text-[#7A756C]">
+					<p className="text-[#635E56]">
 						{search ? "No elections found matching your search criteria." : "No elections found."}
 					</p>
 				</CardContent>

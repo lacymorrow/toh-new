@@ -34,7 +34,7 @@ export default async function HomePage() {
 							<h2 className="text-2xl font-serif font-bold text-sage-dark mb-6 pb-3 border-b-2 border-wheat">
 								Latest News
 							</h2>
-							<Suspense fallback={<div className="text-[#7A756C]">Loading news...</div>}>
+							<Suspense fallback={<div className="text-[#635E56]">Loading news...</div>}>
 								<LatestNews />
 							</Suspense>
 						</div>
@@ -44,7 +44,7 @@ export default async function HomePage() {
 							<h2 className="text-2xl font-serif font-bold text-sage-dark mb-6 pb-3 border-b-2 border-wheat">
 								Upcoming Events
 							</h2>
-							<Suspense fallback={<div className="text-[#7A756C]">Loading events...</div>}>
+							<Suspense fallback={<div className="text-[#635E56]">Loading events...</div>}>
 								<UpcomingEvents />
 							</Suspense>
 						</div>

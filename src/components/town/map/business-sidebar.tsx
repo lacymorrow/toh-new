@@ -56,13 +56,13 @@ export const BusinessSidebar = ({
 					</div>
 					<div>
 						<h2 className="text-base font-bold text-[#2D2A24] leading-tight">Harmony, NC</h2>
-						<p className="text-xs text-[#7A756C]">Business Directory</p>
+						<p className="text-xs text-[#635E56]">Business Directory</p>
 					</div>
 				</div>
 
 				<div className="relative">
 					<Search
-						className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#7A756C]"
+						className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#635E56]"
 						aria-hidden="true"
 					/>
 					<Input
@@ -70,7 +70,7 @@ export const BusinessSidebar = ({
 						placeholder="Search businesses..."
 						value={searchQuery}
 						onChange={(e) => onSearchChange(e.target.value)}
-						className="pl-8 h-8 text-sm bg-cream border-stone placeholder:text-[#7A756C] text-[#2D2A24]"
+						className="pl-8 h-8 text-sm bg-cream border-stone placeholder:text-[#635E56] text-[#2D2A24]"
 						aria-label="Search businesses by name, address, or category"
 					/>
 				</div>
@@ -89,7 +89,7 @@ export const BusinessSidebar = ({
 
 			{/* Count */}
 			<div className="shrink-0 px-4 py-2 border-b border-stone">
-				<p className="text-xs text-[#7A756C]" aria-live="polite" aria-atomic="true">
+				<p className="text-xs text-[#635E56]" aria-live="polite" aria-atomic="true">
 					Showing <span className="font-semibold text-[#2D2A24]">{visibleCount}</span> of{" "}
 					{totalCount} businesses
 				</p>
@@ -110,8 +110,8 @@ export const BusinessSidebar = ({
 					) : (
 						<div className="flex flex-col items-center justify-center py-12 text-center">
 							<Search className="h-8 w-8 text-stone mb-3" aria-hidden="true" />
-							<p className="text-sm font-medium text-[#7A756C]">No businesses found</p>
-							<p className="text-xs text-[#7A756C] mt-1">
+							<p className="text-sm font-medium text-[#635E56]">No businesses found</p>
+							<p className="text-xs text-[#635E56] mt-1">
 								Try adjusting your search or filters
 							</p>
 						</div>

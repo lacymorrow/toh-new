@@ -34,7 +34,7 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
 						/>
 					) : (
 						<div className="w-16 h-16 rounded-full bg-stone flex items-center justify-center">
-							<User className="h-8 w-8 text-[#7A756C]" />
+							<User className="h-8 w-8 text-[#635E56]" />
 						</div>
 					)}
 

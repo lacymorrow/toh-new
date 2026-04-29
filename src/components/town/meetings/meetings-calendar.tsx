@@ -132,7 +132,7 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 							</Link>
 						))}
 						{dayMeetings.length > 2 && (
-							<div className="text-xs text-[#7A756C] font-medium">
+							<div className="text-xs text-[#635E56] font-medium">
 								+{dayMeetings.length - 2} more
 							</div>
 						)}

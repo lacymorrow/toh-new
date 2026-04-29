@@ -115,7 +115,7 @@ export const TownAgendaMinutes = () => {
 										<h3 className="font-semibold text-[17px]">
 											{meeting.title}
 										</h3>
-										<span className="bg-wheat/20 text-wheat-light text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+										<span className="bg-wheat/20 text-[#E8D5A3] text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
 											{meeting.type}
 										</span>
 									</div>

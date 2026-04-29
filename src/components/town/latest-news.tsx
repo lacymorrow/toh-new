@@ -29,7 +29,7 @@ export async function LatestNews() {
 					>
 						{/* Date block */}
 						<div className="bg-sage-dark text-white py-2 px-3 rounded-lg text-center flex-shrink-0 min-w-[56px]">
-							<div className="text-[11px] uppercase tracking-wider text-wheat-light font-bold">{month}</div>
+							<div className="text-[11px] uppercase tracking-wider text-[#E8D5A3] font-bold">{month}</div>
 							<div className="text-[22px] font-bold leading-tight">{day}</div>
 						</div>
 						{/* Content */}

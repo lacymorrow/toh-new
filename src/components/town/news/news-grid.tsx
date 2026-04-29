@@ -28,7 +28,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 		return (
 			<Card>
 				<CardContent className="py-12 text-center">
-					<p className="text-[#7A756C]">No articles found matching your criteria.</p>
+					<p className="text-[#635E56]">No articles found matching your criteria.</p>
 				</CardContent>
 			</Card>
 		);
@@ -73,7 +73,7 @@ export async function NewsGrid({ page, category, search }: NewsGridProps) {
 									</Link>
 								</CardTitle>
 
-								<div className="flex items-center gap-4 text-xs text-[#7A756C] mt-2">
+								<div className="flex items-center gap-4 text-xs text-[#635E56] mt-2">
 									{article.publishedAt && (
 										<div className="flex items-center gap-1">
 											<Calendar className="h-3 w-3" />

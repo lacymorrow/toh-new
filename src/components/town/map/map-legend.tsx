@@ -18,9 +18,9 @@ export const MapLegend = () => {
 				>
 					<span>Legend</span>
 					{isOpen ? (
-						<ChevronDown className="h-3.5 w-3.5 text-[#7A756C]" />
+						<ChevronDown className="h-3.5 w-3.5 text-[#635E56]" />
 					) : (
-						<ChevronUp className="h-3.5 w-3.5 text-[#7A756C]" />
+						<ChevronUp className="h-3.5 w-3.5 text-[#635E56]" />
 					)}
 				</button>
 				{isOpen && (
@@ -30,7 +30,7 @@ export const MapLegend = () => {
 								className="inline-block w-5 border-t-2 border-dashed border-sage-deep"
 								aria-hidden="true"
 							/>
-							<span className="text-[11px] text-[#7A756C]">Town Boundary</span>
+							<span className="text-[11px] text-[#635E56]">Town Boundary</span>
 						</div>
 						{ALL_CATEGORIES.map((cat) => (
 							<div key={cat} className="flex items-center gap-2">
@@ -39,7 +39,7 @@ export const MapLegend = () => {
 									style={{ backgroundColor: getCategoryColor(cat) }}
 									aria-hidden="true"
 								/>
-								<span className="text-[11px] text-[#7A756C] truncate">{cat}</span>
+								<span className="text-[11px] text-[#635E56] truncate">{cat}</span>
 							</div>
 						))}
 					</div>

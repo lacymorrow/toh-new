@@ -194,8 +194,8 @@ export async function ElectionDetail({ slug }: ElectionDetailProps) {
 						{electionCandidates.length === 0 && (
 							<Card>
 								<CardContent className="py-12 text-center">
-									<Users className="h-12 w-12 text-[#7A756C] mx-auto mb-4" />
-									<p className="text-[#7A756C]">
+									<Users className="h-12 w-12 text-[#635E56] mx-auto mb-4" />
+									<p className="text-[#635E56]">
 										No candidates have been registered for this election yet.
 									</p>
 								</CardContent>

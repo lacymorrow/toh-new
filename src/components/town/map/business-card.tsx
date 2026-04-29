@@ -37,13 +37,13 @@ export const BusinessCard = ({ business, isSelected, onClick }: BusinessCardProp
 						{business.name}
 					</h3>
 					<div className="flex items-center gap-1 mt-1">
-						<MapPin className="h-3 w-3 text-[#7A756C] shrink-0" aria-hidden="true" />
-						<p className="text-xs text-[#7A756C] leading-tight truncate">{business.address}</p>
+						<MapPin className="h-3 w-3 text-[#635E56] shrink-0" aria-hidden="true" />
+						<p className="text-xs text-[#635E56] leading-tight truncate">{business.address}</p>
 					</div>
 					{business.phone && (
 						<div className="flex items-center gap-1 mt-0.5">
-							<Phone className="h-3 w-3 text-[#7A756C] shrink-0" aria-hidden="true" />
-							<p className="text-xs text-[#7A756C]">{business.phone}</p>
+							<Phone className="h-3 w-3 text-[#635E56] shrink-0" aria-hidden="true" />
+							<p className="text-xs text-[#635E56]">{business.phone}</p>
 						</div>
 					)}
 					<div className="mt-1.5 flex items-center gap-1.5">

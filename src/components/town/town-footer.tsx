@@ -99,10 +99,10 @@ export function TownFooter({ settings }: TownFooterProps) {
 					<div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[13px]">
 						<span>&copy; {new Date().getFullYear()} {settings.siteTitle}. All rights reserved.</span>
 						<div className="flex gap-5">
-							<Link href="/privacy" className="text-white/65 hover:text-wheat transition-colors">
+							<Link href="/privacy" className="text-white/80 hover:text-wheat transition-colors">
 								Privacy
 							</Link>
-							<Link href="/accessibility" className="text-white/65 hover:text-wheat transition-colors">
+							<Link href="/accessibility" className="text-white/80 hover:text-wheat transition-colors">
 								Accessibility
 							</Link>
 						</div>

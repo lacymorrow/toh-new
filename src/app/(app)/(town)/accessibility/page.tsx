@@ -89,7 +89,7 @@ export default function AccessibilityPage() {
 					accessible format within a reasonable timeframe.
 				</p>
 
-				<p className="text-sm text-[#7A756C] mt-12">
+				<p className="text-sm text-[#635E56] mt-12">
 					Last updated: March 2026
 				</p>
 			</div>

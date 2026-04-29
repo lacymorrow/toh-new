@@ -65,14 +65,14 @@ export const TownLatestNews = ({ limit = 3 }: TownLatestNewsProps) => {
 								{/* Date header */}
 								<div className="bg-sage-dark text-white px-5 py-3 flex items-center gap-3">
 									<div className="text-center">
-										<div className="text-[11px] uppercase tracking-wider text-wheat-light font-bold">
+										<div className="text-[11px] uppercase tracking-wider text-[#E8D5A3] font-bold">
 											{month}
 										</div>
 										<div className="text-[22px] font-bold leading-tight">
 											{day}
 										</div>
 									</div>
-									<div className="text-xs text-white/60">
+									<div className="text-xs text-white/80">
 										{year}
 									</div>
 								</div>

@@ -73,7 +73,7 @@ export default function PrivacyPage() {
 					or call <a href="tel:7045462339" className="text-sage hover:text-sage-dark underline">(704) 546-2339</a>.
 				</p>
 
-				<p className="text-sm text-[#7A756C] mt-12">
+				<p className="text-sm text-[#635E56] mt-12">
 					Last updated: March 2026
 				</p>
 			</div>

@@ -13,7 +13,7 @@ export async function HeroSection() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 min-h-[460px]">
 					{/* Content */}
 					<div className="flex flex-col justify-center py-12 px-4 lg:py-16 lg:pr-12">
-						<div className="inline-flex items-center gap-2 bg-wheat/15 border border-wheat/30 text-wheat-light px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wide w-fit mb-5">
+						<div className="inline-flex items-center gap-2 bg-wheat/15 border border-wheat/30 text-[#E8D5A3] px-3.5 py-1.5 rounded-full text-[13px] font-semibold tracking-wide w-fit mb-5">
 							Est. 1927 &middot; Iredell County
 						</div>
 						<h1 className="text-3xl md:text-[42px] font-serif font-bold leading-[1.15] mb-4 text-balance">

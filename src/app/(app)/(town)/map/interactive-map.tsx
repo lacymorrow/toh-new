@@ -27,7 +27,7 @@ const HarmonyMap = dynamic(
 			<div className="h-full w-full flex items-center justify-center bg-cream">
 				<div className="flex flex-col items-center gap-3">
 					<div className="h-10 w-10 rounded-full border-3 border-sage-deep border-t-transparent animate-spin" />
-					<p className="text-sm text-[#7A756C] font-medium">Loading map...</p>
+					<p className="text-sm text-[#635E56] font-medium">Loading map...</p>
 				</div>
 			</div>
 		),

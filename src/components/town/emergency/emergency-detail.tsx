@@ -173,7 +173,7 @@ export async function EmergencyDetail({ alertId }: EmergencyDetailProps) {
 						</CardHeader>
 						<CardContent className="space-y-3">
 							<div className="flex items-center gap-3 text-sm">
-								<Calendar className="h-4 w-4 text-[#7A756C]" />
+								<Calendar className="h-4 w-4 text-[#635E56]" />
 								<div>
 									<div className="font-medium text-[#2D2A24]">Issued</div>
 									<div className="text-[#4A4640]">{new Date(alert.createdAt).toLocaleString()}</div>

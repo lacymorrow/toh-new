@@ -85,15 +85,15 @@ export const HarmonyMap = forwardRef<HarmonyMapHandle, HarmonyMapProps>(function
 					<h3 style="margin:0 0 6px; font-size:15px; font-weight:700; color:#2C3B26;">${settings.siteTitle}</h3>
 					<div style="display:flex; gap:16px; margin-bottom:8px;">
 						<div>
-							<p style="margin:0; font-size:11px; color:#7A756C; text-transform:uppercase; letter-spacing:0.5px;">Population</p>
+							<p style="margin:0; font-size:11px; color:#635E56; text-transform:uppercase; letter-spacing:0.5px;">Population</p>
 							<p style="margin:2px 0 0; font-size:16px; font-weight:600; color:#2D2A24;">~531</p>
 						</div>
 						<div>
-							<p style="margin:0; font-size:11px; color:#7A756C; text-transform:uppercase; letter-spacing:0.5px;">Area</p>
+							<p style="margin:0; font-size:11px; color:#635E56; text-transform:uppercase; letter-spacing:0.5px;">Area</p>
 							<p style="margin:2px 0 0; font-size:16px; font-weight:600; color:#2D2A24;">~1.4 sq mi</p>
 						</div>
 					</div>
-					<p style="margin:0 0 6px; font-size:12px; color:#7A756C; line-height:1.4;">${settings.branding.county}, ${settings.branding.state}<br/>Incorporated ${settings.branding.established}</p>
+					<p style="margin:0 0 6px; font-size:12px; color:#635E56; line-height:1.4;">${settings.branding.county}, ${settings.branding.state}<br/>Incorporated ${settings.branding.established}</p>
 					<a href="https://www.townofharmony.org" target="_blank" rel="noopener noreferrer"
 						style="display:inline-block; padding:4px 12px; border-radius:9999px; font-size:11px; font-weight:500; color:#fff; background:#3D5038; text-decoration:none;">
 						Visit townofharmony.org
@@ -156,10 +156,10 @@ export const HarmonyMap = forwardRef<HarmonyMapHandle, HarmonyMapProps>(function
 			marker.bindPopup(
 				`<div style="font-family: system-ui, sans-serif; min-width: 180px;">
 					<h3 style="margin:0 0 4px; font-size:14px; font-weight:600; color:#2D2A24;">${biz.name}</h3>
-					<p style="margin:0 0 3px; font-size:12px; color:#7A756C; line-height:1.4;">${biz.address}</p>
-					${biz.phone ? `<p style="margin:0 0 3px; font-size:12px; color:#7A756C;">${biz.phone}</p>` : ""}
+					<p style="margin:0 0 3px; font-size:12px; color:#635E56; line-height:1.4;">${biz.address}</p>
+					${biz.phone ? `<p style="margin:0 0 3px; font-size:12px; color:#635E56;">${biz.phone}</p>` : ""}
 					<span style="display:inline-block; margin-top:4px; padding:2px 8px; border-radius:9999px; font-size:11px; font-weight:500; color:#fff; background:${color};">${biz.category}</span>
-					${biz.description ? `<p style="margin:6px 0 0; font-size:11px; color:#7A756C; line-height:1.4;">${biz.description}</p>` : ""}
+					${biz.description ? `<p style="margin:6px 0 0; font-size:11px; color:#635E56; line-height:1.4;">${biz.description}</p>` : ""}
 					<a href="${directionsLink}" target="_blank" rel="noopener noreferrer"
 						style="display:inline-flex; align-items:center; gap:4px; margin-top:6px; padding:3px 10px; border-radius:9999px; font-size:11px; font-weight:500; color:#3D5038; background:#D4CBBD66; text-decoration:none;">
 						&#x2794; Directions

@@ -42,7 +42,7 @@ export const EmergencyContacts = () => {
 							{service.preparedness.length > 0 && (
 								<div className="pt-2">
 									<p className="text-xs font-medium text-[#2D2A24] mb-1">Be Prepared:</p>
-									<ul className="text-xs text-[#7A756C] space-y-0.5 list-disc list-inside">
+									<ul className="text-xs text-[#635E56] space-y-0.5 list-disc list-inside">
 										{service.preparedness.slice(0, 3).map((tip) => (
 											<li key={tip}>{tip}</li>
 										))}

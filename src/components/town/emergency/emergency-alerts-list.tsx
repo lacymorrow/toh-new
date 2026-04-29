@@ -107,13 +107,13 @@ export async function EmergencyAlertsList({
 						className={`hover:shadow-lg transition-shadow border-l-4 ${
 							isActive
 								? `${colors.border} ${colors.bg} border-l-current`
-								: "border-stone bg-cream border-l-[#7A756C]"
+								: "border-stone bg-cream border-l-[#635E56]"
 						}`}
 					>
 						<CardHeader className="pb-3">
 							<div className="flex items-start justify-between gap-3">
 								<div className="flex items-start gap-3 flex-1">
-									<Icon className={`h-5 w-5 mt-0.5 ${isActive ? colors.icon : "text-[#7A756C]"}`} />
+									<Icon className={`h-5 w-5 mt-0.5 ${isActive ? colors.icon : "text-[#635E56]"}`} />
 									<div className="flex-1">
 										<div className="flex items-center gap-2 mb-2">
 											<CardTitle className={`text-lg ${isActive ? colors.text : "text-[#4A4640]"}`}>
@@ -150,7 +150,7 @@ export async function EmergencyAlertsList({
 							)}
 
 							<div className="flex items-center justify-between pt-2 border-t border-[#DDD7CC]">
-								<div className="flex items-center gap-4 text-xs text-[#7A756C]">
+								<div className="flex items-center gap-4 text-xs text-[#635E56]">
 									<div className="flex items-center gap-1">
 										<Calendar className="h-3 w-3" />
 										<span>Issued {new Date(alert.createdAt).toLocaleString()}</span>
