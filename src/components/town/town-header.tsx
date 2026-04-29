@@ -74,7 +74,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 						{/* Logo with shield */}
 						<Link href="/" className="flex items-center gap-4">
 							<div
-								className="w-14 h-16 bg-sage-dark flex items-center justify-center text-wheat font-serif text-lg font-bold flex-shrink-0"
+								className="w-14 h-16 bg-sage-dark flex items-center justify-center text-[#E8D5A3] font-serif text-lg font-bold flex-shrink-0"
 								style={{
 									clipPath: "polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%)",
 								}}
@@ -145,12 +145,12 @@ export function TownHeader({ settings }: TownHeaderProps) {
 							{/* Desktop: clickable search input */}
 							<button
 								type="button"
-								className="hidden md:flex items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-1.5 text-sm text-[#7A756C] hover:bg-stone hover:text-sage-dark transition-colors w-48 lg:w-64"
+								className="hidden md:flex items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-1.5 text-sm text-[#635E56] hover:bg-stone hover:text-sage-dark transition-colors w-48 lg:w-64"
 								onClick={() => setSearchOpen(true)}
 							>
 								<Search className="h-4 w-4 shrink-0" />
 								<span className="truncate">Search...</span>
-								<kbd className="ml-auto hidden lg:inline-block rounded border border-[#DDD7CC] bg-warm-white px-1.5 py-0.5 font-mono text-[10px] text-[#7A756C]">
+								<kbd className="ml-auto hidden lg:inline-block rounded border border-[#DDD7CC] bg-warm-white px-1.5 py-0.5 font-mono text-[10px] text-[#635E56]">
 									⌘K
 								</kbd>
 							</button>
@@ -187,7 +187,7 @@ export function TownHeader({ settings }: TownHeaderProps) {
 					<div className="container mx-auto px-4 py-2">
 						<button
 							type="button"
-							className="flex w-full items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-2 text-sm text-[#7A756C] mb-2"
+							className="flex w-full items-center gap-2 rounded-md border border-[#DDD7CC] bg-stone/50 px-3 py-2 text-sm text-[#635E56] mb-2"
 							onClick={() => {
 								setMobileMenuOpen(false);
 								setSearchOpen(true);
