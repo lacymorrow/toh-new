@@ -94,9 +94,9 @@ export const EmergencyServices = async () => {
 
 										{preparedness.length > 0 && (
 											<div className="pt-3 border-t border-[#DDD7CC]">
-												<h4 className="font-semibold text-[#2D2A24] mb-2 text-sm">
+												<h3 className="font-semibold text-[#2D2A24] mb-2 text-sm">
 													Preparedness Tips:
-												</h4>
+												</h3>
 												<ul className="text-xs text-[#4A4640] space-y-1">
 													{preparedness.map((tip, tipIndex) => (
 														<li key={tipIndex} className="flex items-start gap-2">

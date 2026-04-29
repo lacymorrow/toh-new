@@ -21,7 +21,7 @@ export const emergencyServices: TownEmergencyService[] = [
 		id: 2,
 		title: "Fire Department",
 		description: "Harmony Volunteer Fire Department provides fire suppression, rescue, and emergency medical services to the community.",
-		phone: "(704) 546-3200",
+		phone: "(704) 546-2300",
 		category: "immediate",
 		icon: "Flame",
 		preparedness: [

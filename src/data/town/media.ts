@@ -34,8 +34,8 @@ export const mediaUrls = {
 
 	// History
 	"history-early": `${TOWN_IMG}/camp-meeting-grounds.webp`,
-	"history-founding": `${TOWN_IMG}/harmony-town-view.webp`,
-	"history-growth": `${TOWN_IMG}/christmas-parade-vintage-truck.webp`,
+	"history-founding": `${TOWN_IMG}/harmony-school.webp`,
+	"history-growth": `${TOWN_IMG}/town-hall.webp`,
 	"history-modern": `${TOWN_IMG}/tomlinson-park.webp`,
 	"landmark-camp-grounds": `${TOWN_IMG}/camp-meeting-grounds.webp`,
 	"landmark-town-hall": `${TOWN_IMG}/town-hall.webp`,

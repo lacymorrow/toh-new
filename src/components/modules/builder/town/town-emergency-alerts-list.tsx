@@ -83,7 +83,7 @@ export const TownEmergencyAlertsList = ({
 			<div className="container mx-auto px-4">
 				<div className="space-y-4">
 					{displayAlerts.map((alert) => {
-						const config = levelConfig[alert.level] ?? levelConfig.info;
+						const config = (levelConfig[alert.level] ?? levelConfig.info)!;
 						const Icon = config.icon;
 						const createdDate = new Date(
 							alert.createdAt,

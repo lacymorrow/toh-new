@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { env } from "@/env";
+import { notFound } from "next/navigation";
 import { SewerPaymentForm } from "@/components/town/sewer-payment-form";
-import { sewerContactInfo } from "@/data/town/sewer-rates";
+import { sewerContactInfo, isSewerPaymentEnabled } from "@/data/town/sewer-rates";
 
 export const metadata: Metadata = {
 	title: "Pay Sewer Bill | Town of Harmony",
-	description: "Pay your Town of Harmony sewer bill online with a credit or debit card.",
+	description:
+		"Pay your Town of Harmony sewer bill online with a credit or debit card.",
 };
 
 export default function SewerPaymentPage() {
-	const stripeEnabled = !!env.NEXT_PUBLIC_FEATURE_STRIPE_ENABLED;
+	if (!isSewerPaymentEnabled()) {
+		// Online payments not configured — page hidden until Stripe is set up.
+		notFound();
+	}
 
 	return (
 		<div className="container mx-auto max-w-lg px-4 py-12">
@@ -20,7 +24,7 @@ export default function SewerPaymentPage() {
 				</p>
 			</div>
 
-			<SewerPaymentForm stripeEnabled={stripeEnabled} />
+			<SewerPaymentForm stripeEnabled={true} />
 
 			<p className="mt-6 text-center text-xs text-muted-foreground">
 				Questions? Contact {sewerContactInfo.department} at {sewerContactInfo.phone}

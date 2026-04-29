@@ -71,7 +71,6 @@ export default async function Layout({
                 name: siteConfig.creator.name,
                 url: siteConfig.creator.url,
               },
-              codeRepository: siteConfig.repo.url,
               programmingLanguage: ["TypeScript", "JavaScript"],
               runtimePlatform: "Node.js",
             }),
@@ -95,7 +94,7 @@ export default async function Layout({
         className={`${fontSans.variable} ${fontSerif.variable} min-h-screen font-sans antialiased`}
       >
         <AppRouterLayout>
-          <main>{children}</main>
+          {children}
 
           {/* Dynamically render all available slots */}
           {resolvedSlots.map(([key, slot]) => (

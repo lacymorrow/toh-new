@@ -11,11 +11,12 @@ export function formatDate(date: Date): string {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
+		timeZone: "UTC",
 	});
 }
 
 export function formatTime(time: string): string {
-	const [hours, minutes] = time.split(":");
+	const [hours = "0", minutes = "0"] = time.split(":");
 	const date = new Date();
 	date.setHours(Number.parseInt(hours), Number.parseInt(minutes));
 	return date.toLocaleTimeString("en-US", {

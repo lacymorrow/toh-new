@@ -8,7 +8,7 @@ export async function EmergencyBanner() {
 
 	if (!alert) return null;
 
-	const messageText = extractTextFromRichText(alert.message as any);
+	const messageText = extractTextFromRichText(alert.content);
 
 	return (
 		<div className="bg-cream border-b border-[#DDD7CC] py-3">

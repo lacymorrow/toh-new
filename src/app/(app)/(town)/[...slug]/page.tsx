@@ -1,8 +1,12 @@
 /**
  * Catch-all page for Builder.io visual CMS pages within the town layout.
  * Inherits TownHeader + EmergencyBanner + TownFooter from (town)/layout.tsx.
+ *
+ * Explicit static routes (e.g. /our-team, /events, /meetings) take precedence
+ * over this catch-all and render from verified static data.
  */
 
+import { siteConfig } from "@/config/site-config";
 import { env } from "@/env";
 import { RenderBuilderContent } from "@/lib/builder-io/builder-io";
 import "@/styles/builder-io.css";
@@ -76,12 +80,22 @@ export async function generateMetadata({
 		return notFound();
 	}
 
+	const slugPath = `/${params.slug.join("/")}`;
+	const pageTitle = content.data?.title ?? "Town of Harmony";
+	const pageDescription =
+		content.data?.description ??
+		`${pageTitle} - Town of Harmony, NC. Find local information, services, and community resources.`;
+
 	return {
-		title: content.data?.title ?? "Town of Harmony",
-		description: content.data?.description ?? "",
+		title: pageTitle,
+		description: pageDescription,
+		alternates: {
+			canonical: `${siteConfig.url}${slugPath}`,
+		},
 		openGraph: {
-			title: content.data?.title ?? "Town of Harmony",
-			description: content.data?.description ?? "",
+			title: pageTitle,
+			description: pageDescription,
+			url: `${siteConfig.url}${slugPath}`,
 			...(content.data?.ogImage && {
 				images: [{ url: content.data.ogImage as string }],
 			}),
@@ -102,7 +116,7 @@ export default async function TownCatchAllPage({
 	const content = await getBuilderContent(params.slug);
 
 	if (!content) {
-		return notFound();
+		notFound();
 	}
 
 	return <RenderBuilderContent content={content} model="page" />;

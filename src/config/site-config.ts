@@ -198,13 +198,13 @@ export const siteConfig: SiteConfig = {
 		twitter_follow: "",
 		x: "",
 		x_follow: "",
-		github: "https://github.com/lacymorrow/toh-new",
+		github: "",
 	},
 
 	repo: {
-		owner: "lacymorrow",
-		name: "toh-new",
-		url: "https://github.com/lacymorrow/toh-new",
+		owner: "",
+		name: "",
+		url: "",
 		format: {
 			// Placeholder format functions - assigned below
 			clone: () => "",

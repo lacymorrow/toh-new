@@ -1,8 +1,7 @@
 import { Phone, Mail, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { env } from "@/env";
-import { sewerRateTiers, sewerContactInfo } from "@/data/town/sewer-rates";
+import { sewerRateTiers, sewerContactInfo, isSewerPaymentEnabled } from "@/data/town/sewer-rates";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function SewerPage() {
-	const stripeEnabled = !!env.NEXT_PUBLIC_FEATURE_STRIPE_ENABLED;
+	const onlinePaymentsEnabled = isSewerPaymentEnabled();
 	return (
 		<div className="container mx-auto max-w-4xl px-4 py-12">
 			<div className="mb-8">
@@ -47,7 +46,7 @@ export default function SewerPage() {
 
 			<section className="mb-12">
 				<h2 className="mb-4 text-2xl font-semibold">Pay Your Bill</h2>
-				{stripeEnabled ? (
+				{onlinePaymentsEnabled ? (
 					<>
 						<p className="mb-4 text-muted-foreground">
 							Pay your sewer bill online with a credit or debit card. You can make a one-time payment

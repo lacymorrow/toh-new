@@ -19,6 +19,7 @@ const formatDate = (date: Date) =>
 		month: "long",
 		day: "numeric",
 		year: "numeric",
+		timeZone: "UTC",
 	});
 
 const formatTime = (time: string) => time;

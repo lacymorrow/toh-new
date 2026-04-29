@@ -185,6 +185,97 @@ export const redirects = async (): Promise<Redirect[]> => {
 		...createRedirects(["/join", "/signup", "/sign-up"], routes.auth.signUp),
 		...createRedirects(["/login", "/log-in", "/signin", "/sign-in"], routes.auth.signIn),
 		...createRedirects(["/logout", "/log-out", "/signout", "/sign-out"], routes.auth.signOut),
+
+		// 301 redirects from legacy townofharmony.org (Wagtail) URLs to new Next.js routes.
+		{ source: "/government", destination: "/our-team", permanent: true },
+		{ source: "/government/", destination: "/our-team", permanent: true },
+		{ source: "/emergency-services", destination: "/emergency", permanent: true },
+		{ source: "/emergency-services/", destination: "/emergency", permanent: true },
+		{
+			source: "/resources/ordinance",
+			destination: "/docs/town-ordinance.pdf",
+			permanent: true,
+		},
+		{
+			source: "/resources/ordinance/",
+			destination: "/docs/town-ordinance.pdf",
+			permanent: true,
+		},
+		{
+			source: "/resources/harmony-community-center-reservation-application-page",
+			destination: "/resources/community-center-reservation",
+			permanent: true,
+		},
+		{
+			source: "/resources/harmony-community-center-reservation-application-page/",
+			destination: "/resources/community-center-reservation",
+			permanent: true,
+		},
+		{
+			source: "/resources/tomlinson-moore-family-park-reservation-application",
+			destination: "/resources/park-reservation",
+			permanent: true,
+		},
+		{
+			source: "/resources/tomlinson-moore-family-park-reservation-application/",
+			destination: "/resources/park-reservation",
+			permanent: true,
+		},
+		{ source: "/history/incorporation", destination: "/history", permanent: true },
+		{ source: "/history/incorporation/", destination: "/history", permanent: true },
+		{ source: "/history/first-school", destination: "/history", permanent: true },
+		{ source: "/history/first-school/", destination: "/history", permanent: true },
+		{ source: "/news", destination: "/", permanent: false },
+		{ source: "/news/", destination: "/", permanent: false },
+		// Legacy event slugs → new event slugs (current 2026 occurrences).
+		{ source: "/events/farmers-market-may", destination: "/events/farmers-market-may-2026", permanent: true },
+		{ source: "/events/farmers-market-may/", destination: "/events/farmers-market-may-2026", permanent: true },
+		{ source: "/events/farmers-market-june", destination: "/events/farmers-market-june-2026", permanent: true },
+		{ source: "/events/farmers-market-june/", destination: "/events/farmers-market-june-2026", permanent: true },
+		{ source: "/events/spring-in-the-park", destination: "/events/spring-in-the-park-2026", permanent: true },
+		{ source: "/events/spring-in-the-park/", destination: "/events/spring-in-the-park-2026", permanent: true },
+		{ source: "/events/hwy-21-road-market", destination: "/events/hwy-21-road-market-2026", permanent: true },
+		{ source: "/events/hwy-21-road-market/", destination: "/events/hwy-21-road-market-2026", permanent: true },
+		// Legacy meeting slugs → new meeting slugs.
+		{ source: "/meetings/special-meeting-2025-07-17", destination: "/meetings/special-meeting-2025-07-17", permanent: true },
+		{ source: "/meetings/special-meeting-2025-07-31", destination: "/meetings/special-meeting-2025-07-31", permanent: true },
+		{ source: "/meetings/council-meeting-2025-07-07", destination: "/meetings/council-meeting-2025-07-07", permanent: true },
+		{ source: "/meetings/council-meeting-2025-08-04", destination: "/meetings/council-meeting-2025-08-04", permanent: true },
+		// Legacy form-only pages (HTTP 500 on legacy) → contact page.
+		{ source: "/host-an-event-or-other", destination: "/contact", permanent: true },
+		{ source: "/host-an-event-or-other/", destination: "/contact", permanent: true },
+		{ source: "/share-history-story", destination: "/contact", permanent: true },
+		{ source: "/share-history-story/", destination: "/contact", permanent: true },
+		{ source: "/contact-town-of-harmony-form", destination: "/contact", permanent: true },
+		{ source: "/contact-town-of-harmony-form/", destination: "/contact", permanent: true },
+		{ source: "/election-form", destination: "/contact", permanent: true },
+		{ source: "/election-form/", destination: "/contact", permanent: true },
+		{ source: "/election-form-access", destination: "/contact", permanent: true },
+		{ source: "/election-form-access/", destination: "/contact", permanent: true },
+		{ source: "/special-events-application", destination: "/contact", permanent: true },
+		{ source: "/special-events-application/", destination: "/contact", permanent: true },
+		{
+			source: "/harmony-community-center-reservation-application-form",
+			destination: "/resources/community-center-reservation",
+			permanent: true,
+		},
+		{
+			source: "/harmony-community-center-reservation-application-form/",
+			destination: "/resources/community-center-reservation",
+			permanent: true,
+		},
+		{
+			source: "/tomlinson-moore-family-park-reservation-application-form",
+			destination: "/resources/park-reservation",
+			permanent: true,
+		},
+		{
+			source: "/tomlinson-moore-family-park-reservation-application-form/",
+			destination: "/resources/park-reservation",
+			permanent: true,
+		},
+		{ source: "/elections", destination: "/our-team", permanent: false },
+		{ source: "/elections/", destination: "/our-team", permanent: false },
 	];
 };
 

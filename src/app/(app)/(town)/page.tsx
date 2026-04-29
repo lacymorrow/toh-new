@@ -1,48 +1,26 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { CommunitySpotlight } from "@/components/town/community-spotlight";
 import { HeroSection } from "@/components/town/hero-section";
 import { LatestNews } from "@/components/town/latest-news";
 import { QuickLinks } from "@/components/town/quick-links";
 import { UpcomingEvents } from "@/components/town/upcoming-events";
-import { env } from "@/env";
-import { RenderBuilderContent } from "@/lib/builder-io/builder-io";
-import type { BuilderContent } from "@builder.io/sdk";
+import { routeMetadata } from "@/config/metadata";
+import { siteConfig } from "@/config/site-config";
 
-async function getBuilderHomepage(): Promise<BuilderContent | null> {
-	if (!env.NEXT_PUBLIC_FEATURE_BUILDER_ENABLED || !env.NEXT_PUBLIC_BUILDER_API_KEY) {
-		return null;
-	}
+export const metadata: Metadata = {
+	title: routeMetadata.home.title,
+	description: routeMetadata.home.description,
+	alternates: {
+		canonical: siteConfig.url,
+	},
+};
 
-	try {
-		const url = new URL("https://cdn.builder.io/api/v3/content/page");
-		url.searchParams.set("apiKey", env.NEXT_PUBLIC_BUILDER_API_KEY);
-		url.searchParams.set("userAttributes.urlPath", "/");
-		url.searchParams.set("limit", "1");
-		url.searchParams.set("noCache", "true");
-
-		const res = await fetch(url.toString(), {
-			next: { revalidate: 0 },
-		});
-
-		if (!res.ok) return null;
-
-		const data = await res.json();
-		const results = data?.results;
-		if (!results || results.length === 0) return null;
-
-		return results[0] as BuilderContent;
-	} catch {
-		return null;
-	}
-}
+// Builder.io homepage lookup intentionally disabled until Builder.io content
+// is reviewed and approved by the Town Clerk. The static homepage below uses
+// only data verified against townofharmony.org.
 
 export default async function HomePage() {
-	const builderContent = await getBuilderHomepage();
-
-	if (builderContent) {
-		return <RenderBuilderContent content={builderContent} model="page" />;
-	}
-
 	return (
 		<>
 			<HeroSection />

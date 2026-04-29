@@ -252,9 +252,9 @@ export const TownResourcesList = ({ type }: TownResourcesListProps) => {
 																{TYPE_LABELS[resource.type] || resource.type}
 															</span>
 
-															<h4 className="text-base font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors">
+															<h3 className="text-base font-semibold text-[#2D2A24] group-hover:text-sage-dark transition-colors">
 																{resource.title}
-															</h4>
+															</h3>
 
 															<p className="text-sm text-[#4A4640] mt-1 line-clamp-2">
 																{resource.description}

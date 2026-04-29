@@ -54,13 +54,13 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 	// Get meetings for the current month
 	const monthMeetings = meetings.filter((meeting) => {
 		const meetingDate = new Date(meeting.meetingDate);
-		return meetingDate.getMonth() === currentMonth && meetingDate.getFullYear() === currentYear;
+		return meetingDate.getUTCMonth() === currentMonth && meetingDate.getUTCFullYear() === currentYear;
 	});
 
 	// Group meetings by date
 	const meetingsByDate = monthMeetings.reduce(
 		(acc, meeting) => {
-			const date = new Date(meeting.meetingDate).getDate();
+			const date = new Date(meeting.meetingDate).getUTCDate();
 			if (!acc[date]) {
 				acc[date] = [];
 			}
@@ -202,7 +202,7 @@ export function MeetingsCalendar({ meetings, initialMonth, initialYear }: Meetin
 											<div className="flex-1 min-w-0">
 												<h5 className="font-medium truncate">{meeting.title}</h5>
 												<div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
-													<span>{new Date(meeting.meetingDate).toLocaleDateString()}</span>
+													<span>{new Date(meeting.meetingDate).toLocaleDateString("en-US", { timeZone: "UTC" })}</span>
 													{meeting.meetingTime && (
 														<span className="flex items-center gap-1">
 															<Clock className="h-3 w-3" />

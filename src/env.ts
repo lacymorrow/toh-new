@@ -121,6 +121,16 @@ const serverSchema = {
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_API_VERSION: z.string().optional(),
 
+  // Sewer Payment Stripe Price IDs
+  STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL: z.string().optional(),
+  STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL: z.string().optional(),
+  STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL: z.string().optional(),
+  STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL: z.string().optional(),
+  STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL_SUB: z.string().optional(),
+  STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL_SUB: z.string().optional(),
+  STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL_SUB: z.string().optional(),
+  STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL_SUB: z.string().optional(),
+
   // Storage
   AWS_REGION: z.string().optional(),
   AWS_ACCESS_KEY_ID: z.string().optional(),

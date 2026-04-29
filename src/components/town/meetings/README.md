@@ -9,7 +9,6 @@ This directory contains all the components for the Town of Harmony meetings func
 - **`meeting-card.tsx`** - Card component to display meeting information in lists
 - **`meeting-detail.tsx`** - Detailed view of a single meeting with all information
 - **`meetings-list.tsx`** - Server component that fetches and displays paginated meetings
-- **`meetings-filters.tsx`** - Client component for filtering meetings by type, date, status
 - **`meetings-pagination.tsx`** - Client component for paginating through meeting results
 
 ### Specialized Components

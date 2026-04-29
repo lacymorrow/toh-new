@@ -45,7 +45,7 @@ export const resources: TownResource[] = [
 		category: "Community",
 		icon: "Calendar",
 		description: "Apply online to reserve the Harmony Community Center for activities and events.",
-		externalUrl: "https://townofharmony.org/community-center-reservation/",
+		externalUrl: "/resources/community-center-reservation",
 		sortOrder: 3,
 	},
 	{
@@ -55,8 +55,8 @@ export const resources: TownResource[] = [
 		type: "link",
 		category: "Community",
 		icon: "Trees",
-		description: "Apply online to reserve the Tomlinson-Moore Family Park for activities.",
-		externalUrl: "https://townofharmony.org/tomlinson-moore-family-park-reservation/",
+		description: "Information for reserving the Tomlinson-Moore Family Park picnic shelter.",
+		externalUrl: "/resources/park-reservation",
 		sortOrder: 4,
 	},
 	// Links

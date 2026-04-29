@@ -21,7 +21,7 @@ export const pointsOfInterest: TownPointOfInterest[] = [
 		slug: "town-hall",
 		category: "Government",
 		description:
-			"The seat of town government and center of civic life in Harmony. Town Hall houses administrative offices and serves as the meeting place for the Town Council. Residents can access various town services here.",
+			"The seat of town government and center of civic life in Harmony. Town Hall houses administrative offices and serves as the meeting place for the Board of Aldermen. Residents can access various town services here.",
 		image: mediaUrls["poi-town-hall"],
 		address: "3389 Harmony Hwy, Harmony, NC 28634",
 		hours: "Monday - Friday: 8:00 AM - 5:00 PM",
@@ -49,7 +49,7 @@ export const pointsOfInterest: TownPointOfInterest[] = [
 		description:
 			"A solemn memorial honoring the brave men and women from the Harmony community who served in the United States Armed Forces. The memorial features plaques, flags, and a peaceful garden setting for reflection.",
 		image: mediaUrls["poi-memorial"],
-		address: "Main Street, Harmony, NC 28634",
+		address: "Harmony, NC 28634",
 		hours: "Open 24 hours",
 		amenities: ["Memorial Plaques", "Flag Display", "Garden", "Benches"],
 	},
@@ -61,9 +61,9 @@ export const pointsOfInterest: TownPointOfInterest[] = [
 		description:
 			"A multipurpose facility that serves as the heart of community activities. The center hosts meetings, classes, events, and social gatherings. Available for private rentals and community organization meetings.",
 		image: mediaUrls["poi-community-center"],
-		address: "Main Street, Harmony, NC 28634",
-		hours: "Monday - Saturday: 9:00 AM - 9:00 PM",
-		phone: "(704) 546-2342",
+		address: "187 Highland Point Ave, Harmony, NC 28634",
+		hours: "10:00 AM - 10:00 PM (rentals)",
+		phone: "(704) 546-2339",
 		amenities: ["Meeting Rooms", "Kitchen", "Stage", "Parking", "Accessible"],
 	},
 	{
@@ -74,9 +74,8 @@ export const pointsOfInterest: TownPointOfInterest[] = [
 		description:
 			"Part of the Iredell-Statesville Schools district, Harmony Elementary serves the children of the Harmony community. The school has been a cornerstone of education in the area for generations.",
 		image: mediaUrls["poi-school"],
-		address: "Harmony Highway, Harmony, NC 28634",
+		address: "Harmony, NC 28634",
 		hours: "School hours: 7:30 AM - 2:30 PM",
-		phone: "(704) 546-2340",
 		amenities: ["Playground", "Athletic Fields", "Library", "Parking"],
 	},
 	{

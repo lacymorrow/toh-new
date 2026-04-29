@@ -16,10 +16,10 @@ export function CommunitySpotlight() {
 							Community Spotlight
 						</div>
 						<h3 className="text-2xl font-serif font-bold text-sage-dark mb-3">
-							Harmony Heritage Trail
+							Harmony Hill Camp Meeting
 						</h3>
 						<p className="text-base text-[#4A4640] leading-relaxed mb-5">
-							Walk through history along our newly restored Heritage Trail, connecting nine landmarks that tell the story of Harmony from its founding in 1927 to today.
+							A two-week revival tradition first held in 1846, the Harmony Hill Camp Meeting still gathers each year on the second weekend of October on the grounds of present-day Harmony Elementary School. The town takes its name from these meetings.
 						</p>
 						<Link
 							href="/history"

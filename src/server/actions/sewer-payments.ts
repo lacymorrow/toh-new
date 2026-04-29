@@ -10,7 +10,7 @@ const sewerCheckoutSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	email: z.string().email("Valid email is required"),
 	address: z.string().min(1, "Service address is required"),
-	accountNumber: z.string().regex(SEWER_ACCOUNT_REGEX, "Account number must be in format SEW-XXXXX"),
+	accountNumber: z.string().regex(SEWER_ACCOUNT_REGEX, "Account number is required"),
 	tierId: z.string().min(1, "Rate tier is required"),
 	paymentType: z.enum(["one-time", "auto-pay"]),
 });
@@ -19,16 +19,8 @@ type SewerCheckoutResult =
 	| { success: true; url: string }
 	| { success: false; error: string };
 
-const SEWER_PRICE_ENV_MAP: Record<string, string | undefined> = {
-	STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL: env.STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL,
-	STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL: env.STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL,
-	STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL: env.STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL,
-	STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL: env.STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL,
-	STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL_SUB: env.STRIPE_PRICE_SEWER_INTOWN_RESIDENTIAL_SUB,
-	STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL_SUB: env.STRIPE_PRICE_SEWER_OUTTOWN_RESIDENTIAL_SUB,
-	STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL_SUB: env.STRIPE_PRICE_SEWER_INTOWN_COMMERCIAL_SUB,
-	STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL_SUB: env.STRIPE_PRICE_SEWER_OUTTOWN_COMMERCIAL_SUB,
-};
+const getSewerPriceId = (envVar: string): string | undefined =>
+	process.env[envVar];
 
 export const createSewerCheckoutSession = async (
 	formData: FormData,
@@ -57,7 +49,7 @@ export const createSewerCheckoutSession = async (
 
 	const isSubscription = paymentType === "auto-pay";
 	const envVarName = isSubscription ? tier.stripeSubPriceEnvVar : tier.stripePriceEnvVar;
-	const priceId = SEWER_PRICE_ENV_MAP[envVarName];
+	const priceId = getSewerPriceId(envVarName);
 
 	if (!priceId) {
 		logger.warn("Sewer payment attempted but Stripe Price ID not configured", {

@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 
 import { navigation } from "@/data/town/navigation";
+import { isSewerPaymentEnabled } from "@/data/town/sewer-rates";
 
 const iconMap: Record<string, LucideIcon> = {
 	FileText,
@@ -29,6 +30,11 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export function QuickLinks() {
+	const onlinePaymentsEnabled = isSewerPaymentEnabled();
+	const quickLinks = onlinePaymentsEnabled
+		? navigation.quickLinks
+		: navigation.quickLinks.filter((link) => link.href !== "/pay/sewer");
+
 	return (
 		<section className="py-16 bg-cream">
 			<div className="container mx-auto px-4">
@@ -39,7 +45,7 @@ export function QuickLinks() {
 					<p className="text-[#4A4640] text-base">Find what you need quickly</p>
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-					{navigation.quickLinks.map((link) => {
+					{quickLinks.map((link) => {
 						const Icon = iconMap[link.icon] ?? FileText;
 						return (
 							<Link

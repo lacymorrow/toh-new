@@ -6,14 +6,14 @@ import type { TownTeamMember } from "@/data/town/types";
 
 const CATEGORY_ORDER = [
 	"Executive",
-	"Town Council",
+	"Board of Aldermen",
 	"Staff",
 ] as const;
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 	Executive:
 		"Town leadership responsible for daily operations and civic governance.",
-	"Town Council":
+	"Board of Aldermen":
 		"Elected officials serving the citizens of Harmony through policy and oversight.",
 	Staff:
 		"Dedicated professionals managing essential town services.",
@@ -153,9 +153,14 @@ export const TownTeamMembers = () => {
 													</a>
 												</div>
 											)}
+											{member.mayorSince && (
+												<p className="text-xs text-[#635E56] pt-1">
+													Mayor since: {member.mayorSince}
+												</p>
+											)}
 											{member.termExpires && (
 												<p className="text-xs text-[#635E56] pt-1">
-													Term expires: {member.termExpires}
+													Term: {member.termExpires}
 												</p>
 											)}
 										</div>

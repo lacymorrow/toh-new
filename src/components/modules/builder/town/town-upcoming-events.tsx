@@ -69,9 +69,9 @@ export const TownUpcomingEvents = ({ limit = 5 }: TownUpcomingEventsProps) => {
 											<> &middot; {event.eventTime}</>
 										)}
 									</div>
-									<h4 className="font-semibold text-[15px] text-[#2D2A24] group-hover:text-sage-dark transition-colors">
+									<h3 className="font-semibold text-[15px] text-[#2D2A24] group-hover:text-sage-dark transition-colors">
 										{event.title}
-									</h4>
+									</h3>
 									{event.location && (
 										<p className="text-[13px] text-[#4A4640]">
 											{event.location}

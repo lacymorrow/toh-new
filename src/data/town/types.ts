@@ -60,11 +60,12 @@ export interface TownTeamMember {
 	id: number;
 	name: string;
 	title: string;
-	category: "Executive" | "Town Council" | "Staff";
+	category: "Executive" | "Board of Aldermen" | "Staff";
 	email: string;
 	phone: string;
 	image?: string;
 	termExpires?: string;
+	mayorSince?: string;
 	department?: string;
 	sortOrder: number;
 	isActive: boolean;

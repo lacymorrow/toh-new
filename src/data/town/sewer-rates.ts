@@ -52,7 +52,10 @@ export const sewerRateTiers: SewerRateTier[] = [
 	},
 ];
 
-export const SEWER_ACCOUNT_REGEX = /^SEW-\d{5}$/;
+// Account numbers are validated as a non-empty string. The exact format is
+// determined by the Town's billing system and may appear on the customer's
+// paper bill.
+export const SEWER_ACCOUNT_REGEX = /^.{1,40}$/;
 
 export const sewerContactInfo = {
 	department: "Public Works Department",
@@ -60,4 +63,21 @@ export const sewerContactInfo = {
 	email: "admin@townofharmony.org",
 	hours: "Monday - Friday, 8:00 AM - 5:00 PM",
 	address: "Town of Harmony, PO Box 428, Harmony, NC 28634",
+};
+
+/**
+ * Online sewer payments are available only when Stripe is configured AND at
+ * least one sewer rate-tier Stripe price ID is set in the environment.
+ *
+ * Server-only — do not import from client components. The pre-rendered page
+ * decides at build time whether the form or the "coming soon" notice ships.
+ */
+export const isSewerPaymentEnabled = (): boolean => {
+	if (!process.env.STRIPE_SECRET_KEY) return false;
+	if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) return false;
+	return sewerRateTiers.some(
+		(tier) =>
+			!!process.env[tier.stripePriceEnvVar] ||
+			!!process.env[tier.stripeSubPriceEnvVar],
+	);
 };

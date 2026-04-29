@@ -34,7 +34,7 @@ const sewerPaymentFormSchema = z.object({
 	address: z.string().min(1, "Service address is required"),
 	accountNumber: z
 		.string()
-		.regex(SEWER_ACCOUNT_REGEX, "Account number must be in format SEW-XXXXX (e.g. SEW-12345)"),
+		.regex(SEWER_ACCOUNT_REGEX, "Account number is required"),
 	tierId: z.string().min(1, "Please select a rate tier"),
 	paymentType: z.enum(["one-time", "auto-pay"]),
 });
@@ -164,10 +164,12 @@ export const SewerPaymentForm = ({ stripeEnabled }: SewerPaymentFormProps) => {
 								<FormItem>
 									<FormLabel>Sewer Account Number</FormLabel>
 									<FormControl>
-										<Input placeholder="SEW-12345" {...field} />
+										<Input placeholder="As shown on your sewer bill" {...field} />
 									</FormControl>
 									<FormDescription>
-										Found on your sewer bill (format: SEW-XXXXX)
+										Enter the account number shown on your most recent sewer
+										bill. Contact Town Hall at (704) 546-2339 if you can't
+										locate it.
 									</FormDescription>
 									<FormMessage />
 								</FormItem>

@@ -1,15 +1,10 @@
 /* Loading Component
- * This is a special Next.js file that shows during page transitions and loading states
+ * Special Next.js file shown during route transitions.
+ * Returns null so server-streamed page content renders without a flashing
+ * full-page loader; this prevents non-JS clients from seeing only "Loader..."
+ * before hydration completes.
  * @see https://nextjs.org/docs/app/building-your-application/routing/loading-ui
  */
-import { Loader } from "@/components/primitives/loader";
-
 export default function LoadingComponent() {
-  return (
-    <Loader
-      fullPage // Makes the loading spinner take up the full viewport
-      backdrop // Adds a semi-transparent background overlay
-      fade // Enables a smooth fade in/out animation
-    />
-  );
+	return null;
 }

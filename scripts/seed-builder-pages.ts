@@ -2,11 +2,13 @@
  * Seed Builder.io pages via the Write API.
  *
  * Usage:
- *   BUILDER_PRIVATE_KEY=<key> npx tsx scripts/seed-builder-pages.ts
+ *   pnpm exec tsx scripts/seed-builder-pages.ts
  *
  * Requires a Builder.io private API key (Account Settings → API Keys).
- * All pages are created as drafts — publish them from the Builder.io dashboard.
  */
+
+import { config } from "dotenv";
+config(); // Load .env
 
 const BUILDER_PRIVATE_KEY = process.env.BUILDER_PRIVATE_KEY;
 const BUILDER_API_KEY = process.env.NEXT_PUBLIC_BUILDER_API_KEY;

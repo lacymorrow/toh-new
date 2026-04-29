@@ -94,8 +94,7 @@ export async function EmergencyAlertsList({
 					(!alert.startsAt || new Date(alert.startsAt) <= new Date()) &&
 					(!alert.endsAt || new Date(alert.endsAt) >= new Date());
 
-				// Extract plain text from rich text message
-				const messageText = extractTextFromRichText(alert.message as any);
+				const messageText = extractTextFromRichText(alert.content);
 
 				// Parse affectedAreas from JSON field
 				const affectedAreas: string[] = Array.isArray(alert.affectedAreas)
