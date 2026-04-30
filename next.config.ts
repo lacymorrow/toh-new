@@ -296,7 +296,7 @@ const nextConfig: NextConfig = {
 		],
 	},
 	outputFileTracingIncludes: {
-		"*": ["./docs/**/*", "./src/content/**/*"],
+		"*": ["./src/content/**/*"],
 	},
 
 	/*
@@ -332,18 +332,6 @@ const nextConfig: NextConfig = {
 				},
 			},
 		});
-
-		if (isServer) {
-			// Ensure docs directory is included in the bundle for dynamic imports
-			config.module.rules.push({
-				test: /\.(md|mdx)$/,
-				include: [
-					path.join(process.cwd(), "docs"),
-					// require("path").join(process.cwd(), "src/content/docs"),
-				],
-				use: "raw-loader",
-			});
-		}
 
 		// External heavy dependencies that are not used in most pages
 		if (!dev && isServer) {

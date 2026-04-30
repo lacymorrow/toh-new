@@ -22,7 +22,7 @@ export const routes = {
 	faq: "/faq",
 	pricing: "/pricing",
 	blog: "/blog",
-	docs: "/docs",
+	docs: "/",
 	features: "/features",
 	download: "/download",
 	launch: "/launch",
@@ -193,12 +193,18 @@ export const redirects = async (): Promise<Redirect[]> => {
 		{ source: "/emergency-services/", destination: "/emergency", permanent: true },
 		{
 			source: "/resources/ordinance",
-			destination: "/docs/town-ordinance.pdf",
+			destination: "/town-ordinance.pdf",
 			permanent: true,
 		},
 		{
 			source: "/resources/ordinance/",
-			destination: "/docs/town-ordinance.pdf",
+			destination: "/town-ordinance.pdf",
+			permanent: true,
+		},
+		// Redirect old /docs/town-ordinance.pdf path (was incorrectly in docs dir)
+		{
+			source: "/docs/town-ordinance.pdf",
+			destination: "/town-ordinance.pdf",
 			permanent: true,
 		},
 		{
@@ -236,11 +242,6 @@ export const redirects = async (): Promise<Redirect[]> => {
 		{ source: "/events/spring-in-the-park/", destination: "/events/spring-in-the-park-2026", permanent: true },
 		{ source: "/events/hwy-21-road-market", destination: "/events/hwy-21-road-market-2026", permanent: true },
 		{ source: "/events/hwy-21-road-market/", destination: "/events/hwy-21-road-market-2026", permanent: true },
-		// Legacy meeting slugs → new meeting slugs.
-		{ source: "/meetings/special-meeting-2025-07-17", destination: "/meetings/special-meeting-2025-07-17", permanent: true },
-		{ source: "/meetings/special-meeting-2025-07-31", destination: "/meetings/special-meeting-2025-07-31", permanent: true },
-		{ source: "/meetings/council-meeting-2025-07-07", destination: "/meetings/council-meeting-2025-07-07", permanent: true },
-		{ source: "/meetings/council-meeting-2025-08-04", destination: "/meetings/council-meeting-2025-08-04", permanent: true },
 		// Legacy form-only pages (HTTP 500 on legacy) → contact page.
 		{ source: "/host-an-event-or-other", destination: "/contact", permanent: true },
 		{ source: "/host-an-event-or-other/", destination: "/contact", permanent: true },
